@@ -42,7 +42,7 @@ class HypergeometricTest extends PHPUnit_Framework_TestCase {
 		$this->assertEquals(2.5, $summaryStats['mean']);
 		$this->assertEquals(0.69444, round($summaryStats['variance'], 5));
 		$this->assertEquals(0, round($summaryStats['skew'], 5));
-		$this->assertEquals(-0.68571, $summaryStats['kurtosis']);
+		$this->assertEquals(2.82857, round($summaryStats['kurtosis'], 5));
 	}
 }
 ?>
