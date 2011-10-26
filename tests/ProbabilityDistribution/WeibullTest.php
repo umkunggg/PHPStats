@@ -5,7 +5,7 @@ require_once('lib/ProbabilityDistribution/Weibull.php');
 
 use \PHPStats\ProbabilityDistribution\Weibull as Weibull;
 
-class WeibullTTest extends PHPUnit_Framework_TestCase {
+class WeibullTest extends PHPUnit_Framework_TestCase {
 	private $testObject;
 
 	public function __construct() {
