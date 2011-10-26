@@ -17,18 +17,18 @@ class NormalTest extends PHPUnit_Framework_TestCase {
 	}
 
 	public function test_pdf() {
-		$this->assertEquals(0.39683, round($this->testObject->pdf(2), 5));
-		$this->assertEquals(0.39683, round($this->testObject->pdf(2), 5));
+		$this->assertEquals(0.02218, round($this->testObject->pdf(2), 5));
+		$this->assertEquals(0.06664, round($this->testObject->pdf(7), 5));
 	}
 
 	public function test_cdf() {
-		$this->assertEquals(0.5, $this->testObject->cdf(10));
-		$this->assertEquals(0.9, $this->testObject->cdf(16.4078));
+		$this->assertEquals(0.5, round($this->testObject->cdf(10), 5));
+		$this->assertEquals(0.9, round($this->testObject->cdf(16.4078), 5));
 	}
 
 	public function test_sf() {
-		$this->assertEquals(0.5, $this->testObject->sf(10));
-		$this->assertEquals(0.1, $this->testObject->sf(16.4078));
+		$this->assertEquals(0.5, round($this->testObject->sf(10), 5));
+		$this->assertEquals(0.1, round($this->testObject->sf(16.4078), 5));
 	}
 
 	public function test_ppf() {
@@ -47,7 +47,7 @@ class NormalTest extends PHPUnit_Framework_TestCase {
 		$this->assertEquals(10, $summaryStats['mean']);
 		$this->assertEquals(25, $summaryStats['variance']);
 		$this->assertEquals(0, $summaryStats['skew']);
-		$this->assertEquals(3, $summaryStats['kurtosis']);
+		$this->assertEquals(0, $summaryStats['kurtosis']);
 	}
 }
 ?>
