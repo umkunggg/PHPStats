@@ -5,7 +5,7 @@ require_once('lib/ProbabilityDistribution/Beta.php');
 
 use \PHPStats\ProbabilityDistribution\Beta as Beta;
 
-class NormalTest extends PHPUnit_Framework_TestCase {
+class BetaTest extends PHPUnit_Framework_TestCase {
 	private $testObject;
 
 	public function __construct() {
