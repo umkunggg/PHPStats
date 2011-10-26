@@ -173,7 +173,7 @@ class ChiSquare extends ProbabilityDistribution {
 		@return float The probability
 	*/
 	static function getSf($x, $k = 1) {
-		return 1.0 - self::getCdf($x, $k, $theta);
+		return 1.0 - self::getCdf($x, $k);
 	}
 	
 	/**
