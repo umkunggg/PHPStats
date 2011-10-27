@@ -9,7 +9,7 @@ class StudentsTTest extends PHPUnit_Framework_TestCase {
 	private $testObject;
 
 	public function __construct() {
-		$this->testObject = new StudentsT(1, 5);
+		$this->testObject = new StudentsT(5);
 	}
 
 	public function test_rvs() {

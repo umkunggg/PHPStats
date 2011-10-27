@@ -122,7 +122,7 @@ class StudentsT extends ProbabilityDistribution {
 		@return float The probability
 	*/
 	static function getPdf($x, $df = 1) {
-		return pow(1 + pow($x, 2)/$df, -($df + 1)/2)/(sqrt($df)*\PHPStats\Stats::beta(.5, $df/2));
+		return \PHPStats\Stats::gamma(($df + 1)/ 2) * pow(1 + pow($x, 2)/$df, -($df + 1)/2)/ (sqrt($df * M_PI)*\PHPStats\Stats::gamma($df/2));
 	}
 	
 	/**
@@ -133,7 +133,7 @@ class StudentsT extends ProbabilityDistribution {
 		@return float The probability
 	*/
 	static function getCdf($x, $df = 1) {
-		$return = 1 - .5*\PHPStats\Stats::regularizedIncompleteBeta($df/2, .5, $df/(pow($x, 2) + $df)); //Valid only for $x > 0
+		$return = 1 - .5*\PHPStats\Stats::regularizedIncompleteBeta($df/2, 0.5, $df/(pow($x, 2) + $df)); //Valid only for $x > 0
 		
 		if ($x < 0) return 1 - $return; //...but we can infer < 0 by way of symmetry.
 		elseif ($x == 0) return .5; //Can't mirror it for zero, but the mean is here so the CDF is 0.5 at this point.
@@ -148,7 +148,7 @@ class StudentsT extends ProbabilityDistribution {
 		@return float The probability
 	*/
 	static function getSf($x, $df = 1) {
-		return 1.0 - self::getCdf($x, $minimum, $maximum);
+		return 1.0 - self::getCdf($x, $df);
 	}
 	
 	/**
@@ -170,7 +170,7 @@ class StudentsT extends ProbabilityDistribution {
 		@return float The value that gives an sf of $x
 	*/
 	static function getIsf($x, $df = 1) {
-		return self::getPpf(1.0 - $x, $minimum, $maximum);
+		return self::getPpf(1.0 - $x, $df);
 	}
 	
 	/**
