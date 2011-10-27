@@ -22,13 +22,13 @@ class ExponentialTest extends PHPUnit_Framework_TestCase {
 	}
 
 	public function test_cdf() {
-		$this->assertEquals(0.5, round($this->testObject->cdf(0.06931), 5));
+		$this->assertEquals(0.5, round($this->testObject->cdf(0.06931), 4));
 		$this->assertEquals(0.9, round($this->testObject->cdf(0.23026), 5));
 	}
 
 	public function test_sf() {
-		$this->assertEquals(0.93069, round($this->testObject->sf(0.5), 5));
-		$this->assertEquals(0.76974, round($this->testObject->sf(0.9), 5));
+		$this->assertEquals(0.5, round($this->testObject->sf(0.06931), 4));
+		$this->assertEquals(0.1, round($this->testObject->sf(0.23026), 5));
 	}
 
 	public function test_ppf() {
