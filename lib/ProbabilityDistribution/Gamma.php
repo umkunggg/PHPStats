@@ -202,7 +202,7 @@ class Gamma extends ProbabilityDistribution {
 		@return float The value that gives an sf of $x
 	*/
 	static function getIsf($x, $k = 1, $theta = 1) {
-		return self::ppf(1.0 - $x, $k, $theta);
+		return self::getPpf(1.0 - $x, $k, $theta);
 	}
 	
 	/**
