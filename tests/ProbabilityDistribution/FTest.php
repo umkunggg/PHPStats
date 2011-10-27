@@ -17,8 +17,8 @@ class FTest extends PHPUnit_Framework_TestCase {
 	}
 
 	public function test_pdf() {
-		$this->assertEquals(0.37961, round($this->testObject->pdf(0), 5));
-		$this->assertEquals(0.10982, round($this->testObject->pdf(1.6), 5));
+		$this->assertEquals(0.64389, round($this->testObject->pdf(1), 5));
+		$this->assertEquals(0.29981, round($this->testObject->pdf(1.6), 5));
 	}
 
 	public function test_cdf() {

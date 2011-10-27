@@ -191,11 +191,11 @@ class F extends ProbabilityDistribution {
 		$return = array();
 		
 		if (strpos($moments, 'm') !== FALSE) {
-			if ($d2 > 2) $return['mean'] = $d2 / ($d2 + 2);
+			if ($d2 > 2) $return['mean'] = $d2 / ($d2 - 2);
 			else $return['mean'] = NAN;
 		}
 		if (strpos($moments, 'v') !== FALSE) {
-			if ($d > 4) $return['variance'] = 2 * pow($d2, 2) * ($d1 + $d2 - 2)/($d1 * pow($d2 - 2, 2) * ($d2 - 4));
+			if ($d2 > 4) $return['variance'] = 2 * pow($d2, 2) * ($d1 + $d2 - 2)/($d1 * pow($d2 - 2, 2) * ($d2 - 4));
 			else $return['variance'] = NAN;
 		}
 		if (strpos($moments, 's') !== FALSE) {
