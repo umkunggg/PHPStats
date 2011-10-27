@@ -22,13 +22,13 @@ class ParetoTest extends PHPUnit_Framework_TestCase {
 	}
 
 	public function test_cdf() {
-		$this->assertEquals(0.5, round($this->testObject->cdf(1.1487), 5));
-		$this->assertEquals(0.9, round($this->testObject->cdf(1.58469), 5));
+		$this->assertEquals(0.5, round($this->testObject->cdf(1.1487), 3));
+		$this->assertEquals(0.9, round($this->testObject->cdf(1.58469), 3));
 	}
 
 	public function test_sf() {
-		$this->assertEquals(0.5, round($this->testObject->sf(1.1487), 5));
-		$this->assertEquals(0.1, round($this->testObject->sf(1.58469), 5));
+		$this->assertEquals(0.5, round($this->testObject->sf(1.1487), 3));
+		$this->assertEquals(0.1, round($this->testObject->sf(1.58469), 3));
 	}
 
 	public function test_ppf() {

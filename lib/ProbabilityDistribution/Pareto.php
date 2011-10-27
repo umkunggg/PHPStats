@@ -126,7 +126,7 @@ class Pareto extends ProbabilityDistribution {
 		@return float The probability
 	*/
 	static function getPdf($x, $minimum = 1.0, $alpha = 1.0) {
-		if ($x >= $minimum) return pow($minimum/$x, $alpha);
+		if ($x >= $minimum) return $alpha * pow($minimum, $alpha)/ pow($x, $alpha + 1);
 		else return 0.0;
 	}
 	
