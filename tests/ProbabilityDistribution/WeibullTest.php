@@ -9,7 +9,7 @@ class WeibullTest extends PHPUnit_Framework_TestCase {
 	private $testObject;
 
 	public function __construct() {
-		$this->testObject = new Weibull(1, 5);
+		$this->testObject = new Weibull(5, 1);
 	}
 
 	public function test_rvs() {
@@ -17,8 +17,8 @@ class WeibullTest extends PHPUnit_Framework_TestCase {
 	}
 
 	public function test_pdf() {
-		$this->assertEquals(0.37961, round($this->testObject->pdf(0), 5));
-		$this->assertEquals(0.10982, round($this->testObject->pdf(1.6), 5));
+		$this->assertEquals(0.2, round($this->testObject->pdf(0), 5));
+		$this->assertEquals(0.14523, round($this->testObject->pdf(1.6), 5));
 	}
 
 	public function test_cdf() {
@@ -44,10 +44,10 @@ class WeibullTest extends PHPUnit_Framework_TestCase {
 	public function test_stats() {
 		$summaryStats = $this->testObject->stats('mvsk');
 
-		$this->assertEquals(5, round($summaryStats['mean'], 5));
-		$this->assertEquals(25, round($summaryStats['variance'], 5));
-		$this->assertEquals(2, round($summaryStats['skew'], 5));
-		$this->assertEquals(6, round($summaryStats['kurtosis'], 5));
+		$this->assertEquals(5, round($summaryStats['mean'], 3));
+		$this->assertEquals(25, round($summaryStats['variance'], 2));
+		$this->assertEquals(2, round($summaryStats['skew'], 3));
+		$this->assertEquals(6, round($summaryStats['kurtosis'], 3));
 	}
 }
 ?>
