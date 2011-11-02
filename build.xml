@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="PHPStats" default="test">
+	<target name="test">
+		<phpunit haltonfailure="true" haltonerror="true">
+			<batchtest>
+				<fileset dir="tests">
+					<include name="**/*Test.php"/>
+				</fileset>
+			</batchtest>
+		</phpunit>
+	</target>
+
+	<target name="compile" depends="test">
+
+	</target>
+</project>
