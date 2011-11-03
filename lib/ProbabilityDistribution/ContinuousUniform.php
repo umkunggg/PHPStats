@@ -139,7 +139,7 @@ class ContinuousUniform extends ProbabilityDistribution {
 		@return float The probability
 	*/
 	static function getCdf($x, $minimum = 0.0, $maximum = 1.0) {
-		if ($x >= $minimum && $x <= $maximum) return $x - $minimum / ($maximum - $minimum);
+		if ($x >= $minimum && $x <= $maximum) return ($x - $minimum) / ($maximum - $minimum);
 		elseif ($x > $maximum) return 1.0;
 		else return 0.0;
 	}

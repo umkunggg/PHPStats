@@ -23,25 +23,25 @@
  * @package PHPStats
  */
 namespace PHPStats\ProbabilityDistribution;
-
-class Gamma extends ProbabilityDistribution {
+//Depends on Exponential TODO: Factor this out
+class Weibull extends ProbabilityDistribution {
+	private $lambda;
 	private $k;
-	private $theta;
 	
-	function __construct($k = 1.0, $theta = 1.0) {
+	function __construct($lambda = 1, $k = 1) {
+		$this->lambda = $lambda;
 		$this->k = $k;
-		$this->theta = $theta;
 	}
-
+	
 	//These are wrapper functions that call the static implementations with what we saved.
 	
 	/**
-		Returns a random float
+		Returns a random float between $lambda and $lambda plus $k
 		
 		@return float The random variate.
 	*/
 	public function rvs() {
-		return self::getRvs($this->k, $this->theta);
+		return self::getRvs($this->lambda, $this->k);
 	}
 	
 	/**
@@ -51,7 +51,7 @@ class Gamma extends ProbabilityDistribution {
 		@return float The probability
 	*/
 	public function pdf($x) {
-		return self::getPdf($x, $this->k, $this->theta);
+		return self::getPdf($x, $this->lambda, $this->k);
 	}
 	
 	/**
@@ -61,7 +61,7 @@ class Gamma extends ProbabilityDistribution {
 		@return float The probability
 	*/
 	public function cdf($x) {
-		return self::getCdf($x, $this->k, $this->theta);
+		return self::getCdf($x, $this->lambda, $this->k);
 	}
 	
 	/**
@@ -71,7 +71,7 @@ class Gamma extends ProbabilityDistribution {
 		@return float The probability
 	*/
 	public function sf($x) {
-		return self::getSf($x, $this->k, $this->theta);
+		return self::getSf($x, $this->lambda, $this->k);
 	}
 	
 	/**
@@ -81,7 +81,7 @@ class Gamma extends ProbabilityDistribution {
 		@return float The value that gives a cdf of $x
 	*/
 	public function ppf($x) {
-		return self::getPpf($x, $this->k, $this->theta);
+		return 0; //TODO: Weibull ppf
 	}
 	
 	/**
@@ -91,7 +91,7 @@ class Gamma extends ProbabilityDistribution {
 		@return float The value that gives an sf of $x
 	*/
 	public function isf($x) {
-		return self::getIsf($x, $this->k, $this->theta);
+		return self::getIsf($x, $this->lambda, $this->k);
 	}
 	
 	/**
@@ -101,125 +101,99 @@ class Gamma extends ProbabilityDistribution {
 		@return type array A dictionary containing the first four moments of the distribution
 	*/
 	public function stats($moments = 'mv') {
-		return self::getStats($moments, $this->k, $this->theta);
+		return self::getStats($moments, $this->lambda, $this->k);
 	}
 	
 	//These represent the calculation engine of the class.
 	
 	/**
-		Returns a random float between $minimum and $minimum plus $maximum
+		Returns a random float between $lambda and $lambda plus $k
 		
-		@param float $k Shape parameter
-		@param float $theta Scale parameter
+		@param float $lambda The scale parameter. Default 1.0
+		@param float $k The shape parameter. Default 1.0
 		@return float The random variate.
 	*/
-	static function getRvs($k = 1, $theta = 1) {
-		$floork = floor($k);
-		$fractionalk = $k - $floork;
-
-		$sumLogUniform = 0;
-		for ($index = 1; $index <= $floork; $index++) {
-			$sumLogUniform += log(self::randFloat());
-		}
-
-		$m = 0;
-		$xi = 0;
-		$V = array(0);
-		do {
-			$m++;
-
-			$V[] = self::randFloat();
-			$V[] = self::randFloat();
-			$V[] = self::randFloat();
-
-			if ($V[3*$m - 2] <= M_E/(M_E + $fractionalk)) {
-				$xi = pow($V[3*$m - 1], 1/$fractionalk);
-				$eta = $V[3*$m]*pow($xi, $fractionalk - 1);
-			}
-			else {
-				$xi = 1 - log($V[3*$m - 1]);
-				$eta = $V[3*$m]*exp(-$xi);
-			}
-		} while($eta > pow($xi, $fractionalk - 1)*exp(-$xi));
-
-		return $theta*($xi - $sumLogUniform);
+	static function getRvs($lambda = 1, $k = 1) {
+		$e = \PHPStats\ProbabilityDistribution\Exponential::getRvs(1);
+		return ($e == 0)? 0 : $lambda * $pow($e, 1/$k);
 	}
 	
 	/**
 		Returns the probability distribution function
 		
 		@param float $x The test value
-		@param float $k Shape parameter
-		@param float $theta Scale parameter
+		@param float $lambda The scale parameter. Default 1.0
+		@param float $k The shape parameter. Default 1.0
 		@return float The probability
 	*/
-	static function getPdf($x, $k = 1, $theta = 1) {
-		return pow($x, $k - 1)*exp(-$x/$theta)/(\PHPStats\Stats::gamma($k)*pow($theta, $k));
+	static function getPdf($x, $lambda = 1, $k = 1) {
+		if ($x >= 0) return ($k / $lambda) * pow($x / $lambda, $k - 1)*exp(-pow($x / $lambda, $k));
+		else return 0.0;
 	}
 	
 	/**
 		Returns the cumulative distribution function, the probability of getting the test value or something below it
 		
 		@param float $x The test value
-		@param float $k Shape parameter
-		@param float $theta Scale parameter
+		@param float $lambda The scale parameter. Default 1.0
+		@param float $k The shape parameter. Default 1.0
 		@return float The probability
 	*/
-	static function getCdf($x, $k = 1, $theta = 1) {
-		return \PHPStats\Stats::lowerGamma($k, $x/$theta)/\PHPStats\Stats::gamma($k);
+	static function getCdf($x, $lambda = 1, $k = 1) {
+		return 1 - exp(-pow($x / $lambda, $k));
 	}
 	
 	/**
 		Returns the survival function, the probability of getting the test value or something above it
 		
 		@param float $x The test value
-		@param float $k Shape parameter
-		@param float $theta Scale parameter
+		@param float $lambda The scale parameter. Default 1.0
+		@param float $k The shape parameter. Default 1.0
 		@return float The probability
 	*/
-	static function getSf($x, $k = 1, $theta = 1) {
-		return 1.0 - self::getCdf($x, $k, $theta);
+	static function getSf($x, $lambda = 1, $k = 1) {
+		return 1.0 - self::getCdf($x, $lambda, $k);
 	}
 	
 	/**
 		Returns the percent-point function, the inverse of the cdf
 		
 		@param float $x The test value
-		@param float $k Shape parameter
-		@param float $theta Scale parameter
+		@param float $lambda The scale parameter. Default 1.0
+		@param float $k The shape parameter. Default 1.0
 		@return float The value that gives a cdf of $x
 	*/
-	static function getPpf($x, $k = 1, $theta = 1) {
-		return 0; //TODO: Gamma PPF
+	static function getPpf($x, $lambda = 1, $k = 1) {
+		return 0; //TODO: Beta ppf
 	}
 	
 	/**
 		Returns the inverse survival function, the inverse of the sf
 		
 		@param float $x The test value
-		@param float $k Shape parameter
-		@param float $theta Scale parameter
+		@param float $lambda The scale parameter. Default 1.0
+		@param float $k The shape parameter. Default 1.0
 		@return float The value that gives an sf of $x
 	*/
-	static function getIsf($x, $k = 1, $theta = 1) {
-		return self::getPpf(1.0 - $x, $k, $theta);
+	static function getIsf($x, $lambda = 1, $k = 1) {
+		return self::getPpf(1.0 - $x, $lambda, $k);
 	}
 	
 	/**
 		Returns the moments of the distribution
 		
 		@param string $moments Which moments to compute. m for mean, v for variance, s for skew, k for kurtosis.  Default 'mv'
-		@param float $k Shape parameter
-		@param float $theta Scale parameter
+		@param float $lambda The scale parameter. Default 1.0
+		@param float $k The shape parameter. Default 1.0
 		@return type array A dictionary containing the first four moments of the distribution
 	*/
-	static function getStats($moments = 'mv', $k = 1, $theta = 1) {
+	static function getStats($moments = 'mv', $lambda = 1, $k = 1) {
 		$return = array();
 		
-		if (strpos($moments, 'm') !== FALSE) $return['mean'] = $k*$theta;
-		if (strpos($moments, 'v') !== FALSE) $return['variance'] = $k*pow($theta, 2);
-		if (strpos($moments, 's') !== FALSE) $return['skew'] = 2/sqrt($k);
-		if (strpos($moments, 'k') !== FALSE) $return['kurtosis'] = 6/$k;
+		if (strpos($moments, 'm') !== FALSE) $return['mean'] = $lambda*\PHPStats\Stats::gamma(1 + 1/$k);
+		if (strpos($moments, 'v') !== FALSE) $return['variance'] = pow($lambda, 2) * \PHPStats\Stats::gamma(1 + 2/$k) - pow($return['mean'], 2);
+		if (strpos($moments, 's') !== FALSE) $return['skew'] = (\PHPStats\Stats::gamma(1 + 3/$k) * pow($lambda, 3) - 3*$return['mean']*$return['variance'] - pow($return['mean'], 3))/pow($return['variance'], 1.5);
+		if (strpos($moments, 'k') !== FALSE) $return['kurtosis'] = (-6 * pow(\PHPStats\Stats::gamma(1 + 1/$k), 4) + 12 * pow(\PHPStats\Stats::gamma(1 + 1/$k), 2) * \PHPStats\Stats::gamma(1 + 2/$k) - 3 * pow(\PHPStats\Stats::gamma(1 + 2/$k), 2) - 4 * \PHPStats\Stats::gamma(1 + 1/$k) * \PHPStats\Stats::gamma(1 + 3/$k) + \PHPStats\Stats::gamma(1 + 4/$k))/pow(\PHPStats\Stats::gamma(1 + 2/$k) - pow(\PHPStats\Stats::gamma(1 + 1/$k), 2), 2);
 		
 		return $return;
 	}

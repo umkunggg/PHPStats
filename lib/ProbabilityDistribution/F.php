@@ -23,25 +23,25 @@
  * @package PHPStats
  */
 namespace PHPStats\ProbabilityDistribution;
-
-class Gamma extends ProbabilityDistribution {
-	private $k;
-	private $theta;
+//Depends on ChiSquare.php.  TODO: Refactor that out later.
+class F extends ProbabilityDistribution {
+	private $d1;
+	private $d2;
 	
-	function __construct($k = 1.0, $theta = 1.0) {
-		$this->k = $k;
-		$this->theta = $theta;
+	function __construct($d1 = 1, $d2 = 1) {
+		$this->d1 = $d1;
+		$this->d2 = $d2;
 	}
-
+	
 	//These are wrapper functions that call the static implementations with what we saved.
 	
 	/**
-		Returns a random float
+		Returns a random float between $d1 and $d1 plus $d2
 		
 		@return float The random variate.
 	*/
 	public function rvs() {
-		return self::getRvs($this->k, $this->theta);
+		return self::getRvs($this->d1, $this->d2);
 	}
 	
 	/**
@@ -51,7 +51,7 @@ class Gamma extends ProbabilityDistribution {
 		@return float The probability
 	*/
 	public function pdf($x) {
-		return self::getPdf($x, $this->k, $this->theta);
+		return self::getPdf($x, $this->d1, $this->d2);
 	}
 	
 	/**
@@ -61,7 +61,7 @@ class Gamma extends ProbabilityDistribution {
 		@return float The probability
 	*/
 	public function cdf($x) {
-		return self::getCdf($x, $this->k, $this->theta);
+		return self::getCdf($x, $this->d1, $this->d2);
 	}
 	
 	/**
@@ -71,7 +71,7 @@ class Gamma extends ProbabilityDistribution {
 		@return float The probability
 	*/
 	public function sf($x) {
-		return self::getSf($x, $this->k, $this->theta);
+		return self::getSf($x, $this->d1, $this->d2);
 	}
 	
 	/**
@@ -81,7 +81,7 @@ class Gamma extends ProbabilityDistribution {
 		@return float The value that gives a cdf of $x
 	*/
 	public function ppf($x) {
-		return self::getPpf($x, $this->k, $this->theta);
+		return 0; //TODO: Beta ppf
 	}
 	
 	/**
@@ -91,7 +91,7 @@ class Gamma extends ProbabilityDistribution {
 		@return float The value that gives an sf of $x
 	*/
 	public function isf($x) {
-		return self::getIsf($x, $this->k, $this->theta);
+		return self::getIsf($x, $this->d1, $this->d2);
 	}
 	
 	/**
@@ -101,125 +101,111 @@ class Gamma extends ProbabilityDistribution {
 		@return type array A dictionary containing the first four moments of the distribution
 	*/
 	public function stats($moments = 'mv') {
-		return self::getStats($moments, $this->k, $this->theta);
+		return self::getStats($moments, $this->d1, $this->d2);
 	}
 	
 	//These represent the calculation engine of the class.
 	
 	/**
-		Returns a random float between $minimum and $minimum plus $maximum
+		Returns a random float between $d1 and $d1 plus $d2
 		
-		@param float $k Shape parameter
-		@param float $theta Scale parameter
+		@param float $d1 Degrees of freedom 1. Default 1.0
+		@param float $d2 Degrees of freedom 2. Default 1.0
 		@return float The random variate.
 	*/
-	static function getRvs($k = 1, $theta = 1) {
-		$floork = floor($k);
-		$fractionalk = $k - $floork;
-
-		$sumLogUniform = 0;
-		for ($index = 1; $index <= $floork; $index++) {
-			$sumLogUniform += log(self::randFloat());
-		}
-
-		$m = 0;
-		$xi = 0;
-		$V = array(0);
-		do {
-			$m++;
-
-			$V[] = self::randFloat();
-			$V[] = self::randFloat();
-			$V[] = self::randFloat();
-
-			if ($V[3*$m - 2] <= M_E/(M_E + $fractionalk)) {
-				$xi = pow($V[3*$m - 1], 1/$fractionalk);
-				$eta = $V[3*$m]*pow($xi, $fractionalk - 1);
-			}
-			else {
-				$xi = 1 - log($V[3*$m - 1]);
-				$eta = $V[3*$m]*exp(-$xi);
-			}
-		} while($eta > pow($xi, $fractionalk - 1)*exp(-$xi));
-
-		return $theta*($xi - $sumLogUniform);
+	static function getRvs($d1 = 1, $d2 = 1) {
+		$x = \PHPStats\ProbabilityDistribution\ChiSquare::getRvs($d1);
+		$y = \PHPStats\ProbabilityDistribution\ChiSquare::getRvs($d2);
+		return ($x / $df1) / ($y / $df2);
 	}
 	
 	/**
 		Returns the probability distribution function
 		
 		@param float $x The test value
-		@param float $k Shape parameter
-		@param float $theta Scale parameter
+		@param float $d1 Degrees of freedom 1. Default 1.0
+		@param float $d2 Degrees of freedom 2. Default 1.0
 		@return float The probability
 	*/
-	static function getPdf($x, $k = 1, $theta = 1) {
-		return pow($x, $k - 1)*exp(-$x/$theta)/(\PHPStats\Stats::gamma($k)*pow($theta, $k));
+	static function getPdf($x, $d1 = 1, $d2 = 1) {
+		return pow((pow($d1 * $x, $d1) * pow($d2, $d2))/(pow($d1 * $x + $d2, $d1 + $d2)), 0.5)/($x * \PHPStats\Stats::beta($d1 / 2, $d2 / 2));
 	}
 	
 	/**
 		Returns the cumulative distribution function, the probability of getting the test value or something below it
 		
 		@param float $x The test value
-		@param float $k Shape parameter
-		@param float $theta Scale parameter
+		@param float $d1 Degrees of freedom 1. Default 1.0
+		@param float $d2 Degrees of freedom 2. Default 1.0
 		@return float The probability
 	*/
-	static function getCdf($x, $k = 1, $theta = 1) {
-		return \PHPStats\Stats::lowerGamma($k, $x/$theta)/\PHPStats\Stats::gamma($k);
+	static function getCdf($x, $d1 = 1, $d2 = 1) {
+		return \PHPStats\Stats::regularizedIncompleteBeta($d1 / 2, $d2 / 2, ($d1 * $x)/($d1 * $x + $d2));
 	}
 	
 	/**
 		Returns the survival function, the probability of getting the test value or something above it
 		
 		@param float $x The test value
-		@param float $k Shape parameter
-		@param float $theta Scale parameter
+		@param float $d1 Degrees of freedom 1. Default 1.0
+		@param float $d2 Degrees of freedom 2. Default 1.0
 		@return float The probability
 	*/
-	static function getSf($x, $k = 1, $theta = 1) {
-		return 1.0 - self::getCdf($x, $k, $theta);
+	static function getSf($x, $d1 = 1, $d2 = 1) {
+		return 1.0 - self::getCdf($x, $d1, $d2);
 	}
 	
 	/**
 		Returns the percent-point function, the inverse of the cdf
 		
 		@param float $x The test value
-		@param float $k Shape parameter
-		@param float $theta Scale parameter
+		@param float $d1 Degrees of freedom 1. Default 1.0
+		@param float $d2 Degrees of freedom 2. Default 1.0
 		@return float The value that gives a cdf of $x
 	*/
-	static function getPpf($x, $k = 1, $theta = 1) {
-		return 0; //TODO: Gamma PPF
+	static function getPpf($x, $d1 = 1, $d2 = 1) {
+		return 0; //TODO: Beta ppf
 	}
 	
 	/**
 		Returns the inverse survival function, the inverse of the sf
 		
 		@param float $x The test value
-		@param float $k Shape parameter
-		@param float $theta Scale parameter
+		@param float $d1 Degrees of freedom 1. Default 1.0
+		@param float $d2 Degrees of freedom 2. Default 1.0
 		@return float The value that gives an sf of $x
 	*/
-	static function getIsf($x, $k = 1, $theta = 1) {
-		return self::getPpf(1.0 - $x, $k, $theta);
+	static function getIsf($x, $d1 = 1, $d2 = 1) {
+		return self::getPpf(1.0 - $x, $d1, $d2);
 	}
 	
 	/**
 		Returns the moments of the distribution
 		
 		@param string $moments Which moments to compute. m for mean, v for variance, s for skew, k for kurtosis.  Default 'mv'
-		@param float $k Shape parameter
-		@param float $theta Scale parameter
+		@param float $d1 Degrees of freedom 1. Default 1.0
+		@param float $d2 Degrees of freedom 2. Default 1.0
 		@return type array A dictionary containing the first four moments of the distribution
 	*/
-	static function getStats($moments = 'mv', $k = 1, $theta = 1) {
+	static function getStats($moments = 'mv', $d1 = 1, $d2 = 1) {
 		$return = array();
 		
-		if (strpos($moments, 'm') !== FALSE) $return['mean'] = $k*$theta;
-		if (strpos($moments, 'v') !== FALSE) $return['variance'] = $k*pow($theta, 2);
-		if (strpos($moments, 's') !== FALSE) $return['skew'] = 2/sqrt($k);
-		if (strpos($moments, 'k') !== FALSE) $return['kurtosis'] = 6/$k;
+		if (strpos($moments, 'm') !== FALSE) {
+			if ($d2 > 2) $return['mean'] = $d2 / ($d2 - 2);
+			else $return['mean'] = NAN;
+		}
+		if (strpos($moments, 'v') !== FALSE) {
+			if ($d2 > 4) $return['variance'] = 2 * pow($d2, 2) * ($d1 + $d2 - 2)/($d1 * pow($d2 - 2, 2) * ($d2 - 4));
+			else $return['variance'] = NAN;
+		}
+		if (strpos($moments, 's') !== FALSE) {
+			if ($d2 > 6) $return['skew'] = (2 * $d1 + $d2 -2) * pow(8 * ($d2 - 4), 0.5) / (($d2 - 6) * pow($d1 * ($d1 + $d2 - 2), 0.5));
+			else $return['skew'] = NAN;
+		}
+		if (strpos($moments, 'k') !== FALSE) {
+			if ($d2 > 8) $return['kurtosis'] = 12 * ($d1 * (5 * $d2 - 22) * ($d1 + $d2 - 2) + ($d2 - 4) * pow($d2 - 2, 2)) / ($d1 * ($d2 - 6) * ($d2 - 8) * ($d1 + $d2 - 2));
+			else $return['kurtosis'] = NAN;
+		}
 		
 		return $return;
 	}
