@@ -155,7 +155,7 @@ class Exponential extends ProbabilityDistribution {
 		@return float The value that gives a cdf of $x
 	*/
 	static function getPpf($x, $lambda = 1) {
-		return 0; //TODO: Exponential PPF
+		return log(1 - $x) / -$lambda;
 	}
 	
 	/**
