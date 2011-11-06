@@ -164,7 +164,7 @@ class Pareto extends ProbabilityDistribution {
 		@return float The value that gives a cdf of $x
 	*/
 	static function getPpf($x, $minimum = 1.0, $alpha = 1.0) {
-		return 0; //TODO: Pareto ppf
+		return $minimum / pow(1 - $x, 1 / $alpha);
 	}
 	
 	/**
