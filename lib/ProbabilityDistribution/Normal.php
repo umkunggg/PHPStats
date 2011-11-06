@@ -164,7 +164,7 @@ class Normal extends ProbabilityDistribution {
 		@return float The value that gives a cdf of $x
 	*/
 	static function getPpf($x, $mu = 0.0, $variance = 1.0) {
-		return 0; //TODO: Normal ppf
+		return pow(2 * $variance, 0.5) * \PHPStats\Stats::ierf(2 * $x - 1) + $mu;
 	}
 	
 	/**
