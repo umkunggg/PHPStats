@@ -115,6 +115,12 @@ class StatsTest extends PHPUnit_Framework_TestCase {
 		$this->assertEquals(0.9999993, round(Stats::erf(3.5), 7));
 	}
 
+	public function test_ierf() {
+		$this->assertEquals(0.4769296, round(Stats::ierf(0.5), 7));
+		$this->assertEquals(0.2724627, round(Stats::ierf(0.3), 7));
+		$this->assertEquals(0.7321501, round(Stats::ierf(0.7), 7));
+	}
+
 	public function test_gamma() {
 		$this->assertEquals(1, round(Stats::gamma(1), 3));
 		$this->assertEquals(1, round(Stats::gamma(2), 3));

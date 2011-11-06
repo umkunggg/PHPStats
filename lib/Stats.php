@@ -259,7 +259,7 @@ class Stats {
 	 * Error Function
 	 * 
 	 * Returns the real error function of a number.
-	 * An approximation from Abramowitz and Stegurn is used.
+	 * An approximation from Abramowitz and Stegun is used.
 	 * Maximum error is 1.5e-7. More information can be found at
 	 * http://en.wikipedia.org/wiki/Error_function#Approximation_with_elementary_functions
 	 * 
@@ -269,6 +269,21 @@ class Stats {
 	public static function erf($x) {
 		$t = 1 / (1 + 0.3275911 * $x);
 		return 1 - (0.254829592*$t - 0.284496736*pow($t, 2) + 1.421413741*pow($t, 3) + -1.453152027*pow($t, 4) + 1.061405429*pow($t, 5))*exp(-pow($x, 2));
+	}
+	
+	/**
+	 * Inverse Error Function
+	 * 
+	 * Returns the inverse real error function of a number.
+	 * More information can be found at
+	 * http://en.wikipedia.org/wiki/Error_function#Inverse_function
+	 * 
+	 * @param float $x Argument to the real error function
+	 * @return float A value between -1 and 1
+	 */
+	public static function ierf($x) {
+		//To increase accuracy, keep adding on terms from the series expansion.
+		return 1/2 * pow(M_PI, 0.5) * ($x + M_PI*pow($x, 3)/12 + 7*pow(M_PI, 2)*pow($x, 5)/480 + 127*pow(M_PI, 3)*pow($x, 7)/40320 + 4369*pow(M_PI, 4)*pow($x, 9)/5806080 + 34807*pow(M_PI, 5)*pow($x, 11)/182476800);
 	}
 	
 	/**
