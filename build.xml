@@ -28,4 +28,12 @@
 			</batchtest>
 		</phpunit>
 	</target>
+	
+	<target name="lint">
+		<phplint haltonfailure="true" deprecatedAsError="true">
+			<fileset dir="./lib">
+				<include name="**/*.php" />
+			</fileset>
+		</phplint>
+	</target>
 </project>
