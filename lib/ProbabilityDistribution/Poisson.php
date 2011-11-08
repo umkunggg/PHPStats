@@ -178,7 +178,17 @@ class Poisson extends ProbabilityDistribution {
 		@return float The value that gives a cdf of $x
 	*/
 	static function getPpf($x, $lambda = 1) {
-		return 0; //TODO: Poisson PPF
+		if ($x >= 1) return INF; //Prevents infinite loops.
+	
+		$i = 0;
+		$cdf = 0;
+		
+		while ($cdf < $x) {
+			$cdf += self::getPmf($i, $lambda);
+			$i++;
+		}
+		
+		return $i;
 	}
 	
 	/**
