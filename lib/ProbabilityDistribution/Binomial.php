@@ -178,7 +178,15 @@ class Binomial extends ProbabilityDistribution {
 	 * @return float The value that gives a cdf of $x
 	 */
 	public static function getPpf($x, $p = 0.5, $n = 1) {
-		return 0; //TODO: Binomial PPF
+		$i = 0;
+		$cdf = 0;
+		
+		while ($cdf < $x) {
+			$cdf += self::getPmf($i, $p, $n);
+			$i++;
+		}
+		
+		return $i;
 	}
 	
 	/**
