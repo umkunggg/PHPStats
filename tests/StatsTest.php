@@ -151,6 +151,10 @@ class StatsTest extends PHPUnit_Framework_TestCase {
 		$this->assertEquals(30454.34729, round(Stats::lowerGamma(10, 6), 5));
 	}
 	
+	public function test_ilowerGamma() {
+	
+	}
+	
 	public function test_upperGamma() {
 		$this->assertEquals(1.83939, round(Stats::upperGamma(3, 1), 5));
 		$this->assertEquals(1.35335, round(Stats::upperGamma(3, 2), 5));

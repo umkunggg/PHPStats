@@ -313,12 +313,13 @@ class Stats {
 	 * Log Gamma Function
 	 * 
 	 * Returns the natural logarithm of the gamma function.  Useful for
-	 * scaling.  From the jStat library.
+	 * scaling.
 	 * 
 	 * @param float $x Argument to the gamma function
 	 * @return The natural log of gamma of $x
 	 */
 	public static function gammaln($x) {
+		//Thanks to jStat for this one.
 		$cof = array(
 			76.18009172947146, -86.50532032941677, 24.01409824083091,
 			-1.231739572450155, 0.1208650973866179e-2, -0.5395239384953e-5);
@@ -353,6 +354,59 @@ class Stats {
 			if (abs($t) < 0.00000000001) break;
 		}
 		return $v;
+	}
+	
+	/**
+	 * Inverse Incomplete (Lower) Gamma Function
+	 * 
+	 * Returns the inverse of the lower gamma function of a number.
+	 * 
+	 * @param float $s Upper bound of integration
+	 * @param float $x Result of the lower gamma function.
+	 * @return float The argument to the lower gamma function that would return $x
+	 */
+	public static function ilowerGamma($s, $x) {
+		//Thanks to jStat for this one.
+		$a1 = $s - 1;
+		$EPS = 1e-8;
+		$gln = self::gammaln($s);
+		$return = 0; 
+		$err = 0;
+		$t = 0;
+		$u = 0;
+		$pp = 0;
+		$lna1 = 0;
+		$afac = 0;
+
+		if( $x >= 1 ) return max(100, $s + 100 * pow($s, 0.5));
+		if( $x <= 0 ) return 0;
+		
+		if( $s > 1 ) {
+			$lna1 = log($a1);
+			$afac = exp($a1 * ( $lna1 - 1 ) - $gln);
+			$pp = ( $x < 0.5 ) ? $x : 1 - $x;
+			$t = pow( -2 * log($pp), 0.5);
+			$return = ( 2.30753 + $t * 0.27061 ) / ( 1 + $t * ( 0.99229 + $t * 0.04481 ));
+			if( $x < 0.5 ) $return = -$return;
+			$return = max( 1e-3, $s * pow( 1 - 1 / ( 9 * $s ) - $return / ( 3 * pow($s, 0.5)), 3 ));
+		} else {
+			$t = 1 - $s * ( 0.253 + $s * 0.12 );
+			if( $x < $t ) $return = pow($x / $t, 1 / $s);
+			else $return = 1 - log( 1 - ($x - $t ) / ( 1 - $t ));
+		}
+
+		for($j = 0; $j < 12; $j++) {
+			if( $return <= 0 ) return 0;
+			$err = lowerGamma($return, $s) - $x;
+			if( $s > 1 ) $t = $afac * exp( -( $return - $a1 ) + $a1 * (log($return) - $lna1));
+			else $t = exp(-$return + $a1 * log( $return ) - $gln);
+			$u = $err / $t;
+			$return -= ( $t = $u / ( 1 - 0.5 * min( 1, $u * (($s - 1) / $return - 1))));
+			if($return <= 0) $return = 0.5 * ($return + $t);
+			if(abs($t) < $EPS * $return) break;
+		}
+		
+		return $return;
 	}
 	
 	/**
@@ -392,6 +446,8 @@ class Stats {
 	 * @return float The incomplete beta of $a and $b, up to $x
 	 */
 	public static function regularizedIncompleteBeta($a, $b, $x) {
+		//Again, thanks to jStat.
+	
 		// Factors in front of the continued fraction.
 		if ($x < 0 || $x > 1) return false;
 		if ($x == 0 || $x == 1) $bt = 0;
