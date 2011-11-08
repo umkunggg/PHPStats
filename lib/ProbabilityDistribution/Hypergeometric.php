@@ -200,7 +200,15 @@ class Hypergeometric extends ProbabilityDistribution {
 		@return float The value that gives a cdf of $x
 	*/
 	static function getPpf($x, $L = 1, $m = 1, $n = 1) {
-		return 0; //TODO: Hypergeometric ppf
+		$i = 0;
+		$cdf = 0;
+		
+		while ($cdf < $x) {
+			$cdf += self::getPmf($i, $L, $m, $n);
+			$i++;
+		}
+		
+		return $i;
 	}
 	
 	/**
