@@ -186,7 +186,7 @@ class Binomial extends ProbabilityDistribution {
 			$i++;
 		}
 		
-		return $i;
+		return $i - 1;
 	}
 	
 	/**

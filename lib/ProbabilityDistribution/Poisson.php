@@ -188,7 +188,7 @@ class Poisson extends ProbabilityDistribution {
 			$i++;
 		}
 		
-		return $i;
+		return $i - 1;
 	}
 	
 	/**
