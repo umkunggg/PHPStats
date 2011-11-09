@@ -397,7 +397,7 @@ class Stats {
 
 		for($j = 0; $j < 12; $j++) {
 			if( $return <= 0 ) return 0;
-			$err = lowerGamma($return, $s) - $x;
+			$err = self::lowerGamma($return, $s) - $x;
 			if( $s > 1 ) $t = $afac * exp( -( $return - $a1 ) + $a1 * (log($return) - $lna1));
 			else $t = exp(-$return + $a1 * log( $return ) - $gln);
 			$u = $err / $t;
