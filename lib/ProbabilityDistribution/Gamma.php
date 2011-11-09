@@ -190,7 +190,7 @@ class Gamma extends ProbabilityDistribution {
 		@return float The value that gives a cdf of $x
 	*/
 	static function getPpf($x, $k = 1, $theta = 1) {
-		return 0; //TODO: Gamma PPF
+		return $theta * \PHPStats\Stats::ilowerGamma($k, \PHPStats\Stats::gamma($k) * $x);
 	}
 	
 	/**
