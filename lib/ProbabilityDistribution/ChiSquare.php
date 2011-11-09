@@ -184,7 +184,7 @@ class ChiSquare extends ProbabilityDistribution {
 		@return float The value that gives a cdf of $x
 	*/
 	static function getPpf($x, $k = 1) {
-		return 0; //TODO: ChiSquare PPF
+		return 2 * \PHPStats\Stats::ilowerGamma($k / 2, $x * \PHPStats\Stats::gamma($k / 2));
 	}
 	
 	/**
