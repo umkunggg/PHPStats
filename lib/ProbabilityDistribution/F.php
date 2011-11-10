@@ -164,7 +164,8 @@ class F extends ProbabilityDistribution {
 		@return float The value that gives a cdf of $x
 	*/
 	static function getPpf($x, $d1 = 1, $d2 = 1) {
-		return 0; //TODO: Beta ppf
+		$iY = \PHPStats\Stats::iregularizedIncompleteBeta($d1/2, $d2/2, $x);
+		return ($d2*$iY) / ($d1 * ($iY - 1));
 	}
 	
 	/**
