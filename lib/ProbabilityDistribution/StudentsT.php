@@ -159,7 +159,7 @@ class StudentsT extends ProbabilityDistribution {
 		@return float The value that gives a cdf of $x
 	*/
 	static function getPpf($x, $df = 1) {
-		return 0; //TODO: Student's T ppf
+		return pow($df/(\PHPStats\Stats::iregularizedIncompleteBeta($df/2, 0.5, 2* (1 - $x))) - $df, 0.5);
 	}
 	
 	/**
