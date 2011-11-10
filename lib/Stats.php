@@ -500,6 +500,65 @@ class Stats {
 		}
 		return $h;
 	}
+	
+	/**
+	 * Inverse Regularized Incomplete Beta Function
+	 *
+	 * The inverse of the regularized incomplete beta function.  
+	 *
+	 * @param float $a The alpha parameter
+	 * @param float $b The beta parameter
+	 * @param float $x The incomplete beta of $a and $b, up to the upper bound of integration
+	 * @return float Upper bound of integration
+	 */
+	public static function iregularizedIncompleteBeta($a, $b, $x) {
+		//jStat is my hero.
+		$EPS = 1e-8;
+		$a1 = $a - 1;
+		$b1 = $b - 1;
+		
+		$lna = $lnb = $pp = $t = $u = $err = $x = $al = $h = $w = $afac = 0;
+
+		if( $x <= 0 ) return 0;
+		if( $x >= 1 ) return 1;
+		
+		if( $a >= 1 && $b >= 1 ) {
+			$pp = ($x < 0.5) ? $x : 1 - $x;
+			$t = pow(-2 * log($pp), 0.5);
+			$return = (2.30753 + $t * 0.27061) / (1 + $t * (0.99229 + $t * 0.04481)) - $t;
+			
+			if( $x < 0.5 ) $return = -$return;
+			
+			$al = ($return * $return - 3) / 6;
+			$h = 2 / (1 / (2 * $a - 1) + 1 / (2 * $b - 1));
+			$w = ($return * pow($al + $h, 0.5) / $h) - (1 / (2 * $b - 1) - 1 / (2 * $a - 1)) * ($al + 5 / 6 - 2 / (3 * $h));
+			$return = $a / ($a + $b * exp(2 * $w));
+		} 
+		else {
+			$lna = log($a / ($a + $b));
+			$lnb = log($b / ($a + $b));
+			$t = exp($a * $lna) / $a;
+			$u = exp($b * $lnb) / $b;
+			$w = $t + $u;
+			if($x < $t / $w) $return = pow($a * $w * $x, 1 / $a);
+			else $return = 1 - pow($b * $w * (1 - $x), 1 / $b);
+		}
+		
+		$afac = self::gammaln($a) - self::gammaln($b) + self::gammaln($a + $b);
+		for($j = 0; $j < 10; $j++) {
+			if($return === 0 || $return === 1) return $return;
+			
+			$err = self::regularizedIncompleteBeta($return, $a, $b) - $x;
+			$t = exp($a1 * log($return) + $b1 * log(1 - $return) + $afac);
+			$u = $err / $t;
+			$return -= ($t = $u / (1 - 0.5 * min(1, $u * ($a1 / $return - $b1 / (1 - $return)))));
+			
+			if($return <= 0) $return = 0.5 * ($return + $t);
+			if($return >= 1) $return = 0.5 * ($return + $t + 1);
+			if(abs($t) < $EPS * $return && $j > 0) break;
+		}
+		return $return;
+	}
 
 	/**
 	 * Permutation Function

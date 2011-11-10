@@ -187,6 +187,14 @@ class StatsTest extends PHPUnit_Framework_TestCase {
 		$this->assertEquals(0.94269, round(Stats::regularizedIncompleteBeta(5, 8, 0.6), 5));
 	}
 
+	public function test_iregularizedIncompleteBeta() {
+		$this->assertEquals(0.25, round(Stats::regularizedIncompleteBeta(1, 1, 0.25), 5));
+		$this->assertEquals(0.25, round(Stats::regularizedIncompleteBeta(1, 2, 0.43750), 5));
+		$this->assertEquals(0.25, round(Stats::regularizedIncompleteBeta(2, 1, 0.06250), 5));
+		$this->assertEquals(0.6, round(Stats::regularizedIncompleteBeta(5, 5, 0.73343), 5));
+		$this->assertEquals(0.6, round(Stats::regularizedIncompleteBeta(5, 8, 0.94269), 5));
+	}
+
 	public function test_permutations() {
 		$this->assertEquals(1, Stats::permutations(1, 1));
 		$this->assertEquals(2, Stats::permutations(2, 1));
