@@ -366,6 +366,19 @@ class Stats {
 	 * @return float The argument to the lower gamma function that would return $x
 	 */
 	public static function ilowerGamma($s, $x) {
+		return 0;
+	}
+	
+	/**
+	 * Inverse Regularized Incomplete (Lower) Gamma Function
+	 * 
+	 * Returns the inverse of the regularized lower gamma function of a number.
+	 * 
+	 * @param float $s Upper bound of integration
+	 * @param float $x Result of the regularized lower gamma function.
+	 * @return float The argument to the lower gamma function that would return $x
+	 */
+	public static function iregularizedLowerGamma($s, $x) {
 		//Thanks to jStat for this one.
 		$a1 = $s - 1;
 		$EPS = 1e-8;
