@@ -516,12 +516,12 @@ class Stats {
 		$EPS = 1e-8;
 		$a1 = $a - 1;
 		$b1 = $b - 1;
-		
-		$lna = $lnb = $pp = $t = $u = $err = $x = $al = $h = $w = $afac = 0;
+
+		$lna = $lnb = $pp = $t = $u = $err = $return = $al = $h = $w = $afac = 0;
 
 		if( $x <= 0 ) return 0;
 		if( $x >= 1 ) return 1;
-		
+
 		if( $a >= 1 && $b >= 1 ) {
 			$pp = ($x < 0.5) ? $x : 1 - $x;
 			$t = pow(-2 * log($pp), 0.5);
@@ -543,12 +543,12 @@ class Stats {
 			if($x < $t / $w) $return = pow($a * $w * $x, 1 / $a);
 			else $return = 1 - pow($b * $w * (1 - $x), 1 / $b);
 		}
-		
-		$afac = self::gammaln($a) - self::gammaln($b) + self::gammaln($a + $b);
+
+		$afac = -self::gammaln($a) - self::gammaln($b) + self::gammaln($a + $b);
 		for($j = 0; $j < 10; $j++) {
 			if($return === 0 || $return === 1) return $return;
 			
-			$err = self::regularizedIncompleteBeta($return, $a, $b) - $x;
+			$err = self::regularizedIncompleteBeta($a, $b, $return) - $x;
 			$t = exp($a1 * log($return) + $b1 * log(1 - $return) + $afac);
 			$u = $err / $t;
 			$return -= ($t = $u / (1 - 0.5 * min(1, $u * ($a1 / $return - $b1 / (1 - $return)))));
