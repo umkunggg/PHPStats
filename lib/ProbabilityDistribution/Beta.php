@@ -23,7 +23,7 @@
  * @package PHPStats
  */
 namespace PHPStats\ProbabilityDistribution;
-//Depends on Gamma.php.  TODO: Refactor that out later.
+
 class Beta extends ProbabilityDistribution {
 	private $alpha;
 	private $beta;
@@ -81,7 +81,7 @@ class Beta extends ProbabilityDistribution {
 		@return float The value that gives a cdf of $x
 	*/
 	public function ppf($x) {
-		return 0; //TODO: Beta ppf
+		return self::getPpf($x, $this->alpha, $this->beta);
 	}
 	
 	/**
