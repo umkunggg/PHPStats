@@ -367,9 +367,9 @@ class Stats {
 	 */
 	public static function ilowerGamma($s, $x) {
 		//Thanks to jStat for this one.
-		$a1 = $x - 1;
+		$a1 = $s - 1;
 		$EPS = 1e-8;
-		$gln = self::gammaln($x);
+		$gln = self::gammaln($s);
 		$return = 0; 
 		$err = 0;
 		$t = 0;
@@ -378,30 +378,36 @@ class Stats {
 		$lna1 = 0;
 		$afac = 0;
 
-		if($s >= 1) return max(100, $x + 100 * pow($x, 0.5));
-		if($s <= 0) return 0;
+		if($x >= 1) return max(100, $s + 100 * pow($s, 0.5));
+		if($x <= 0) return 0;
 		
-		if($x > 1 ) {
+		if($s > 1 ) {
 			$lna1 = log($a1);
 			$afac = exp($a1 * ( $lna1 - 1 ) - $gln);
-			$pp = ( $s < 0.5 ) ? $s : 1 - $s;
+			$pp = ($x < 0.5) ? $x : 1 - $x;
 			$t = pow( -2 * log($pp), 0.5);
-			$return = ( 2.30753 + $t * 0.27061 ) / ( 1 + $t * ( 0.99229 + $t * 0.04481 ));
-			if( $s < 0.5 ) $return = -$return;
-			$return = max( 1e-3, $x * pow( 1 - 1 / ( 9 * $x ) - $return / ( 3 * pow($x, 0.5)), 3 ));
-		} else {
-			$t = 1 - $x * ( 0.253 + $x * 0.12 );
-			if( $s < $t ) $return = pow($s / $t, 1 / $x);
-			else $return = 1 - log( 1 - ($s - $t ) / ( 1 - $t ));
+			$return = (2.30753 + $t * 0.27061) / (1 + $t * (0.99229 + $t * 0.04481));
+
+			if($x < 0.5) $return = -$return;
+
+			$return = max(1e-3, $s * pow(1 - 1 / (9 * $s) - $return / ( 3 * pow($s, 0.5)), 3));
+		}
+		else {
+			$t = 1 - $s * ( 0.253 + $s * 0.12 );
+			if($x < $t) $return = pow($s / $t, 1 / $x);
+			else $return = 1 - log(1 - ($x - $t) / (1 - $t));
 		}
 
 		for($j = 0; $j < 12; $j++) {
 			if($return <= 0) return 0;
-			$err = self::lowerGamma($return, $x) - $s;
-			if($x > 1) $t = $afac * exp(-( $return - $a1 ) + $a1 * (log($return) - $lna1));
+
+			$err = self::lowerGamma($s, $return) - $x;
+
+			if($s > 1) $t = $afac * exp(-( $return - $a1 ) + $a1 * (log($return) - $lna1));
 			else $t = exp(-$return + $a1 * log($return) - $gln);
+
 			$u = $err / $t;
-			$return -= ( $t = $u / ( 1 - 0.5 * min(1, $u * (($x - 1) / $return - 1))));
+			$return -= ( $t = $u / ( 1 - 0.5 * min(1, $u * (($s - 1) / $return - 1))));
 			if($return <= 0) $return = 0.5 * ($return + $t);
 			if(abs($t) < $EPS * $return) break;
 		}
