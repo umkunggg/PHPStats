@@ -333,6 +333,22 @@ class Stats {
 
 		return log( 2.5066282746310005 * $ser / $xx) - $tmp;
 	}
+
+	public static function igamma($x) {
+		//Source: http://mathoverflow.net/questions/12828/inverse-gamma-function
+		//$k = self::digamma(0); //Commented as a definition for the approximated constant given below
+		$c = 0.036534; //pow(2*M_PI, 0.5)/M_E - self::gamma($k);
+		$lx = log(($x + $c)/pow(2*M_PI, 0.5));
+		return $lx / self::lambert($lx/M_E) + 0.5;
+	}
+
+	public static function digamma($x) {
+		return 0;
+	}
+
+	public static function lambert($x) {
+		return 0;
+	}
 	
 	/**
 	 * Incomplete (Lower) Gamma Function
