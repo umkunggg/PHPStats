@@ -23,7 +23,7 @@
  * @package PHPStats
  */
 namespace PHPStats\ProbabilityDistribution;
-//Depends on ChiSquare.php.  TODO: Refactor that out later.
+
 class F extends ProbabilityDistribution {
 	private $d1;
 	private $d2;
@@ -81,7 +81,7 @@ class F extends ProbabilityDistribution {
 		@return float The value that gives a cdf of $x
 	*/
 	public function ppf($x) {
-		return 0; //TODO: Beta ppf
+		return self::getPpf($x, $this->d1, $this->d2);
 	}
 	
 	/**
@@ -165,7 +165,7 @@ class F extends ProbabilityDistribution {
 	*/
 	static function getPpf($x, $d1 = 1, $d2 = 1) {
 		$iY = \PHPStats\Stats::iregularizedIncompleteBeta($d1/2, $d2/2, $x);
-		return ($d2*$iY) / ($d1 * ($iY - 1));
+		return -($d2*$iY) / ($d1 * ($iY - 1));
 	}
 	
 	/**
