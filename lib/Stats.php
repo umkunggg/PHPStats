@@ -316,7 +316,7 @@ class Stats {
 	 * scaling.
 	 * 
 	 * @param float $x Argument to the gamma function
-	 * @return The natural log of gamma of $x
+	 * @return float The natural log of gamma of $x
 	 */
 	public static function gammaln($x) {
 		//Thanks to jStat for this one.
@@ -334,20 +334,54 @@ class Stats {
 		return log( 2.5066282746310005 * $ser / $xx) - $tmp;
 	}
 
+	/**
+	 * Inverse gamma function
+	 * 
+	 * Returns the inverse of the gamma function
+	 * 
+	 * @param float $x The result of the gamma function
+	 * @return float The argument to the gamma function
+	 */
 	public static function igamma($x) {
 		//Source: http://mathoverflow.net/questions/12828/inverse-gamma-function
-		//$k = self::digamma(0); //Commented as a definition for the approximated constant given below
+		//$k = 1.461632; //self::digamma(0); //Commented as a definition for the approximated constant given below
 		$c = 0.036534; //pow(2*M_PI, 0.5)/M_E - self::gamma($k);
 		$lx = log(($x + $c)/pow(2*M_PI, 0.5));
 		return $lx / self::lambert($lx/M_E) + 0.5;
 	}
 
+	/**
+	 * Digamma Function
+	 * 
+	 * Returns the digamma function of a number
+	 * 
+	 * @param float $x Argument to the digamma function
+	 * @return The result of the digamma function
+	 */
 	public static function digamma($x) {
-		return 0;
+		//Source: http://en.wikipedia.org/wiki/Digamma_function#Computation_.26_approximation
+		return log($x) - 1/(2*$x) - 1/(12*pow($x, 2)) + 1/(120*pow($x, 4)) - 1/(252*pow($x, 6)) + (1/pow($x, 8));
 	}
 
+	/**
+	 * Lambert Function
+	 * 
+	 * Returns the positive branch of the lambert function
+	 * 
+	 * @param float $x Argument to the lambert funcction
+	 * @return float The result of the lambert function
+	 */
 	public static function lambert($x) {
-		return 0;
+	//Source: http://en.wikipedia.org/wiki/Lambert_W_function#Numerical_evaluation
+		$w = 2; //Best initial guess
+		//TODO: Limit the loop by the precision of the answer, not an arbitrary number of iterations
+		$i = 0;
+		while ($i < 10)
+		{
+			$w = $w - ($w*exp($w) - $x)/(exp($w) + $w*exp($w));
+			$i++;
+		}
+		return $w;
 	}
 	
 	/**
