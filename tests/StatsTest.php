@@ -152,11 +152,21 @@ class StatsTest extends PHPUnit_Framework_TestCase {
 	}
 
 	public function test_digamma() {
-
+		$this->assertEquals(-0.577219, round(Stats::digamma(1), 6));
+		$this->assertEquals(0.422778, round(Stats::digamma(2), 5));
+		$this->assertEquals(0.922774, round(Stats::digamma(3), 5));
+		$this->assertEquals(1.256104, round(Stats::digamma(4), 5));
+		$this->assertEquals(1.388856, round(Stats::digamma(4.5), 5));
+		$this->assertEquals(1.506101, round(Stats::digamma(5), 5));
 	}
 
 	public function test_lambert() {
-
+		$this->assertEquals(0, round(Stats::lambert(0), 6));
+		$this->assertEquals(0.567143, round(Stats::lambert(1), 6));
+		$this->assertEquals(0.852606, round(Stats::lambert(2), 6));
+		$this->assertEquals(1.049909, round(Stats::lambert(3), 6));
+		$this->assertEquals(1.267238, round(Stats::lambert(4.5, 6));
+		$this->assertEquals(1.326725, round(Stats::lambert(5), 6));
 	}
 
 	public function test_lowerGamma() {
