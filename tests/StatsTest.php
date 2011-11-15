@@ -190,13 +190,12 @@ class StatsTest extends PHPUnit_Framework_TestCase {
 	}
 	
 	public function test_iregularizedLowerGamma() {
-		/*$this->assertEquals(1, round(Stats::ilowerGamma(3, 0.16060), 5));
-		$this->assertEquals(2, round(Stats::ilowerGamma(3, 0.64665), 5));
-		$this->assertEquals(2.5, round(Stats::ilowerGamma(3, 0.91237), 5));
-		$this->assertEquals(3, round(Stats::ilowerGamma(10, 400.07089), 5));
-		$this->assertEquals(4, round(Stats::ilowerGamma(10, 2951.02827), 5));
-		$this->assertEquals(5, round(Stats::ilowerGamma(10, 11549.76544), 5));
-		$this->assertEquals(6, round(Stats::ilowerGamma(10, 30454.34729), 5));*/
+		$this->assertEquals(0.99721, round(Stats::iregularizedLowerGamma(3, 0.16060), 5));
+		$this->assertEquals(0.97781, round(Stats::iregularizedLowerGamma(3, 0.64665), 5));
+		$this->assertEquals(0.95826, round(Stats::iregularizedLowerGamma(3, 0.91237), 5));
+		$this->assertEquals(0.99999, round(Stats::iregularizedLowerGamma(8, 0.16060), 5));
+		$this->assertEquals(0.78352, round(Stats::iregularizedLowerGamma(1, 0.64665), 5));
+		$this->assertEquals(0.43789, round(Stats::iregularizedLowerGamma(0.5, 0.91237), 5));
 	}
 	
 	public function test_upperGamma() {
