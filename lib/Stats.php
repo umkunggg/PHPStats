@@ -296,17 +296,36 @@ class Stats {
 	 * Stirling's approximation is used.  Though the actual gamma function
 	 * is defined for negative, non-integer values, this approximation is
 	 * undefined for anything less than or equal to zero.
-	 * More information can be found at
-	 * http://en.wikipedia.org/wiki/Stirling%27s_approximation
 	 * 
 	 * @param float $x Argument to the gamma function
 	 * @return float The gamma of $x
 	 */
 	public static function gamma($x) {
+		//Stirling's Approximation
 		if ($x <= 0) return NAN;
 		else {
 			return sqrt(2*M_PI/$x)*pow((1/M_E)*($x+(1/(12*$x - 1/(10*$x)))), $x);
 		}
+		
+		//Lanczos' Approximation
+		/*
+		// Coefficients used by the GNU Scientific Library
+		$g = 7;
+		$p = array(0.99999999999980993, 676.5203681218851, -1259.1392167224028,
+			 771.32342877765313, -176.61502916214059, 12.507343278686905,
+			 -0.13857109526572012, 9.9843695780195716e-6, 1.5056327351493116e-7);
+		 
+		// Reflection formula
+		if ($x < 0.5) return M_PI / (sin(M_PI*$x)*self::gamma(1-$x));
+		else {
+			$x--;
+			$y = $p[0];
+			
+			for ($i = 1; $i < $g+2; $i++) $y += $p[$i]/($x+$i);
+			
+			$t = $x + $g + 0.5;
+			return pow(2*M_PI, 0.5) * pow($t, $x+0.5) * exp(-$t) * $y;
+		}*/
 	}
 
 	/**
