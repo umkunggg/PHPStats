@@ -301,7 +301,7 @@ class Stats {
 	 * @return float The gamma of $x
 	 */
 	public static function gamma($x) {
-		//Lanczos' Approximation
+		//Lanczos' Approximation from Wikipedia
 		
 		// Coefficients used by the GNU Scientific Library
 		$g = 7;
