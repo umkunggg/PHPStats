@@ -124,7 +124,7 @@ class StatsTest extends PHPUnit_Framework_TestCase {
 	public function test_gamma() {
 		$this->assertEquals(1, round(Stats::gamma(1), 3));
 		$this->assertEquals(1, round(Stats::gamma(2), 3));
-		$this->assertEquals(1.3293326, round(Stats::gamma(2.5), 7));
+		$this->assertEquals(1.3293403881791, round(Stats::gamma(2.5), 13));
 		$this->assertEquals(2, round(Stats::gamma(3), 5));
 		$this->assertEquals(6, round(Stats::gamma(4), 5));
 		$this->assertEquals(24, round(Stats::gamma(5), 5));
@@ -165,7 +165,7 @@ class StatsTest extends PHPUnit_Framework_TestCase {
 		$this->assertEquals(0.567143, round(Stats::lambert(1), 6));
 		$this->assertEquals(0.852606, round(Stats::lambert(2), 6));
 		$this->assertEquals(1.049909, round(Stats::lambert(3), 6));
-		$this->assertEquals(1.267238, round(Stats::lambert(4.5, 6));
+		$this->assertEquals(1.267238, round(Stats::lambert(4.5), 6));
 		$this->assertEquals(1.326725, round(Stats::lambert(5), 6));
 	}
 
@@ -199,13 +199,13 @@ class StatsTest extends PHPUnit_Framework_TestCase {
 	}
 	
 	public function test_upperGamma() {
-		$this->assertEquals(1.83939, round(Stats::upperGamma(3, 1), 5));
+		$this->assertEquals(1.83940, round(Stats::upperGamma(3, 1), 5));
 		$this->assertEquals(1.35335, round(Stats::upperGamma(3, 2), 5));
-		$this->assertEquals(1.08762, round(Stats::upperGamma(3, 2.5), 5));
-		$this->assertEquals(362479.92676, round(Stats::upperGamma(10, 3), 5));
-		$this->assertEquals(359928.96939, round(Stats::upperGamma(10, 4), 5));
-		$this->assertEquals(351330.23222, round(Stats::upperGamma(10, 5), 5));
-		$this->assertEquals(332425.65036, round(Stats::upperGamma(10, 6), 5));
+		$this->assertEquals(1.08763, round(Stats::upperGamma(3, 2.5), 5));
+		$this->assertEquals(362479.92911, round(Stats::upperGamma(10, 3), 5));
+		$this->assertEquals(359928.97173, round(Stats::upperGamma(10, 4), 5));
+		$this->assertEquals(351330.23456, round(Stats::upperGamma(10, 5), 5));
+		$this->assertEquals(332425.65271, round(Stats::upperGamma(10, 6), 5));
 	}
 
 	public function test_beta() {

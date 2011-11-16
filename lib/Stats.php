@@ -301,14 +301,8 @@ class Stats {
 	 * @return float The gamma of $x
 	 */
 	public static function gamma($x) {
-		//Stirling's Approximation
-		if ($x <= 0) return NAN;
-		else {
-			return sqrt(2*M_PI/$x)*pow((1/M_E)*($x+(1/(12*$x - 1/(10*$x)))), $x);
-		}
-		
 		//Lanczos' Approximation
-		/*
+		
 		// Coefficients used by the GNU Scientific Library
 		$g = 7;
 		$p = array(0.99999999999980993, 676.5203681218851, -1259.1392167224028,
@@ -325,7 +319,7 @@ class Stats {
 			
 			$t = $x + $g + 0.5;
 			return pow(2*M_PI, 0.5) * pow($t, $x+0.5) * exp(-$t) * $y;
-		}*/
+		}
 	}
 
 	/**
