@@ -211,4 +211,3 @@ class F extends ProbabilityDistribution {
 		return $return;
 	}
 }
-?>

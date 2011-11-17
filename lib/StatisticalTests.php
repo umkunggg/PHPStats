@@ -109,4 +109,3 @@ class StatisticalTests {
 		return \PHPStats\ProbabilityDistribution\ChiSquare::getCdf($sum, $df);
 	}
 }
-?>

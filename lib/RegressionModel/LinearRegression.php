@@ -62,4 +62,3 @@ class LinearRegression extends RegressionModel {
 		return $this->alpha + $this->beta*$x;
 	}
 }
-?>

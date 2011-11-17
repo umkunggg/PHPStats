@@ -204,4 +204,3 @@ class DiscreteUniform extends ProbabilityDistribution {
 		return $return;
 	}
 }
-?>

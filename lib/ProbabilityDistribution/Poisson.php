@@ -220,4 +220,3 @@ class Poisson extends ProbabilityDistribution {
 		return $return;
 	}
 }
-?>

@@ -66,4 +66,3 @@ class LogarithmicRegression extends RegressionModel {
 		return $this->alpha + $this->beta*log($x);
 	}
 }
-?>

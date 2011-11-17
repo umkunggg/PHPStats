@@ -40,4 +40,3 @@ abstract class ProbabilityDistribution {
 		return ($standardVariate <= $p)?1:0;
 	}
 }
-?>

@@ -199,4 +199,3 @@ class Beta extends ProbabilityDistribution {
 		return $return;
 	}
 }
-?>

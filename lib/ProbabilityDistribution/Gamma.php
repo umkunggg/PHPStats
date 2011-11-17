@@ -224,4 +224,3 @@ class Gamma extends ProbabilityDistribution {
 		return $return;
 	}
 }
-?>

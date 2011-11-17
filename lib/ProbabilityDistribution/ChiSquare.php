@@ -216,4 +216,3 @@ class ChiSquare extends ProbabilityDistribution {
 		return $return;
 	}
 }
-?>

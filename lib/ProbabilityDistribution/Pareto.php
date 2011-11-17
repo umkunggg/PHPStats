@@ -210,4 +210,3 @@ class Pareto extends ProbabilityDistribution {
 		return $return;
 	}
 }
-?>

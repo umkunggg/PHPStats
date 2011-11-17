@@ -670,4 +670,3 @@ class Stats {
 		return self::permutations($n, $r)/self::factorial($r);
 	}
 }
-?>

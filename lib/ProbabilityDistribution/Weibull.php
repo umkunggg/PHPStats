@@ -198,4 +198,3 @@ class Weibull extends ProbabilityDistribution {
 		return $return;
 	}
 }
-?>

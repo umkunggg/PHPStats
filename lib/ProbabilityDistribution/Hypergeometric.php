@@ -244,4 +244,3 @@ class Hypergeometric extends ProbabilityDistribution {
 		return $return;
 	}
 }
-?>

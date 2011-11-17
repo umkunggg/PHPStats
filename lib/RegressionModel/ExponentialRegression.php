@@ -69,4 +69,3 @@ class ExponentialRegression extends RegressionModel {
 		return $this->alpha * pow($this->beta, $x);
 	}
 }
-?>

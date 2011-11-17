@@ -198,4 +198,3 @@ class Normal extends ProbabilityDistribution {
 		return $return;
 	}
 }
-?>

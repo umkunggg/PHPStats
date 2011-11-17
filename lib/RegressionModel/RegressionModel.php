@@ -73,4 +73,3 @@ abstract class RegressionModel {
 		return $this->r;
 	}
 }
-?>

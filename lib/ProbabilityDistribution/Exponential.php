@@ -187,4 +187,3 @@ class Exponential extends ProbabilityDistribution {
 		return $return;
 	}
 }
-?>

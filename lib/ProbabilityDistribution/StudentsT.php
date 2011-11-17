@@ -204,4 +204,3 @@ class StudentsT extends ProbabilityDistribution {
 		return $return;
 	}
 }
-?>

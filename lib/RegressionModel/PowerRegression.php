@@ -70,4 +70,3 @@ class PowerRegression extends RegressionModel {
 		return $this->alpha * pow($x, $this->beta);
 	}
 }
-?>

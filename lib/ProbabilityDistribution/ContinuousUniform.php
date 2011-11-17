@@ -199,4 +199,3 @@ class ContinuousUniform extends ProbabilityDistribution {
 		return $return;
 	}
 }
-?>
