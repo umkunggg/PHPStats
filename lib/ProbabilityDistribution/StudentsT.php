@@ -22,6 +22,7 @@
  *
  * @package PHPStats
  */
+ 
 namespace PHPStats\ProbabilityDistribution;
 
 class StudentsT extends ProbabilityDistribution {

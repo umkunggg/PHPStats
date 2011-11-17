@@ -22,7 +22,9 @@
  *
  * @package PHPStats
  */
+ 
 namespace PHPStats\ProbabilityDistribution;
+
 /**
  * ProbabilityDistribution class
  * 

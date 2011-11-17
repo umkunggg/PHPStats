@@ -22,8 +22,9 @@
  *
  * @package PHPStats
  */
+ 
 namespace PHPStats\ProbabilityDistribution;
-//Depends on Exponential TODO: Factor this out
+
 class Weibull extends ProbabilityDistribution {
 	private $lambda;
 	private $k;

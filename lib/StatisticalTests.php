@@ -22,7 +22,9 @@
  *
  * @package PHPStats
  */
+ 
 namespace PHPStats;
+
 /**
  * StatisticalTests class
  * 
