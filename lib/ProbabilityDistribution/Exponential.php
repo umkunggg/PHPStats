@@ -25,6 +25,14 @@
  
 namespace PHPStats\ProbabilityDistribution;
 
+/**
+ * Exponential class
+ * 
+ * Represents the exponential distribution, which represents the distribution
+ * of arrival times from a Poisson process.
+ *
+ * For more information, see: http://en.wikipedia.org/wiki/Exponential_distribution
+ */
 class Exponential extends ProbabilityDistribution {
 	private $lambda;
 	

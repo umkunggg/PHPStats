@@ -25,6 +25,15 @@
  
 namespace PHPStats\ProbabilityDistribution;
 
+/**
+ * Beta class
+ * 
+ * Represents the Beta distribution, a distribution that represents the
+ * probability distribution of success given an observed series of Bernoulli
+ * trials.
+ *
+ * For more information, see: http://en.wikipedia.org/wiki/Beta_distribution
+ */
 class Beta extends ProbabilityDistribution {
 	private $alpha;
 	private $beta;

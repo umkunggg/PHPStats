@@ -30,6 +30,7 @@ namespace PHPStats\ProbabilityDistribution;
  * 
  * Represents the Binomial distribution, a distribution that represents the
  * number of successes in a larger number of Bernoulli trials.
+ *
  * For more information, see: http://en.wikipedia.org/wiki/Binomial_distribution
  */
 class Binomial extends ProbabilityDistribution {

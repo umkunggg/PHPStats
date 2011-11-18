@@ -25,6 +25,16 @@
  
 namespace PHPStats\ProbabilityDistribution;
 
+/**
+ * Gamma class
+ * 
+ * Represents the gamma distribution, a generalization of the exponential,
+ * chi-square, and Erlang distributions.  When k is an integer, then this
+ * is the Erlang distribution, which represents the sum of k independent
+ * exponentially distributed random variables.
+ * 
+ * For more information, see: http://en.wikipedia.org/wiki/Gamma_distribution
+ */
 class Gamma extends ProbabilityDistribution {
 	private $k;
 	private $theta;

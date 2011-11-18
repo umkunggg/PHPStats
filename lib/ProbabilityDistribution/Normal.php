@@ -25,6 +25,14 @@
  
 namespace PHPStats\ProbabilityDistribution;
 
+/**
+ * Normal class
+ * 
+ * Represents the normal distribution, which represents the average of a large
+ * sample of observations.  
+ * 
+ * For more information, see: http://en.wikipedia.org/wiki/Normal_distribution
+ */
 class Normal extends ProbabilityDistribution {
 	private $mu;
 	private $variance;

@@ -25,6 +25,15 @@
  
 namespace PHPStats\ProbabilityDistribution;
 
+/**
+ * StudentsT class
+ * 
+ * Represents Student's T distribution, which estimates the mean of a normally
+ * distributed population in situations where the sample size is small and
+ * population standard deviation unknown.
+ * 
+ * For more information, see: http://en.wikipedia.org/wiki/Student's_t-distribution
+ */
 class StudentsT extends ProbabilityDistribution {
 	private $df;
 	

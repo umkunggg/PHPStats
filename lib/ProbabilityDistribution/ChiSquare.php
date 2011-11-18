@@ -25,6 +25,14 @@
 
 namespace PHPStats\ProbabilityDistribution;
 
+/**
+ * ChiSquare class
+ * 
+ * Represents the Chi Square distribution, a distribution that represents the
+ * sum of the squares of k independent standard normal random variates.
+ *
+ * For more information, see: http://en.wikipedia.org/wiki/Chi-squared_distribution
+ */
 class ChiSquare extends ProbabilityDistribution {
 	private $k;
 	

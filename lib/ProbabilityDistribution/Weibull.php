@@ -25,6 +25,17 @@
  
 namespace PHPStats\ProbabilityDistribution;
 
+/**
+ * Weibull class
+ * 
+ * Represents the Weibull distribution, which is frequently used to model
+ * failure rates.  In essence, it is the exponential distribution, but with
+ * a rate that increases or decreases linearly over time.  A k of one indicates
+ * a constant failure rate, whereas less than one indicates a decreasing
+ * failure rate and a higher k indicates an increasing failure rate.
+ * 
+ * For more information, see: http://en.wikipedia.org/wiki/Weibull_distribution
+ */
 class Weibull extends ProbabilityDistribution {
 	private $lambda;
 	private $k;

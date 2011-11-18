@@ -31,6 +31,7 @@ namespace PHPStats\ProbabilityDistribution;
  * Represents the Poisson distribution, a distribution that represents the
  * number of independent, exponentially-distributed events that occur in a
  * fixed interval.  
+ *
  * For more information, see: http://en.wikipedia.org/wiki/Poisson_distribution
  */
 class Poisson extends ProbabilityDistribution {

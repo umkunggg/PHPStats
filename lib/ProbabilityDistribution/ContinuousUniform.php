@@ -25,6 +25,14 @@
  
 namespace PHPStats\ProbabilityDistribution;
 
+/**
+ * ContinuousUniform class
+ * 
+ * Represents the continuous uniform distribution, a distribution that 
+ * represents equiprobable outcomes on a continuous space.
+ *
+ * For more information, see: http://en.wikipedia.org/wiki/Uniform_distribution_%28continuous%29
+ */
 class ContinuousUniform extends ProbabilityDistribution {
 	private $minimum;
 	private $maximum;

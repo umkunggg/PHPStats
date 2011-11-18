@@ -31,6 +31,8 @@ namespace PHPStats\ProbabilityDistribution;
  * Represents the hypergeometric distribution, which is the probability of
  * selecting a certain number of objects of interest from a population with
  * some larger number of objects of interest.
+ * 
+ * For more information, see: http://en.wikipedia.org/wiki/Hypergeometric_distribution
  */
 class Hypergeometric extends ProbabilityDistribution {
 	private $L;

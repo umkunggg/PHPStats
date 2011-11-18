@@ -25,6 +25,15 @@
  
 namespace PHPStats\ProbabilityDistribution;
 
+/**
+ * Pareto class
+ * 
+ * Represents the Pareto distribution, also known as the Bradford distribution,
+ * which is a power-law distribution.  It is frequently used to model the
+ * distribution of wealth, popularity, population, etc.  It is the 80-20 rule.
+ * 
+ * For more information, see: http://en.wikipedia.org/wiki/Pareto_distribution
+ */
 class Pareto extends ProbabilityDistribution {
 	private $minimum;
 	private $alpha;

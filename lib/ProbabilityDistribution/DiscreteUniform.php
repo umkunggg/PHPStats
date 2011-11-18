@@ -30,6 +30,8 @@ namespace PHPStats\ProbabilityDistribution;
  * 
  * Represents the discrete uniform distribution, which is a range of equiprobable
  * outcomes, such as rolling a single die.
+ *
+ * For more information, see: http://en.wikipedia.org/wiki/Uniform_distribution_%28discrete%29
  */
 class DiscreteUniform extends ProbabilityDistribution {
 	private $minimum;

@@ -25,6 +25,14 @@
  
 namespace PHPStats\ProbabilityDistribution;
 
+/**
+ * F class
+ * 
+ * Represents the F distribution, which is frequently used as the null
+ * distribution of a test statistic, such as the analysis of variance.
+ *
+ * For more information, see: http://en.wikipedia.org/wiki/F_distribution
+ */
 class F extends ProbabilityDistribution {
 	private $d1;
 	private $d2;
