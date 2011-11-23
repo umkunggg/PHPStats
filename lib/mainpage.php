@@ -30,4 +30,7 @@
  * @section license License
  * PHPStats is released under the LGPL version 3 or later.  For more details,
  * please refer to the copy of LICENSE.txt that accompanies your download.
+ * 
+ * @section changelog Change Log
+ * v0.1 First release of PHPStats
  */

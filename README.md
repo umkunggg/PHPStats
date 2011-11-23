@@ -29,3 +29,7 @@ not be properly complete until PHP 5.3 has been out for a while.
 **License**
 PHPStats is released under the LGPL version 3 or later.  For more details,
 please refer to the copy of LICENSE.txt that accompanies your download.
+
+**Change Log**
+*v0.1* 
+First release of PHPStats
