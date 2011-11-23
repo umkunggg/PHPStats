@@ -91,7 +91,6 @@ class StudentsT extends ProbabilityDistribution {
 	 * 
 	 * @param float $x The test value
 	 * @return float The value that gives a cdf of $x
-	 * @todo Unimplemented dependencies
 	 */
 	public function ppf($x) {
 		return self::getPpf($x, $this->df);
@@ -102,7 +101,6 @@ class StudentsT extends ProbabilityDistribution {
 	 * 
 	 * @param float $x The test value
 	 * @return float The value that gives an sf of $x
-	 * @todo Unimplemented dependencies
 	 */
 	public function isf($x) {
 		return self::getIsf($x, $this->df);
@@ -177,7 +175,6 @@ class StudentsT extends ProbabilityDistribution {
 	 * @param float $df The degrees of freedeom.  Default 1
 	 * @return float The value that gives a cdf of $x
 	 * @static
-	 * @todo Unimplemented dependencies
 	 */
 	static function getPpf($x, $df = 1) {
 		return pow($df/(\PHPStats\Stats::iregularizedIncompleteBeta($df/2, 0.5, 2* (1 - $x))) - $df, 0.5);
@@ -190,7 +187,6 @@ class StudentsT extends ProbabilityDistribution {
 	 * @param float $df The degrees of freedeom.  Default 1
 	 * @return float The value that gives an sf of $x
 	 * @static
-	 * @todo Unimplemented dependencies
 	 */
 	static function getIsf($x, $df = 1) {
 		return self::getPpf(1.0 - $x, $df);
