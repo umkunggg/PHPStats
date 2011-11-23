@@ -1,22 +1,31 @@
-PHP Stats
-=========
+PHPStats Statistical Library
+============================
 
-A Fully Featured Statistical Library for PHP
+**Introduction to PHPStats**
+PHPStats is a statistical library for PHP.  Its goal is to implement
+statistical functions in PHP that are not covered in the PHP core.
+PHPStats is written entirely in native PHP for ease of installation
+and for use in shared hosting environments, where the installation
+of binary files is difficult, if not impossible.
 
-Inspired in part by fantastic libraries such as SciPy and in part by the
-difficulty in getting additional binaries installed in a shared hosting
-environment, PHPStats aims to extend and fill gaps in PHP's core mathematical
-functions.  The library is built for both a frequentist mind-set and a Bayesian
-mind-set.  It also contains a number of financial classes intended to speed the
-implementation of PHP projects in a business setting and to raise PHP's profile
-in enterprise intranet applications.
+**Downloading PHPStats**
+To download PHPStats visit
+<a href="https://github.com/mcordingley/PHPStats">the GitHub page</a>.
+for the latest code or download the
+<a href="https://github.com/mcordingley/PHPStats/zipball/v0.1">current stable version</a>.
 
-This software is ALPHA quality, if that!  It is under heavy development right
-now and may undergo significant changes to its interface, including the possible
-split of the financial functions into a separate library.  Please do not use in
-a production setting without fully vetting it first.  PHPUnit tests are included
-for regression testing and for proving the correctness of the code in a new
-setting.  PHPUnit test coverage is still highly incomplete and entire sections
-of code are known to fail.  If you are testing sections of code for which unit
-tests do not exist, please consider doing your testing in the form of unit tests 
-and submitting those tests for inclusion in the test suite.
+**Installation**
+Installing PHPStats is easy.  Just copy the PHPStats.phar file into the
+folder where you keep your libraries and include the file in your scripts.
+At this point, you can just start using the classes directly; the classes
+will autoload when needed.
+
+**Dependencies**
+PHPStats is written to work with PHP 5.3 and greater, as it makes heavy use
+of features introduced in PHP 5.3.  While this does exclude a number of
+older installations of PHP, the library is still under development and will
+not be properly complete until PHP 5.3 has been out for a while.
+
+**License**
+PHPStats is released under the LGPL version 3 or later.  For more details,
+please refer to the copy of LICENSE.txt that accompanies your download.
