@@ -29,6 +29,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li id="searchli">
@@ -87,8 +88,7 @@ Inheritance diagram for PHPStats::ProbabilityDistribution::ContinuousUniform:</d
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab8fa06ff00590b6b8e8615dbbaffd3f3"></a><!-- doxytag: member="PHPStats::ProbabilityDistribution::ContinuousUniform::__construct" ref="ab8fa06ff00590b6b8e8615dbbaffd3f3" args="($minimum=0.0, $maximum=1.0)" -->
-&#160;</td><td class="memItemRight" valign="bottom"><b>__construct</b> ($minimum=0.0, $maximum=1.0)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPHPStats_1_1ProbabilityDistribution_1_1ContinuousUniform.html#ab8fa06ff00590b6b8e8615dbbaffd3f3">__construct</a> ($minimum=0.0, $maximum=1.0)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPHPStats_1_1ProbabilityDistribution_1_1ContinuousUniform.html#aa6592aefc6f2bce6ddb7fa499e247c29">rvs</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPHPStats_1_1ProbabilityDistribution_1_1ContinuousUniform.html#ac71a5eef349628d6ddb64b205474aa9a">pdf</a> ($x)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPHPStats_1_1ProbabilityDistribution_1_1ContinuousUniform.html#aca6c27b3004b4f393545783ac0365ae8">cdf</a> ($x)</td></tr>
@@ -106,6 +106,46 @@ Static Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">static&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPHPStats_1_1ProbabilityDistribution_1_1ContinuousUniform.html#a997f6f67ef02fb8a512aee41aab21297">getIsf</a> ($x, $minimum=0.0, $maximum=1.0)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">static&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPHPStats_1_1ProbabilityDistribution_1_1ContinuousUniform.html#a846848d083787c77e70b177a34d67e66">getStats</a> ($moments= 'mv', $minimum=0.0, $maximum=1.0)</td></tr>
 </table>
+<hr/><a name="_details"></a><h2>Detailed Description</h2>
+<div class="textblock"><p><a class="el" href="classPHPStats_1_1ProbabilityDistribution_1_1ContinuousUniform.html">ContinuousUniform</a> class</p>
+<p>Represents the continuous uniform distribution, a distribution that represents equiprobable outcomes on a continuous space.</p>
+<p>For more information, see: <a href="http://en.wikipedia.org/wiki/Uniform_distribution_%28continuous%29">http://en.wikipedia.org/wiki/Uniform_distribution_%28continuous%29</a> </p>
+</div><hr/><h2>Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="ab8fa06ff00590b6b8e8615dbbaffd3f3"></a><!-- doxytag: member="PHPStats::ProbabilityDistribution::ContinuousUniform::__construct" ref="ab8fa06ff00590b6b8e8615dbbaffd3f3" args="($minimum=0.0, $maximum=1.0)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">PHPStats::ProbabilityDistribution::ContinuousUniform::__construct </td>
+          <td>(</td>
+          <td class="paramtype">$&#160;</td>
+          <td class="paramname"><em>minimum</em> = <code>0.0</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&#160;</td>
+          <td class="paramname"><em>maximum</em> = <code>1.0</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Constructor function</p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramtype">float</td><td class="paramname">$minimum</td><td>The minimum value that the distribution can take on </td></tr>
+    <tr><td class="paramtype">float</td><td class="paramname">$maximum</td><td>The maximum value that the distribution can take on </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <hr/><h2>Member Function Documentation</h2>
 <a class="anchor" id="aca6c27b3004b4f393545783ac0365ae8"></a><!-- doxytag: member="PHPStats::ProbabilityDistribution::ContinuousUniform::cdf" ref="aca6c27b3004b4f393545783ac0365ae8" args="($x)" -->
 <div class="memitem">
@@ -336,7 +376,8 @@ Static Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>float The random variate. </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>float The random variate.</dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000012">Todo:</a></b></dt><dd>Untested </dd></dl>
 
 </div>
 </div>
@@ -516,6 +557,7 @@ Static Public Member Functions</h2></td></tr>
 <div class="memdoc">
 <p>Returns a random float between $minimum and $minimum plus $maximum</p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>float The random variate. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000011">Todo:</a></b></dt><dd>Untested </dd></dl>
 
 </div>
 </div>
@@ -587,7 +629,7 @@ Static Public Member Functions</h2></td></tr>
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Mon Oct 24 2011 00:14:39 for PHPStats by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Wed Nov 23 2011 21:53:23 for PHPStats by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </small></address>
 </body>
