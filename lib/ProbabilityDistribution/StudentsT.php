@@ -22,116 +22,134 @@
  *
  * @package PHPStats
  */
+ 
 namespace PHPStats\ProbabilityDistribution;
 
+/**
+ * StudentsT class
+ * 
+ * Represents Student's T distribution, which estimates the mean of a normally
+ * distributed population in situations where the sample size is small and
+ * population standard deviation unknown.
+ * 
+ * For more information, see: http://en.wikipedia.org/wiki/Student's_t-distribution
+ */
 class StudentsT extends ProbabilityDistribution {
 	private $df;
 	
-	function __construct($df = 1) {
+	/**
+	 * Constructor function
+	 * 
+	 * @param int $df The degrees of freedom
+	 */
+	public function __construct($df = 1) {
 		$this->df = $df;
 	}
 	
-	//These are wrapper functions that call the static implementations with what we saved.
-	
 	/**
-		Returns a random float between $minimum and $minimum plus $maximum
-		
-		@return float The random variate.
-	*/
+	 * Returns a random float between $minimum and $minimum plus $maximum
+	 * 
+	 * @return float The random variate.
+	 * @todo Unimplemented
+	 */
 	public function rvs() {
 		return self::getRvs($this->df);
 	}
 	
 	/**
-		Returns the probability distribution function
-		
-		@param float $x The test value
-		@return float The probability
-	*/
+	 * Returns the probability distribution function
+	 * 
+	 * @param float $x The test value
+	 * @return float The probability
+	 */
 	public function pdf($x) {
 		return self::getPdf($x, $this->df);
 	}
 	
 	/**
-		Returns the cumulative distribution function, the probability of getting the test value or something below it
-		
-		@param float $x The test value
-		@return float The probability
-	*/
+	 * Returns the cumulative distribution function, the probability of getting the test value or something below it
+	 * 
+	 * @param float $x The test value
+	 * @return float The probability
+	 */
 	public function cdf($x) {
 		return self::getCdf($x, $this->df);
 	}
 	
 	/**
-		Returns the survival function, the probability of getting the test value or something above it
-		
-		@param float $x The test value
-		@return float The probability
-	*/
+	 * Returns the survival function, the probability of getting the test value or something above it
+	 * 
+	 * @param float $x The test value
+	 * @return float The probability
+	 */
 	public function sf($x) {
 		return self::getSf($x, $this->df);
 	}
 	
 	/**
-		Returns the percent-point function, the inverse of the cdf
-		
-		@param float $x The test value
-		@return float The value that gives a cdf of $x
-	*/
+	 * Returns the percent-point function, the inverse of the cdf
+	 * 
+	 * @param float $x The test value
+	 * @return float The value that gives a cdf of $x
+	 * @todo Unimplemented dependencies
+	 */
 	public function ppf($x) {
 		return self::getPpf($x, $this->df);
 	}
 	
 	/**
-		Returns the inverse survival function, the inverse of the sf
-		
-		@param float $x The test value
-		@return float The value that gives an sf of $x
-	*/
+	 * Returns the inverse survival function, the inverse of the sf
+	 * 
+	 * @param float $x The test value
+	 * @return float The value that gives an sf of $x
+	 * @todo Unimplemented dependencies
+	 */
 	public function isf($x) {
 		return self::getIsf($x, $this->df);
 	}
 	
 	/**
-		Returns the moments of the distribution
-		
-		@param string $moments Which moments to compute. m for mean, v for variance, s for skew, k for kurtosis.  Default 'mv'
-		@return type array A dictionary containing the first four moments of the distribution
-	*/
+	 * Returns the moments of the distribution
+	 * 
+	 * @param string $moments Which moments to compute. m for mean, v for variance, s for skew, k for kurtosis.  Default 'mv'
+	 * @return type array A dictionary containing the first four moments of the distribution
+	 */
 	public function stats($moments = 'mv') {
 		return self::getStats($moments, $this->df);
 	}
 	
-	//These represent the calculation engine of the class.
-	
 	/**
-		Returns a random float between $minimum and $minimum plus $maximum
-		
-		@param float $df The degrees of freedeom.  Default 1
-		@return float The random variate.
-	*/
+	 * Returns a random float between $minimum and $minimum plus $maximum
+	 * 
+	 * @param float $df The degrees of freedeom.  Default 1
+	 * @return float The random variate.
+	 * @static
+	 * @todo Unimplemented
+	 */
 	static function getRvs($df = 1) {
 		return 0; //TODO: Student's T rvs
 	}
 	
 	/**
-		Returns the probability distribution function
-		
-		@param float $x The test value
-		@param float $df The degrees of freedeom.  Default 1
-		@return float The probability
-	*/
+	 * Returns the probability distribution function
+	 * 
+	 * @param float $x The test value
+	 * @param float $df The degrees of freedeom.  Default 1
+	 * @return float The probability
+	 * @static
+	 */
 	static function getPdf($x, $df = 1) {
 		return \PHPStats\Stats::gamma(($df + 1)/ 2) * pow(1 + pow($x, 2)/$df, -($df + 1)/2)/ (sqrt($df * M_PI)*\PHPStats\Stats::gamma($df/2));
 	}
 	
 	/**
-		Returns the cumulative distribution function, the probability of getting the test value or something below it
-		
-		@param float $x The test value
-		@param float $df The degrees of freedeom.  Default 1
-		@return float The probability
-	*/
+	 * Returns the cumulative distribution function, the probability of getting the test value or something below it
+	 * 
+	 * @param float $x The test value
+	 * @param float $df The degrees of freedeom.  Default 1
+	 * @return float The probability
+	 * @static
+	 */
 	static function getCdf($x, $df = 1) {
 		$return = 1 - .5*\PHPStats\Stats::regularizedIncompleteBeta($df/2, 0.5, $df/(pow($x, 2) + $df)); //Valid only for $x > 0
 		
@@ -141,45 +159,51 @@ class StudentsT extends ProbabilityDistribution {
 	}
 	
 	/**
-		Returns the survival function, the probability of getting the test value or something above it
-		
-		@param float $x The test value
-		@param float $df The degrees of freedeom.  Default 1
-		@return float The probability
-	*/
+	 * Returns the survival function, the probability of getting the test value or something above it
+	 * 
+	 * @param float $x The test value
+	 * @param float $df The degrees of freedeom.  Default 1
+	 * @return float The probability
+	 * @static
+	 */
 	static function getSf($x, $df = 1) {
 		return 1.0 - self::getCdf($x, $df);
 	}
 	
 	/**
-		Returns the percent-point function, the inverse of the cdf
-		
-		@param float $x The test value
-		@param float $df The degrees of freedeom.  Default 1
-		@return float The value that gives a cdf of $x
-	*/
+	 * Returns the percent-point function, the inverse of the cdf
+	 * 
+	 * @param float $x The test value
+	 * @param float $df The degrees of freedeom.  Default 1
+	 * @return float The value that gives a cdf of $x
+	 * @static
+	 * @todo Unimplemented dependencies
+	 */
 	static function getPpf($x, $df = 1) {
-		return 0; //TODO: Student's T ppf
+		return pow($df/(\PHPStats\Stats::iregularizedIncompleteBeta($df/2, 0.5, 2* (1 - $x))) - $df, 0.5);
 	}
 	
 	/**
-		Returns the inverse survival function, the inverse of the sf
-		
-		@param float $x The test value
-		@param float $df The degrees of freedeom.  Default 1
-		@return float The value that gives an sf of $x
-	*/
+	 * Returns the inverse survival function, the inverse of the sf
+	 * 
+	 * @param float $x The test value
+	 * @param float $df The degrees of freedeom.  Default 1
+	 * @return float The value that gives an sf of $x
+	 * @static
+	 * @todo Unimplemented dependencies
+	 */
 	static function getIsf($x, $df = 1) {
 		return self::getPpf(1.0 - $x, $df);
 	}
 	
 	/**
-		Returns the moments of the distribution
-		
-		@param string $moments Which moments to compute. m for mean, v for variance, s for skew, k for kurtosis.  Default 'mv'
-		@param float $df The degrees of freedeom.  Default 1
-		@return type array A dictionary containing the first four moments of the distribution
-	*/
+	 * Returns the moments of the distribution
+	 * 
+	 * @param string $moments Which moments to compute. m for mean, v for variance, s for skew, k for kurtosis.  Default 'mv'
+	 * @param float $df The degrees of freedeom.  Default 1
+	 * @return type array A dictionary containing the first four moments of the distribution
+	 * @static
+	 */
 	static function getStats($moments = 'mv', $df = 1) {
 		$return = array();
 		
@@ -204,4 +228,3 @@ class StudentsT extends ProbabilityDistribution {
 		return $return;
 	}
 }
-?>

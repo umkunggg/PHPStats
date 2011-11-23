@@ -115,10 +115,16 @@ class StatsTest extends PHPUnit_Framework_TestCase {
 		$this->assertEquals(0.9999993, round(Stats::erf(3.5), 7));
 	}
 
+	public function test_ierf() {
+		$this->assertEquals(0.4769296, round(Stats::ierf(0.5), 7));
+		$this->assertEquals(0.2724627, round(Stats::ierf(0.3), 7));
+		$this->assertEquals(0.7321501, round(Stats::ierf(0.7), 7));
+	}
+
 	public function test_gamma() {
 		$this->assertEquals(1, round(Stats::gamma(1), 3));
 		$this->assertEquals(1, round(Stats::gamma(2), 3));
-		$this->assertEquals(1.3293326, round(Stats::gamma(2.5), 7));
+		$this->assertEquals(1.3293403881791, round(Stats::gamma(2.5), 13));
 		$this->assertEquals(2, round(Stats::gamma(3), 5));
 		$this->assertEquals(6, round(Stats::gamma(4), 5));
 		$this->assertEquals(24, round(Stats::gamma(5), 5));
@@ -135,6 +141,34 @@ class StatsTest extends PHPUnit_Framework_TestCase {
 		$this->assertEquals(round(log(120), 4), round(Stats::gammaln(6), 4));
 	}
 
+	public function test_igamma() {
+		$this->assertEquals(1, round(Stats::igamma(1), 3));
+		$this->assertEquals(2, round(Stats::igamma(1), 3));
+		$this->assertEquals(2.5, round(Stats::igamma(1.3293326), 4));
+		$this->assertEquals(3, round(Stats::igamma(2), 5));
+		$this->assertEquals(4, round(Stats::igamma(6), 5));
+		$this->assertEquals(5, round(Stats::igamma(24), 5));
+		$this->assertEquals(6, round(Stats::igamma(120), 4));
+	}
+
+	public function test_digamma() {
+		$this->assertEquals(-0.577219, round(Stats::digamma(1), 6));
+		$this->assertEquals(0.422778, round(Stats::digamma(2), 5));
+		$this->assertEquals(0.922774, round(Stats::digamma(3), 5));
+		$this->assertEquals(1.256104, round(Stats::digamma(4), 5));
+		$this->assertEquals(1.388856, round(Stats::digamma(4.5), 5));
+		$this->assertEquals(1.506101, round(Stats::digamma(5), 5));
+	}
+
+	public function test_lambert() {
+		$this->assertEquals(0, round(Stats::lambert(0), 6));
+		$this->assertEquals(0.567143, round(Stats::lambert(1), 6));
+		$this->assertEquals(0.852606, round(Stats::lambert(2), 6));
+		$this->assertEquals(1.049909, round(Stats::lambert(3), 6));
+		$this->assertEquals(1.267238, round(Stats::lambert(4.5), 6));
+		$this->assertEquals(1.326725, round(Stats::lambert(5), 6));
+	}
+
 	public function test_lowerGamma() {
 		$this->assertEquals(0.16060, round(Stats::lowerGamma(3, 1), 5));
 		$this->assertEquals(0.64665, round(Stats::lowerGamma(3, 2), 5));
@@ -145,14 +179,24 @@ class StatsTest extends PHPUnit_Framework_TestCase {
 		$this->assertEquals(30454.34729, round(Stats::lowerGamma(10, 6), 5));
 	}
 	
+	public function test_ilowerGamma() {
+		$this->assertEquals(1, round(Stats::ilowerGamma(3, 0.16060), 5));
+		$this->assertEquals(2, round(Stats::ilowerGamma(3, 0.64665), 5));
+		$this->assertEquals(2.5, round(Stats::ilowerGamma(3, 0.91237), 5));
+		$this->assertEquals(3, round(Stats::ilowerGamma(10, 400.07089), 5));
+		$this->assertEquals(4, round(Stats::ilowerGamma(10, 2951.02827), 5));
+		$this->assertEquals(5, round(Stats::ilowerGamma(10, 11549.76544), 5));
+		$this->assertEquals(6, round(Stats::ilowerGamma(10, 30454.34729), 5));
+	}
+	
 	public function test_upperGamma() {
-		$this->assertEquals(1.83939, round(Stats::upperGamma(3, 1), 5));
+		$this->assertEquals(1.83940, round(Stats::upperGamma(3, 1), 5));
 		$this->assertEquals(1.35335, round(Stats::upperGamma(3, 2), 5));
-		$this->assertEquals(1.08762, round(Stats::upperGamma(3, 2.5), 5));
-		$this->assertEquals(362479.92676, round(Stats::upperGamma(10, 3), 5));
-		$this->assertEquals(359928.96939, round(Stats::upperGamma(10, 4), 5));
-		$this->assertEquals(351330.23222, round(Stats::upperGamma(10, 5), 5));
-		$this->assertEquals(332425.65036, round(Stats::upperGamma(10, 6), 5));
+		$this->assertEquals(1.08763, round(Stats::upperGamma(3, 2.5), 5));
+		$this->assertEquals(362479.92911, round(Stats::upperGamma(10, 3), 5));
+		$this->assertEquals(359928.97173, round(Stats::upperGamma(10, 4), 5));
+		$this->assertEquals(351330.23456, round(Stats::upperGamma(10, 5), 5));
+		$this->assertEquals(332425.65271, round(Stats::upperGamma(10, 6), 5));
 	}
 
 	public function test_beta() {
@@ -169,6 +213,14 @@ class StatsTest extends PHPUnit_Framework_TestCase {
 		$this->assertEquals(0.06250, round(Stats::regularizedIncompleteBeta(2, 1, 0.25), 5));
 		$this->assertEquals(0.73343, round(Stats::regularizedIncompleteBeta(5, 5, 0.6), 5));
 		$this->assertEquals(0.94269, round(Stats::regularizedIncompleteBeta(5, 8, 0.6), 5));
+	}
+
+	public function test_iregularizedIncompleteBeta() {
+		$this->assertEquals(0.25, round(Stats::iregularizedIncompleteBeta(1, 1, 0.25), 5));
+		$this->assertEquals(0.25, round(Stats::iregularizedIncompleteBeta(1, 2, 0.43750), 5));
+		$this->assertEquals(0.25, round(Stats::iregularizedIncompleteBeta(2, 1, 0.06250), 5));
+		$this->assertEquals(0.6, round(Stats::iregularizedIncompleteBeta(5, 5, 0.73343), 5));
+		$this->assertEquals(0.6, round(Stats::iregularizedIncompleteBeta(5, 8, 0.94269), 5));
 	}
 
 	public function test_permutations() {

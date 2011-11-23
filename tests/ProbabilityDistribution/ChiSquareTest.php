@@ -32,13 +32,13 @@ class ChiSquareTest extends PHPUnit_Framework_TestCase {
 	}
 
 	public function test_ppf() {
-		$this->assertEquals(4.35146, round($this->testObject->ppf(0.5), 5));
-		$this->assertEquals(9.23636, round($this->testObject->ppf(0.9), 4));
+		$this->assertEquals(4.35144, round($this->testObject->ppf(0.5), 5));
+		$this->assertEquals(9.23636, round($this->testObject->ppf(0.9), 5));
 	}
 
 	public function test_isf() {
-		$this->assertEquals(4.35146, $this->testObject->isf(0.5));
-		$this->assertEquals(1.61031, round($this->testObject->isf(0.9), 5));
+		$this->assertEquals(4.35144, round($this->testObject->isf(0.5), 5));
+		$this->assertEquals(1.61030, round($this->testObject->isf(0.9), 5));
 	}
 
 	public function test_stats() {

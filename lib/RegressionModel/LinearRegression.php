@@ -22,6 +22,7 @@
  *
  * @package PHPStats
  */
+ 
 namespace PHPStats\RegressionModel;
 
 /**
@@ -62,4 +63,3 @@ class LinearRegression extends RegressionModel {
 		return $this->alpha + $this->beta*$x;
 	}
 }
-?>

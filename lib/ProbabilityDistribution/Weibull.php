@@ -22,171 +22,194 @@
  *
  * @package PHPStats
  */
+ 
 namespace PHPStats\ProbabilityDistribution;
-//Depends on Exponential TODO: Factor this out
+
+/**
+ * Weibull class
+ * 
+ * Represents the Weibull distribution, which is frequently used to model
+ * failure rates.  In essence, it is the exponential distribution, but with
+ * a rate that increases or decreases linearly over time.  A k of one indicates
+ * a constant failure rate, whereas less than one indicates a decreasing
+ * failure rate and a higher k indicates an increasing failure rate.
+ * 
+ * For more information, see: http://en.wikipedia.org/wiki/Weibull_distribution
+ */
 class Weibull extends ProbabilityDistribution {
 	private $lambda;
 	private $k;
 	
-	function __construct($lambda = 1, $k = 1) {
+	/**
+	 * Constructor function
+	 * 
+	 * @param float $lambda The scale parameter
+	 * @param float $k The shape parameter
+	 */
+	public function __construct($lambda = 1, $k = 1) {
 		$this->lambda = $lambda;
 		$this->k = $k;
 	}
 	
-	//These are wrapper functions that call the static implementations with what we saved.
-	
 	/**
-		Returns a random float between $lambda and $lambda plus $k
-		
-		@return float The random variate.
-	*/
+	 * Returns a random float between $lambda and $lambda plus $k
+	 * 
+	 * @return float The random variate.
+	 * @todo Untested
+	 */
 	public function rvs() {
 		return self::getRvs($this->lambda, $this->k);
 	}
 	
 	/**
-		Returns the probability distribution function
-		
-		@param float $x The test value
-		@return float The probability
-	*/
+	 * Returns the probability distribution function
+	 * 
+	 * @param float $x The test value
+	 * @return float The probability
+	 */
 	public function pdf($x) {
 		return self::getPdf($x, $this->lambda, $this->k);
 	}
 	
 	/**
-		Returns the cumulative distribution function, the probability of getting the test value or something below it
-		
-		@param float $x The test value
-		@return float The probability
-	*/
+	 * Returns the cumulative distribution function, the probability of getting the test value or something below it
+	 * 
+	 * @param float $x The test value
+	 * @return float The probability
+	 */
 	public function cdf($x) {
 		return self::getCdf($x, $this->lambda, $this->k);
 	}
 	
 	/**
-		Returns the survival function, the probability of getting the test value or something above it
-		
-		@param float $x The test value
-		@return float The probability
-	*/
+	 * Returns the survival function, the probability of getting the test value or something above it
+	 * 
+	 * @param float $x The test value
+	 * @return float The probability
+	 */
 	public function sf($x) {
 		return self::getSf($x, $this->lambda, $this->k);
 	}
 	
 	/**
-		Returns the percent-point function, the inverse of the cdf
-		
-		@param float $x The test value
-		@return float The value that gives a cdf of $x
-	*/
+	 * Returns the percent-point function, the inverse of the cdf
+	 * 
+	 * @param float $x The test value
+	 * @return float The value that gives a cdf of $x
+	 */
 	public function ppf($x) {
-		return 0; //TODO: Weibull ppf
+		return self::getPpf($x, $this->lambda, $this->k);
 	}
 	
 	/**
-		Returns the inverse survival function, the inverse of the sf
-		
-		@param float $x The test value
-		@return float The value that gives an sf of $x
-	*/
+	 * Returns the inverse survival function, the inverse of the sf
+	 * 
+	 * @param float $x The test value
+	 * @return float The value that gives an sf of $x
+	 */
 	public function isf($x) {
 		return self::getIsf($x, $this->lambda, $this->k);
 	}
 	
 	/**
-		Returns the moments of the distribution
-		
-		@param string $moments Which moments to compute. m for mean, v for variance, s for skew, k for kurtosis.  Default 'mv'
-		@return type array A dictionary containing the first four moments of the distribution
-	*/
+	 * Returns the moments of the distribution
+	 * 
+	 * @param string $moments Which moments to compute. m for mean, v for variance, s for skew, k for kurtosis.  Default 'mv'
+	 * @return type array A dictionary containing the first four moments of the distribution
+	 */
 	public function stats($moments = 'mv') {
 		return self::getStats($moments, $this->lambda, $this->k);
 	}
 	
-	//These represent the calculation engine of the class.
-	
 	/**
-		Returns a random float between $lambda and $lambda plus $k
-		
-		@param float $lambda The scale parameter. Default 1.0
-		@param float $k The shape parameter. Default 1.0
-		@return float The random variate.
-	*/
+	 * Returns a random float between $lambda and $lambda plus $k
+	 * 
+	 * @param float $lambda The scale parameter. Default 1.0
+	 * @param float $k The shape parameter. Default 1.0
+	 * @return float The random variate.
+	 * @static
+	 * @todo Untested
+	 */
 	static function getRvs($lambda = 1, $k = 1) {
 		$e = \PHPStats\ProbabilityDistribution\Exponential::getRvs(1);
 		return ($e == 0)? 0 : $lambda * $pow($e, 1/$k);
 	}
 	
 	/**
-		Returns the probability distribution function
-		
-		@param float $x The test value
-		@param float $lambda The scale parameter. Default 1.0
-		@param float $k The shape parameter. Default 1.0
-		@return float The probability
-	*/
+	 * Returns the probability distribution function
+	 * 
+	 * @param float $x The test value
+	 * @param float $lambda The scale parameter. Default 1.0
+	 * @param float $k The shape parameter. Default 1.0
+	 * @return float The probability
+	 * @static
+	 */
 	static function getPdf($x, $lambda = 1, $k = 1) {
 		if ($x >= 0) return ($k / $lambda) * pow($x / $lambda, $k - 1)*exp(-pow($x / $lambda, $k));
 		else return 0.0;
 	}
 	
 	/**
-		Returns the cumulative distribution function, the probability of getting the test value or something below it
-		
-		@param float $x The test value
-		@param float $lambda The scale parameter. Default 1.0
-		@param float $k The shape parameter. Default 1.0
-		@return float The probability
-	*/
+	 * Returns the cumulative distribution function, the probability of getting the test value or something below it
+	 * 
+	 * @param float $x The test value
+	 * @param float $lambda The scale parameter. Default 1.0
+	 * @param float $k The shape parameter. Default 1.0
+	 * @return float The probability
+	 * @static
+	 */
 	static function getCdf($x, $lambda = 1, $k = 1) {
 		return 1 - exp(-pow($x / $lambda, $k));
 	}
 	
 	/**
-		Returns the survival function, the probability of getting the test value or something above it
-		
-		@param float $x The test value
-		@param float $lambda The scale parameter. Default 1.0
-		@param float $k The shape parameter. Default 1.0
-		@return float The probability
-	*/
+	 * Returns the survival function, the probability of getting the test value or something above it
+	 * 
+	 * @param float $x The test value
+	 * @param float $lambda The scale parameter. Default 1.0
+	 * @param float $k The shape parameter. Default 1.0
+	 * @return float The probability
+	 * @static
+	 */
 	static function getSf($x, $lambda = 1, $k = 1) {
 		return 1.0 - self::getCdf($x, $lambda, $k);
 	}
 	
 	/**
-		Returns the percent-point function, the inverse of the cdf
-		
-		@param float $x The test value
-		@param float $lambda The scale parameter. Default 1.0
-		@param float $k The shape parameter. Default 1.0
-		@return float The value that gives a cdf of $x
-	*/
+	 * Returns the percent-point function, the inverse of the cdf
+	 * 
+	 * @param float $x The test value
+	 * @param float $lambda The scale parameter. Default 1.0
+	 * @param float $k The shape parameter. Default 1.0
+	 * @return float The value that gives a cdf of $x
+	 * @static
+	 */
 	static function getPpf($x, $lambda = 1, $k = 1) {
-		return 0; //TODO: Beta ppf
+		return $lambda * pow(-log(1 - $x), 1 / $k);
 	}
 	
 	/**
-		Returns the inverse survival function, the inverse of the sf
-		
-		@param float $x The test value
-		@param float $lambda The scale parameter. Default 1.0
-		@param float $k The shape parameter. Default 1.0
-		@return float The value that gives an sf of $x
-	*/
+	 * Returns the inverse survival function, the inverse of the sf
+	 * 
+	 * @param float $x The test value
+	 * @param float $lambda The scale parameter. Default 1.0
+	 * @param float $k The shape parameter. Default 1.0
+	 * @return float The value that gives an sf of $x
+	 * @static
+	 */
 	static function getIsf($x, $lambda = 1, $k = 1) {
 		return self::getPpf(1.0 - $x, $lambda, $k);
 	}
 	
 	/**
-		Returns the moments of the distribution
-		
-		@param string $moments Which moments to compute. m for mean, v for variance, s for skew, k for kurtosis.  Default 'mv'
-		@param float $lambda The scale parameter. Default 1.0
-		@param float $k The shape parameter. Default 1.0
-		@return type array A dictionary containing the first four moments of the distribution
-	*/
+	 * Returns the moments of the distribution
+	 * 
+	 * @param string $moments Which moments to compute. m for mean, v for variance, s for skew, k for kurtosis.  Default 'mv'
+	 * @param float $lambda The scale parameter. Default 1.0
+	 * @param float $k The shape parameter. Default 1.0
+	 * @return type array A dictionary containing the first four moments of the distribution
+	 * @static
+	 */
 	static function getStats($moments = 'mv', $lambda = 1, $k = 1) {
 		$return = array();
 		
@@ -198,4 +221,3 @@ class Weibull extends ProbabilityDistribution {
 		return $return;
 	}
 }
-?>

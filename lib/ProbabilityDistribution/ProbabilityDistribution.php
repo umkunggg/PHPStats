@@ -22,7 +22,9 @@
  *
  * @package PHPStats
  */
+ 
 namespace PHPStats\ProbabilityDistribution;
+
 /**
  * ProbabilityDistribution class
  * 
@@ -40,4 +42,3 @@ abstract class ProbabilityDistribution {
 		return ($standardVariate <= $p)?1:0;
 	}
 }
-?>

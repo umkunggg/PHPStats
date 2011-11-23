@@ -22,6 +22,7 @@
  *
  * @package PHPStats
  */
+ 
 namespace PHPStats\RegressionModel;
 
 /**
@@ -31,7 +32,6 @@ namespace PHPStats\RegressionModel;
  * y = a*b^ln(x) it will find the variables a and b, as well as the correlation
  * between x and y.  Invalid for x less than or equal to 0.
  */
-
 class LogarithmicRegression extends RegressionModel {
 	/**
 	 * __construct Function
@@ -66,4 +66,3 @@ class LogarithmicRegression extends RegressionModel {
 		return $this->alpha + $this->beta*log($x);
 	}
 }
-?>

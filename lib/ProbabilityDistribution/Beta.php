@@ -22,97 +22,114 @@
  *
  * @package PHPStats
  */
+ 
 namespace PHPStats\ProbabilityDistribution;
-//Depends on Gamma.php.  TODO: Refactor that out later.
+
+/**
+ * Beta class
+ * 
+ * Represents the Beta distribution, a distribution that represents the
+ * probability distribution of success given an observed series of Bernoulli
+ * trials.
+ *
+ * For more information, see: http://en.wikipedia.org/wiki/Beta_distribution
+ */
 class Beta extends ProbabilityDistribution {
 	private $alpha;
 	private $beta;
 	
-	function __construct($alpha = 1, $beta = 1) {
+	/**
+	 * Constructor function
+	 * 
+	 * @param float $alpha The alpha parameter
+	 * @param float $beta The beta parameter
+	 */
+	public function __construct($alpha = 1, $beta = 1) {
 		$this->alpha = $alpha;
 		$this->beta = $beta;
 	}
 	
-	//These are wrapper functions that call the static implementations with what we saved.
-	
 	/**
-		Returns a random float between $alpha and $alpha plus $beta
-		
-		@return float The random variate.
-	*/
+	 * Returns a random float between $alpha and $alpha plus $beta
+	 *
+	 * @return float The random variate.
+	 * @todo Untested
+	 */
 	public function rvs() {
 		return self::getRvs($this->alpha, $this->beta);
 	}
 	
 	/**
-		Returns the probability distribution function
-		
-		@param float $x The test value
-		@return float The probability
-	*/
+	 * Returns the probability distribution function
+	 *
+	 * @param float $x The test value
+	 * @return float The probability
+	 */
 	public function pdf($x) {
 		return self::getPdf($x, $this->alpha, $this->beta);
 	}
 	
 	/**
-		Returns the cumulative distribution function, the probability of getting the test value or something below it
-		
-		@param float $x The test value
-		@return float The probability
-	*/
+	 * Returns the cumulative distribution function, the probability of getting the test value or something below it
+	
+	 * @param float $x The test value
+	 * @return float The probability
+	 */
 	public function cdf($x) {
 		return self::getCdf($x, $this->alpha, $this->beta);
 	}
 	
 	/**
-		Returns the survival function, the probability of getting the test value or something above it
-		
-		@param float $x The test value
-		@return float The probability
-	*/
+	 * Returns the survival function, the probability of getting the test value or something above it
+	 * 
+	 * @param float $x The test value
+	 * @return float The probability
+	 */
 	public function sf($x) {
 		return self::getSf($x, $this->alpha, $this->beta);
 	}
 	
 	/**
-		Returns the percent-point function, the inverse of the cdf
-		
-		@param float $x The test value
-		@return float The value that gives a cdf of $x
-	*/
+	 * Returns the percent-point function, the inverse of the cdf
+	 * 
+	 * @param float $x The test value
+	 * @return float The value that gives a cdf of $x
+	 * @todo Unimplemented dependencies
+	 */
 	public function ppf($x) {
-		return 0; //TODO: Beta ppf
+		return self::getPpf($x, $this->alpha, $this->beta);
 	}
 	
 	/**
-		Returns the inverse survival function, the inverse of the sf
-		
-		@param float $x The test value
-		@return float The value that gives an sf of $x
-	*/
+	 * Returns the inverse survival function, the inverse of the sf
+	 * 
+	 * @param float $x The test value
+	 * @return float The value that gives an sf of $x
+	 * @todo Unimplemented dependencies
+	 */
 	public function isf($x) {
 		return self::getIsf($x, $this->alpha, $this->beta);
 	}
 	
 	/**
-		Returns the moments of the distribution
-		
-		@param string $moments Which moments to compute. m for mean, v for variance, s for skew, k for kurtosis.  Default 'mv'
-		@return type array A dictionary containing the first four moments of the distribution
-	*/
+	 * Returns the moments of the distribution
+	 * 
+	 * @param string $moments Which moments to compute. m for mean, v for variance, s for skew, k for kurtosis.  Default 'mv'
+	 * @return type array A dictionary containing the first four moments of the distribution
+	 */
 	public function stats($moments = 'mv') {
 		return self::getStats($moments, $this->alpha, $this->beta);
 	}
 	
-	//These represent the calculation engine of the class.
-	
 	/**
-		Returns a random float between $alpha and $alpha plus $beta
-		
-		@param float $alpha The minimum parameter. Default 0.0
-		@param float $beta The maximum parameter. Default 1.0
-		@return float The random variate.
-	*/
+	 * Returns a random float between $alpha and $alpha plus $beta
+	 * 
+	 * @param float $alpha The minimum parameter. Default 0.0
+	 * @param float $beta The maximum parameter. Default 1.0
+	 * @return float The random variate.
+	 * @static
+	 * @todo Untested
+	 */
 	static function getRvs($alpha = 1, $beta = 1) {
 		$x = \PHPStats\ProbabilityDistribution\Gamma::getRvs($alpha, 1);
 		$y = \PHPStats\ProbabilityDistribution\Gamma::getRvs($beta, 1);
@@ -120,74 +137,82 @@ class Beta extends ProbabilityDistribution {
 	}
 	
 	/**
-		Returns the probability distribution function
-		
-		@param float $x The test value
-		@param float $alpha The minimum parameter. Default 0.0
-		@param float $beta The maximum parameter. Default 1.0
-		@return float The probability
-	*/
+	 * Returns the probability distribution function
+	 * 
+	 * @param float $x The test value
+	 * @param float $alpha The minimum parameter. Default 0.0
+	 * @param float $beta The maximum parameter. Default 1.0
+	 * @return float The probability
+	 * @static
+	 */
 	static function getPdf($x, $alpha = 1, $beta = 1) {
 		if ($x >= 0 && $x <= 1) return pow($x, $alpha - 1)*pow(1 - $x, $beta - 1)/\PHPStats\Stats::beta($alpha, $beta);
 		else return 0.0;
 	}
 	
 	/**
-		Returns the cumulative distribution function, the probability of getting the test value or something below it
-		
-		@param float $x The test value
-		@param float $alpha The minimum parameter. Default 0.0
-		@param float $beta The maximum parameter. Default 1.0
-		@return float The probability
-	*/
+	 * Returns the cumulative distribution function, the probability of getting the test value or something below it
+	 * 
+	 * @param float $x The test value
+	 * @param float $alpha The minimum parameter. Default 0.0
+	 * @param float $beta The maximum parameter. Default 1.0
+	 * @return float The probability
+	 * @static
+	 */
 	static function getCdf($x, $alpha = 1, $beta = 1) {
 		return \PHPStats\Stats::regularizedIncompleteBeta($alpha, $beta, $x);
 	}
 	
 	/**
-		Returns the survival function, the probability of getting the test value or something above it
-		
-		@param float $x The test value
-		@param float $alpha The minimum parameter. Default 0.0
-		@param float $beta The maximum parameter. Default 1.0
-		@return float The probability
-	*/
+	 * Returns the survival function, the probability of getting the test value or something above it
+	 * 
+	 * @param float $x The test value
+	 * @param float $alpha The minimum parameter. Default 0.0
+	 * @param float $beta The maximum parameter. Default 1.0
+	 * @return float The probability
+	 * @static
+	 */
 	static function getSf($x, $alpha = 1, $beta = 1) {
 		return 1.0 - self::getCdf($x, $alpha, $beta);
 	}
 	
 	/**
-		Returns the percent-point function, the inverse of the cdf
-		
-		@param float $x The test value
-		@param float $alpha The minimum parameter. Default 0.0
-		@param float $beta The maximum parameter. Default 1.0
-		@return float The value that gives a cdf of $x
-	*/
+	 * Returns the percent-point function, the inverse of the cdf
+	 * 
+	 * @param float $x The test value
+	 * @param float $alpha The minimum parameter. Default 0.0
+	 * @param float $beta The maximum parameter. Default 1.0
+	 * @return float The value that gives a cdf of $x
+	 * @static
+	 * @todo Unimplemented dependencies
+	 */
 	static function getPpf($x, $alpha = 1, $beta = 1) {
-		return 0; //TODO: Beta ppf
+		return \PHPStats\Stats::iregularizedIncompleteBeta($alpha, $beta, $x);
 	}
 	
 	/**
-		Returns the inverse survival function, the inverse of the sf
-		
-		@param float $x The test value
-		@param float $alpha The minimum parameter. Default 0.0
-		@param float $beta The maximum parameter. Default 1.0
-		@return float The value that gives an sf of $x
-	*/
+	 * Returns the inverse survival function, the inverse of the sf
+	 * 
+	 * @param float $x The test value
+	 * @param float $alpha The minimum parameter. Default 0.0
+	 * @param float $beta The maximum parameter. Default 1.0
+	 * @return float The value that gives an sf of $x
+	 * @static
+	 * @todo Unimplemented dependencies
+	 */
 	static function getIsf($x, $alpha = 1, $beta = 1) {
 		return self::getPpf(1.0 - $x, $alpha, $beta);
 	}
 	
 	/**
-		Returns the moments of the distribution
-		
-		@param string $moments Which moments to compute. m for mean, v for variance, s for skew, k for kurtosis.  Default 'mv'
-		@param float $alpha The minimum parameter. Default 0.0
-		@param float $beta The maximum parameter. Default 1.0
-		@return type array A dictionary containing the first four moments of the distribution
-	*/
+	 * Returns the moments of the distribution
+	 * 
+	 * @param string $moments Which moments to compute. m for mean, v for variance, s for skew, k for kurtosis.  Default 'mv'
+	 * @param float $alpha The minimum parameter. Default 0.0
+	 * @param float $beta The maximum parameter. Default 1.0
+	 * @return type array A dictionary containing the first four moments of the distribution
+	 * @static
+	 */
 	static function getStats($moments = 'mv', $alpha = 1, $beta = 1) {
 		$return = array();
 		
@@ -199,4 +224,3 @@ class Beta extends ProbabilityDistribution {
 		return $return;
 	}
 }
-?>

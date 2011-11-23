@@ -22,122 +22,137 @@
  *
  * @package PHPStats
  */
+ 
 namespace PHPStats\ProbabilityDistribution;
 
+/**
+ * ContinuousUniform class
+ * 
+ * Represents the continuous uniform distribution, a distribution that 
+ * represents equiprobable outcomes on a continuous space.
+ *
+ * For more information, see: http://en.wikipedia.org/wiki/Uniform_distribution_%28continuous%29
+ */
 class ContinuousUniform extends ProbabilityDistribution {
 	private $minimum;
 	private $maximum;
 	
-	function __construct($minimum = 0.0, $maximum = 1.0) {
+	/**
+	 * Constructor function
+	 *
+	 * @param float $minimum The minimum value that the distribution can take on
+	 * @param float $maximum The maximum value that the distribution can take on
+	 */
+	public function __construct($minimum = 0.0, $maximum = 1.0) {
 		$this->minimum = $minimum;
 		$this->maximum = $maximum;
 	}
 	
-	//These are wrapper functions that call the static implementations with what we saved.
-	
 	/**
-		Returns a random float between $minimum and $minimum plus $maximum
-		
-		@return float The random variate.
-	*/
+	 * Returns a random float between $minimum and $minimum plus $maximum
+	 * 
+	 * @return float The random variate.
+	 * @todo Untested
+	 */
 	public function rvs() {
 		return self::getRvs($this->minimum, $this->maximum);
 	}
 	
 	/**
-		Returns the probability distribution function
-		
-		@param float $x The test value
-		@return float The probability
-	*/
+	 * Returns the probability distribution function
+	 * 
+	 * @param float $x The test value
+	 * @return float The probability
+	 */
 	public function pdf($x) {
 		return self::getPdf($x, $this->minimum, $this->maximum);
 	}
 	
 	/**
-		Returns the cumulative distribution function, the probability of getting the test value or something below it
-		
-		@param float $x The test value
-		@return float The probability
-	*/
+	 * Returns the cumulative distribution function, the probability of getting the test value or something below it
+	 * 
+	 * @param float $x The test value
+	 * @return float The probability
+	 */
 	public function cdf($x) {
 		return self::getCdf($x, $this->minimum, $this->maximum);
 	}
 	
 	/**
-		Returns the survival function, the probability of getting the test value or something above it
-		
-		@param float $x The test value
-		@return float The probability
-	*/
+	 * Returns the survival function, the probability of getting the test value or something above it
+	 * 
+	 * @param float $x The test value
+	 * @return float The probability
+	 */
 	public function sf($x) {
 		return self::getSf($x, $this->minimum, $this->maximum);
 	}
 	
 	/**
-		Returns the percent-point function, the inverse of the cdf
-		
-		@param float $x The test value
-		@return float The value that gives a cdf of $x
-	*/
+	 * Returns the percent-point function, the inverse of the cdf
+	 * 
+	 * @param float $x The test value
+	 * @return float The value that gives a cdf of $x
+	 */
 	public function ppf($x) {
 		return self::getPpf($x, $this->minimum, $this->maximum);
 	}
 	
 	/**
-		Returns the inverse survival function, the inverse of the sf
-		
-		@param float $x The test value
-		@return float The value that gives an sf of $x
-	*/
+	 * Returns the inverse survival function, the inverse of the sf
+	 * 
+	 * @param float $x The test value
+	 * @return float The value that gives an sf of $x
+	 */
 	public function isf($x) {
 		return self::getIsf($x, $this->minimum, $this->maximum);
 	}
 	
 	/**
-		Returns the moments of the distribution
-		
-		@param string $moments Which moments to compute. m for mean, v for variance, s for skew, k for kurtosis.  Default 'mv'
-		@return type array A dictionary containing the first four moments of the distribution
-	*/
+	 * Returns the moments of the distribution
+	 * 
+	 * @param string $moments Which moments to compute. m for mean, v for variance, s for skew, k for kurtosis.  Default 'mv'
+	 * @return type array A dictionary containing the first four moments of the distribution
+	 */
 	public function stats($moments = 'mv') {
-		return self::getStats($moments, $this->minimum, $this->maximum);
-	}
-	
-	//These represent the calculation engine of the class.
+		return self::getStats($moments, $this->minimum, $thi
 	
 	/**
-		Returns a random float between $minimum and $minimum plus $maximum
-		
-		@param float $minimum The minimum parameter. Default 0.0
-		@param float $maximum The maximum parameter. Default 1.0
-		@return float The random variate.
-	*/
+	 * Returns a random float between $minimum and $minimum plus $maximum
+	 * 
+	 * @param float $minimum The minimum parameter. Default 0.0
+	 * @param float $maximum The maximum parameter. Default 1.0
+	 * @return float The random variate.
+	 * @static
+	 * @todo Untested
+	 */
 	static function getRvs($minimum = 0.0, $maximum = 1.0) {
 		return self::randFloat()*($maximum-$minimum) + $minimum;
 	}
 	
 	/**
-		Returns the probability distribution function
-		
-		@param float $x The test value
-		@param float $minimum The minimum parameter. Default 0.0
-		@param float $maximum The maximum parameter. Default 1.0
-		@return float The probability
-	*/
+	 * Returns the probability distribution function
+	 * 
+	 * @param float $x The test value
+	 * @param float $minimum The minimum parameter. Default 0.0
+	 * @param float $maximum The maximum parameter. Default 1.0
+	 * @return float The probability
+	 * @static
+	 */
 	static function getPdf($x, $minimum = 0.0, $maximum = 1.0) {
 		if ($x >= $minimum && $x <= $maximum) return 1.0/($maximum - $minimum);
 		else return 0.0;
 	}
 	
 	/**
-		Returns the cumulative distribution function, the probability of getting the test value or something below it
-		
-		@param float $x The test value
-		@param float $minimum The minimum parameter. Default 0.0
-		@param float $maximum The maximum parameter. Default 1.0
-		@return float The probability
-	*/
+	 * Returns the cumulative distribution function, the probability of getting the test value or something below it
+	 * 
+	 * @param float $x The test value
+	 * @param float $minimum The minimum parameter. Default 0.0
+	 * @param float $maximum The maximum parameter. Default 1.0
+	 * @return float The probability
+	 * @static
+	 */
 	static function getCdf($x, $minimum = 0.0, $maximum = 1.0) {
 		if ($x >= $minimum && $x <= $maximum) return ($x - $minimum) / ($maximum - $minimum);
 		elseif ($x > $maximum) return 1.0;
@@ -145,49 +160,53 @@ class ContinuousUniform extends ProbabilityDistribution {
 	}
 	
 	/**
-		Returns the survival function, the probability of getting the test value or something above it
-		
-		@param float $x The test value
-		@param float $minimum The minimum parameter. Default 0.0
-		@param float $maximum The maximum parameter. Default 1.0
-		@return float The probability
-	*/
+	 * Returns the survival function, the probability of getting the test value or something above it
+	 * 
+	 * @param float $x The test value
+	 * @param float $minimum The minimum parameter. Default 0.0
+	 * @param float $maximum The maximum parameter. Default 1.0
+	 * @return float The probability
+	 * @static
+	 */
 	static function getSf($x, $minimum = 0.0, $maximum = 1.0) {
 		return 1.0 - self::getCdf($x, $minimum, $maximum);
 	}
 	
 	/**
-		Returns the percent-point function, the inverse of the cdf
-		
-		@param float $x The test value
-		@param float $minimum The minimum parameter. Default 0.0
-		@param float $maximum The maximum parameter. Default 1.0
-		@return float The value that gives a cdf of $x
-	*/
+	 * Returns the percent-point function, the inverse of the cdf
+	 * 
+	 * @param float $x The test value
+	 * @param float $minimum The minimum parameter. Default 0.0
+	 * @param float $maximum The maximum parameter. Default 1.0
+	 * @return float The value that gives a cdf of $x
+	 * @static
+	 */
 	static function getPpf($x, $minimum = 0.0, $maximum = 1.0) {
 		return $minimum + $x*($maximum - $minimum);
 	}
 	
 	/**
-		Returns the inverse survival function, the inverse of the sf
-		
-		@param float $x The test value
-		@param float $minimum The minimum parameter. Default 0.0
-		@param float $maximum The maximum parameter. Default 1.0
-		@return float The value that gives an sf of $x
-	*/
+	 * Returns the inverse survival function, the inverse of the sf
+	 * 
+	 * @param float $x The test value
+	 * @param float $minimum The minimum parameter. Default 0.0
+	 * @param float $maximum The maximum parameter. Default 1.0
+	 * @return float The value that gives an sf of $x
+	 * @static
+	 */
 	static function getIsf($x, $minimum = 0.0, $maximum = 1.0) {
 		return self::getPpf(1.0 - $x, $minimum, $maximum);
 	}
 	
 	/**
-		Returns the moments of the distribution
-		
-		@param string $moments Which moments to compute. m for mean, v for variance, s for skew, k for kurtosis.  Default 'mv'
-		@param float $minimum The minimum parameter. Default 0.0
-		@param float $maximum The maximum parameter. Default 1.0
-		@return type array A dictionary containing the first four moments of the distribution
-	*/
+	 * Returns the moments of the distribution
+	 * 
+	 * @param string $moments Which moments to compute. m for mean, v for variance, s for skew, k for kurtosis.  Default 'mv'
+	 * @param float $minimum The minimum parameter. Default 0.0
+	 * @param float $maximum The maximum parameter. Default 1.0
+	 * @return type array A dictionary containing the first four moments of the distribution
+	 * @static
+	 */
 	static function getStats($moments = 'mv', $minimum = 0.0, $maximum = 1.0) {
 		$return = array();
 		
@@ -199,4 +218,3 @@ class ContinuousUniform extends ProbabilityDistribution {
 		return $return;
 	}
 }
-?>

@@ -22,6 +22,7 @@
  *
  * @package PHPStats
  */
+ 
 namespace PHPStats\RegressionModel;
 
 /**
@@ -30,7 +31,6 @@ namespace PHPStats\RegressionModel;
  * Parent class to the various regression models.  Provides functions that are
  * common across all models and enforces the regression model interface.
  */
-
 abstract class RegressionModel {
 	protected $beta;
 	protected $alpha;
@@ -73,4 +73,3 @@ abstract class RegressionModel {
 		return $this->r;
 	}
 }
-?>

@@ -22,7 +22,9 @@
  *
  * @package PHPStats
  */
+ 
 namespace PHPStats;
+
 /**
  * StatisticalTests class
  * 
@@ -33,6 +35,8 @@ namespace PHPStats;
  * measure, or p value, which the user then will interpret.  Often, this
  * will be checking whether the reported value is less than 0.05, greater 
  * than 0.95, or both.
+ *
+ * @todo The implementation of this class is still experimental and may change.
  */
 class StatisticalTests {
 	/**
@@ -109,4 +113,3 @@ class StatisticalTests {
 		return \PHPStats\ProbabilityDistribution\ChiSquare::getCdf($sum, $df);
 	}
 }
-?>

@@ -22,6 +22,7 @@
  *
  * @package PHPStats
  */
+ 
 namespace PHPStats\RegressionModel;
 
 /**
@@ -31,7 +32,6 @@ namespace PHPStats\RegressionModel;
  * y = a*b^x it will find the variables a and b, as well as the correlation
  * between x and y.  Invalid for y less than or equal to 0.
  */
-
 class ExponentialRegression extends RegressionModel {
 	/**
 	 * __construct Function
@@ -69,4 +69,3 @@ class ExponentialRegression extends RegressionModel {
 		return $this->alpha * pow($this->beta, $x);
 	}
 }
-?>

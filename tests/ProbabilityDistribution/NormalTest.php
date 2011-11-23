@@ -33,12 +33,12 @@ class NormalTest extends PHPUnit_Framework_TestCase {
 
 	public function test_ppf() {
 		$this->assertEquals(10, $this->testObject->ppf(0.5));
-		$this->assertEquals(16.4078, round($this->testObject->ppf(0.9), 4));
+		$this->assertEquals(16.3702, round($this->testObject->ppf(0.9), 4));
 	}
 
 	public function test_isf() {
 		$this->assertEquals(10, $this->testObject->isf(0.5));
-		$this->assertEquals(3.59224, round($this->testObject->isf(0.9), 5));
+		$this->assertEquals(3.62979, round($this->testObject->isf(0.9), 5));
 	}
 
 	public function test_stats() {

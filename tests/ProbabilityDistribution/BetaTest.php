@@ -32,13 +32,13 @@ class BetaTest extends PHPUnit_Framework_TestCase {
 	}
 
 	public function test_ppf() {
-		$this->assertEquals(0.674249, round($this->testObject->ppf(0.5), 5));
-		$this->assertEquals(0.814866, round($this->testObject->ppf(0.9), 4));
+		$this->assertEquals(0.674249, round($this->testObject->ppf(0.5), 6));
+		$this->assertEquals(0.814866, round($this->testObject->ppf(0.9), 6));
 	}
 
 	public function test_isf() {
-		$this->assertEquals(0.674249, $this->testObject->isf(0.5));
-		$this->assertEquals(0.508035, round($this->testObject->isf(0.9), 5));
+		$this->assertEquals(0.674249, round($this->testObject->isf(0.5), 6));
+		$this->assertEquals(0.508035, round($this->testObject->isf(0.9), 6));
 	}
 
 	public function test_stats() {
