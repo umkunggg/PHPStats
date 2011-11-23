@@ -94,7 +94,6 @@ class Beta extends ProbabilityDistribution {
 	 * 
 	 * @param float $x The test value
 	 * @return float The value that gives a cdf of $x
-	 * @todo Unimplemented dependencies
 	 */
 	public function ppf($x) {
 		return self::getPpf($x, $this->alpha, $this->beta);
@@ -105,7 +104,6 @@ class Beta extends ProbabilityDistribution {
 	 * 
 	 * @param float $x The test value
 	 * @return float The value that gives an sf of $x
-	 * @todo Unimplemented dependencies
 	 */
 	public function isf($x) {
 		return self::getIsf($x, $this->alpha, $this->beta);
@@ -184,7 +182,6 @@ class Beta extends ProbabilityDistribution {
 	 * @param float $beta The maximum parameter. Default 1.0
 	 * @return float The value that gives a cdf of $x
 	 * @static
-	 * @todo Unimplemented dependencies
 	 */
 	static function getPpf($x, $alpha = 1, $beta = 1) {
 		return \PHPStats\Stats::iregularizedIncompleteBeta($alpha, $beta, $x);
@@ -198,7 +195,6 @@ class Beta extends ProbabilityDistribution {
 	 * @param float $beta The maximum parameter. Default 1.0
 	 * @return float The value that gives an sf of $x
 	 * @static
-	 * @todo Unimplemented dependencies
 	 */
 	static function getIsf($x, $alpha = 1, $beta = 1) {
 		return self::getPpf(1.0 - $x, $alpha, $beta);

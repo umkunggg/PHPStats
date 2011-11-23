@@ -115,7 +115,8 @@ class ContinuousUniform extends ProbabilityDistribution {
 	 * @return type array A dictionary containing the first four moments of the distribution
 	 */
 	public function stats($moments = 'mv') {
-		return self::getStats($moments, $this->minimum, $thi
+		return self::getStats($moments, $this->minimum, $this->maximum);
+	}
 	
 	/**
 	 * Returns a random float between $minimum and $minimum plus $maximum

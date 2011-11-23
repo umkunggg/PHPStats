@@ -411,7 +411,7 @@ class Stats {
 	 * @todo Implement this
 	 */
 	public static function lambert($x) {
-	//Source: http://en.wikipedia.org/wiki/Lambert_W_function#Numerical_evaluation
+		//Source: http://en.wikipedia.org/wiki/Lambert_W_function#Numerical_evaluation
 		$w = 2; //Best initial guess
 		//TODO: Limit the loop by the precision of the answer, not an arbitrary number of iterations
 		$i = 0;
@@ -567,7 +567,6 @@ class Stats {
 	 * @param float $x The incomplete beta of $a and $b, up to the upper bound of integration
 	 * @return float Upper bound of integration
 	 * @static
-	 * @todo Implement this
 	 */
 	public static function iregularizedIncompleteBeta($a, $b, $x) {
 		//jStat is my hero.
