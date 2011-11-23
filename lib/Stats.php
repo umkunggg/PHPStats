@@ -46,6 +46,7 @@ class Stats {
 	 * 
 	 * @param array $data An array of numeric values
 	 * @return float The sum of the elements of the array
+	 * @static
 	 */
 	public static function sum(array $data) {
 		$sum = 0.0;
@@ -63,6 +64,7 @@ class Stats {
 	 * 
 	 * @param array $data An array of numeric values
 	 * @return float The product of the elements of the array
+	 * @static
 	 */
 	public static function product(array $data) {
 		$product = 1;
@@ -80,6 +82,7 @@ class Stats {
 	 * 
 	 * @param array $data An array of numeric values
 	 * @return float The arithmetic average of the elements of the array
+	 * @static
 	 */
 	public static function average(array $data) {
 		return self::sum($data)/count($data);
@@ -93,6 +96,7 @@ class Stats {
 	 * 
 	 * @param array $data An array of numeric values
 	 * @return float The geometic average of the elements of the array
+	 * @static
 	 */
 	public static function gaverage(array $data) {
 		return pow(self::product($data), 1/count($data));
@@ -106,6 +110,7 @@ class Stats {
 	 * 
 	 * @param array $data An array of numeric values
 	 * @return float The arithmetic average of the elements of the array
+	 * @static
 	 */
 	public static function sumsquared(array $data) {
 		$sum = 0.0;
@@ -126,6 +131,7 @@ class Stats {
 	 * @param array $datax An array of numeric values
 	 * @param array $datay An array of numeric values
 	 * @return float The products of the paired elements of the arrays
+	 * @static
 	 */
 	public static function sumXY(array $datax, array $datay) {
 		$n = min(count($datax), count($datay));
@@ -150,6 +156,7 @@ class Stats {
 	 * 
 	 * @param array $data An array of numeric values
 	 * @return float The sum of the squared errors of the elements of the array
+	 * @static
 	 */
 	public static function sse(array $data) {
 		$average = self::average($data);
@@ -169,6 +176,7 @@ class Stats {
 	 * 
 	 * @param array $data An array of numeric values
 	 * @return float The average squared error of the elements of the array
+	 * @static
 	 */
 	public static function mse(array $data) {
 		return self::sse($data)/count($data);
@@ -183,6 +191,7 @@ class Stats {
 	 * @param array $datax An array of numeric values
 	 * @param array $datay An array of numeric values
 	 * @return float The covariance of the two supplied arrays
+	 * @static
 	 */
 	public static function covariance(array $datax, array $datay) {
 		return self::sumXY($datax, $datay)/count($datax) - self::average($datax)*self::average($datay);
@@ -196,6 +205,7 @@ class Stats {
 	 * 
 	 * @param array $data An array of numeric values
 	 * @return float The variance of the supplied array
+	 * @static
 	 */
 	public static function variance(array $data) {
 		return self::covariance($data, $data);
@@ -209,6 +219,7 @@ class Stats {
 	 * 
 	 * @param array $data An array of numeric values
 	 * @return float The population standard deviation of the supplied array
+	 * @static
 	 */
 	public static function stddev(array $data) {
 		return sqrt(self::variance($data));
@@ -222,6 +233,7 @@ class Stats {
 	 * 
 	 * @param array $data An array of numeric values
 	 * @return float The unbiased standard deviation of the supplied array
+	 * @static
 	 */
 	public static function sampleStddev(array $data) {
 		return sqrt(self::sse($data)/(count($data)-1));
@@ -236,6 +248,7 @@ class Stats {
 	 * @param array $datax An array of numeric values
 	 * @param array $datay An array of numeric values
 	 * @return float The correlation of the two supplied arrays
+	 * @static
 	 */
 	public static function correlation($datax, $datay) {
 		return self::covariance($datax, $datay)/(self::stddev($datax)*self::stddev($datay));
@@ -250,6 +263,7 @@ class Stats {
 	 * 
 	 * @param int $x An array of numeric values
 	 * @return int The factorial of $x, i.e. x!
+	 * @static
 	 */
 	public static function factorial($x) {
 		$sum = 1;
@@ -267,6 +281,7 @@ class Stats {
 	 * 
 	 * @param float $x Argument to the real error function
 	 * @return float A value between -1 and 1
+	 * @static
 	 */
 	public static function erf($x) {
 		$t = 1 / (1 + 0.3275911 * $x);
@@ -282,6 +297,7 @@ class Stats {
 	 * 
 	 * @param float $x Argument to the real error function
 	 * @return float A value between -1 and 1
+	 * @static
 	 */
 	public static function ierf($x) {
 		//To increase accuracy, keep adding on terms from the series expansion.
@@ -301,6 +317,7 @@ class Stats {
 	 * 
 	 * @param float $x Argument to the gamma function
 	 * @return float The gamma of $x
+	 * @static
 	 */
 	public static function gamma($x) {
 		//Lanczos' Approximation from Wikipedia
@@ -332,6 +349,7 @@ class Stats {
 	 * 
 	 * @param float $x Argument to the gamma function
 	 * @return float The natural log of gamma of $x
+	 * @static
 	 */
 	public static function gammaln($x) {
 		//Thanks to jStat for this one.
@@ -356,6 +374,8 @@ class Stats {
 	 * 
 	 * @param float $x The result of the gamma function
 	 * @return float The argument to the gamma function
+	 * @static
+	 * @todo Implement this
 	 */
 	public static function igamma($x) {
 		//Source: http://mathoverflow.net/questions/12828/inverse-gamma-function
@@ -372,6 +392,8 @@ class Stats {
 	 * 
 	 * @param float $x Argument to the digamma function
 	 * @return The result of the digamma function
+	 * @static
+	 * @todo Implement this
 	 */
 	public static function digamma($x) {
 		//Source: http://en.wikipedia.org/wiki/Digamma_function#Computation_.26_approximation
@@ -385,6 +407,8 @@ class Stats {
 	 * 
 	 * @param float $x Argument to the lambert funcction
 	 * @return float The result of the lambert function
+	 * @static
+	 * @todo Implement this
 	 */
 	public static function lambert($x) {
 	//Source: http://en.wikipedia.org/wiki/Lambert_W_function#Numerical_evaluation
@@ -407,6 +431,7 @@ class Stats {
 	 * @param float $s Upper bound of integration
 	 * @param float $x Argument to the lower gamma function.
 	 * @return float The lower gamma of $x
+	 * @static
 	 */
 	public static function lowerGamma($s, $x) {
 		//Special thanks to http://www.reddit.com/user/harlows_monkeys for this algorithm.
@@ -429,6 +454,8 @@ class Stats {
 	 * @param float $s Upper bound of integration
 	 * @param float $x Result of the lower gamma function.
 	 * @return float The argument to the lower gamma function that would return $x
+	 * @static
+	 * @todo Implement this
 	 */
 	public static function ilowerGamma($s, $x) {
 		return 0;
@@ -442,6 +469,7 @@ class Stats {
 	 * @param float $s Lower bound of integration
 	 * @param float $x Argument to the upper gamma function
 	 * @return float The upper gamma of $x
+	 * @static
 	 */
 	public static function upperGamma($s, $x) {
 		return self::gamma($s) - self::lowerGamma($s, $x);
@@ -455,6 +483,7 @@ class Stats {
 	 * @param float $a The alpha parameter
 	 * @param float $b The beta parameter
 	 * @return float The beta of $a and $b
+	 * @static
 	 */
 	public static function beta($a, $b) {
 		return self::gamma($a)*self::gamma($b) / self::gamma($a + $b);
@@ -469,6 +498,7 @@ class Stats {
 	 * @param float $b The beta parameter
 	 * @param float $x Upper bound of integration
 	 * @return float The incomplete beta of $a and $b, up to $x
+	 * @static
 	 */
 	public static function regularizedIncompleteBeta($a, $b, $x) {
 		//Again, thanks to jStat.
@@ -487,6 +517,7 @@ class Stats {
 	}
 
 	// Evaluates the continued fraction for incomplete beta function by modified Lentz's method.
+	// Is a factored-out portion of the implementation of the regularizedIncompleteBeta
 	private static function betacf($x, $a, $b) {
 		$fpmin = 1e-30;
 
@@ -535,6 +566,8 @@ class Stats {
 	 * @param float $b The beta parameter
 	 * @param float $x The incomplete beta of $a and $b, up to the upper bound of integration
 	 * @return float Upper bound of integration
+	 * @static
+	 * @todo Implement this
 	 */
 	public static function iregularizedIncompleteBeta($a, $b, $x) {
 		//jStat is my hero.
@@ -594,6 +627,7 @@ class Stats {
 	 * @param int $n The size of the collection
 	 * @param int $r The size of the selection
 	 * @return int $n pick $r
+	 * @static
 	 */
 	public static function permutations($n, $r) {
 		return self::factorial($n)/self::factorial($n - $r);
@@ -608,6 +642,7 @@ class Stats {
 	 * @param int $n The size of the collection
 	 * @param int $r The size of the selection
 	 * @return int $n choose $r
+	 * @static
 	 */
 	public static function combinations($n, $r) {
 		return self::permutations($n, $r)/self::factorial($r);

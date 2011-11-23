@@ -37,17 +37,22 @@ class Binomial extends ProbabilityDistribution {
 	private $n;
 	private $p;
 	
-	function __construct($p = 0.5, $n = 1) {
+	/**
+	 * Constructor function
+	 *
+	 * @param float $p The probability of success in a single trial
+	 * @param int $n The number of trials
+	 */
+	public function __construct($p = 0.5, $n = 1) {
 		$this->p = $p;
 		$this->n = $n;
 	}
-
-	//These are wrapper functions that call the static implementations with what we saved.
 	
 	/**
 	 * Returns a random variate of $n trials at $p probability each
 	 * 
 	 * @return float The random variate.
+	 * @todo Untested
 	 */
 	public function rvs() {
 		return self::getRvs($this->p, $this->n);
@@ -112,8 +117,6 @@ class Binomial extends ProbabilityDistribution {
 	public function stats($moments = 'mv') {
 		return self::getStats($moments, $this->p, $this->n);
 	}
-
-	//These represent the calculation engine of the class.
 	
 	/**
 	 * Returns a random variate of $n trials at $p probability each
@@ -121,6 +124,8 @@ class Binomial extends ProbabilityDistribution {
 	 * @param float $p The probability of success per trial.
 	 * @param int $n The number of trials.
 	 * @return float The random variate.
+	 * @static
+	 * @todo Untested
 	 */
 	public static function getRvs($p = 0.5, $n = 1) {
 		$successes = 0;
@@ -139,6 +144,7 @@ class Binomial extends ProbabilityDistribution {
 	 * @param float $p The probability of success per trial
 	 * @param int $n The number of trials
 	 * @return float The probability
+	 * @static
 	 */
 	public static function getPmf($x, $p = 0.5, $n = 1) {
 		return \PHPStats\Stats::combinations($n, $x)*pow($p, $x)*pow(1 - $p, $n - $x);
@@ -151,6 +157,7 @@ class Binomial extends ProbabilityDistribution {
 	 * @param float $p The probability of success per trial
 	 * @param int $n The number of trials
 	 * @return float The probability
+	 * @static
 	 */
 	public static function getCdf($x, $p = 0.5, $n = 1) {
 		$sum = 0.0;
@@ -167,6 +174,7 @@ class Binomial extends ProbabilityDistribution {
 	 * @param float $p The probability of success per trial
 	 * @param int $n The number of trials
 	 * @return float The probability
+	 * @static
 	 */
 	public static function getSf($x, $p = 0.5, $n = 1) {
 		return 1.0 - self::getCdf($x, $p, $n);
@@ -179,6 +187,7 @@ class Binomial extends ProbabilityDistribution {
 	 * @param float $p The probability of success per trial
 	 * @param int $n The number of trials
 	 * @return float The value that gives a cdf of $x
+	 * @static
 	 */
 	public static function getPpf($x, $p = 0.5, $n = 1) {
 		$i = 0;
@@ -199,6 +208,7 @@ class Binomial extends ProbabilityDistribution {
 	 * @param float $p The probability of success per trial
 	 * @param int $n The number of trials
 	 * @return float The value that gives an sf of $x
+	 * @static
 	 */
 	public static function getIsf($x, $p = 0.5, $n = 1) {
 		return self::getPpf(1.0 - $x, $p, $n);
@@ -211,6 +221,7 @@ class Binomial extends ProbabilityDistribution {
 	 * @param float $p The probability of success per trial
 	 * @param int $n The number of trials
 	 * @return type array A dictionary containing the first four moments of the distribution
+	 * @static
 	 */
 	public static function getStats($moments = 'mv', $p = 0.5, $n = 1) {
 		$return = array();

@@ -35,156 +35,166 @@ namespace PHPStats\ProbabilityDistribution;
  */
 class Exponential extends ProbabilityDistribution {
 	private $lambda;
-	
-	function __construct($lambda = 1.0) {
+
+	/**
+	 * Constructor function
+	 *
+	 * @param float $lambda The average time to arrival
+	 */
+	public function __construct($lambda = 1.0) {
 		$this->lambda = $lambda;
 	}
-
-	//These are wrapper functions that call the static implementations with what we saved.
 	
 	/**
-		Returns a random float
-		
-		@return float The random variate.
-	*/
+	 * Returns a random float
+	 * 
+	 * @return float The random variate.
+	 * @todo Untested
+	 */
 	public function rvs() {
 		return self::getRvs($this->lambda);
 	}
 	
 	/**
-		Returns the probability distribution function
-		
-		@param float $x The test value
-		@return float The probability
-	*/
+	 * Returns the probability distribution function
+	 * 
+	 * @param float $x The test value
+	 * @return float The probability
+	 */
 	public function pdf($x) {
 		return self::getPdf($x, $this->lambda);
 	}
 	
 	/**
-		Returns the cumulative distribution function, the probability of getting the test value or something below it
-		
-		@param float $x The test value
-		@return float The probability
-	*/
+	 * Returns the cumulative distribution function, the probability of getting the test value or something below it
+	 * 
+	 * @param float $x The test value
+	 * @return float The probability
+	 */
 	public function cdf($x) {
 		return self::getCdf($x, $this->lambda);
 	}
 	
 	/**
-		Returns the survival function, the probability of getting the test value or something above it
-		
-		@param float $x The test value
-		@return float The probability
-	*/
+	 * Returns the survival function, the probability of getting the test value or something above it
+	 * 
+	 * @param float $x The test value
+	 * @return float The probability
+	 */
 	public function sf($x) {
 		return self::getSf($x, $this->lambda);
 	}
 	
 	/**
-		Returns the percent-point function, the inverse of the cdf
-		
-		@param float $x The test value
-		@return float The value that gives a cdf of $x
-	*/
+	 * Returns the percent-point function, the inverse of the cdf
+	 * 
+	 * @param float $x The test value
+	 * @return float The value that gives a cdf of $x
+	 */
 	public function ppf($x) {
 		return self::getPpf($x, $this->lambda);
 	}
 	
 	/**
-		Returns the inverse survival function, the inverse of the sf
-		
-		@param float $x The test value
-		@return float The value that gives an sf of $x
-	*/
+	 * Returns the inverse survival function, the inverse of the sf
+	 * 
+	 * @param float $x The test value
+	 * @return float The value that gives an sf of $x
+	 */
 	public function isf($x) {
 		return self::getIsf($x, $this->lambda);
 	}
 	
 	/**
-		Returns the moments of the distribution
-		
-		@param string $moments Which moments to compute. m for mean, v for variance, s for skew, k for kurtosis.  Default 'mv'
-		@return type array A dictionary containing the first four moments of the distribution
-	*/
+	 * Returns the moments of the distribution
+	 * 
+	 * @param string $moments Which moments to compute. m for mean, v for variance, s for skew, k for kurtosis.  Default 'mv'
+	 * @return type array A dictionary containing the first four moments of the distribution
+	 */
 	public function stats($moments = 'mv') {
 		return self::getStats($moments, $this->lambda);
 	}
 	
-	//These represent the calculation engine of the class.
-	
 	/**
-		Returns a random float between $minimum and $minimum plus $maximum
-		
-		@param float $lambda Scale parameter
-		@return float The random variate.
-	*/
+	 * Returns a random float between $minimum and $minimum plus $maximum
+	 * 
+	 * @param float $lambda Scale parameter
+	 * @return float The random variate.
+	 * @static
+	 * @todo Untested
+	 */
 	static function getRvs($lambda = 1) {
 		return -log(self::randFloat())/$lambda;
 	}
 	
 	/**
-		Returns the probability distribution function
-		
-		@param float $x The test value
-		@param float $lambda Scale parameter
-		@return float The probability
-	*/
+	 * Returns the probability distribution function
+	 * 
+	 * @param float $x The test value
+	 * @param float $lambda Scale parameter
+	 * @return float The probability
+	 * @static
+	 */
 	static function getPdf($x, $lambda = 1) {
 		return $lambda*exp(-$lambda*$x);
 	}
 	
 	/**
-		Returns the cumulative distribution function, the probability of getting the test value or something below it
-		
-		@param float $x The test value
-		@param float $lambda Scale parameter
-		@return float The probability
-	*/
+	 * Returns the cumulative distribution function, the probability of getting the test value or something below it
+	 * 
+	 * @param float $x The test value
+	 * @param float $lambda Scale parameter
+	 * @return float The probability
+	 * @static
+	 */
 	static function getCdf($x, $lambda = 1) {
 		return 1.0 - exp(-$lambda*$x);
 	}
 	
 	/**
-		Returns the survival function, the probability of getting the test value or something above it
-		
-		@param float $x The test value
-		@param float $lambda Scale parameter
-		@return float The probability
-	*/
+	 * Returns the survival function, the probability of getting the test value or something above it
+	 * 
+	 * @param float $x The test value
+	 * @param float $lambda Scale parameter
+	 * @return float The probability
+	 * @static
+	 */
 	static function getSf($x, $lambda = 1) {
 		return 1.0 - self::getCdf($x, $lambda);
 	}
 	
 	/**
-		Returns the percent-point function, the inverse of the cdf
-		
-		@param float $x The test value
-		@param float $lambda Scale parameter
-		@return float The value that gives a cdf of $x
-	*/
+	 * Returns the percent-point function, the inverse of the cdf
+	 * 
+	 * @param float $x The test value
+	 * @param float $lambda Scale parameter
+	 * @return float The value that gives a cdf of $x
+	 * @static
+	 */
 	static function getPpf($x, $lambda = 1) {
 		return log(1 - $x) / -$lambda;
 	}
 	
 	/**
-		Returns the inverse survival function, the inverse of the sf
-		
-		@param float $x The test value
-		@param float $lambda Scale parameter
-		@return float The value that gives an sf of $x
-	*/
+	 * Returns the inverse survival function, the inverse of the sf
+	 * 
+	 * @param float $x The test value
+	 * @param float $lambda Scale parameter
+	 * @return float The value that gives an sf of $x
+	 * @static
+	 */
 	static function getIsf($x, $lambda = 1) {
 		return self::getPpf(1.0 - $x, $lambda);
 	}
 	
 	/**
-		Returns the moments of the distribution
-		
-		@param string $moments Which moments to compute. m for mean, v for variance, s for skew, k for kurtosis.  Default 'mv'
-		@param float $lambda Scale parameter
-		@return type array A dictionary containing the first four moments of the distribution
-	*/
+	 * Returns the moments of the distribution
+	 * 
+	 * @param string $moments Which moments to compute. m for mean, v for variance, s for skew, k for kurtosis.  Default 'mv'
+	 * @param float $lambda Scale parameter
+	 * @return type array A dictionary containing the first four moments of the distribution
+	 * @static
+	 */
 	static function getStats($moments = 'mv', $lambda = 1) {
 		$return = array();
 		

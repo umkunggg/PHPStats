@@ -37,91 +37,96 @@ class Normal extends ProbabilityDistribution {
 	private $mu;
 	private $variance;
 	
-	function __construct($mu = 0.0, $variance = 1.0) {
+	/**
+	 * Constructor function
+	 * 
+	 * @param float $mu The population average
+	 * @param float $variance The population variance
+	 */
+	public function __construct($mu = 0.0, $variance = 1.0) {
 		$this->mu = $mu;
 		$this->variance = $variance;
 	}
 	
-	//These are wrapper functions that call the static implementations with what we saved.
-	
 	/**
-		Returns a random float between $mu and $mu plus $variance
-		
-		@return float The random variate.
-	*/
+	 * Returns a random float between $mu and $mu plus $variance
+	 * 
+	 * @return float The random variate.
+	 * @todo Untested
+	 */
 	public function rvs() {
 		return self::getRvs($this->mu, $this->variance);
 	}
 	
 	/**
-		Returns the probability distribution function
-		
-		@param float $x The test value
-		@return float The probability
-	*/
+	 * Returns the probability distribution function
+	 * 
+	 * @param float $x The test value
+	 * @return float The probability
+	 */
 	public function pdf($x) {
 		return self::getPdf($x, $this->mu, $this->variance);
 	}
 	
 	/**
-		Returns the cumulative distribution function, the probability of getting the test value or something below it
-		
-		@param float $x The test value
-		@return float The probability
-	*/
+	 * Returns the cumulative distribution function, the probability of getting the test value or something below it
+	 * 
+	 * @param float $x The test value
+	 * @return float The probability
+	 */
 	public function cdf($x) {
 		return self::getCdf($x, $this->mu, $this->variance);
 	}
 	
 	/**
-		Returns the survival function, the probability of getting the test value or something above it
-		
-		@param float $x The test value
-		@return float The probability
-	*/
+	 * Returns the survival function, the probability of getting the test value or something above it
+	 * 
+	 * @param float $x The test value
+	 * @return float The probability
+	 */
 	public function sf($x) {
 		return self::getSf($x, $this->mu, $this->variance);
 	}
 	
 	/**
-		Returns the percent-point function, the inverse of the cdf
-		
-		@param float $x The test value
-		@return float The value that gives a cdf of $x
-	*/
+	 * Returns the percent-point function, the inverse of the cdf
+	 * 
+	 * @param float $x The test value
+	 * @return float The value that gives a cdf of $x
+	 */
 	public function ppf($x) {
 		return self::getPpf($x, $this->mu, $this->variance);
 	}
 	
 	/**
-		Returns the inverse survival function, the inverse of the sf
-		
-		@param float $x The test value
-		@return float The value that gives an sf of $x
-	*/
+	 * Returns the inverse survival function, the inverse of the sf
+	 * 
+	 * @param float $x The test value
+	 * @return float The value that gives an sf of $x
+	 */
 	public function isf($x) {
 		return self::getIsf($x, $this->mu, $this->variance);
 	}
 	
 	/**
-		Returns the moments of the distribution
-		
-		@param string $moments Which moments to compute. m for mean, v for variance, s for skew, k for kurtosis.  Default 'mv'
-		@return type array A dictionary containing the first four moments of the distribution
-	*/
+	 * Returns the moments of the distribution
+	 * 
+	 * @param string $moments Which moments to compute. m for mean, v for variance, s for skew, k for kurtosis.  Default 'mv'
+	 * @return type array A dictionary containing the first four moments of the distribution
+	 */
 	public function stats($moments = 'mv') {
 		return self::getStats($moments, $this->mu, $this->variance);
 	}
 	
-	//These represent the calculation engine of the class.
-	
 	/**
-		Returns a normally-distributed random float
-		
-		@param float $mu The location parameter. Default 0.0
-		@param float $variance The scale parameter. Default 1.0
-		@return float The random variate.
-	*/
+	 * Returns a normally-distributed random float
+	 * 
+	 * @param float $mu The location parameter. Default 0.0
+	 * @param float $variance The scale parameter. Default 1.0
+	 * @return float The random variate.
+	 * @static
+	 * @todo Untested
+	 */
 	static function getRvs($mu = 0.0, $variance = 1.0) {
 		$u = self::randFloat();
 		$v = self::randFloat();
@@ -129,73 +134,79 @@ class Normal extends ProbabilityDistribution {
 	}
 	
 	/**
-		Returns the probability distribution function
-		
-		@param float $x The test value
-		@param float $mu The location parameter. Default 0.0
-		@param float $variance The scale parameter. Default 1.0
-		@return float The probability
-	*/
+	 * Returns the probability distribution function
+	 * 
+	 * @param float $x The test value
+	 * @param float $mu The location parameter. Default 0.0
+	 * @param float $variance The scale parameter. Default 1.0
+	 * @return float The probability
+	 * @static
+	 */
 	static function getPdf($x, $mu = 0.0, $variance = 1.0) {
 		return exp(-pow($x - $mu, 2)/(2*$variance))/sqrt(2*M_PI*$variance);
 	}
 	
 	/**
-		Returns the cumulative distribution function, the probability of getting the test value or something below it
-		
-		@param float $x The test value
-		@param float $mu The location parameter. Default 0.0
-		@param float $variance The scale parameter. Default 1.0
-		@return float The probability
-	*/
+	 * Returns the cumulative distribution function, the probability of getting the test value or something below it
+	 * 
+	 * @param float $x The test value
+	 * @param float $mu The location parameter. Default 0.0
+	 * @param float $variance The scale parameter. Default 1.0
+	 * @return float The probability
+	 * @static
+	 */
 	static function getCdf($x, $mu = 0.0, $variance = 1.0) {
 		return (1 + \PHPStats\Stats::erf(($x - $mu)/sqrt(2*$variance)))/2;
 	}
 	
 	/**
-		Returns the survival function, the probability of getting the test value or something above it
-		
-		@param float $x The test value
-		@param float $mu The location parameter. Default 0.0
-		@param float $variance The scale parameter. Default 1.0
-		@return float The probability
-	*/
+	 * Returns the survival function, the probability of getting the test value or something above it
+	 * 
+	 * @param float $x The test value
+	 * @param float $mu The location parameter. Default 0.0
+	 * @param float $variance The scale parameter. Default 1.0
+	 * @return float The probability
+	 * @static
+	 */
 	static function getSf($x, $mu = 0.0, $variance = 1.0) {
 		return 1.0 - self::getCdf($x, $mu, $variance);
 	}
 	
 	/**
-		Returns the percent-point function, the inverse of the cdf
-		
-		@param float $x The test value
-		@param float $mu The location parameter. Default 0.0
-		@param float $variance The scale parameter. Default 1.0
-		@return float The value that gives a cdf of $x
-	*/
+	 * Returns the percent-point function, the inverse of the cdf
+	 * 
+	 * @param float $x The test value
+	 * @param float $mu The location parameter. Default 0.0
+	 * @param float $variance The scale parameter. Default 1.0
+	 * @return float The value that gives a cdf of $x
+	 * @static
+	 */
 	static function getPpf($x, $mu = 0.0, $variance = 1.0) {
 		return pow(2 * $variance, 0.5) * \PHPStats\Stats::ierf(2 * $x - 1) + $mu;
 	}
 	
 	/**
-		Returns the inverse survival function, the inverse of the sf
-		
-		@param float $x The test value
-		@param float $mu The location parameter. Default 0.0
-		@param float $variance The scale parameter. Default 1.0
-		@return float The value that gives an sf of $x
-	*/
+	 * Returns the inverse survival function, the inverse of the sf
+	 * 
+	 * @param float $x The test value
+	 * @param float $mu The location parameter. Default 0.0
+	 * @param float $variance The scale parameter. Default 1.0
+	 * @return float The value that gives an sf of $x
+	 * @static
+	 */
 	static function getIsf($x, $mu = 0.0, $variance = 1.0) {
 		return self::getPpf(1.0 - $x, $mu, $variance);
 	}
 	
 	/**
-		Returns the moments of the distribution
-		
-		@param string $moments Which moments to compute. m for mean, v for variance, s for skew, k for kurtosis.  Default 'mv'
-		@param float $mu The location parameter. Default 0.0
-		@param float $variance The scale parameter. Default 1.0
-		@return type array A dictionary containing the first four moments of the distribution
-	*/
+	 * Returns the moments of the distribution
+	 * 
+	 * @param string $moments Which moments to compute. m for mean, v for variance, s for skew, k for kurtosis.  Default 'mv'
+	 * @param float $mu The location parameter. Default 0.0
+	 * @param float $variance The scale parameter. Default 1.0
+	 * @return type array A dictionary containing the first four moments of the distribution
+	 * @static
+	 */
 	static function getStats($moments = 'mv', $mu = 0.0, $variance = 1.0) {
 		$return = array();
 		

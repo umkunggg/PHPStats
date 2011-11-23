@@ -36,89 +36,95 @@ namespace PHPStats\ProbabilityDistribution;
 class ChiSquare extends ProbabilityDistribution {
 	private $k;
 	
-	function __construct($k = 1.0) {
+	/**
+	 * Constructor function
+	 *
+	 * @param float $k The number of degrees of freedom
+	 */
+	public function __construct($k = 1.0) {
 		$this->k = $k;
 	}
-
-	//These are wrapper functions that call the static implementations with what we saved.
 	
 	/**
-		Returns a random float
-		
-		@return float The random variate.
-	*/
+	 * Returns a random float
+	 * 
+	 * @return float The random variate.
+	 * @todo Untested
+	 */
 	public function rvs() {
 		return self::getRvs($this->k);
 	}
 	
 	/**
-		Returns the probability distribution function
-		
-		@param float $x The test value
-		@return float The probability
-	*/
+	 * Returns the probability distribution function
+	 * 
+	 * @param float $x The test value
+	 * @return float The probability
+	 */
 	public function pdf($x) {
 		return self::getPdf($x, $this->k);
 	}
 	
 	/**
-		Returns the cumulative distribution function, the probability of getting the test value or something below it
-		
-		@param float $x The test value
-		@return float The probability
-	*/
+	 * Returns the cumulative distribution function, the probability of getting the test value or something below it
+	 * 
+	 * @param float $x The test value
+	 * @return float The probability
+	 */
 	public function cdf($x) {
 		return self::getCdf($x, $this->k);
 	}
 	
 	/**
-		Returns the survival function, the probability of getting the test value or something above it
-		
-		@param float $x The test value
-		@return float The probability
-	*/
+	 * Returns the survival function, the probability of getting the test value or something above it
+	 * 
+	 * @param float $x The test value
+	 * @return float The probability
+	 */
 	public function sf($x) {
 		return self::getSf($x, $this->k);
 	}
 	
 	/**
-		Returns the percent-point function, the inverse of the cdf
-		
-		@param float $x The test value
-		@return float The value that gives a cdf of $x
-	*/
+	 * Returns the percent-point function, the inverse of the cdf
+	 * 
+	 * @param float $x The test value
+	 * @return float The value that gives a cdf of $x
+	 * @todo Unimplemented dependencies
+	 */
 	public function ppf($x) {
 		return self::getPpf($x, $this->k);
 	}
 	
 	/**
-		Returns the inverse survival function, the inverse of the sf
-		
-		@param float $x The test value
-		@return float The value that gives an sf of $x
-	*/
+	 * Returns the inverse survival function, the inverse of the sf
+	 * 
+	 * @param float $x The test value
+	 * @return float The value that gives an sf of $x
+	 * @todo Unimplemented dependencies
+	 */
 	public function isf($x) {
 		return self::getIsf($x, $this->k);
 	}
 	
 	/**
-		Returns the moments of the distribution
-		
-		@param string $moments Which moments to compute. m for mean, v for variance, s for skew, k for kurtosis.  Default 'mv'
-		@return type array A dictionary containing the first four moments of the distribution
-	*/
+	 * Returns the moments of the distribution
+	 * 
+	 * @param string $moments Which moments to compute. m for mean, v for variance, s for skew, k for kurtosis.  Default 'mv'
+	 * @return type array A dictionary containing the first four moments of the distribution
+	 */
 	public function stats($moments = 'mv') {
 		return self::getStats($moments, $this->k);
 	}
 	
-	//These represent the calculation engine of the class.
-	
 	/**
-		Returns a random float between $minimum and $minimum plus $maximum
-		
-		@param float $k Shape parameter
-		@return float The random variate.
-	*/
+	 * Returns a random float between $minimum and $minimum plus $maximum
+	 * 
+	 * @param float $k Shape parameter
+	 * @return float The random variate.
+	 * @static
+	 * @todo Untested
+	 */
 	static function getRvs($k = 1) {
 		$k /= 2;
 		$floork = floor($k);
@@ -153,67 +159,75 @@ class ChiSquare extends ProbabilityDistribution {
 	}
 	
 	/**
-		Returns the probability distribution function
-		
-		@param float $x The test value
-		@param float $k Shape parameter
-		@return float The probability
-	*/
+	 * Returns the probability distribution function
+	 * 
+	 * @param float $x The test value
+	 * @param float $k Shape parameter
+	 * @return float The probability
+	 * @static
+	 */
 	static function getPdf($x, $k = 1) {
 		return pow($x, $k/2.0 - 1)*exp(-$x/2.0)/(\PHPStats\Stats::gamma($k/2.0)*pow(2, $k/2.0));
 	}
 	
 	/**
-		Returns the cumulative distribution function, the probability of getting the test value or something below it
-		
-		@param float $x The test value
-		@param float $k Shape parameter
-		@return float The probability
-	*/
+	 * Returns the cumulative distribution function, the probability of getting the test value or something below it
+	 * 
+	 * @param float $x The test value
+	 * @param float $k Shape parameter
+	 * @return float The probability
+	 * @static
+	 */
 	static function getCdf($x, $k = 1) {
 		return \PHPStats\Stats::lowerGamma($k/2.0, $x/2)/\PHPStats\Stats::gamma($k/2.0);
 	}
 	
 	/**
-		Returns the survival function, the probability of getting the test value or something above it
-		
-		@param float $x The test value
-		@param float $k Shape parameter
-		@return float The probability
-	*/
+	 * Returns the survival function, the probability of getting the test value or something above it
+	 * 
+	 * @param float $x The test value
+	 * @param float $k Shape parameter
+	 * @return float The probability
+	 * @static
+	 */
 	static function getSf($x, $k = 1) {
 		return 1.0 - self::getCdf($x, $k);
 	}
 	
 	/**
-		Returns the percent-point function, the inverse of the cdf
-		
-		@param float $x The test value
-		@param float $k Shape parameter
-		@return float The value that gives a cdf of $x
-	*/
+	 * Returns the percent-point function, the inverse of the cdf
+	 * 
+	 * @param float $x The test value
+	 * @param float $k Shape parameter
+	 * @return float The value that gives a cdf of $x
+	 * @static
+	 * @todo Unimplemented dependencies
+	 */
 	static function getPpf($x, $k = 1) {
 		return 2 * \PHPStats\Stats::ilowerGamma($k / 2, $x * \PHPStats\Stats::gamma($k / 2));
 	}
 	
 	/**
-		Returns the inverse survival function, the inverse of the sf
-		
-		@param float $x The test value
-		@param float $k Shape parameter
-		@return float The value that gives an sf of $x
-	*/
+	 * Returns the inverse survival function, the inverse of the sf
+	 * 
+	 * @param float $x The test value
+	 * @param float $k Shape parameter
+	 * @return float The value that gives an sf of $x
+	 * @static
+	 * @todo Unimplemented dependencies
+	 */
 	static function getIsf($x, $k = 1) {
 		return self::getPpf(1.0 - $x, $k);
 	}
 	
 	/**
-		Returns the moments of the distribution
-		
-		@param string $moments Which moments to compute. m for mean, v for variance, s for skew, k for kurtosis.  Default 'mv'
-		@param float $k Shape parameter
-		@return type array A dictionary containing the first four moments of the distribution
-	*/
+	 * Returns the moments of the distribution
+	 * 
+	 * @param string $moments Which moments to compute. m for mean, v for variance, s for skew, k for kurtosis.  Default 'mv'
+	 * @param float $k Shape parameter
+	 * @return type array A dictionary containing the first four moments of the distribution
+	 * @static
+	 */
 	static function getStats($moments = 'mv', $k = 1) {
 		$return = array();
 		

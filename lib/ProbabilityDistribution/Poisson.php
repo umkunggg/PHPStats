@@ -37,89 +37,93 @@ namespace PHPStats\ProbabilityDistribution;
 class Poisson extends ProbabilityDistribution {
 	private $lambda;
 
-	function __construct($lambda) {
+	/**
+	 * Constructor function
+	 * 
+	 * @param float $lambda The average number of arrivals
+	 */
+	public function __construct($lambda) {
 		$this->lambda = $lambda;
 	}
-
-	//These are wrapper functions that call the static implementations with what we saved.
 	
 	/**
-		Returns a random float between $minimum and $minimum plus $maximum
-		
-		@return float The random variate.
-	*/
+	 * Returns a random float between $minimum and $minimum plus $maximum
+	 * 
+	 * @return float The random variate.
+	 * @todo Untested
+	 */
 	public function rvs() {
 		return self::getRvs($this->lambda);
 	}
 	
 	/**
-		Returns the probability distribution function
-		
-		@param float $x The test value
-		@return float The probability
-	*/
+	 * Returns the probability distribution function
+	 * 
+	 * @param float $x The test value
+	 * @return float The probability
+	 */
 	public function pmf($x) {
 		return self::getPmf($x, $this->lambda);
 	}
 	
 	/**
-		Returns the cumulative distribution function, the probability of getting the test value or something below it
-		
-		@param float $x The test value
-		@return float The probability
-	*/
+	 * Returns the cumulative distribution function, the probability of getting the test value or something below it
+	 * 
+	 * @param float $x The test value
+	 * @return float The probability
+	 */
 	public function cdf($x) {
 		return self::getCdf($x, $this->lambda);
 	}
 	
 	/**
-		Returns the survival function, the probability of getting the test value or something above it
-		
-		@param float $x The test value
-		@return float The probability
-	*/
+	 * Returns the survival function, the probability of getting the test value or something above it
+	 * 
+	 * @param float $x The test value
+	 * @return float The probability
+	 */
 	public function sf($x) {
 		return self::getSf($x, $this->lambda);
 	}
 	
 	/**
-		Returns the percent-point function, the inverse of the cdf
-		
-		@param float $x The test value
-		@return float The value that gives a cdf of $x
-	*/
+	 * Returns the percent-point function, the inverse of the cdf
+	 * 
+	 * @param float $x The test value
+	 * @return float The value that gives a cdf of $x
+	 */
 	public function ppf($x) {
 		return self::getPpf($x, $this->lambda);
 	}
 	
 	/**
-		Returns the inverse survival function, the inverse of the sf
-		
-		@param float $x The test value
-		@return float The value that gives an sf of $x
-	*/
+	 * Returns the inverse survival function, the inverse of the sf
+	 * 
+	 * @param float $x The test value
+	 * @return float The value that gives an sf of $x
+	 */
 	public function isf($x) {
 		return self::getIsf($x, $this->lambda);
 	}
 	
 	/**
-		Returns the moments of the distribution
-		
-		@param string $moments Which moments to compute. m for mean, v for variance, s for skew, k for kurtosis.  Default 'mv'
-		@return type array A dictionary containing the first four moments of the distribution
-	*/
+	 * Returns the moments of the distribution
+	 * 
+	 * @param string $moments Which moments to compute. m for mean, v for variance, s for skew, k for kurtosis.  Default 'mv'
+	 * @return type array A dictionary containing the first four moments of the distribution
+	 */
 	public function stats($moments = 'mv') {
 		return self::getStats($moments, $this->lambda);
 	}
-
-	//These represent the calculation engine of the class.
 	
 	/**
-		Returns a random variate between $minimum and $minimum plus $maximum
-		
-		@param float $lambda The rate of events.
-		@return float The random variate.
-	*/
+	 * Returns a random variate between $minimum and $minimum plus $maximum
+	 * 
+	 * @param float $lambda The rate of events.
+	 * @return float The random variate.
+	 * @static
+	 * @todo Untested
+	 */
 	static function getRvs($lambda = 1) {
 		//Knuth's algorithm.  TODO: Replace with more efficient algorithm
 		$l = exp(-$lamda);
@@ -136,23 +140,25 @@ class Poisson extends ProbabilityDistribution {
 	}
 	
 	/**
-		Returns the probability mass function
-		
-		@param float $x The test value
-		@param float $lambda The rate of events
-		@return float The probability
-	*/
+	 * Returns the probability mass function
+	 * 
+	 * @param float $x The test value
+	 * @param float $lambda The rate of events
+	 * @return float The probability
+	 * @static
+	 */
 	static function getPmf($x, $lambda = 1) {
 		return exp(-$lambda)*pow($lambda, $x)/\PHPStats\Stats::factorial($x);
 	}
 	
 	/**
-		Returns the cumulative distribution function, the probability of getting the test value or something below it
-		
-		@param float $x The test value
-		@param float $lambda The rate of events
-		@return float The probability
-	*/
+	 * Returns the cumulative distribution function, the probability of getting the test value or something below it
+	 * 
+	 * @param float $x The test value
+	 * @param float $lambda The rate of events
+	 * @return float The probability
+	 * @static
+	 */
 	static function getCdf($x, $lambda = 1) {
 		$sum = 0.0;
 		for ($count = 0; $count <= $x; $count++) {
@@ -162,23 +168,25 @@ class Poisson extends ProbabilityDistribution {
 	}
 	
 	/**
-		Returns the survival function, the probability of getting the test value or something above it
-		
-		@param float $x The test value
-		@param float $lambda The rate of events
-		@return float The probability
-	*/
+	 * Returns the survival function, the probability of getting the test value or something above it
+	 * 
+	 * @param float $x The test value
+	 * @param float $lambda The rate of events
+	 * @return float The probability
+	 * @static
+	 */
 	static function getSf($x, $lambda = 1) {
 		return 1.0 - self::getCdf($x, $lambda);
 	}
 	
 	/**
-		Returns the percent-point function, the inverse of the cdf
-		
-		@param float $x The test value
-		@param float $lambda The rate of events
-		@return float The value that gives a cdf of $x
-	*/
+	 * Returns the percent-point function, the inverse of the cdf
+	 * 
+	 * @param float $x The test value
+	 * @param float $lambda The rate of events
+	 * @return float The value that gives a cdf of $x
+	 * @static
+	 */
 	static function getPpf($x, $lambda = 1) {
 		if ($x >= 1) return INF; //Prevents infinite loops.
 	
@@ -194,23 +202,25 @@ class Poisson extends ProbabilityDistribution {
 	}
 	
 	/**
-		Returns the inverse survival function, the inverse of the sf
-		
-		@param float $x The test value
-		@param float $lambda The rate of events
-		@return float The value that gives an sf of $x
-	*/
+	 * Returns the inverse survival function, the inverse of the sf
+	 * 
+	 * @param float $x The test value
+	 * @param float $lambda The rate of events
+	 * @return float The value that gives an sf of $x
+	 * @static
+	 */
 	static function getIsf($x, $lambda = 1) {
 		return self::getPpf(1.0 - $x, $lambda);
 	}
 	
 	/**
-		Returns the moments of the distribution
-		
-		@param string $moments Which moments to compute. m for mean, v for variance, s for skew, k for kurtosis.  Default 'mv'
-		@param float $lambda The rate of events
-		@return type array A dictionary containing the first four moments of the distribution
-	*/
+	 * Returns the moments of the distribution
+	 * 
+	 * @param string $moments Which moments to compute. m for mean, v for variance, s for skew, k for kurtosis.  Default 'mv'
+	 * @param float $lambda The rate of events
+	 * @return type array A dictionary containing the first four moments of the distribution
+	 * @static
+	 */
 	static function getStats($moments = 'mv', $lambda = 1) {
 		$return = array();
 		
