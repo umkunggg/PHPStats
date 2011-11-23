@@ -29,6 +29,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li id="searchli">
@@ -87,8 +88,7 @@ Inheritance diagram for PHPStats::ProbabilityDistribution::Normal:</div>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af2f39ff22b5ea03f8cf1eb9b5f7b1978"></a><!-- doxytag: member="PHPStats::ProbabilityDistribution::Normal::__construct" ref="af2f39ff22b5ea03f8cf1eb9b5f7b1978" args="($mu=0.0, $variance=1.0)" -->
-&#160;</td><td class="memItemRight" valign="bottom"><b>__construct</b> ($mu=0.0, $variance=1.0)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPHPStats_1_1ProbabilityDistribution_1_1Normal.html#af2f39ff22b5ea03f8cf1eb9b5f7b1978">__construct</a> ($mu=0.0, $variance=1.0)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPHPStats_1_1ProbabilityDistribution_1_1Normal.html#a6ed00db9bc4e4c1635bcd99577539120">rvs</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPHPStats_1_1ProbabilityDistribution_1_1Normal.html#a49f636ff75e999c86a190d2b6bde64de">pdf</a> ($x)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPHPStats_1_1ProbabilityDistribution_1_1Normal.html#a7e5295fbc58cfa2de1c1a4392a887900">cdf</a> ($x)</td></tr>
@@ -106,6 +106,46 @@ Static Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">static&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPHPStats_1_1ProbabilityDistribution_1_1Normal.html#a072d795a211d9d9bb3f78efb5eabaec3">getIsf</a> ($x, $mu=0.0, $variance=1.0)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">static&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPHPStats_1_1ProbabilityDistribution_1_1Normal.html#aab28e60b0e03c4b1a00e6f65e7b78293">getStats</a> ($moments= 'mv', $mu=0.0, $variance=1.0)</td></tr>
 </table>
+<hr/><a name="_details"></a><h2>Detailed Description</h2>
+<div class="textblock"><p><a class="el" href="classPHPStats_1_1ProbabilityDistribution_1_1Normal.html">Normal</a> class</p>
+<p>Represents the normal distribution, which represents the average of a large sample of observations.</p>
+<p>For more information, see: <a href="http://en.wikipedia.org/wiki/Normal_distribution">http://en.wikipedia.org/wiki/Normal_distribution</a> </p>
+</div><hr/><h2>Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="af2f39ff22b5ea03f8cf1eb9b5f7b1978"></a><!-- doxytag: member="PHPStats::ProbabilityDistribution::Normal::__construct" ref="af2f39ff22b5ea03f8cf1eb9b5f7b1978" args="($mu=0.0, $variance=1.0)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">PHPStats::ProbabilityDistribution::Normal::__construct </td>
+          <td>(</td>
+          <td class="paramtype">$&#160;</td>
+          <td class="paramname"><em>mu</em> = <code>0.0</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&#160;</td>
+          <td class="paramname"><em>variance</em> = <code>1.0</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Constructor function</p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramtype">float</td><td class="paramname">$mu</td><td>The population average </td></tr>
+    <tr><td class="paramtype">float</td><td class="paramname">$variance</td><td>The population variance </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <hr/><h2>Member Function Documentation</h2>
 <a class="anchor" id="a7e5295fbc58cfa2de1c1a4392a887900"></a><!-- doxytag: member="PHPStats::ProbabilityDistribution::Normal::cdf" ref="a7e5295fbc58cfa2de1c1a4392a887900" args="($x)" -->
 <div class="memitem">
@@ -336,7 +376,8 @@ Static Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>float The random variate. </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>float The random variate.</dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000034">Todo:</a></b></dt><dd>Untested </dd></dl>
 
 </div>
 </div>
@@ -516,6 +557,7 @@ Static Public Member Functions</h2></td></tr>
 <div class="memdoc">
 <p>Returns a random float between $mu and $mu plus $variance</p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>float The random variate. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000033">Todo:</a></b></dt><dd>Untested </dd></dl>
 
 </div>
 </div>
@@ -587,7 +629,7 @@ Static Public Member Functions</h2></td></tr>
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Mon Oct 24 2011 00:14:40 for PHPStats by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Wed Nov 23 2011 21:33:02 for PHPStats by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </small></address>
 </body>

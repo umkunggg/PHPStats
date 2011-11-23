@@ -29,6 +29,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li id="searchli">
@@ -87,8 +88,7 @@ Inheritance diagram for PHPStats::ProbabilityDistribution::StudentsT:</div>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ace6366cb2b419b04a1055f0eb20e7c36"></a><!-- doxytag: member="PHPStats::ProbabilityDistribution::StudentsT::__construct" ref="ace6366cb2b419b04a1055f0eb20e7c36" args="($df=1)" -->
-&#160;</td><td class="memItemRight" valign="bottom"><b>__construct</b> ($df=1)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPHPStats_1_1ProbabilityDistribution_1_1StudentsT.html#ace6366cb2b419b04a1055f0eb20e7c36">__construct</a> ($df=1)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPHPStats_1_1ProbabilityDistribution_1_1StudentsT.html#a17fb1a68d9e650d813b4ff5669266af6">rvs</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPHPStats_1_1ProbabilityDistribution_1_1StudentsT.html#a959e40e0f09b57cd67eddafb7f1a334f">pdf</a> ($x)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPHPStats_1_1ProbabilityDistribution_1_1StudentsT.html#a5bd2e5fd208b31da29b0e1c425e893be">cdf</a> ($x)</td></tr>
@@ -106,6 +106,35 @@ Static Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">static&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPHPStats_1_1ProbabilityDistribution_1_1StudentsT.html#ae3fcab7f7afbcd92df2752aa99769529">getIsf</a> ($x, $df=1)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">static&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPHPStats_1_1ProbabilityDistribution_1_1StudentsT.html#ac7257f4b0822446c7651ab84105eada2">getStats</a> ($moments= 'mv', $df=1)</td></tr>
 </table>
+<hr/><a name="_details"></a><h2>Detailed Description</h2>
+<div class="textblock"><p><a class="el" href="classPHPStats_1_1ProbabilityDistribution_1_1StudentsT.html">StudentsT</a> class</p>
+<p>Represents Student's T distribution, which estimates the mean of a normally distributed population in situations where the sample size is small and population standard deviation unknown.</p>
+<p>For more information, see: <a href="http://en.wikipedia.org/wiki/Student's_t-distribution">http://en.wikipedia.org/wiki/Student's_t-distribution</a> </p>
+</div><hr/><h2>Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="ace6366cb2b419b04a1055f0eb20e7c36"></a><!-- doxytag: member="PHPStats::ProbabilityDistribution::StudentsT::__construct" ref="ace6366cb2b419b04a1055f0eb20e7c36" args="($df=1)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">PHPStats::ProbabilityDistribution::StudentsT::__construct </td>
+          <td>(</td>
+          <td class="paramtype">$&#160;</td>
+          <td class="paramname"><em>df</em> = <code>1</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Constructor function</p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramtype">int</td><td class="paramname">$df</td><td>The degrees of freedom </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <hr/><h2>Member Function Documentation</h2>
 <a class="anchor" id="a5bd2e5fd208b31da29b0e1c425e893be"></a><!-- doxytag: member="PHPStats::ProbabilityDistribution::StudentsT::cdf" ref="a5bd2e5fd208b31da29b0e1c425e893be" args="($x)" -->
 <div class="memitem">
@@ -200,7 +229,8 @@ Static Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>float The value that gives an sf of $x </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>float The value that gives an sf of $x</dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000044">Todo:</a></b></dt><dd>Unimplemented dependencies </dd></dl>
 
 </div>
 </div>
@@ -272,7 +302,8 @@ Static Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>float The value that gives a cdf of $x </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>float The value that gives a cdf of $x</dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000043">Todo:</a></b></dt><dd>Unimplemented dependencies </dd></dl>
 
 </div>
 </div>
@@ -297,7 +328,8 @@ Static Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>float The random variate. </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>float The random variate.</dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000042">Todo:</a></b></dt><dd>Unimplemented </dd></dl>
 
 </div>
 </div>
@@ -395,6 +427,7 @@ Static Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>float The value that gives an sf of $x </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000041">Todo:</a></b></dt><dd>Unimplemented dependencies </dd></dl>
 
 </div>
 </div>
@@ -445,6 +478,7 @@ Static Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>float The value that gives a cdf of $x </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000040">Todo:</a></b></dt><dd>Unimplemented dependencies </dd></dl>
 
 </div>
 </div>
@@ -463,6 +497,7 @@ Static Public Member Functions</h2></td></tr>
 <div class="memdoc">
 <p>Returns a random float between $minimum and $minimum plus $maximum</p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>float The random variate. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000039">Todo:</a></b></dt><dd>Unimplemented </dd></dl>
 
 </div>
 </div>
@@ -534,7 +569,7 @@ Static Public Member Functions</h2></td></tr>
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Mon Oct 24 2011 00:14:40 for PHPStats by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Wed Nov 23 2011 21:33:03 for PHPStats by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </small></address>
 </body>

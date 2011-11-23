@@ -29,6 +29,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li id="searchli">
@@ -87,8 +88,7 @@ Inheritance diagram for PHPStats::ProbabilityDistribution::Poisson:</div>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a418396ecdf35e0e6848bc965cf480458"></a><!-- doxytag: member="PHPStats::ProbabilityDistribution::Poisson::__construct" ref="a418396ecdf35e0e6848bc965cf480458" args="($lambda)" -->
-&#160;</td><td class="memItemRight" valign="bottom"><b>__construct</b> ($lambda)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPHPStats_1_1ProbabilityDistribution_1_1Poisson.html#a418396ecdf35e0e6848bc965cf480458">__construct</a> ($lambda)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPHPStats_1_1ProbabilityDistribution_1_1Poisson.html#a67e62f4595e6c97e5b2709d4d5a72542">rvs</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPHPStats_1_1ProbabilityDistribution_1_1Poisson.html#abde8364d59085ac0b196ed23a7dbfcbe">pmf</a> ($x)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPHPStats_1_1ProbabilityDistribution_1_1Poisson.html#afeb360587c9cbf0244d7d2bfedd2964d">cdf</a> ($x)</td></tr>
@@ -108,8 +108,34 @@ Static Public Member Functions</h2></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p><a class="el" href="classPHPStats_1_1ProbabilityDistribution_1_1Poisson.html">Poisson</a> class</p>
-<p>Represents the <a class="el" href="classPHPStats_1_1ProbabilityDistribution_1_1Poisson.html">Poisson</a> distribution, a distribution that represents the number of independent, exponentially-distributed events that occur in a fixed interval. For more information, see: <a href="http://en.wikipedia.org/wiki/Poisson_distribution">http://en.wikipedia.org/wiki/Poisson_distribution</a> </p>
-</div><hr/><h2>Member Function Documentation</h2>
+<p>Represents the <a class="el" href="classPHPStats_1_1ProbabilityDistribution_1_1Poisson.html">Poisson</a> distribution, a distribution that represents the number of independent, exponentially-distributed events that occur in a fixed interval.</p>
+<p>For more information, see: <a href="http://en.wikipedia.org/wiki/Poisson_distribution">http://en.wikipedia.org/wiki/Poisson_distribution</a> </p>
+</div><hr/><h2>Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a418396ecdf35e0e6848bc965cf480458"></a><!-- doxytag: member="PHPStats::ProbabilityDistribution::Poisson::__construct" ref="a418396ecdf35e0e6848bc965cf480458" args="($lambda)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">PHPStats::ProbabilityDistribution::Poisson::__construct </td>
+          <td>(</td>
+          <td class="paramtype">$&#160;</td>
+          <td class="paramname"><em>lambda</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Constructor function</p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramtype">float</td><td class="paramname">$lambda</td><td>The average number of arrivals </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<hr/><h2>Member Function Documentation</h2>
 <a class="anchor" id="afeb360587c9cbf0244d7d2bfedd2964d"></a><!-- doxytag: member="PHPStats::ProbabilityDistribution::Poisson::cdf" ref="afeb360587c9cbf0244d7d2bfedd2964d" args="($x)" -->
 <div class="memitem">
 <div class="memproto">
@@ -300,7 +326,8 @@ Static Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>float The random variate. </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>float The random variate.</dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000038">Todo:</a></b></dt><dd>Untested </dd></dl>
 
 </div>
 </div>
@@ -466,6 +493,7 @@ Static Public Member Functions</h2></td></tr>
 <div class="memdoc">
 <p>Returns a random float between $minimum and $minimum plus $maximum</p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>float The random variate. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000037">Todo:</a></b></dt><dd>Untested </dd></dl>
 
 </div>
 </div>
@@ -537,7 +565,7 @@ Static Public Member Functions</h2></td></tr>
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Mon Oct 24 2011 00:14:40 for PHPStats by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Wed Nov 23 2011 21:33:02 for PHPStats by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </small></address>
 </body>

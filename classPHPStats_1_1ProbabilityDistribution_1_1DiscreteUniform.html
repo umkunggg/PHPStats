@@ -29,6 +29,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li id="searchli">
@@ -87,8 +88,7 @@ Inheritance diagram for PHPStats::ProbabilityDistribution::DiscreteUniform:</div
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab7db7346053917b0e48e04af03c4166a"></a><!-- doxytag: member="PHPStats::ProbabilityDistribution::DiscreteUniform::__construct" ref="ab7db7346053917b0e48e04af03c4166a" args="($minimum=0, $maximum=1)" -->
-&#160;</td><td class="memItemRight" valign="bottom"><b>__construct</b> ($minimum=0, $maximum=1)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPHPStats_1_1ProbabilityDistribution_1_1DiscreteUniform.html#ab7db7346053917b0e48e04af03c4166a">__construct</a> ($minimum=0, $maximum=1)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPHPStats_1_1ProbabilityDistribution_1_1DiscreteUniform.html#a648d530688e610f637a986620603c764">rvs</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPHPStats_1_1ProbabilityDistribution_1_1DiscreteUniform.html#ad4d7f7e3da3d39a9ecbbcbc04ebb8431">pmf</a> ($x)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPHPStats_1_1ProbabilityDistribution_1_1DiscreteUniform.html#a773b86bcc331b76d7d62c1799ffce0c5">cdf</a> ($x)</td></tr>
@@ -108,8 +108,45 @@ Static Public Member Functions</h2></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p><a class="el" href="classPHPStats_1_1ProbabilityDistribution_1_1DiscreteUniform.html">DiscreteUniform</a> class</p>
-<p>Represents the discrete uniform distribution, which is a range of equiprobable outcomes, such as rolling a single die. </p>
-</div><hr/><h2>Member Function Documentation</h2>
+<p>Represents the discrete uniform distribution, which is a range of equiprobable outcomes, such as rolling a single die.</p>
+<p>For more information, see: <a href="http://en.wikipedia.org/wiki/Uniform_distribution_%28discrete%29">http://en.wikipedia.org/wiki/Uniform_distribution_%28discrete%29</a> </p>
+</div><hr/><h2>Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="ab7db7346053917b0e48e04af03c4166a"></a><!-- doxytag: member="PHPStats::ProbabilityDistribution::DiscreteUniform::__construct" ref="ab7db7346053917b0e48e04af03c4166a" args="($minimum=0, $maximum=1)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">PHPStats::ProbabilityDistribution::DiscreteUniform::__construct </td>
+          <td>(</td>
+          <td class="paramtype">$&#160;</td>
+          <td class="paramname"><em>minimum</em> = <code>0</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&#160;</td>
+          <td class="paramname"><em>maximum</em> = <code>1</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Constructor</p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramtype">int</td><td class="paramname">$minimum</td><td>The minimum value the distribution can take on </td></tr>
+    <tr><td class="paramtype">int</td><td class="paramname">$maximum</td><td>The maximum value the distribution can take on </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<hr/><h2>Member Function Documentation</h2>
 <a class="anchor" id="a773b86bcc331b76d7d62c1799ffce0c5"></a><!-- doxytag: member="PHPStats::ProbabilityDistribution::DiscreteUniform::cdf" ref="a773b86bcc331b76d7d62c1799ffce0c5" args="($x)" -->
 <div class="memitem">
 <div class="memproto">
@@ -339,7 +376,8 @@ Static Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>float The random variate. </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>float The random variate.</dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000016">Todo:</a></b></dt><dd>Untested </dd></dl>
 
 </div>
 </div>
@@ -519,6 +557,7 @@ Static Public Member Functions</h2></td></tr>
 <div class="memdoc">
 <p>Returns a random float between $minimum and $minimum plus $maximum</p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>float The random variate. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000015">Todo:</a></b></dt><dd>Untested </dd></dl>
 
 </div>
 </div>
@@ -590,7 +629,7 @@ Static Public Member Functions</h2></td></tr>
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Mon Oct 24 2011 00:14:39 for PHPStats by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Wed Nov 23 2011 21:33:02 for PHPStats by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </small></address>
 </body>

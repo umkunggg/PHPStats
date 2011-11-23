@@ -29,6 +29,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li id="searchli">
@@ -87,8 +88,7 @@ Inheritance diagram for PHPStats::ProbabilityDistribution::ChiSquare:</div>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a33e926745550cef4a7af0f52844d33ed"></a><!-- doxytag: member="PHPStats::ProbabilityDistribution::ChiSquare::__construct" ref="a33e926745550cef4a7af0f52844d33ed" args="($k=1.0)" -->
-&#160;</td><td class="memItemRight" valign="bottom"><b>__construct</b> ($k=1.0)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPHPStats_1_1ProbabilityDistribution_1_1ChiSquare.html#a33e926745550cef4a7af0f52844d33ed">__construct</a> ($k=1.0)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPHPStats_1_1ProbabilityDistribution_1_1ChiSquare.html#a9f6e7dfac84d890be42757774967d6c9">rvs</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPHPStats_1_1ProbabilityDistribution_1_1ChiSquare.html#a3e5defdbecf5e5da04cb61a7e64685da">pdf</a> ($x)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPHPStats_1_1ProbabilityDistribution_1_1ChiSquare.html#ae0a18a705bf4ee53e80c88e8dcaeaab7">cdf</a> ($x)</td></tr>
@@ -106,6 +106,35 @@ Static Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">static&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPHPStats_1_1ProbabilityDistribution_1_1ChiSquare.html#ac64ac3cb93939cd5a93ed5943219063a">getIsf</a> ($x, $k=1)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">static&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPHPStats_1_1ProbabilityDistribution_1_1ChiSquare.html#a3e94b786f3ec57bf4df9b9912fdc6f03">getStats</a> ($moments= 'mv', $k=1)</td></tr>
 </table>
+<hr/><a name="_details"></a><h2>Detailed Description</h2>
+<div class="textblock"><p><a class="el" href="classPHPStats_1_1ProbabilityDistribution_1_1ChiSquare.html">ChiSquare</a> class</p>
+<p>Represents the Chi Square distribution, a distribution that represents the sum of the squares of k independent standard normal random variates.</p>
+<p>For more information, see: <a href="http://en.wikipedia.org/wiki/Chi-squared_distribution">http://en.wikipedia.org/wiki/Chi-squared_distribution</a> </p>
+</div><hr/><h2>Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a33e926745550cef4a7af0f52844d33ed"></a><!-- doxytag: member="PHPStats::ProbabilityDistribution::ChiSquare::__construct" ref="a33e926745550cef4a7af0f52844d33ed" args="($k=1.0)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">PHPStats::ProbabilityDistribution::ChiSquare::__construct </td>
+          <td>(</td>
+          <td class="paramtype">$&#160;</td>
+          <td class="paramname"><em>k</em> = <code>1.0</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Constructor function</p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramtype">float</td><td class="paramname">$k</td><td>The number of degrees of freedom </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <hr/><h2>Member Function Documentation</h2>
 <a class="anchor" id="ae0a18a705bf4ee53e80c88e8dcaeaab7"></a><!-- doxytag: member="PHPStats::ProbabilityDistribution::ChiSquare::cdf" ref="ae0a18a705bf4ee53e80c88e8dcaeaab7" args="($x)" -->
 <div class="memitem">
@@ -200,7 +229,8 @@ Static Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>float The value that gives an sf of $x </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>float The value that gives an sf of $x</dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000014">Todo:</a></b></dt><dd>Unimplemented dependencies </dd></dl>
 
 </div>
 </div>
@@ -272,7 +302,8 @@ Static Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>float The value that gives a cdf of $x </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>float The value that gives a cdf of $x</dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000013">Todo:</a></b></dt><dd>Unimplemented dependencies </dd></dl>
 
 </div>
 </div>
@@ -297,7 +328,8 @@ Static Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>float The random variate. </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>float The random variate.</dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000012">Todo:</a></b></dt><dd>Untested </dd></dl>
 
 </div>
 </div>
@@ -395,6 +427,7 @@ Static Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>float The value that gives an sf of $x </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000011">Todo:</a></b></dt><dd>Unimplemented dependencies </dd></dl>
 
 </div>
 </div>
@@ -445,6 +478,7 @@ Static Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>float The value that gives a cdf of $x </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000010">Todo:</a></b></dt><dd>Unimplemented dependencies </dd></dl>
 
 </div>
 </div>
@@ -463,6 +497,7 @@ Static Public Member Functions</h2></td></tr>
 <div class="memdoc">
 <p>Returns a random float</p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>float The random variate. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000009">Todo:</a></b></dt><dd>Untested </dd></dl>
 
 </div>
 </div>
@@ -534,7 +569,7 @@ Static Public Member Functions</h2></td></tr>
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Mon Oct 24 2011 00:14:39 for PHPStats by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Wed Nov 23 2011 21:33:02 for PHPStats by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </small></address>
 </body>

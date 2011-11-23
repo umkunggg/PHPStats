@@ -29,6 +29,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li id="searchli">
@@ -91,12 +92,18 @@ Static Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">static&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPHPStats_1_1Stats.html#a3e80ea63cf999379400ea49b5f1276c3">correlation</a> ($datax, $datay)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">static&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPHPStats_1_1Stats.html#a45a802b9625677b23b5920e6d1916105">factorial</a> ($x)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">static&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPHPStats_1_1Stats.html#a54841b02719191611c7519877cf4498a">erf</a> ($x)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPHPStats_1_1Stats.html#a0212ba83022e554cd0b61721bab0cedd">ierf</a> ($x)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">static&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPHPStats_1_1Stats.html#a5b140c3dcdfc167206f663f295068a1f">gamma</a> ($x)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">static&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPHPStats_1_1Stats.html#a2cdea1b9649c13b5cf58c4d5bb56cc2f">gammaln</a> ($x)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPHPStats_1_1Stats.html#a909947739481703e69c1f44d1faf9920">igamma</a> ($x)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPHPStats_1_1Stats.html#a81c5a78af5eb319a967bf890d0b6fe08">digamma</a> ($x)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPHPStats_1_1Stats.html#a61e601fae841d6f2c65a059966c97ffa">lambert</a> ($x)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">static&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPHPStats_1_1Stats.html#a0fca2e61eb3a0fd417e6ed7544faa812">lowerGamma</a> ($s, $x)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPHPStats_1_1Stats.html#a9a9242222e60c1bb2b876783031db6ba">ilowerGamma</a> ($s, $x)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">static&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPHPStats_1_1Stats.html#a5edb3dbfeb27d0f0468ca6f64362f302">upperGamma</a> ($s, $x)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">static&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPHPStats_1_1Stats.html#a618c5343b2a559d070c2e56bdc0b3271">beta</a> ($a, $b)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">static&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPHPStats_1_1Stats.html#a67a520095337582ab05237a4a65d9e78">regularizedIncompleteBeta</a> ($a, $b, $x)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPHPStats_1_1Stats.html#a603b38ea32b1d01328864264eb64bde7">iregularizedIncompleteBeta</a> ($a, $b, $x)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">static&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPHPStats_1_1Stats.html#a3add4e5e299aafb3bebacb195700e642">permutations</a> ($n, $r)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">static&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPHPStats_1_1Stats.html#a1e09abd2b4698859a4687083c417c17c">combinations</a> ($n, $r)</td></tr>
 </table>
@@ -278,6 +285,33 @@ Static Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a81c5a78af5eb319a967bf890d0b6fe08"></a><!-- doxytag: member="PHPStats::Stats::digamma" ref="a81c5a78af5eb319a967bf890d0b6fe08" args="($x)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">static PHPStats::Stats::digamma </td>
+          <td>(</td>
+          <td class="paramtype">$&#160;</td>
+          <td class="paramname"><em>x</em></td><td>)</td>
+          <td><code> [static]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Digamma Function</p>
+<p>Returns the digamma function of a number</p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramtype">float</td><td class="paramname">$x</td><td>Argument to the digamma function </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>The result of the digamma function</dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000049">Todo:</a></b></dt><dd>Implement this </dd></dl>
+
+</div>
+</div>
 <a class="anchor" id="a54841b02719191611c7519877cf4498a"></a><!-- doxytag: member="PHPStats::Stats::erf" ref="a54841b02719191611c7519877cf4498a" args="($x)" -->
 <div class="memitem">
 <div class="memproto">
@@ -293,7 +327,7 @@ Static Public Member Functions</h2></td></tr>
 </div>
 <div class="memdoc">
 <p>Error Function</p>
-<p>Returns the real error function of a number. An approximation from Abramowitz and Stegurn is used. Maximum error is 1.5e-7. More information can be found at <a href="http://en.wikipedia.org/wiki/Error_function#Approximation_with_elementary_functions">http://en.wikipedia.org/wiki/Error_function#Approximation_with_elementary_functions</a></p>
+<p>Returns the real error function of a number. An approximation from Abramowitz and Stegun is used. Maximum error is 1.5e-7. More information can be found at <a href="http://en.wikipedia.org/wiki/Error_function#Approximation_with_elementary_functions">http://en.wikipedia.org/wiki/Error_function#Approximation_with_elementary_functions</a></p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
     <tr><td class="paramtype">float</td><td class="paramname">$x</td><td>Argument to the real error function </td></tr>
@@ -345,7 +379,7 @@ Static Public Member Functions</h2></td></tr>
 </div>
 <div class="memdoc">
 <p>Gamma Function</p>
-<p>Returns the gamma function of a number. The gamma function is a generalization of the factorial function to non-integer and negative non-integer values. The relationship is as follows: gamma(n) = (n - 1)! Stirling's approximation is used. Though the actual gamma function is defined for negative, non-integer values, this approximation is undefined for anything less than or equal to zero. More information can be found at <a href="http://en.wikipedia.org/wiki/Stirling%27s_approximation">http://en.wikipedia.org/wiki/Stirling%27s_approximation</a></p>
+<p>Returns the gamma function of a number. The gamma function is a generalization of the factorial function to non-integer and negative non-integer values. The relationship is as follows: gamma(n) = (n - 1)! Stirling's approximation is used. Though the actual gamma function is defined for negative, non-integer values, this approximation is undefined for anything less than or equal to zero.</p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
     <tr><td class="paramtype">float</td><td class="paramname">$x</td><td>Argument to the gamma function </td></tr>
@@ -371,14 +405,14 @@ Static Public Member Functions</h2></td></tr>
 </div>
 <div class="memdoc">
 <p>Log Gamma Function</p>
-<p>Returns the natural logarithm of the gamma function. Useful for scaling. From the jStat library.</p>
+<p>Returns the natural logarithm of the gamma function. Useful for scaling.</p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
     <tr><td class="paramtype">float</td><td class="paramname">$x</td><td>Argument to the gamma function </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>The natural log of gamma of $x </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>float The natural log of gamma of $x </dd></dl>
 
 </div>
 </div>
@@ -405,6 +439,169 @@ Static Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>float The geometic average of the elements of the array </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a0212ba83022e554cd0b61721bab0cedd"></a><!-- doxytag: member="PHPStats::Stats::ierf" ref="a0212ba83022e554cd0b61721bab0cedd" args="($x)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">static PHPStats::Stats::ierf </td>
+          <td>(</td>
+          <td class="paramtype">$&#160;</td>
+          <td class="paramname"><em>x</em></td><td>)</td>
+          <td><code> [static]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Inverse Error Function</p>
+<p>Returns the inverse real error function of a number. More information can be found at <a href="http://en.wikipedia.org/wiki/Error_function#Inverse_function">http://en.wikipedia.org/wiki/Error_function#Inverse_function</a></p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramtype">float</td><td class="paramname">$x</td><td>Argument to the real error function </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>float A value between -1 and 1 </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a909947739481703e69c1f44d1faf9920"></a><!-- doxytag: member="PHPStats::Stats::igamma" ref="a909947739481703e69c1f44d1faf9920" args="($x)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">static PHPStats::Stats::igamma </td>
+          <td>(</td>
+          <td class="paramtype">$&#160;</td>
+          <td class="paramname"><em>x</em></td><td>)</td>
+          <td><code> [static]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Inverse gamma function</p>
+<p>Returns the inverse of the gamma function</p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramtype">float</td><td class="paramname">$x</td><td>The result of the gamma function </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>float The argument to the gamma function</dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000048">Todo:</a></b></dt><dd>Implement this </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a9a9242222e60c1bb2b876783031db6ba"></a><!-- doxytag: member="PHPStats::Stats::ilowerGamma" ref="a9a9242222e60c1bb2b876783031db6ba" args="($s, $x)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">static PHPStats::Stats::ilowerGamma </td>
+          <td>(</td>
+          <td class="paramtype">$&#160;</td>
+          <td class="paramname"><em>s</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&#160;</td>
+          <td class="paramname"><em>x</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td><code> [static]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Inverse Incomplete (Lower) Gamma Function</p>
+<p>Returns the inverse of the lower gamma function of a number.</p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramtype">float</td><td class="paramname">$s</td><td>Upper bound of integration </td></tr>
+    <tr><td class="paramtype">float</td><td class="paramname">$x</td><td>Result of the lower gamma function. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>float The argument to the lower gamma function that would return $x</dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000051">Todo:</a></b></dt><dd>Implement this </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a603b38ea32b1d01328864264eb64bde7"></a><!-- doxytag: member="PHPStats::Stats::iregularizedIncompleteBeta" ref="a603b38ea32b1d01328864264eb64bde7" args="($a, $b, $x)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">static PHPStats::Stats::iregularizedIncompleteBeta </td>
+          <td>(</td>
+          <td class="paramtype">$&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&#160;</td>
+          <td class="paramname"><em>b</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&#160;</td>
+          <td class="paramname"><em>x</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td><code> [static]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Inverse Regularized Incomplete Beta Function</p>
+<p>The inverse of the regularized incomplete beta function.</p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramtype">float</td><td class="paramname">$a</td><td>The alpha parameter </td></tr>
+    <tr><td class="paramtype">float</td><td class="paramname">$b</td><td>The beta parameter </td></tr>
+    <tr><td class="paramtype">float</td><td class="paramname">$x</td><td>The incomplete beta of $a and $b, up to the upper bound of integration </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>float Upper bound of integration</dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000052">Todo:</a></b></dt><dd>Implement this </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a61e601fae841d6f2c65a059966c97ffa"></a><!-- doxytag: member="PHPStats::Stats::lambert" ref="a61e601fae841d6f2c65a059966c97ffa" args="($x)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">static PHPStats::Stats::lambert </td>
+          <td>(</td>
+          <td class="paramtype">$&#160;</td>
+          <td class="paramname"><em>x</em></td><td>)</td>
+          <td><code> [static]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Lambert Function</p>
+<p>Returns the positive branch of the lambert function</p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramtype">float</td><td class="paramname">$x</td><td>Argument to the lambert funcction </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>float The result of the lambert function</dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000050">Todo:</a></b></dt><dd>Implement this </dd></dl>
 
 </div>
 </div>
@@ -826,7 +1023,7 @@ Static Public Member Functions</h2></td></tr>
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Mon Oct 24 2011 00:14:39 for PHPStats by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Wed Nov 23 2011 21:33:02 for PHPStats by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </small></address>
 </body>

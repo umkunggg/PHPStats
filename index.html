@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>PHPStats: Main Page</title>
+<title>PHPStats: PHPStats Statistical Library</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
@@ -29,6 +29,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li class="current"><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li id="searchli">
@@ -52,10 +53,28 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 <div class="header">
   <div class="headertitle">
-<h1>PHPStats Documentation</h1>  </div>
+<h1><a class="el" href="namespacePHPStats.html">PHPStats</a> Statistical Library </h1>  </div>
 </div>
 <div class="contents">
-</div>
+<div class="textblock"><h2><a class="anchor" id="intro"></a>
+Introduction to PHPStats</h2>
+<p><a class="el" href="namespacePHPStats.html">PHPStats</a> is a statistical library for PHP. Its goal is to implement statistical functions in PHP that are not covered in the PHP core. <a class="el" href="namespacePHPStats.html">PHPStats</a> is written entirely in native PHP for ease of installation and for use in shared hosting environments, where the installation of binary files is difficult, if not impossible.</p>
+<h2><a class="anchor" id="downloading"></a>
+Downloading PHPStats</h2>
+<p>To download <a class="el" href="namespacePHPStats.html">PHPStats</a> visit <a href="https://github.com/mcordingley/PHPStats">the GitHub page</a>. for the latest code or download the <a href="https://github.com/mcordingley/PHPStats/zipball/v0.1">current stable version</a>.</p>
+<h2><a class="anchor" id="installing"></a>
+Installation</h2>
+<p>Installing <a class="el" href="namespacePHPStats.html">PHPStats</a> is easy. Just copy the PHPStats.phar file into the folder where you keep your libraries and include the file in your scripts. At this point, you can just start using the classes directly; the classes will autoload when needed.</p>
+<h2><a class="anchor" id="dependencies"></a>
+Dependencies</h2>
+<p><a class="el" href="namespacePHPStats.html">PHPStats</a> is written to work with PHP 5.3 and greater, as it makes heavy use of features introduced in PHP 5.3. While this does exclude a number of older installations of PHP, the library is still under development and will not be properly complete until PHP 5.3 has been out for a while.</p>
+<h2><a class="anchor" id="license"></a>
+License</h2>
+<p><a class="el" href="namespacePHPStats.html">PHPStats</a> is released under the LGPL version 3 or later. For more details, please refer to the copy of LICENSE.txt that accompanies your download.</p>
+<h2><a class="anchor" id="changelog"></a>
+Change Log</h2>
+<p>v0.1 First release of <a class="el" href="namespacePHPStats.html">PHPStats</a> </p>
+</div></div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -70,7 +89,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Mon Oct 24 2011 00:14:39 for PHPStats by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Wed Nov 23 2011 21:33:02 for PHPStats by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </small></address>
 </body>
