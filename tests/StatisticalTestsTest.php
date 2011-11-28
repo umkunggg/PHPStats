@@ -1,6 +1,7 @@
 <?php
 
 require_once('lib/Stats.php');
+require_once('lib/ProbabilityDistribution/ProbabilityDistribution.php');
 require_once('lib/ProbabilityDistribution/StudentsT.php');
 require_once('lib/ProbabilityDistribution/ChiSquare.php');
 require_once('lib/StatisticalTests.php');
