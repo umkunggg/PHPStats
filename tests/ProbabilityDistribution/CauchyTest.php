@@ -33,13 +33,13 @@ class CauchyTest extends PHPUnit_Framework_TestCase {
 	}
 
 	public function test_ppf() {
-		$this->assertEquals(0, $this->testObject->ppf(0.14758));
-		$this->assertEquals(3, round($this->testObject->ppf(0.19743), 4));
+		$this->assertEquals(0, round($this->testObject->ppf(0.14758), 3));
+		$this->assertEquals(3, round($this->testObject->ppf(0.19743), 3));
 	}
 
 	public function test_isf() {
-		$this->assertEquals(0, $this->testObject->isf(0.85242));
-		$this->assertEquals(3, round($this->testObject->isf(0.80257), 5));
+		$this->assertEquals(0, round($this->testObject->isf(0.85242), 3));
+		$this->assertEquals(3, round($this->testObject->isf(0.80257), 3));
 	}
 
 	public function test_stats() {

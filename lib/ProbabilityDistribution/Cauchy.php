@@ -209,10 +209,10 @@ class Cauchy extends ProbabilityDistribution {
 	static function getStats($moments = 'mv', $mu = 0.0, $gamma = 1.0) {
 		$return = array();
 		
-		if (strpos($moments, 'm') !== FALSE) $return['mean'] = NaN;
-		if (strpos($moments, 'v') !== FALSE) $return['gamma'] = NaN;
-		if (strpos($moments, 's') !== FALSE) $return['skew'] = NaN;
-		if (strpos($moments, 'k') !== FALSE) $return['kurtosis'] = NaN;
+		if (strpos($moments, 'm') !== FALSE) $return['mean'] = NAN;
+		if (strpos($moments, 'v') !== FALSE) $return['variance'] = NAN;
+		if (strpos($moments, 's') !== FALSE) $return['skew'] = NAN;
+		if (strpos($moments, 'k') !== FALSE) $return['kurtosis'] = NAN;
 		
 		return $return;
 	}
