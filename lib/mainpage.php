@@ -11,7 +11,7 @@
  * 
  * @section downloading Downloading PHPStats
  * To download PHPStats visit
- * <a href="https://github.com/mcordingley/PHPStats">the GitHub page</a>.
+ * <a href="https://github.com/mcordingley/PHPStats">the GitHub page</a>
  * for the latest code or download the
  * <a href="https://github.com/mcordingley/PHPStats/zipball/v0.1">current stable version</a>.
  * 
