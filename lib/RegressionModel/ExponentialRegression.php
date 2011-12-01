@@ -2,7 +2,7 @@
 /**
  * PHP Statistics Library
  *
- * Copyright (C) 2011-2012 Michael Cordingley <mcordingley@gmail.com>
+ * Copyright (C) 2011-2012 Michael Cordingley<Michael.Cordingley@gmail.com>
  * 
  * This library is free software; you can redistribute it and/or modify
  * it under the terms of the GNU Library General Public License as published

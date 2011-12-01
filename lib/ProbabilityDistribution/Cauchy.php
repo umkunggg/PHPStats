@@ -26,33 +26,35 @@
 namespace PHPStats\ProbabilityDistribution;
 
 /**
- * Exponential class
+ * Cauchy class
  * 
- * Represents the exponential distribution, which represents the distribution
- * of arrival times from a Poisson process.
- *
- * For more information, see: http://en.wikipedia.org/wiki/Exponential_distribution
+ * Represents the Cauchy distribution, also known as the Lorentz distribution.
+ * 
+ * For more information, see: http://en.wikipedia.org/wiki/Cauchy_distribution
  */
-class Exponential extends ProbabilityDistribution {
-	private $lambda;
-
+class Cauchy extends ProbabilityDistribution {
+	private $mu;
+	private $gamma;
+	
 	/**
 	 * Constructor function
-	 *
-	 * @param float $lambda The average time to arrival
+	 * 
+	 * @param float $mu The location parameter
+	 * @param float $gamma The scale parameter
 	 */
-	public function __construct($lambda = 1.0) {
-		$this->lambda = $lambda;
+	public function __construct($mu = 0.0, $gamma = 1.0) {
+		$this->mu = $mu;
+		$this->gamma = $gamma;
 	}
 	
 	/**
-	 * Returns a random float
+	 * Returns a random float between $mu and $mu plus $gamma
 	 * 
 	 * @return float The random variate.
 	 * @todo Untested
 	 */
 	public function rvs() {
-		return self::getRvs($this->lambda);
+		return self::getRvs($this->mu, $this->gamma);
 	}
 	
 	/**
@@ -62,7 +64,7 @@ class Exponential extends ProbabilityDistribution {
 	 * @return float The probability
 	 */
 	public function pdf($x) {
-		return self::getPdf($x, $this->lambda);
+		return self::getPdf($x, $this->mu, $this->gamma);
 	}
 	
 	/**
@@ -72,7 +74,7 @@ class Exponential extends ProbabilityDistribution {
 	 * @return float The probability
 	 */
 	public function cdf($x) {
-		return self::getCdf($x, $this->lambda);
+		return self::getCdf($x, $this->mu, $this->gamma);
 	}
 	
 	/**
@@ -82,7 +84,7 @@ class Exponential extends ProbabilityDistribution {
 	 * @return float The probability
 	 */
 	public function sf($x) {
-		return self::getSf($x, $this->lambda);
+		return self::getSf($x, $this->mu, $this->gamma);
 	}
 	
 	/**
@@ -92,7 +94,7 @@ class Exponential extends ProbabilityDistribution {
 	 * @return float The value that gives a cdf of $x
 	 */
 	public function ppf($x) {
-		return self::getPpf($x, $this->lambda);
+		return self::getPpf($x, $this->mu, $this->gamma);
 	}
 	
 	/**
@@ -102,106 +104,115 @@ class Exponential extends ProbabilityDistribution {
 	 * @return float The value that gives an sf of $x
 	 */
 	public function isf($x) {
-		return self::getIsf($x, $this->lambda);
+		return self::getIsf($x, $this->mu, $this->gamma);
 	}
 	
 	/**
 	 * Returns the moments of the distribution
 	 * 
-	 * @param string $moments Which moments to compute. m for mean, v for variance, s for skew, k for kurtosis.  Default 'mv'
+	 * @param string $moments Which moments to compute. m for mean, v for gamma, s for skew, k for kurtosis.  Default 'mv'
 	 * @return type array A dictionary containing the first four moments of the distribution
 	 */
 	public function stats($moments = 'mv') {
-		return self::getStats($moments, $this->lambda);
+		return self::getStats($moments, $this->mu, $this->gamma);
 	}
 	
 	/**
-	 * Returns a random float between $minimum and $minimum plus $maximum
+	 * Returns a Cauchy-distributed random float
 	 * 
-	 * @param float $lambda Scale parameter
+	 * @param float $mu The location parameter
+	 * @param float $gamma The scale parameter
 	 * @return float The random variate.
 	 * @static
 	 * @todo Untested
 	 */
-	static function getRvs($lambda = 1) {
-		return -log(self::randFloat())/$lambda;
+	static function getRvs($mu = 0.0, $gamma = 1.0) {
+		$u = \PHPStats\ProbabilityDistribution\Normal::getRvs(0, 1);
+		$v = \PHPStats\ProbabilityDistribution\Normal::getRvs(0, 1);
+		return $u/$v;
 	}
 	
 	/**
 	 * Returns the probability distribution function
 	 * 
 	 * @param float $x The test value
-	 * @param float $lambda Scale parameter
+	 * @param float $mu The location parameter
+	 * @param float $gamma The scale parameter
 	 * @return float The probability
 	 * @static
 	 */
-	static function getPdf($x, $lambda = 1) {
-		return $lambda*exp(-$lambda*$x);
+	static function getPdf($x, $mu = 0.0, $gamma = 1.0) {
+		return 1/(M_PI * $gamma * (1 + pow(($x - $mu)/$gamma, 2)));
 	}
 	
 	/**
 	 * Returns the cumulative distribution function, the probability of getting the test value or something below it
 	 * 
 	 * @param float $x The test value
-	 * @param float $lambda Scale parameter
+	 * @param float $mu The location parameter
+	 * @param float $gamma The scale parameter
 	 * @return float The probability
 	 * @static
 	 */
-	static function getCdf($x, $lambda = 1) {
-		return 1.0 - exp(-$lambda*$x);
+	static function getCdf($x, $mu = 0.0, $gamma = 1.0) {
+		return M_1_PI * atan(($x - $mu)/$gamma) + 0.5;
 	}
 	
 	/**
 	 * Returns the survival function, the probability of getting the test value or something above it
 	 * 
 	 * @param float $x The test value
-	 * @param float $lambda Scale parameter
+	 * @param float $mu The location parameter
+	 * @param float $gamma The scale parameter
 	 * @return float The probability
 	 * @static
 	 */
-	static function getSf($x, $lambda = 1) {
-		return 1.0 - self::getCdf($x, $lambda);
+	static function getSf($x, $mu = 0.0, $gamma = 1.0) {
+		return 1.0 - self::getCdf($x, $mu, $gamma);
 	}
 	
 	/**
 	 * Returns the percent-point function, the inverse of the cdf
 	 * 
 	 * @param float $x The test value
-	 * @param float $lambda Scale parameter
+	 * @param float $mu The location parameter
+	 * @param float $gamma The scale parameter
 	 * @return float The value that gives a cdf of $x
 	 * @static
 	 */
-	static function getPpf($x, $lambda = 1) {
-		return log(1 - $x) / -$lambda;
+	static function getPpf($x, $mu = 0.0, $gamma = 1.0) {
+		return $gamma * tan(M_PI * ($x - 0.5)) + $mu;
 	}
 	
 	/**
 	 * Returns the inverse survival function, the inverse of the sf
 	 * 
 	 * @param float $x The test value
-	 * @param float $lambda Scale parameter
+	 * @param float $mu The location parameter
+	 * @param float $gamma The scale parameter
 	 * @return float The value that gives an sf of $x
 	 * @static
 	 */
-	static function getIsf($x, $lambda = 1) {
-		return self::getPpf(1.0 - $x, $lambda);
+	static function getIsf($x, $mu = 0.0, $gamma = 1.0) {
+		return self::getPpf(1.0 - $x, $mu, $gamma);
 	}
 	
 	/**
 	 * Returns the moments of the distribution
 	 * 
-	 * @param string $moments Which moments to compute. m for mean, v for variance, s for skew, k for kurtosis.  Default 'mv'
-	 * @param float $lambda Scale parameter
+	 * @param string $moments Which moments to compute. m for mean, v for gamma, s for skew, k for kurtosis.  Default 'mv'
+	 * @param float $mu The location parameter
+	 * @param float $gamma The scale parameter
 	 * @return type array A dictionary containing the first four moments of the distribution
 	 * @static
 	 */
-	static function getStats($moments = 'mv', $lambda = 1) {
+	static function getStats($moments = 'mv', $mu = 0.0, $gamma = 1.0) {
 		$return = array();
 		
-		if (strpos($moments, 'm') !== FALSE) $return['mean'] = 1.0/$lambda;
-		if (strpos($moments, 'v') !== FALSE) $return['variance'] = pow($lambda, -2);
-		if (strpos($moments, 's') !== FALSE) $return['skew'] = 2;
-		if (strpos($moments, 'k') !== FALSE) $return['kurtosis'] = 6;
+		if (strpos($moments, 'm') !== FALSE) $return['mean'] = NAN;
+		if (strpos($moments, 'v') !== FALSE) $return['variance'] = NAN;
+		if (strpos($moments, 's') !== FALSE) $return['skew'] = NAN;
+		if (strpos($moments, 'k') !== FALSE) $return['kurtosis'] = NAN;
 		
 		return $return;
 	}
