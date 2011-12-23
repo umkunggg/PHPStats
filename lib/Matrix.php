@@ -204,7 +204,7 @@ class Matrix {
 		$newMatrix = new Matrix($rows, $columns);
 
 		for ($i = 1; $i <= $rows; $i++) {
-			for ($j = 1; $j <= $columns; $j++( {
+			for ($j = 1; $j <= $columns; $j++) {
 				$row = $this->matrix[$i - 1];
 
 				$column = array();
@@ -236,7 +236,17 @@ class Matrix {
 	 * @return matrix The matrix's transpose
 	 */
 	public function transpose() {
+		$rows = $this->matrix->getRows();
+		$columns = $this->matrix->getColumns();
+		$newMatrix = new Matrix($row, $columns);
 
+		for ($i = 1; $i <= $rows; $i++) {
+			for ($j = 1; $j <= $columns; $j++) {
+				$newMatrix->setElement($i, $j, $this->matrix->getElement($j, $i));
+			}
+		}
+
+		return $newMatrix;
 	}
 
 	/**
