@@ -37,13 +37,19 @@ class Matrix {
 	//Check to see if matrices are same size: m by n and m by n
 	private function sizeCheck($matrixA, $matrixB) {
 		if ($matrixA->getRows() != $matrixB->getRows() || $matrixA->getColumns() != $matrixB->getColumns())
-			throw new MatrixException('Matrices are wrong size: '.$matrixA->getRows().' by '.$matrixB->getRows().' and '.$matrixA->getColumns().' by '.$matrixB->getColumns());
+			throw new MatrixException('Matrices are wrong size: '.$matrixA->getRows().' by '.$matrixA->getColumns().' and '.$matrixB->getRows().' by '.$matrixB->getColumns());
 	}
 
 	//Check to see if matrices can be multiplied: m by n and n by p
 	private function multiplyCheck($matrixA, $matrixB) {
 		if ($matrixA->getColumns() != $matrixB->getRows())
-			throw new MatrixException('Matrices are wrong size: '.$matrixA->getRows().' by '.$matrixB->getRows().' and '.$matrixA->getColumns().' by '.$matrixB->getColumns());
+			throw new MatrixException('Matrices are wrong size: '.$matrixA->getRows().' by '.$matrixA->getColumns().' and '.$matrixB->getRows().' by '.$matrixB->getColumns());
+	}
+
+	//Check to see if matrix is square: m by m
+	private function checkSquare($matrix) {
+		if ($matrix->getColumns() != $matrix->getRows())
+			throw new MatrixException('Matrices is not square: '.$matrix->getRows().' by '.$matrix->getColumns();
 	}
 
 	/**
@@ -270,7 +276,15 @@ class Matrix {
 	 * @return matrix The matrix to the $power power
 	 */
 	public function pow($power) {
+		$this->checkSquare($this->matrix);
 
+		$rows = $this->matrix->getRows();
+		$columns = $this->matrix->getColumns();
+		$newMatrix = $this->matrix;
+
+		for ($i = 0; $i < $power; $i++) $newMatrix = $newMatrix->dotMultiply($this->matrix);
+
+		return $newMatrix;
 	}
 
 	/**
