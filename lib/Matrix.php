@@ -138,7 +138,17 @@ class Matrix {
 	 * @return matrix The multiplied matrix
 	 */
 	public function scalarMultiply($scalar) {
-		
+		$rows = $this->matrix->getRows();
+		$columns = $this->matrix->getColumns();
+		$newMatrix = new Matrix($row, $columns);
+
+		for ($i = 1; $i <= $rows; $i++) {
+			for ($j = 1; $j <= $columns; $j++( {
+				$newMatrix->setElement($i, $j, $this->matrix->getElement($i, $j) * $scalar);
+			}
+		}
+
+		return $newMatrix;
 	}
 
 	/**
@@ -151,6 +161,24 @@ class Matrix {
 	 */
 	public function dotMultiply($matrixB) {
 		$this->multiplyCheck($this->matrix, $matrixB);
+
+		$rows = $this->matrix->getRows();
+		$columns = $matrixB->getColumns();
+
+		$newMatrix = new Matrix($rows, $columns);
+
+		for ($i = 1; $i <= $rows; $i++) {
+			for ($j = 1; $j <= $columns; $j++( {
+				$row = $this->matrix[$i - 1];
+
+				$column = array();
+				for ($k = 1; $k <= $columns; $k++) $column[] = $matrixB->getElement($i, $k);
+
+				$newMatrix->setElement($i, $j, \PHPStats\Stats::sumXY($row, $column));
+			}
+		}
+
+		return $newMatrix;
 	}
 
 	/**
