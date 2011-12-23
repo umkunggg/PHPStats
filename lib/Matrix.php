@@ -127,6 +127,42 @@ class Matrix {
 	 */
 	public function add($matrixB) {
 		$this->sizeCheck($this->matrix, $matrixB);
+
+		$rows = $this->matrix->getRows();
+		$columns = $this->matrix->getColumns();
+		$newMatrix = new Matrix($row, $columns);
+
+		for ($i = 1; $i <= $rows; $i++) {
+			for ($j = 1; $j <= $columns; $j++( {
+				$newMatrix->setElement($i, $j, $this->matrix->getElement($i, $j) + $matrixB->getElement($i, $j));
+			}
+		}
+
+		return $newMatrix;
+	}
+
+	/**
+	 * Subtract function
+	 * 
+	 * Subtracts a matrix from the current matrix
+	 * 
+	 * @param matrix $matrixB The matrix to subtract
+	 * @return matrix The subtracted matrix
+	 */
+	public function subtract($matrixB) {
+		$this->sizeCheck($this->matrix, $matrixB);
+
+		$rows = $this->matrix->getRows();
+		$columns = $this->matrix->getColumns();
+		$newMatrix = new Matrix($row, $columns);
+
+		for ($i = 1; $i <= $rows; $i++) {
+			for ($j = 1; $j <= $columns; $j++( {
+				$newMatrix->setElement($i, $j, $this->matrix->getElement($i, $j) - $matrixB->getElement($i, $j));
+			}
+		}
+
+		return $newMatrix;
 	}
 
 	/**
