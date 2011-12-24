@@ -54,7 +54,6 @@ class Gamma extends ProbabilityDistribution {
 	 * Returns a random float
 	 * 
 	 * @return float The random variate.
-	 * @todo Untested
 	 */
 	public function rvs() {
 		return self::getRvs($this->k, $this->theta);
@@ -129,7 +128,6 @@ class Gamma extends ProbabilityDistribution {
 	 * @param float $theta Scale parameter
 	 * @return float The random variate.
 	 * @static
-	 * @todo Untested
 	 */
 	static function getRvs($k = 1, $theta = 1) {
 		$floork = floor($k);

@@ -51,7 +51,6 @@ class Cauchy extends ProbabilityDistribution {
 	 * Returns a random float between $mu and $mu plus $gamma
 	 * 
 	 * @return float The random variate.
-	 * @todo Untested
 	 */
 	public function rvs() {
 		return self::getRvs($this->mu, $this->gamma);
@@ -124,7 +123,6 @@ class Cauchy extends ProbabilityDistribution {
 	 * @param float $gamma The scale parameter
 	 * @return float The random variate.
 	 * @static
-	 * @todo Untested
 	 */
 	static function getRvs($mu = 0.0, $gamma = 1.0) {
 		$u = \PHPStats\ProbabilityDistribution\Normal::getRvs(0, 1);

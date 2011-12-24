@@ -2,6 +2,7 @@
 require_once('lib/Stats.php');
 require_once('lib/ProbabilityDistribution/ProbabilityDistribution.php');
 require_once('lib/ProbabilityDistribution/StudentsT.php');
+require_once('lib/StatisticalTests.php');
 
 use \PHPStats\ProbabilityDistribution\StudentsT as StudentsT;
 
@@ -13,7 +14,9 @@ class StudentsTTest extends PHPUnit_Framework_TestCase {
 	}
 
 	public function test_rvs() {
-		//$this->assertEquals(, $this->testObject->rvs());
+		$variates = array();
+		for ($i = 0; $i < 1000; $i++) $variates[] = $testObject->rvs();
+		$this->assertLessThanOrEqual(0.01, \PHPStats\StatisticalTests::kolmogorovSmirnov($variates, $this->testObject));
 	}
 
 	public function test_pdf() {

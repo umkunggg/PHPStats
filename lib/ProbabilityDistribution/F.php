@@ -52,7 +52,6 @@ class F extends ProbabilityDistribution {
 	 * Returns a random float between $d1 and $d1 plus $d2
 	 * 
 	 * @return float The random variate.
-	 * @todo Untested
 	 */
 	public function rvs() {
 		return self::getRvs($this->d1, $this->d2);
@@ -125,7 +124,6 @@ class F extends ProbabilityDistribution {
 	 * @param float $d2 Degrees of freedom 2. Default 1.0
 	 * @return float The random variate.
 	 * @static
-	 * @todo Untested
 	 */
 	static function getRvs($d1 = 1, $d2 = 1) {
 		$x = \PHPStats\ProbabilityDistribution\ChiSquare::getRvs($d1);

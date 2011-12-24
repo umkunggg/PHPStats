@@ -49,7 +49,6 @@ class ChiSquare extends ProbabilityDistribution {
 	 * Returns a random float
 	 * 
 	 * @return float The random variate.
-	 * @todo Untested
 	 */
 	public function rvs() {
 		return self::getRvs($this->k);
@@ -123,7 +122,6 @@ class ChiSquare extends ProbabilityDistribution {
 	 * @param float $k Shape parameter
 	 * @return float The random variate.
 	 * @static
-	 * @todo Untested
 	 */
 	static function getRvs($k = 1) {
 		$k /= 2;

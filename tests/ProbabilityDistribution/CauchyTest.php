@@ -3,6 +3,7 @@ require_once('lib/Stats.php');
 require_once('lib/ProbabilityDistribution/ProbabilityDistribution.php');
 require_once('lib/ProbabilityDistribution/Normal.php');
 require_once('lib/ProbabilityDistribution/Cauchy.php');
+require_once('lib/StatisticalTests.php');
 
 use \PHPStats\ProbabilityDistribution\Cauchy as Cauchy;
 
@@ -14,7 +15,9 @@ class CauchyTest extends PHPUnit_Framework_TestCase {
 	}
 
 	public function test_rvs() {
-		//$this->assertEquals(, $this->testObject->rvs());
+		$variates = array();
+		for ($i = 0; $i < 1000; $i++) $variates[] = $testObject->rvs();
+		$this->assertLessThanOrEqual(0.01, \PHPStats\StatisticalTests::kolmogorovSmirnov($variates, $this->testObject));
 	}
 
 	public function test_pdf() {

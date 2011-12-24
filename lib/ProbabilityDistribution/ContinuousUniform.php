@@ -52,7 +52,6 @@ class ContinuousUniform extends ProbabilityDistribution {
 	 * Returns a random float between $minimum and $minimum plus $maximum
 	 * 
 	 * @return float The random variate.
-	 * @todo Untested
 	 */
 	public function rvs() {
 		return self::getRvs($this->minimum, $this->maximum);
@@ -125,7 +124,6 @@ class ContinuousUniform extends ProbabilityDistribution {
 	 * @param float $maximum The maximum parameter. Default 1.0
 	 * @return float The random variate.
 	 * @static
-	 * @todo Untested
 	 */
 	static function getRvs($minimum = 0.0, $maximum = 1.0) {
 		return self::randFloat()*($maximum-$minimum) + $minimum;
