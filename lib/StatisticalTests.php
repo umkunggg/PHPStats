@@ -112,4 +112,27 @@ class StatisticalTests {
 		}
 		return \PHPStats\ProbabilityDistribution\ChiSquare::getCdf($sum, $df);
 	}
+
+	/**
+	 * Kolmogorov-Smirnov Test
+	 * 
+	 * Tests whether a collection of random variates conform to the given
+	 * distribution.
+	 * 
+	 * @param array $observations The collection of random variates
+	 * @param ProbabilityDistribution $distribution An object representing a continuous distribution
+	 * @return float The probability of getting our test statistic or less
+	 * @static
+	 */
+	static function kolmogorovSmirnov(array $observations, ProbabilityDistribution $distribution) {
+		$n = count($observations);
+		$d = 0; //Our test statistic
+		sort($observations);
+
+		for ($i = 1; $i <= $observations; $i++) {
+			$d = max($d, abs(($i)/$n - $distribution->cdf($observations[$i - 1])), $distribution->cdf($observations[$i - 1]) - ($i - 1)/$n);
+		}
+
+		return \PHPStats\ProbabilityDistribution\Kolmogorov::getCdf($d, $n);
+	}
 }
