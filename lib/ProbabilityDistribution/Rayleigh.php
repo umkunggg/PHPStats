@@ -130,7 +130,9 @@ class Rayleigh extends ProbabilityDistribution {
 	 * @todo Untested
 	 */
 	static function getRvs($sigma = 1) {
-		return $sigma*sqrt(-2*log(self::randFloat()));
+		$u = self::randFloat();
+		if ($u == 0) return 0;
+		else return $sigma*sqrt(-2*log($u));
 	}
 	
 	/**
@@ -142,7 +144,7 @@ class Rayleigh extends ProbabilityDistribution {
 	 * @static
 	 */
 	static function getPdf($x, $sigma = 1) {
-		return $x*exp( -pow($x, 2)/2*pow($sigma, 2) ) / pow($sigma, 2);
+		return $x * exp( -pow($x, 2) / (2*pow($sigma, 2)) ) / pow($sigma, 2);
 	}
 	
 	/**
@@ -154,7 +156,7 @@ class Rayleigh extends ProbabilityDistribution {
 	 * @static
 	 */
 	static function getCdf($x, $sigma = 1) {
-		return 1 - exp( -pow($x, 2)/2*pow($sigma, 2) );
+		return 1 - exp( -pow($x, 2)/(2*pow($sigma, 2)) );
 	}
 	
 	/**

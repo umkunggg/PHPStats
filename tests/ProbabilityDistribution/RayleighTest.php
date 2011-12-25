@@ -18,28 +18,28 @@ class RayleighTest extends PHPUnit_Framework_TestCase {
 	}
 
 	public function test_pdf() {
-		$this->assertEquals(0.14653, round($this->testObject->pdf(1), 5));
-		$this->assertEquals(1.47152, round($this->testObject->pdf(0.5), 5));
+		$this->assertEquals(0.22062, round($this->testObject->pdf(1), 5));
+		$this->assertEquals(0.12115, round($this->testObject->pdf(0.5), 5));
 	}
 
 	public function test_cdf() {
-		$this->assertEquals(0.22120, round($this->testObject->cdf(0.25), 5));
-		$this->assertEquals(0.63212, round($this->testObject->cdf(0.5), 5));
+		$this->assertEquals(0.25, round($this->testObject->cdf(1.51706), 5));
+		$this->assertEquals(0.5, round($this->testObject->cdf(2.35482), 5));
 	}
 
 	public function test_sf() {
-		$this->assertEquals(0.22120, round($this->testObject->sf(0.75), 5));
-		$this->assertEquals(0.63212, round($this->testObject->sf(0.5), 5));
+		$this->assertEquals(0.75, round($this->testObject->sf(1.51706), 5));
+		$this->assertEquals(0.5, round($this->testObject->sf(2.35482), 5));
 	}
 
 	public function test_ppf() {
-		$this->assertEquals(0.25, round($this->testObject->ppf(0.22120), 5));
-		$this->assertEquals(0.5, round($this->testObject->ppf(0.63212), 4));
+		$this->assertEquals(1.51706, round($this->testObject->ppf(0.25), 5));
+		$this->assertEquals(2.35482, round($this->testObject->ppf(0.5), 5));
 	}
 
 	public function test_isf() {
-		$this->assertEquals(0.75, round($this->testObject->isf(0.22120), 5));
-		$this->assertEquals(0.5, round($this->testObject->isf(0.63212), 4));
+		$this->assertEquals(1.51706, round($this->testObject->isf(0.75), 5));
+		$this->assertEquals(2.35482, round($this->testObject->isf(0.5), 5));
 	}
 
 	public function test_stats() {
