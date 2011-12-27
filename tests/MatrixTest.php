@@ -1,5 +1,7 @@
 <?php
 
+//{{1,2,3,4},{5,6,7,8},{9,10,11,12},{13,14,15,16}}*{{3,6,2,7},{4,1,6,3},{8,5,8,3},{1,7,9,0}}
+
 require_once('lib/Stats.php');
 require_once('lib/Matrix.php');
 use \PHPStats\Matrix as Matrix;
@@ -99,26 +101,27 @@ class StatsTest extends PHPUnit_Framework_TestCase {
 	function test_dotMultiply() {
 		$product = $this->matrixA->dotMultiply($this->matrixB);
 		
-		/*$this->assertEquals(, $product->getElement(1, 1));
-		$this->assertEquals(, $product->getElement(1, 2));
-		$this->assertEquals(, $product->getElement(1, 3));
-		$this->assertEquals(, $product->getElement(1, 4));
-		$this->assertEquals(, $product->getElement(2, 1));
-		$this->assertEquals(, $product->getElement(2, 2));
-		$this->assertEquals(, $product->getElement(2, 3));
-		$this->assertEquals(, $product->getElement(2, 4));
-		$this->assertEquals(, $product->getElement(3, 1));
-		$this->assertEquals(, $product->getElement(3, 2));
-		$this->assertEquals(, $product->getElement(3, 3));
-		$this->assertEquals(, $product->getElement(3, 4));
-		$this->assertEquals(, $product->getElement(4, 1));
-		$this->assertEquals(, $product->getElement(4, 2));
-		$this->assertEquals(, $product->getElement(4, 3));
-		$this->assertEquals(, $product->getElement(4, 4));*/
+		$this->assertEquals(39, $product->getElement(1, 1));
+		$this->assertEquals(51, $product->getElement(1, 2));
+		$this->assertEquals(74, $product->getElement(1, 3));
+		$this->assertEquals(22, $product->getElement(1, 4));
+		$this->assertEquals(103, $product->getElement(2, 1));
+		$this->assertEquals(127, $product->getElement(2, 2));
+		$this->assertEquals(174, $product->getElement(2, 3));
+		$this->assertEquals(74, $product->getElement(2, 4));
+		$this->assertEquals(167, $product->getElement(3, 1));
+		$this->assertEquals(203, $product->getElement(3, 2));
+		$this->assertEquals(274, $product->getElement(3, 3));
+		$this->assertEquals(126, $product->getElement(3, 4));
+		$this->assertEquals(231, $product->getElement(4, 1));
+		$this->assertEquals(279, $product->getElement(4, 2));
+		$this->assertEquals(374, $product->getElement(4, 3));
+		$this->assertEquals(178, $product->getElement(4, 4));
 	}
 	
 	function test_determinant() {
-		
+		$this->assertEquals(0, $this->matrixA->determinant());
+		$this->assertEquals(-1656, $this->matrixB->determinant());
 	}
 	
 	function test_transpose() {
@@ -143,11 +146,45 @@ class StatsTest extends PHPUnit_Framework_TestCase {
 	}
 	
 	function test_inverse() {
+		$inverse = $this->matrixB->inverse()->scalarMultiply(1656); //Scale by determinant to get whole numbers
 		
+		$this->assertEquals(-66, $inverse->getElement(1, 1));
+		$this->assertEquals(-197, $inverse->getElement(1, 2));
+		$this->assertEquals(351, $inverse->getElement(1, 3));
+		$this->assertEquals(-166, $inverse->getElement(1, 4));
+		$this->assertEquals(102, $inverse->getElement(2, 1));
+		$this->assertEquals(-373, $inverse->getElement(2, 2));
+		$this->assertEquals(135, $inverse->getElement(2, 3));
+		$this->assertEquals(106, $inverse->getElement(2, 4));
+		$this->assertEquals(-72, $inverse->getElement(3, 1));
+		$this->assertEquals(312, $inverse->getElement(3, 2));
+		$this->assertEquals(-144, $inverse->getElement(3, 3));
+		$this->assertEquals(120, $inverse->getElement(3, 4));
+		$this->assertEquals(198, $inverse->getElement(4, 1));
+		$this->assertEquals(315, $inverse->getElement(4, 2));
+		$this->assertEquals(-225, $inverse->getElement(4, 3));
+		$this->assertEquals(-54, $inverse->getElement(4, 4));
 	}
 	
 	function test_pow() {
+		$power = $this->matrixB->pow(3);
 		
+		$this->assertEquals(27, $power->getElement(1, 1));
+		$this->assertEquals(216, $power->getElement(1, 2));
+		$this->assertEquals(8, $power->getElement(1, 3));
+		$this->assertEquals(343, $power->getElement(1, 4));
+		$this->assertEquals(64, $power->getElement(2, 1));
+		$this->assertEquals(1, $power->getElement(2, 2));
+		$this->assertEquals(216, $power->getElement(2, 3));
+		$this->assertEquals(27, $power->getElement(2, 4));
+		$this->assertEquals(512, $power->getElement(3, 1));
+		$this->assertEquals(125, $power->getElement(3, 2));
+		$this->assertEquals(512, $power->getElement(3, 3));
+		$this->assertEquals(27, $power->getElement(3, 4));
+		$this->assertEquals(1, $power->getElement(4, 1));
+		$this->assertEquals(343, $power->getElement(4, 2));
+		$this->assertEquals(729, $power->getElement(4, 3));
+		$this->assertEquals(0, $power->getElement(4, 4));
 	}
 	
 	function test_numericConstructor() {
