@@ -156,15 +156,15 @@ class Matrix {
 	 * @return matrix The summed matrix
 	 */
 	public function add($matrixB) {
-		$this->sizeCheck($this->matrix, $matrixB);
+		$this->sizeCheck($this, $matrixB);
 
-		$rows = $this->matrix->getRows();
-		$columns = $this->matrix->getColumns();
+		$rows = $this->getRows();
+		$columns = $this->getColumns();
 		$newMatrix = new Matrix($row, $columns);
 
 		for ($i = 1; $i <= $rows; $i++) {
 			for ($j = 1; $j <= $columns; $j++( {
-				$newMatrix->setElement($i, $j, $this->matrix->getElement($i, $j) + $matrixB->getElement($i, $j));
+				$newMatrix->setElement($i, $j, $this->getElement($i, $j) + $matrixB->getElement($i, $j));
 			}
 		}
 
@@ -180,15 +180,15 @@ class Matrix {
 	 * @return matrix The subtracted matrix
 	 */
 	public function subtract($matrixB) {
-		$this->sizeCheck($this->matrix, $matrixB);
+		$this->sizeCheck($this, $matrixB);
 
-		$rows = $this->matrix->getRows();
-		$columns = $this->matrix->getColumns();
+		$rows = $this->getRows();
+		$columns = $this->getColumns();
 		$newMatrix = new Matrix($row, $columns);
 
 		for ($i = 1; $i <= $rows; $i++) {
 			for ($j = 1; $j <= $columns; $j++( {
-				$newMatrix->setElement($i, $j, $this->matrix->getElement($i, $j) - $matrixB->getElement($i, $j));
+				$newMatrix->setElement($i, $j, $this->getElement($i, $j) - $matrixB->getElement($i, $j));
 			}
 		}
 
@@ -204,13 +204,13 @@ class Matrix {
 	 * @return matrix The multiplied matrix
 	 */
 	public function scalarMultiply($scalar) {
-		$rows = $this->matrix->getRows();
-		$columns = $this->matrix->getColumns();
+		$rows = $this->getRows();
+		$columns = $this->getColumns();
 		$newMatrix = new Matrix($row, $columns);
 
 		for ($i = 1; $i <= $rows; $i++) {
 			for ($j = 1; $j <= $columns; $j++( {
-				$newMatrix->setElement($i, $j, $this->matrix->getElement($i, $j) * $scalar);
+				$newMatrix->setElement($i, $j, $this->getElement($i, $j) * $scalar);
 			}
 		}
 
@@ -226,9 +226,9 @@ class Matrix {
 	 * @return matrix The multiplied matrix
 	 */
 	public function dotMultiply(Matrix $matrixB) {
-		$this->multiplyCheck($this->matrix, $matrixB);
+		$this->multiplyCheck($this, $matrixB);
 
-		$rows = $this->matrix->getRows();
+		$rows = $this->getRows();
 		$columns = $matrixB->getColumns();
 
 		$newMatrix = new Matrix($rows, $columns);
@@ -266,13 +266,13 @@ class Matrix {
 	 * @return matrix The matrix's transpose
 	 */
 	public function transpose() {
-		$rows = $this->matrix->getRows();
-		$columns = $this->matrix->getColumns();
+		$rows = $this->getRows();
+		$columns = $this->getColumns();
 		$newMatrix = new Matrix($columns, $rows);
 
 		for ($i = 1; $i <= $rows; $i++) {
 			for ($j = 1; $j <= $columns; $j++) {
-				$newMatrix->setElement($j, $i, $this->matrix->getElement($i, $j));
+				$newMatrix->setElement($j, $i, $this->getElement($i, $j));
 			}
 		}
 
@@ -287,7 +287,16 @@ class Matrix {
 	 * @return matrix The matrix's inverse
 	 */
 	public function inverse() {
-		$this->checkSquare($this->matrix);
+		$this->checkSquare($this);
+
+		$rows = $this->getRows();
+		$columns = $matrixB->getColumns();
+
+		$newMatrix = new Matrix($rows, $columns);
+		
+		
+		
+		return $newMatrix->scalarMultiply(1/$this->determinant());
 	}
 
 	/**
@@ -300,13 +309,13 @@ class Matrix {
 	 * @return matrix The matrix to the $power power
 	 */
 	public function pow($power) {
-		$this->checkSquare($this->matrix);
+		$this->checkSquare($this);
 
-		$rows = $this->matrix->getRows();
-		$columns = $this->matrix->getColumns();
-		$newMatrix = $this->matrix;
+		$rows = $this->getRows();
+		$columns = $this->getColumns();
+		$newMatrix = $this;
 
-		for ($i = 0; $i < $power; $i++) $newMatrix = $newMatrix->dotMultiply($this->matrix);
+		for ($i = 0; $i < $power; $i++) $newMatrix = $newMatrix->dotMultiply($this);
 
 		return $newMatrix;
 	}
