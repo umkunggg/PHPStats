@@ -37,27 +37,38 @@ class Matrix {
 	//Check to see if matrices are same size: m by n and m by n
 	private function sizeCheck($matrixA, $matrixB) {
 		if ($matrixA->getRows() != $matrixB->getRows() || $matrixA->getColumns() != $matrixB->getColumns())
-			throw new MatrixException('Matrices are wrong size: '.$matrixA->getRows().' by '.$matrixB->getRows().' and '.$matrixA->getColumns().' by '.$matrixB->getColumns());
+			throw new MatrixException('Matrices are wrong size: '.$matrixA->getRows().' by '.$matrixA->getColumns().' and '.$matrixB->getRows().' by '.$matrixB->getColumns());
 	}
 
 	//Check to see if matrices can be multiplied: m by n and n by p
 	private function multiplyCheck($matrixA, $matrixB) {
 		if ($matrixA->getColumns() != $matrixB->getRows())
-			throw new MatrixException('Matrices are wrong size: '.$matrixA->getRows().' by '.$matrixB->getRows().' and '.$matrixA->getColumns().' by '.$matrixB->getColumns());
+			throw new MatrixException('Matrices are wrong size: '.$matrixA->getRows().' by '.$matrixA->getColumns().' and '.$matrixB->getRows().' by '.$matrixB->getColumns());
+	}
+
+	//Check to see if matrix is square: m by m
+	private function checkSquare($matrix) {
+		if ($matrix->getColumns() != $matrix->getRows())
+			throw new MatrixException('Matrices is not square: '.$matrix->getRows().' by '.$matrix->getColumns();
 	}
 
 	/**
 	 * Constructor function
 	 * 
-	 * Creates a new matrix object.
+	 * Creates a new matrix object.  If given a pair of numbers, this will
+	 * return a zero-filled matrix with ones running down the diagonal, i.e.
+	 * an identity matrix if the matrix is square.  If given a string like
+	 * '[1, 2, 3; 4, 5, 6; 7, 8, 9]' as the first argument, then it will
+	 * attempt to construct a matrix using the supplied values.
 	 * 
-	 * @param int $rows The number of rows in the matrix
+	 * @param mixed $rows The number of rows in the matrix or a string representing a matrix literal
 	 * @param int $columns The number of columns in the matric
 	 * @return matrix A new matrix object.
 	 */
-	public function __construct($rows, $columns) {
+	public function __construct($rows = 3, $columns = 3) {
+		$this->matrix = array();
+		
 		if (is_numeric($rows) && is_numeric($columns) && $rows > 0 && $columns > 0) {
-			$this->matrix = array();
 			for ($i = 0; $i < $rows; $i++) {
 				$this->matrix[$i] = array();
 				for ($j = 0; $j < $columns; $j++) {
@@ -68,6 +79,25 @@ class Matrix {
 				}
 			}
 		}
+		elseif (is_string($rows)) {
+			$literal = substr($rows, strpos($rows, '[') + 1, strpos($rows, ']') - strpos($rows, '[') - 1);
+			$rowStrings = explode(';', $literal);
+			
+			$i = 0;
+			
+			foreach ($rowStrings as $rowString) {
+				$this->matrix[$i] = array();
+				$j = 0;
+				
+				foreach (explode(',', $rowString) as $element) {
+					$this->matrix[$i][$j] = (float)$element;
+					$j++;
+				}
+				
+				$i++;
+			}
+		}
+		else throw new MatrixException('Invalid matrix constructor options.');
 	}
 
 	/**
@@ -126,7 +156,43 @@ class Matrix {
 	 * @return matrix The summed matrix
 	 */
 	public function add($matrixB) {
-		$this->sizeCheck($this->matrix, $matrixB);
+		$this->sizeCheck($this, $matrixB);
+
+		$rows = $this->getRows();
+		$columns = $this->getColumns();
+		$newMatrix = new Matrix($row, $columns);
+
+		for ($i = 1; $i <= $rows; $i++) {
+			for ($j = 1; $j <= $columns; $j++( {
+				$newMatrix->setElement($i, $j, $this->getElement($i, $j) + $matrixB->getElement($i, $j));
+			}
+		}
+
+		return $newMatrix;
+	}
+
+	/**
+	 * Subtract function
+	 * 
+	 * Subtracts a matrix from the current matrix
+	 * 
+	 * @param matrix $matrixB The matrix to subtract
+	 * @return matrix The subtracted matrix
+	 */
+	public function subtract($matrixB) {
+		$this->sizeCheck($this, $matrixB);
+
+		$rows = $this->getRows();
+		$columns = $this->getColumns();
+		$newMatrix = new Matrix($row, $columns);
+
+		for ($i = 1; $i <= $rows; $i++) {
+			for ($j = 1; $j <= $columns; $j++( {
+				$newMatrix->setElement($i, $j, $this->getElement($i, $j) - $matrixB->getElement($i, $j));
+			}
+		}
+
+		return $newMatrix;
 	}
 
 	/**
@@ -138,7 +204,17 @@ class Matrix {
 	 * @return matrix The multiplied matrix
 	 */
 	public function scalarMultiply($scalar) {
-		
+		$rows = $this->getRows();
+		$columns = $this->getColumns();
+		$newMatrix = new Matrix($row, $columns);
+
+		for ($i = 1; $i <= $rows; $i++) {
+			for ($j = 1; $j <= $columns; $j++( {
+				$newMatrix->setElement($i, $j, $this->getElement($i, $j) * $scalar);
+			}
+		}
+
+		return $newMatrix;
 	}
 
 	/**
@@ -149,8 +225,26 @@ class Matrix {
 	 * @param matrix $matrixB The second matrix in the multiplication
 	 * @return matrix The multiplied matrix
 	 */
-	public function dotMultiply($matrixB) {
-		$this->multiplyCheck($this->matrix, $matrixB);
+	public function dotMultiply(Matrix $matrixB) {
+		$this->multiplyCheck($this, $matrixB);
+
+		$rows = $this->getRows();
+		$columns = $matrixB->getColumns();
+
+		$newMatrix = new Matrix($rows, $columns);
+
+		for ($i = 1; $i <= $rows; $i++) {
+			for ($j = 1; $j <= $columns; $j++) {
+				$row = $this->matrix[$i - 1];
+
+				$column = array();
+				for ($k = 1; $k <= $columns; $k++) $column[] = $matrixB->getElement($i, $k);
+
+				$newMatrix->setElement($i, $j, \PHPStats\Stats::sumXY($row, $column));
+			}
+		}
+
+		return $newMatrix;
 	}
 
 	/**
@@ -160,7 +254,7 @@ class Matrix {
 	 * 
 	 * @return float The matrix's determinant
 	 */
-	public function det() {
+	public function determinant() {
 
 	}
 
@@ -172,7 +266,17 @@ class Matrix {
 	 * @return matrix The matrix's transpose
 	 */
 	public function transpose() {
+		$rows = $this->getRows();
+		$columns = $this->getColumns();
+		$newMatrix = new Matrix($columns, $rows);
 
+		for ($i = 1; $i <= $rows; $i++) {
+			for ($j = 1; $j <= $columns; $j++) {
+				$newMatrix->setElement($j, $i, $this->getElement($i, $j));
+			}
+		}
+
+		return $newMatrix;
 	}
 
 	/**
@@ -183,7 +287,16 @@ class Matrix {
 	 * @return matrix The matrix's inverse
 	 */
 	public function inverse() {
+		$this->checkSquare($this);
 
+		$rows = $this->getRows();
+		$columns = $matrixB->getColumns();
+
+		$newMatrix = new Matrix($rows, $columns);
+		
+		
+		
+		return $newMatrix->scalarMultiply(1/$this->determinant());
 	}
 
 	/**
@@ -196,21 +309,15 @@ class Matrix {
 	 * @return matrix The matrix to the $power power
 	 */
 	public function pow($power) {
+		$this->checkSquare($this);
 
-	}
+		$rows = $this->getRows();
+		$columns = $this->getColumns();
+		$newMatrix = $this;
 
-	/**
-	 * Identity function
-	 * 
-	 * Returns a new identiy matrix of the specified size
-	 * 
-	 * @param int $rows The number of rows in the matrix
-	 * @param int $columns The number of columns in the matric
-	 * @return matrix A new matrix object.
-	 * @static
-	 */
-	public static function identity($rows, $columns) {
+		for ($i = 0; $i < $power; $i++) $newMatrix = $newMatrix->dotMultiply($this);
 
+		return $newMatrix;
 	}
 }
 
