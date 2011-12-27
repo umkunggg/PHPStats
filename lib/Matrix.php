@@ -55,15 +55,20 @@ class Matrix {
 	/**
 	 * Constructor function
 	 * 
-	 * Creates a new matrix object.
+	 * Creates a new matrix object.  If given a pair of numbers, this will
+	 * return a zero-filled matrix with ones running down the diagonal, i.e.
+	 * an identity matrix if the matrix is square.  If given a string like
+	 * '[1, 2, 3; 4, 5, 6; 7, 8, 9]' as the first argument, then it will
+	 * attempt to construct a matrix using the supplied values.
 	 * 
-	 * @param int $rows The number of rows in the matrix
+	 * @param mixed $rows The number of rows in the matrix or a string representing a matrix literal
 	 * @param int $columns The number of columns in the matric
 	 * @return matrix A new matrix object.
 	 */
-	public function __construct($rows, $columns) {
+	public function __construct($rows = 3, $columns = 3) {
+		$this->matrix = array();
+		
 		if (is_numeric($rows) && is_numeric($columns) && $rows > 0 && $columns > 0) {
-			$this->matrix = array();
 			for ($i = 0; $i < $rows; $i++) {
 				$this->matrix[$i] = array();
 				for ($j = 0; $j < $columns; $j++) {
@@ -74,6 +79,25 @@ class Matrix {
 				}
 			}
 		}
+		elseif (is_string($rows)) {
+			$literal = substr($rows, strpos($rows, '[') + 1, strpos($rows, ']') - strpos($rows, '[') - 1);
+			$rowStrings = explode(';', $literal);
+			
+			$i = 0;
+			
+			foreach ($rowStrings as $rowString) {
+				$this->matrix[$i] = array();
+				$j = 0;
+				
+				foreach (explode(',', $rowString) as $element) {
+					$this->matrix[$i][$j] = (float)$element;
+					$j++;
+				}
+				
+				$i++;
+			}
+		}
+		else throw new MatrixException('Invalid matrix constructor options.');
 	}
 
 	/**
@@ -201,7 +225,7 @@ class Matrix {
 	 * @param matrix $matrixB The second matrix in the multiplication
 	 * @return matrix The multiplied matrix
 	 */
-	public function dotMultiply($matrixB) {
+	public function dotMultiply(Matrix $matrixB) {
 		$this->multiplyCheck($this->matrix, $matrixB);
 
 		$rows = $this->matrix->getRows();
@@ -230,7 +254,7 @@ class Matrix {
 	 * 
 	 * @return float The matrix's determinant
 	 */
-	public function det() {
+	public function determinant() {
 
 	}
 
@@ -285,20 +309,6 @@ class Matrix {
 		for ($i = 0; $i < $power; $i++) $newMatrix = $newMatrix->dotMultiply($this->matrix);
 
 		return $newMatrix;
-	}
-
-	/**
-	 * Identity function
-	 * 
-	 * Returns a new identiy matrix of the specified size
-	 * 
-	 * @param int $rows The number of rows in the matrix
-	 * @param int $columns The number of columns in the matric
-	 * @return matrix A new matrix object.
-	 * @static
-	 */
-	public static function identity($rows, $columns) {
-
 	}
 }
 
