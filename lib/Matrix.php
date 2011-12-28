@@ -243,7 +243,7 @@ class Matrix {
 	 * @return float The matrix's determinant
 	 */
 	public function determinant() {
-
+		
 	}
 
 	/**
@@ -277,16 +277,12 @@ class Matrix {
 	public function inverse() {
 		$this->checkSquare($this);
 
-		$rows = $this->getRows();
-		$columns = $this->getColumns();
+		$size = $this->getRows();
+		$newMatrix = self::zero($size, $size);
 
 		$determinant = $this->determinant();
-		if ($determinant == 0) return self::zero($rows, $columns);
+		if ($determinant == 0) return $newMatrix;
 
-		$newMatrix = new Matrix($rows, $columns);
-		
-		
-		
 		return $newMatrix->scalarMultiply(1/$determinant);
 	}
 
