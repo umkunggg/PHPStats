@@ -30,6 +30,8 @@ namespace PHPStats;
  * 
  * Class representing a matrix and exposing useful instance and static function
  * for manipulating matrices.
+ * 
+ * @todo Optimize calculations
  */
 class Matrix {
 	private $matrix = array();
@@ -246,6 +248,32 @@ class Matrix {
 		for ($i = 0; $i < $power; $i++) $newMatrix = $newMatrix->dotMultiply($this);
 
 		return $newMatrix;
+	}
+	
+	/**
+	 * Reduce function
+	 * 
+	 * Returns a matrix with the selected row and column removed, useful for
+	 * calculating determinants or other recursive operations on matrices.
+	 * 
+	 * @param int $row Row to remove, null to remove no row
+	 * @param int $column Column to remove, null to remove no column
+	 * @return matrix A new, smaller matrix
+	 */
+	public function reduce($row = null, $column = null) {
+		$literal = "[";
+
+		for ($i = 1; $i <= $this->getRows(); $i++) {
+			if ($i == $row) continue;
+			for ($j = 1; $j <= $this->getColumns(); $j++) {
+				if ($j == $column) continue;
+				$literal .= $this->getElement($i, $j).',';				
+			}
+			$literal = substr($literal, 0, strlen($literal) - 1).";";
+		}
+		$literal = substr($literal, 0, strlen($literal) - 1)."]";
+
+		return new Matrix($literal);
 	}
 
 	/**

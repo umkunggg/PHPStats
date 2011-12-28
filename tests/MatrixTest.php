@@ -57,6 +57,20 @@ class MatrixTest extends PHPUnit_Framework_TestCase {
 		$this->assertEquals(16, $sum->getElement(4, 4));
 	}
 	
+	function test_reduce() {
+		$reduction = $this->matrixA->reduce(2, 3);
+		
+		$this->assertEquals(1, $reduction->getElement(1, 1));
+		$this->assertEquals(2, $reduction->getElement(1, 2));
+		$this->assertEquals(4, $reduction->getElement(1, 3));
+		$this->assertEquals(9, $reduction->getElement(2, 1));
+		$this->assertEquals(10, $reduction->getElement(2, 2));
+		$this->assertEquals(12, $reduction->getElement(2, 3));
+		$this->assertEquals(13, $reduction->getElement(3, 1));
+		$this->assertEquals(14, $reduction->getElement(3, 2));
+		$this->assertEquals(16, $reduction->getElement(3, 3));
+	}
+	
 	function test_substract() {
 		$difference = $this->matrixA->subtract($this->matrixB);
 		
