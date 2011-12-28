@@ -61,26 +61,14 @@ class Matrix {
 	 * '[1, 2, 3; 4, 5, 6; 7, 8, 9]' as the first argument, then it will
 	 * attempt to construct a matrix using the supplied values.
 	 * 
-	 * @param mixed $rows The number of rows in the matrix or a string representing a matrix literal
-	 * @param int $columns The number of columns in the matric
+	 * @param string $ A string representing a matrix literal
 	 * @return matrix A new matrix object.
 	 */
-	public function __construct($rows = 3, $columns = 3) {
+	public function __construct($literal) {
 		$this->matrix = array();
 		
-		if (is_numeric($rows) && is_numeric($columns) && $rows > 0 && $columns > 0) {
-			for ($i = 0; $i < $rows; $i++) {
-				$this->matrix[$i] = array();
-				for ($j = 0; $j < $columns; $j++) {
-					if ($i == $j)
-						$this->matrix[$i][$j] = 1;
-					else
-						$this->matrix[$i][$j] = 0;
-				}
-			}
-		}
-		elseif (is_string($rows)) {
-			$literal = substr($rows, strpos($rows, '[') + 1, strpos($rows, ']') - strpos($rows, '[') - 1);
+		if (is_string($literal)) {
+			$literal = substr($literal, strpos($literal, '[') + 1, strpos($literal, ']') - strpos($literal, '[') - 1);
 			$rowStrings = explode(';', $literal);
 			
 			$i = 0;
@@ -160,7 +148,7 @@ class Matrix {
 
 		$rows = $this->getRows();
 		$columns = $this->getColumns();
-		$newMatrix = new Matrix($rows, $columns);
+		$newMatrix = Matrix::zero($rows, $columns);
 
 		for ($i = 1; $i <= $rows; $i++) {
 			for ($j = 1; $j <= $columns; $j++) {
@@ -184,7 +172,7 @@ class Matrix {
 
 		$rows = $this->getRows();
 		$columns = $this->getColumns();
-		$newMatrix = new Matrix($rows, $columns);
+		$newMatrix = Matrix::zero($rows, $columns);
 
 		for ($i = 1; $i <= $rows; $i++) {
 			for ($j = 1; $j <= $columns; $j++) {
@@ -206,7 +194,7 @@ class Matrix {
 	public function scalarMultiply($scalar) {
 		$rows = $this->getRows();
 		$columns = $this->getColumns();
-		$newMatrix = new Matrix($rows, $columns);
+		$newMatrix = Matrix::zero($rows, $columns);
 
 		for ($i = 1; $i <= $rows; $i++) {
 			for ($j = 1; $j <= $columns; $j++) {
@@ -231,7 +219,7 @@ class Matrix {
 		$rows = $this->getRows();
 		$columns = $matrixB->getColumns();
 
-		$newMatrix = new Matrix($rows, $columns);
+		$newMatrix = Matrix::zero($rows, $columns);
 
 		for ($i = 1; $i <= $rows; $i++) {
 			for ($j = 1; $j <= $columns; $j++) {
@@ -268,7 +256,7 @@ class Matrix {
 	public function transpose() {
 		$rows = $this->getRows();
 		$columns = $this->getColumns();
-		$newMatrix = new Matrix($columns, $rows);
+		$newMatrix = Matrix::zero($columns, $rows);
 
 		for ($i = 1; $i <= $rows; $i++) {
 			for ($j = 1; $j <= $columns; $j++) {
@@ -321,6 +309,31 @@ class Matrix {
 		for ($i = 0; $i < $power; $i++) $newMatrix = $newMatrix->dotMultiply($this);
 
 		return $newMatrix;
+	}
+
+	/**
+	 * Identity function
+	 * 
+	 * Returns an identity matrix of the specified size
+	 * 
+	 * @param int $rows The number of rows in the matrix
+	 * @param int $columns The number of columns in the matrix
+	 * @return matrix An identity matrix of the specified size
+	 * @static
+	 */
+	static public function identity($size) {
+		$literal = "[";
+
+		for ($i = 0; $i < $size; $i++) {
+			for ($j = 0; $j < $size; $j++) {
+				if ($i == $j) $literal .= "1,";
+				else $literal .= "0,";
+			}
+			$literal = substr($literal, 0, strlen($literal) - 1).";";
+		}
+
+		$literal = substr($literal, 0, strlen($literal) - 1)."]";
+		return new Matrix($literal);
 	}
 
 	/**

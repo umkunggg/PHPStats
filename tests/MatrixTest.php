@@ -190,7 +190,7 @@ class MatrixTest extends PHPUnit_Framework_TestCase {
 	
 	function test_numericConstructor() {
 		//Instantiate a matrix using the numeric constructor and then multiply it against our test one, to test identity multiplication
-		$identity = new Matrix(4, 4);
+		$identity = Matrix::identity(4);
 		$multiplied = $this->matrixB->dotMultiply($identity);
 		
 		for ($i = 1; $i <= $multiplied->getRows(); $i++) {
