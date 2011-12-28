@@ -122,7 +122,16 @@ class Matrix {
 	 * @return float The matrix's determinant
 	 */
 	public function determinant() {
-		
+		$this->checkSquare($this);
+
+		if ($this->getRows() == 1) return $this->getElement(1, 1);
+
+		$sum = 0;
+		$i = 1; //Statically choose the first row for cofactor expansion
+		for ($j = 1; $j <= $this->getColumns(); $j++) {
+			$sum += pow(-1, $i + $j)*$this->getElement($i, $j)*$this->reduce($i, $j)->determinant();
+		}
+		return $sum;
 	}
 
 	/**
