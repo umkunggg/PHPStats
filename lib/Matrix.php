@@ -226,7 +226,7 @@ class Matrix {
 				$row = $this->matrix[$i - 1];
 
 				$column = array();
-				for ($k = 1; $k <= $columns; $k++) $column[] = $matrixB->getElement($i, $k);
+				for ($k = 1; $k <= $rows; $k++) $column[] = $matrixB->getElement($k, $j);
 
 				$newMatrix->setElement($i, $j, \PHPStats\Stats::sumXY($row, $column));
 			}
@@ -302,13 +302,33 @@ class Matrix {
 	public function pow($power) {
 		$this->checkSquare($this);
 
-		$rows = $this->getRows();
-		$columns = $this->getColumns();
-		$newMatrix = $this;
+		$newMatrix = self::identity($this->getRows());
 
 		for ($i = 0; $i < $power; $i++) $newMatrix = $newMatrix->dotMultiply($this);
 
 		return $newMatrix;
+	}
+
+	/**
+	 * Literal function
+	 * 
+	 * Prints a string representation of a matrix, suitable for storing
+	 * the value or debugging.
+	 * 
+	 * @return string A string representation of the matrix, same as the constructor accepts
+	 */
+	public function literal() {
+		$literal = "[";
+
+		for ($i = 1; $i <= $this->getRows(); $i++) {
+			for ($j = 1; $j <= $this->getColumns(); $j++) {
+				$literal .= $this->getElement($i, $j).',';				
+			}
+			$literal = substr($literal, 0, strlen($literal) - 1).";";
+		}
+		$literal = substr($literal, 0, strlen($literal) - 1)."]";
+
+		return $literal;
 	}
 
 	/**

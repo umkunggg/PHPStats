@@ -101,7 +101,7 @@ class MatrixTest extends PHPUnit_Framework_TestCase {
 	
 	function test_dotMultiply() {
 		$product = $this->matrixA->dotMultiply($this->matrixB);
-		
+
 		$this->assertEquals(39, $product->getElement(1, 1));
 		$this->assertEquals(51, $product->getElement(1, 2));
 		$this->assertEquals(74, $product->getElement(1, 3));
@@ -170,29 +170,29 @@ class MatrixTest extends PHPUnit_Framework_TestCase {
 	function test_pow() {
 		$power = $this->matrixB->pow(3);
 		
-		$this->assertEquals(27, $power->getElement(1, 1));
-		$this->assertEquals(216, $power->getElement(1, 2));
-		$this->assertEquals(8, $power->getElement(1, 3));
-		$this->assertEquals(343, $power->getElement(1, 4));
-		$this->assertEquals(64, $power->getElement(2, 1));
-		$this->assertEquals(1, $power->getElement(2, 2));
-		$this->assertEquals(216, $power->getElement(2, 3));
-		$this->assertEquals(27, $power->getElement(2, 4));
-		$this->assertEquals(512, $power->getElement(3, 1));
-		$this->assertEquals(125, $power->getElement(3, 2));
-		$this->assertEquals(512, $power->getElement(3, 3));
-		$this->assertEquals(27, $power->getElement(3, 4));
-		$this->assertEquals(1, $power->getElement(4, 1));
-		$this->assertEquals(343, $power->getElement(4, 2));
-		$this->assertEquals(729, $power->getElement(4, 3));
-		$this->assertEquals(0, $power->getElement(4, 4));
+		$this->assertEquals(1513, $power->getElement(1, 1));
+		$this->assertEquals(1339, $power->getElement(1, 2));
+		$this->assertEquals(1983, $power->getElement(1, 3));
+		$this->assertEquals(1004, $power->getElement(1, 4));
+		$this->assertEquals(1266, $power->getElement(2, 1));
+		$this->assertEquals(1266, $power->getElement(2, 2));
+		$this->assertEquals(1743, $power->getElement(2, 3));
+		$this->assertEquals(964, $power->getElement(2, 4));
+		$this->assertEquals(1980, $power->getElement(3, 1));
+		$this->assertEquals(2130, $power->getElement(3, 2));
+		$this->assertEquals(2857, $power->getElement(3, 3));
+		$this->assertEquals(1530, $power->getElement(3, 4));
+		$this->assertEquals(1524, $power->getElement(4, 1));
+		$this->assertEquals(1641, $power->getElement(4, 2));
+		$this->assertEquals(1977, $power->getElement(4, 3));
+		$this->assertEquals(1243, $power->getElement(4, 4));
 	}
 	
 	function test_numericConstructor() {
 		//Instantiate a matrix using the numeric constructor and then multiply it against our test one, to test identity multiplication
 		$identity = Matrix::identity(4);
 		$multiplied = $this->matrixB->dotMultiply($identity);
-		
+
 		for ($i = 1; $i <= $multiplied->getRows(); $i++) {
 			for ($j = 1; $j <= $multiplied->getColumns(); $j++) {
 				$this->assertEquals($this->matrixB->getElement($i, $j), $multiplied->getElement($i, $j));
