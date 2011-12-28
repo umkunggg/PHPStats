@@ -4,9 +4,10 @@
 
 require_once('lib/Stats.php');
 require_once('lib/Matrix.php');
+
 use \PHPStats\Matrix as Matrix;
 
-class StatsTest extends PHPUnit_Framework_TestCase {
+class MatrixTest extends PHPUnit_Framework_TestCase {
 	private $matrixA;
 	private $matrixB;
 	
@@ -190,11 +191,11 @@ class StatsTest extends PHPUnit_Framework_TestCase {
 	function test_numericConstructor() {
 		//Instantiate a matrix using the numeric constructor and then multiply it against our test one, to test identity multiplication
 		$identity = new Matrix(4, 4);
-		$multiplied = $this->testMatrix->dotMultiply($identity);
+		$multiplied = $this->matrixB->dotMultiply($identity);
 		
 		for ($i = 1; $i <= $multiplied->getRows(); $i++) {
 			for ($j = 1; $j <= $multiplied->getColumns(); $j++) {
-				$this->assertEquals($this->testMatrix->getElement($i, $j), $multiplied->getElement($i, $j));
+				$this->assertEquals($this->matrixB->getElement($i, $j), $multiplied->getElement($i, $j));
 			}
 		}
 	}

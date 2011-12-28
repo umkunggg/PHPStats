@@ -35,21 +35,21 @@ class Matrix {
 	private $matrix = array();
 
 	//Check to see if matrices are same size: m by n and m by n
-	private function sizeCheck($matrixA, $matrixB) {
+	private function sizeCheck(Matrix $matrixA, Matrix $matrixB) {
 		if ($matrixA->getRows() != $matrixB->getRows() || $matrixA->getColumns() != $matrixB->getColumns())
 			throw new MatrixException('Matrices are wrong size: '.$matrixA->getRows().' by '.$matrixA->getColumns().' and '.$matrixB->getRows().' by '.$matrixB->getColumns());
 	}
 
 	//Check to see if matrices can be multiplied: m by n and n by p
-	private function multiplyCheck($matrixA, $matrixB) {
+	private function multiplyCheck(Matrix $matrixA, Matrix $matrixB) {
 		if ($matrixA->getColumns() != $matrixB->getRows())
 			throw new MatrixException('Matrices are wrong size: '.$matrixA->getRows().' by '.$matrixA->getColumns().' and '.$matrixB->getRows().' by '.$matrixB->getColumns());
 	}
 
 	//Check to see if matrix is square: m by m
-	private function checkSquare($matrix) {
+	private function checkSquare(Matrix $matrix) {
 		if ($matrix->getColumns() != $matrix->getRows())
-			throw new MatrixException('Matrices is not square: '.$matrix->getRows().' by '.$matrix->getColumns();
+			throw new MatrixException('Matrices is not square: '.$matrix->getRows().' by '.$matrix->getColumns());
 	}
 
 	/**
@@ -155,15 +155,15 @@ class Matrix {
 	 * @param matrix $matrixB The second matrix to add
 	 * @return matrix The summed matrix
 	 */
-	public function add($matrixB) {
+	public function add(Matrix $matrixB) {
 		$this->sizeCheck($this, $matrixB);
 
 		$rows = $this->getRows();
 		$columns = $this->getColumns();
-		$newMatrix = new Matrix($row, $columns);
+		$newMatrix = new Matrix($rows, $columns);
 
 		for ($i = 1; $i <= $rows; $i++) {
-			for ($j = 1; $j <= $columns; $j++( {
+			for ($j = 1; $j <= $columns; $j++) {
 				$newMatrix->setElement($i, $j, $this->getElement($i, $j) + $matrixB->getElement($i, $j));
 			}
 		}
@@ -179,15 +179,15 @@ class Matrix {
 	 * @param matrix $matrixB The matrix to subtract
 	 * @return matrix The subtracted matrix
 	 */
-	public function subtract($matrixB) {
+	public function subtract(Matrix $matrixB) {
 		$this->sizeCheck($this, $matrixB);
 
 		$rows = $this->getRows();
 		$columns = $this->getColumns();
-		$newMatrix = new Matrix($row, $columns);
+		$newMatrix = new Matrix($rows, $columns);
 
 		for ($i = 1; $i <= $rows; $i++) {
-			for ($j = 1; $j <= $columns; $j++( {
+			for ($j = 1; $j <= $columns; $j++) {
 				$newMatrix->setElement($i, $j, $this->getElement($i, $j) - $matrixB->getElement($i, $j));
 			}
 		}
@@ -206,10 +206,10 @@ class Matrix {
 	public function scalarMultiply($scalar) {
 		$rows = $this->getRows();
 		$columns = $this->getColumns();
-		$newMatrix = new Matrix($row, $columns);
+		$newMatrix = new Matrix($rows, $columns);
 
 		for ($i = 1; $i <= $rows; $i++) {
-			for ($j = 1; $j <= $columns; $j++( {
+			for ($j = 1; $j <= $columns; $j++) {
 				$newMatrix->setElement($i, $j, $this->getElement($i, $j) * $scalar);
 			}
 		}
@@ -290,13 +290,16 @@ class Matrix {
 		$this->checkSquare($this);
 
 		$rows = $this->getRows();
-		$columns = $matrixB->getColumns();
+		$columns = $this->getColumns();
+
+		$determinant = $this->determinant();
+		if ($determinant == 0) return self::zero($rows, $columns);
 
 		$newMatrix = new Matrix($rows, $columns);
 		
 		
 		
-		return $newMatrix->scalarMultiply(1/$this->determinant());
+		return $newMatrix->scalarMultiply(1/$determinant);
 	}
 
 	/**
@@ -319,8 +322,57 @@ class Matrix {
 
 		return $newMatrix;
 	}
+
+	/**
+	 * Uniform function
+	 * 
+	 * Returns a matrix consisting entirely of the supplied value
+	 * 
+	 * @param int $rows The number of rows in the matrix
+	 * @param int $columns The number of columns in the matrix
+	 * @param float $value The value with which to fill the matrix
+	 * @return matrix A matrix filled with elements of value $value
+	 * @static
+	 */
+	static public function uniform($rows, $columns, $value = 0) {
+		$literal = "[";
+
+		for ($i = 0; $i < $rows; $i++) {
+			for ($j = 0; $j < $columns; $j++) {
+				$literal .= "0,";
+			}
+			$literal = substr($literal, 0, strlen($literal) - 1).";";
+		}
+
+		$literal = substr($literal, 0, strlen($literal) - 1)."]";
+		return new Matrix($literal);
+	}
+
+	/**
+	 * Zero function
+	 * 
+	 * Returns a matrix consisting entirely of zeroes
+	 * 
+	 * @param int $rows The number of rows in the matrix
+	 * @param int $columns The number of columns in the matrix
+	 * @return matrix A matrix filled with zero-valued elements
+	 * @static
+	 */
+	static public function zero($rows, $columns) { return self::uniform($rows, $columns, 0); }
+
+	/**
+	 * One function
+	 * 
+	 * Returns a matrix consisting entirely of ones
+	 * 
+	 * @param int $rows The number of rows in the matrix
+	 * @param int $columns The number of columns in the matrix
+	 * @return matrix A matrix filled with elements of value one
+	 * @static
+	 */
+	static public function one($rows, $columns) { return self::uniform($rows, $columns, 1); }
 }
 
-class MatrixException extends Exception {
+class MatrixException extends \Exception {
 	//Intentionally left empty
 }
