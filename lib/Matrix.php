@@ -89,53 +89,6 @@ class Matrix {
 	}
 
 	/**
-	 * Get Element function
-	 * 
-	 * Returns the matrix element at the specified location.
-	 * 
-	 * @param int $row The row in the matrix to return
-	 * @param int $column The column in the matrix to return
-	 * @return float The matrix element
-	 */
-	public function getElement($row, $column) {
-		return $this->matrix[$row - 1][$column - 1];
-	}
-
-	/**
-	 * Set Element function
-	 * 
-	 * Sets the matrix element at the specified location.
-	 * 
-	 * @param int $row The row in the matrix to set
-	 * @param int $column The column in the matrix to set
-	 */
-	public function setElement($row, $column, $value) {
-		$this->matrix[$row - 1][$column - 1] = $value;
-	}
-
-	/**
-	 * Get Rows function
-	 * 
-	 * Returns the number of rows in the matrix
-	 * 
-	 * @return int The number of rows in the matrix
-	 */
-	public function getRows() {
-		return count($this->matrix);
-	}
-
-	/**
-	 * Get Colunns function
-	 * 
-	 * Returns the number of colunns in the matrix
-	 * 
-	 * @return int The number of colunns in the matrix
-	 */
-	public function getColumns() {
-		return count($this->matrix[0]);
-	}
-
-	/**
 	 * Add function
 	 * 
 	 * Adds two matrices together
@@ -160,49 +113,14 @@ class Matrix {
 	}
 
 	/**
-	 * Subtract function
+	 * Determinant function
 	 * 
-	 * Subtracts a matrix from the current matrix
+	 * Returns the determinant of the matrix
 	 * 
-	 * @param matrix $matrixB The matrix to subtract
-	 * @return matrix The subtracted matrix
+	 * @return float The matrix's determinant
 	 */
-	public function subtract(Matrix $matrixB) {
-		$this->sizeCheck($this, $matrixB);
-
-		$rows = $this->getRows();
-		$columns = $this->getColumns();
-		$newMatrix = Matrix::zero($rows, $columns);
-
-		for ($i = 1; $i <= $rows; $i++) {
-			for ($j = 1; $j <= $columns; $j++) {
-				$newMatrix->setElement($i, $j, $this->getElement($i, $j) - $matrixB->getElement($i, $j));
-			}
-		}
-
-		return $newMatrix;
-	}
-
-	/**
-	 * Scalar Multiply function
-	 * 
-	 * Multiplies this matrix against a scalar value
-	 * 
-	 * @param float $scalar The scalar value
-	 * @return matrix The multiplied matrix
-	 */
-	public function scalarMultiply($scalar) {
-		$rows = $this->getRows();
-		$columns = $this->getColumns();
-		$newMatrix = Matrix::zero($rows, $columns);
-
-		for ($i = 1; $i <= $rows; $i++) {
-			for ($j = 1; $j <= $columns; $j++) {
-				$newMatrix->setElement($i, $j, $this->getElement($i, $j) * $scalar);
-			}
-		}
-
-		return $newMatrix;
+	public function determinant() {
+		
 	}
 
 	/**
@@ -236,35 +154,38 @@ class Matrix {
 	}
 
 	/**
-	 * Determinant function
+	 * Get Colunns function
 	 * 
-	 * Returns the determinant of the matrix
+	 * Returns the number of colunns in the matrix
 	 * 
-	 * @return float The matrix's determinant
+	 * @return int The number of colunns in the matrix
 	 */
-	public function determinant() {
-		
+	public function getColumns() {
+		return count($this->matrix[0]);
 	}
 
 	/**
-	 * Transpose function
+	 * Get Element function
 	 * 
-	 * Returns the transpose of the matrix
+	 * Returns the matrix element at the specified location.
 	 * 
-	 * @return matrix The matrix's transpose
+	 * @param int $row The row in the matrix to return
+	 * @param int $column The column in the matrix to return
+	 * @return float The matrix element
 	 */
-	public function transpose() {
-		$rows = $this->getRows();
-		$columns = $this->getColumns();
-		$newMatrix = Matrix::zero($columns, $rows);
+	public function getElement($row, $column) {
+		return $this->matrix[$row - 1][$column - 1];
+	}
 
-		for ($i = 1; $i <= $rows; $i++) {
-			for ($j = 1; $j <= $columns; $j++) {
-				$newMatrix->setElement($j, $i, $this->getElement($i, $j));
-			}
-		}
-
-		return $newMatrix;
+	/**
+	 * Get Rows function
+	 * 
+	 * Returns the number of rows in the matrix
+	 * 
+	 * @return int The number of rows in the matrix
+	 */
+	public function getRows() {
+		return count($this->matrix);
 	}
 
 	/**
@@ -287,25 +208,6 @@ class Matrix {
 	}
 
 	/**
-	 * Power function
-	 * 
-	 * Raises the matrix to the $power power.
-	 * Logically like pow($matrix, $power)
-	 * 
-	 * @param float $power The power to which to raise the matrix.
-	 * @return matrix The matrix to the $power power
-	 */
-	public function pow($power) {
-		$this->checkSquare($this);
-
-		$newMatrix = self::identity($this->getRows());
-
-		for ($i = 0; $i < $power; $i++) $newMatrix = $newMatrix->dotMultiply($this);
-
-		return $newMatrix;
-	}
-
-	/**
 	 * Literal function
 	 * 
 	 * Prints a string representation of a matrix, suitable for storing
@@ -325,6 +227,104 @@ class Matrix {
 		$literal = substr($literal, 0, strlen($literal) - 1)."]";
 
 		return $literal;
+	}
+
+	/**
+	 * Power function
+	 * 
+	 * Raises the matrix to the $power power.
+	 * Logically like pow($matrix, $power)
+	 * 
+	 * @param float $power The power to which to raise the matrix.
+	 * @return matrix The matrix to the $power power
+	 */
+	public function pow($power) {
+		$this->checkSquare($this);
+
+		$newMatrix = self::identity($this->getRows());
+
+		for ($i = 0; $i < $power; $i++) $newMatrix = $newMatrix->dotMultiply($this);
+
+		return $newMatrix;
+	}
+
+	/**
+	 * Scalar Multiply function
+	 * 
+	 * Multiplies this matrix against a scalar value
+	 * 
+	 * @param float $scalar The scalar value
+	 * @return matrix The multiplied matrix
+	 */
+	public function scalarMultiply($scalar) {
+		$rows = $this->getRows();
+		$columns = $this->getColumns();
+		$newMatrix = Matrix::zero($rows, $columns);
+
+		for ($i = 1; $i <= $rows; $i++) {
+			for ($j = 1; $j <= $columns; $j++) {
+				$newMatrix->setElement($i, $j, $this->getElement($i, $j) * $scalar);
+			}
+		}
+
+		return $newMatrix;
+	}
+
+	/**
+	 * Set Element function
+	 * 
+	 * Sets the matrix element at the specified location.
+	 * 
+	 * @param int $row The row in the matrix to set
+	 * @param int $column The column in the matrix to set
+	 */
+	public function setElement($row, $column, $value) {
+		$this->matrix[$row - 1][$column - 1] = $value;
+	}
+
+	/**
+	 * Subtract function
+	 * 
+	 * Subtracts a matrix from the current matrix
+	 * 
+	 * @param matrix $matrixB The matrix to subtract
+	 * @return matrix The subtracted matrix
+	 */
+	public function subtract(Matrix $matrixB) {
+		$this->sizeCheck($this, $matrixB);
+
+		$rows = $this->getRows();
+		$columns = $this->getColumns();
+		$newMatrix = Matrix::zero($rows, $columns);
+
+		for ($i = 1; $i <= $rows; $i++) {
+			for ($j = 1; $j <= $columns; $j++) {
+				$newMatrix->setElement($i, $j, $this->getElement($i, $j) - $matrixB->getElement($i, $j));
+			}
+		}
+
+		return $newMatrix;
+	}
+
+	/**
+	 * Transpose function
+	 * 
+	 * Returns the transpose of the matrix
+	 * 
+	 * @return matrix The matrix's transpose
+	 */
+	public function transpose() {
+		$rows = $this->getRows();
+		$columns = $this->getColumns();
+		$newMatrix = Matrix::zero($columns, $rows);
+
+		for ($i = 1; $i <= $rows; $i++) {
+			for ($j = 1; $j <= $columns; $j++) {
+				$newMatrix->setElement($j, $i, $this->getElement($i, $j));
+			}
+		}
+
+		return $newMatrix;
 	}
 
 	/**
