@@ -170,12 +170,12 @@ class MatrixTest extends PHPUnit_Framework_TestCase {
 		$this->assertEquals(102, $inverse->getElement(2, 1));
 		$this->assertEquals(-373, $inverse->getElement(2, 2));
 		$this->assertEquals(135, $inverse->getElement(2, 3));
-		$this->assertEquals(106, $inverse->getElement(2, 4));
+		$this->assertEquals(106, round($inverse->getElement(2, 4)));
 		$this->assertEquals(-72, $inverse->getElement(3, 1));
 		$this->assertEquals(312, $inverse->getElement(3, 2));
 		$this->assertEquals(-144, $inverse->getElement(3, 3));
 		$this->assertEquals(120, $inverse->getElement(3, 4));
-		$this->assertEquals(198, $inverse->getElement(4, 1));
+		$this->assertEquals(198, round($inverse->getElement(4, 1)));
 		$this->assertEquals(315, $inverse->getElement(4, 2));
 		$this->assertEquals(-225, $inverse->getElement(4, 3));
 		$this->assertEquals(-54, $inverse->getElement(4, 4));

@@ -115,6 +115,25 @@ class Matrix {
 	}
 
 	/**
+	 * Adjoint function
+	 * 
+	 * Computes the adjoint of the matrix
+	 * 
+	 * @return matrix The matrix's adjoint
+	 */
+	public function adjoint() {
+		$this->checkSquare($this);
+
+		$newMatrix = self::zero($this->getRows(), $this->getColumns());
+		for ($i = 1; $i <= $this->getRows(); $i++) {
+			for ($j = 1; $j <= $this->getColumns(); $j++) {
+				$newMatrix->setElement($j, $i, pow(-1, $i + $j)*$this->reduce($i, $j)->determinant()); //May as well do the transpose here
+			}
+		}
+		return $newMatrix;
+	}
+
+	/**
 	 * Determinant function
 	 * 
 	 * Returns the determinant of the matrix
@@ -207,15 +226,7 @@ class Matrix {
 	 * @return matrix The matrix's inverse
 	 */
 	public function inverse() {
-		$this->checkSquare($this);
-
-		$size = $this->getRows();
-		$newMatrix = self::zero($size, $size);
-
-		$determinant = $this->determinant();
-		if ($determinant == 0) return $newMatrix;
-
-		return $newMatrix->scalarMultiply(1/$determinant);
+		return $this->adjoint()->scalarMultiply(1/$this->determinant());
 	}
 
 	/**
