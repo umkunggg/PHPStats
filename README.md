@@ -32,9 +32,15 @@ please refer to the copy of LICENSE.txt that accompanies your download.
 
 **Change Log**
 
+*v0.2*
+
+Added a Matrix class for Linear Algebra
+
+Added the Rayleigh Distribution
+
 *v0.1.1*
 
-Cauchy Distribution
+Added the Cauchy Distribution
 
 Assorted bug fixes
 
