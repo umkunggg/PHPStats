@@ -56,6 +56,11 @@ class MatrixTest extends PHPUnit_Framework_TestCase {
 		$this->assertEquals(24, $sum->getElement(4, 3));
 		$this->assertEquals(16, $sum->getElement(4, 4));
 	}
+
+	/*function test_norm() {
+		$this->assertEquals(19.1949, round($this->matrixB->norm(2), 4)); //Euclidean
+		$this->assertEquals(24, round($this->matrixB->norm(INF), 4)); //Maximum
+	}*/
 	
 	function test_reduce() {
 		$reduction = $this->matrixA->reduce(2, 3);
@@ -111,6 +116,10 @@ class MatrixTest extends PHPUnit_Framework_TestCase {
 		$this->assertEquals(28, $product->getElement(4, 2));
 		$this->assertEquals(30, $product->getElement(4, 3));
 		$this->assertEquals(32, $product->getElement(4, 4));
+	}
+
+	function test_trace() {
+		$this->assertEquals(12, $this->matrixB->trace());
 	}
 	
 	function test_dotMultiply() {
