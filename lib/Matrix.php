@@ -252,39 +252,6 @@ class Matrix {
 	}
 
 	/**
-	 * Norm function
-	 * 
-	 * Matrix or vector norm.  p of 2 corresponds to the Euclidean norm, the 
-	 * norm used in vector magnitude and frequently used numerically for the
-	 * matrix norm.
-	 * 
-	 * @param p for the p-norm, INF for maximum norm
-	 * @return float The norm of the matrix or vector
-	 * /
-	public function norm($p = 2) {
-		if (is_infinite($p)) {
-			$max = 0;
-			for ($i = 1; $i <= $this->getRows(); $i++) {
-				$row = 0;
-				for ($j = 1; $j <= $this->getColumns(); $j++) {
-					$row += abs($this->getElement($i, $j));
-				}
-				$max = max($max, $row);
-			}
-			return $max;
-		}
-		else {
-			$sum = 0;
-			for ($i = 1; $i <= $this->getRows(); $i++) {
-				for ($j = 1; $j <= $this->getColumns(); $j++) {
-					$sum += pow(abs($this->getElement($i, $j)), $p);
-				}
-			}
-			return pow($sum, 1/$p);
-		}
-	}*/
-
-	/**
 	 * Power function
 	 * 
 	 * Raises the matrix to the $power power.
