@@ -30,7 +30,7 @@ namespace PHPStats;
  * 
  * Static class containing a variety of useful statistical functions.  
  * Fills in where PHP's math functions fall short.  Many functions are
- * Used extensively by the probability distributions.
+ * used extensively by the probability distributions.
  */
 class Stats {
 	//Useful to tell if a float has a mathematically integer value.
@@ -77,7 +77,7 @@ class Stats {
 	/**
 	 * Average Function
 	 * 
-	 * Takes the arithmetic mean of tan array of numeric values.
+	 * Takes the arithmetic mean of an array of numeric values.
 	 * Non-numeric values are treated as zeroes.
 	 * 
 	 * @param array $data An array of numeric values
