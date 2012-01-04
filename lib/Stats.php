@@ -393,11 +393,34 @@ class Stats {
 	 * @param float $x Argument to the digamma function
 	 * @return The result of the digamma function
 	 * @static
-	 * @todo Implement this
 	 */
 	public static function digamma($x) {
-		//Source: http://en.wikipedia.org/wiki/Digamma_function#Computation_.26_approximation
-		return log($x) - 1/(2*$x) - 1/(12*pow($x, 2)) + 1/(120*pow($x, 4)) - 1/(252*pow($x, 6)) + (1/pow($x, 8));
+		//Algorithm translated from http://www.uv.es/~bernardo/1976AppStatist.pdf
+		$s = 1.0e-5;
+		$c = 8.5;
+		$s3 = 8.33333333e-2;
+		$s4 = 8.33333333e-3;
+		$s5 = 3.968253968e-2;
+		$d1 = -0.5772156649;
+
+		$y = $x;
+		$retval = 0;
+
+		if ($y <= 0) return NAN;
+
+		if ($y <= $s) return $d1 - 1/$y;
+
+		while ($y < $c) {
+			$retval = $retval - 1/$y;
+			$y++;
+		}
+
+		$r = 1/$y;
+		$retval = $retval + log($y) - 0.5 * $r;
+		$r *= $r;
+		$retval = $retval - $r * ($s3 - $r * ($s4 - $r *$s5));
+
+		return $retval;
 	}
 
 	/**
