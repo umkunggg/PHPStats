@@ -379,10 +379,15 @@ class Stats {
 	 */
 	public static function igamma($x) {
 		//Source: http://mathoverflow.net/questions/12828/inverse-gamma-function
-		//$k = 1.461632; //self::digamma(0); //Commented as a definition for the approximated constant given below
+		
+		if ($x < 0.885603) return NAN;  // gamma(1.461632) == 0.885603, the positive minimum of gamma
+		
+		$principal = true;
+		
+		//$k = 1.461632;
 		$c = 0.036534; //pow(2*M_PI, 0.5)/M_E - self::gamma($k);
-		$lx = log(($x + $c)/pow(2*M_PI, 0.5));
-		return $lx / self::lambert($lx/M_E) + 0.5;
+		$lx = log(($x + $c)/2.506628274631;//pow(2*M_PI, 0.5)); == 2.506628274631
+		return $lx / self::lambert($lx/M_E, $principal) + 0.5;
 	}
 
 	/**

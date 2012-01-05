@@ -142,7 +142,7 @@ class StatsTest extends PHPUnit_Framework_TestCase {
 	}
 
 	/*public function test_igamma() {
-		$this->assertEquals(1, round(Stats::igamma(1), 3));
+		$this->assertEquals(1, round(Stats::igamma(1, false), 3));
 		$this->assertEquals(2, round(Stats::igamma(1), 3));
 		$this->assertEquals(2.5, round(Stats::igamma(1.3293326), 4));
 		$this->assertEquals(3, round(Stats::igamma(2), 5));
