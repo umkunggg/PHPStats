@@ -429,20 +429,32 @@ class Stats {
 	 * Returns the positive branch of the lambert function
 	 * 
 	 * @param float $x Argument to the lambert funcction
+	 * @param bool $principal True to use the principal branch, false to use the secondary
 	 * @return float The result of the lambert function
 	 * @static
 	 * @todo Implement this
 	 */
-	public static function lambert($x) {
-		//Source: http://en.wikipedia.org/wiki/Lambert_W_function#Numerical_evaluation
-		$w = 2; //Best initial guess
-		//TODO: Limit the loop by the precision of the answer, not an arbitrary number of iterations
-		$i = 0;
-		while ($i < 10)
-		{
-			$w = $w - ($w*exp($w) - $x)/(exp($w) + $w*exp($w));
-			$i++;
+	public static function lambert($x, $principal = true) {
+		// http://www.whim.org/nebula/math/lambertw.html
+		
+		if ($principal) {
+			if ($x > 10) $w = log($x) - log(log($x));
+			elseif ($x > -1/M_E) $w = 0;
+			else return NAN; //Undefined below -1/e
 		}
+		else { //Secondary
+			if ($x >= -1/M_E && $x <= -0.1) $w = -2;
+			elseif ($x > -0.1 && $x < 0) $w = log(-$x) - log(-log(-x));
+			else return NAN; //Defined only for [-1/e, 0)
+		}
+		
+		for ($k = 1; $k < 150; ++$k) {
+			$old_w = $w;
+			$w = ($x*exp(-$w) + pow($w, 2))/($w + 1);
+			
+			if ((abs($w - $old_w) > 0.0000001) break;
+		}
+		
 		return $w;
 	}
 	
