@@ -370,23 +370,22 @@ class Stats {
 	/**
 	 * Inverse gamma function
 	 * 
-	 * Returns the inverse of the gamma function
+	 * Returns the inverse of the gamma function.  The accuracy of this
+	 * approximation is poor for values of gamma less than 10.
 	 * 
 	 * @param float $x The result of the gamma function
+	 * @param bool $principal True for the principal branch, false for the secondary (e.g. gamma(x) where x < 1.461632)
 	 * @return float The argument to the gamma function
 	 * @static
-	 * @todo Implement this
 	 */
-	public static function igamma($x) {
+	public static function igamma($x, $principal = true) {
 		//Source: http://mathoverflow.net/questions/12828/inverse-gamma-function
 		
 		if ($x < 0.885603) return NAN;  // gamma(1.461632) == 0.885603, the positive minimum of gamma
 		
-		$principal = true;
-		
 		//$k = 1.461632;
 		$c = 0.036534; //pow(2*M_PI, 0.5)/M_E - self::gamma($k);
-		$lx = log(($x + $c)/2.506628274631;//pow(2*M_PI, 0.5)); == 2.506628274631
+		$lx = log(($x + $c)/2.506628274631); //pow(2*M_PI, 0.5)); == 2.506628274631
 		return $lx / self::lambert($lx/M_E, $principal) + 0.5;
 	}
 
