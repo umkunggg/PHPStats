@@ -158,7 +158,7 @@ class StatsTest extends PHPUnit_Framework_TestCase {
 		$this->assertEquals(1.25612, round(Stats::digamma(4), 5));
 		$this->assertEquals(1.38887, round(Stats::digamma(4.5), 5));
 		$this->assertEquals(1.50612, round(Stats::digamma(5), 5));
-	}/*
+	}
 
 	public function test_lambert() {
 		$this->assertEquals(0, round(Stats::lambert(0), 6));
@@ -167,7 +167,7 @@ class StatsTest extends PHPUnit_Framework_TestCase {
 		$this->assertEquals(1.049909, round(Stats::lambert(3), 6));
 		$this->assertEquals(1.267238, round(Stats::lambert(4.5), 6));
 		$this->assertEquals(1.326725, round(Stats::lambert(5), 6));
-	}*/
+	}
 
 	public function test_lowerGamma() {
 		$this->assertEquals(0.16060, round(Stats::lowerGamma(3, 1), 5));

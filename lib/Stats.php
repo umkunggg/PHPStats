@@ -432,7 +432,6 @@ class Stats {
 	 * @param bool $principal True to use the principal branch, false to use the secondary
 	 * @return float The result of the lambert function
 	 * @static
-	 * @todo Implement this
 	 */
 	public static function lambert($x, $principal = true) {
 		// http://www.whim.org/nebula/math/lambertw.html
@@ -452,7 +451,7 @@ class Stats {
 			$old_w = $w;
 			$w = ($x*exp(-$w) + pow($w, 2))/($w + 1);
 			
-			if ((abs($w - $old_w) > 0.0000001) break;
+			if (abs($w - $old_w) < 0.0000001) break;
 		}
 		
 		return $w;
