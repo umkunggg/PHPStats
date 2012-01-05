@@ -370,8 +370,11 @@ class Stats {
 	/**
 	 * Inverse gamma function
 	 * 
-	 * Returns the inverse of the gamma function.  The accuracy of this
-	 * approximation is poor for values of gamma less than 10.
+	 * Returns the inverse of the gamma function.  The relative error of the
+	 * principal branch peaks at 1.5 near the lower bound (i.e. igamma(0.885603))
+	 * and approaches zero the higher the argument to this function.
+	 * The secondary branch is not fully covered by the approximation and so
+	 * will have much higher error.
 	 * 
 	 * @param float $x The result of the gamma function
 	 * @param bool $principal True for the principal branch, false for the secondary (e.g. gamma(x) where x < 1.461632)
@@ -379,7 +382,7 @@ class Stats {
 	 * @static
 	 */
 	public static function igamma($x, $principal = true) {
-		//Source: http://mathoverflow.net/questions/12828/inverse-gamma-function
+		//Source: http://mathforum.org/kb/message.jspa?messageID=342551&tstart=0
 		
 		if ($x < 0.885603) return NAN;  // gamma(1.461632) == 0.885603, the positive minimum of gamma
 		
