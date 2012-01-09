@@ -69,6 +69,18 @@ class DiscreteUniform extends ProbabilityDistribution {
 	}
 	
 	/**
+	 * Probability Distribution function
+	 * 
+	 * Alias for pmf
+	 * 
+	 * @param float $x The test value
+	 * @return float The probability
+	 */
+	public function pdf($x) {
+		return self::pmf($x);
+	}
+	
+	/**
 	 * Returns the cumulative distribution function, the probability of getting the test value or something below it
 	 * 
 	 * @param float $x The test value
@@ -143,6 +155,21 @@ class DiscreteUniform extends ProbabilityDistribution {
 	static function getPmf($x, $minimum = 0, $maximum = 1) {
 		if ($x >= $minimum && $x <= $maximum) return 1.0/($maximum - $minimum + 1);
 		else return 0.0;
+	}
+	
+	/**
+	 * Probability Distribution function
+	 * 
+	 * Alias for getPmf
+	 * 
+	 * @param float $x The test value
+	 * @param float $minimum The minimum parameter
+	 * @param float $maximum The maximum parameter
+	 * @return float The probability
+	 * @static
+	 */
+	static function getPdf($x, $minimum = 0, $maximum = 1) {
+		return self::getPmf($x, $minimum, $maximum);
 	}
 	
 	/**

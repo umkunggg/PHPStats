@@ -57,13 +57,25 @@ class Poisson extends ProbabilityDistribution {
 	}
 	
 	/**
-	 * Returns the probability distribution function
+	 * Returns the probability mass function
 	 * 
 	 * @param float $x The test value
 	 * @return float The probability
 	 */
 	public function pmf($x) {
 		return self::getPmf($x, $this->lambda);
+	}
+	
+	/**
+	 * Probability Distribution function
+	 * 
+	 * Alias for pmf
+	 * 
+	 * @param float $x The test value
+	 * @return float The probability
+	 */
+	public function pdf($x) {
+		return self::pmf($x);
 	}
 	
 	/**
@@ -149,6 +161,19 @@ class Poisson extends ProbabilityDistribution {
 	 */
 	static function getPmf($x, $lambda = 1) {
 		return exp(-$lambda)*pow($lambda, $x)/\PHPStats\Stats::factorial($x);
+	}
+	
+	/**
+	 * Probability Distribution function
+	 * 
+	 * Alias for getPmf
+	 * 
+	 * @param float $x The test value
+	 * @param float $lambda The rate of events
+	 * @return float The probability
+	 */
+	static function getPdf($x, $lambda = 1) {
+		return self::getPmf($x, $lambda);
 	}
 	
 	/**

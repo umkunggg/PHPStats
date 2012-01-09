@@ -73,6 +73,18 @@ class Hypergeometric extends ProbabilityDistribution {
 	}
 	
 	/**
+	 * Probability Distribution function
+	 * 
+	 * Alias for pmf
+	 * 
+	 * @param float $x The test value
+	 * @return float The probability
+	 */
+	public function pdf($x) {
+		return self::pmf($x);
+	}
+	
+	/**
 	 * Returns the cumulative distribution function, the probability of getting the test value or something below it
 	 * 
 	 * @param float $x The test value
@@ -162,6 +174,22 @@ class Hypergeometric extends ProbabilityDistribution {
 		
 		if ($L >= 1 && $m >= 0 && $n >= 0) return (\PHPStats\Stats::combinations($m, $x)*\PHPStats\Stats::combinations($L - $m, $n - $x))/\PHPStats\Stats::combinations($L, $n);
 		else return 0.0;
+	}
+	
+	/**
+	 * Probability Distribution function
+	 * 
+	 * Alias for getPmf
+	 * 
+	 * @param float $x The test value
+	 * @param int $L The population size
+	 * @param int $m The number of interesting elements in the population
+	 * @param int $n The number of draws from the population
+	 * @return float The probability
+	 * @static
+	 */
+	static function getPdf($x, $L = 1, $m = 1, $n = 1) {
+		return self::getPmf($x, $L, $m, $n);
 	}
 	
 	/**
