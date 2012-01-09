@@ -15,7 +15,7 @@ class ExponentialTest extends PHPUnit_Framework_TestCase {
 
 	public function test_rvs() {
 		$variates = array();
-		for ($i = 0; $i < 1000; $i++) $variates[] = $testObject->rvs();
+		for ($i = 0; $i < 1000; $i++) $variates[] = $this->testObject->rvs();
 		$this->assertLessThanOrEqual(0.01, \PHPStats\StatisticalTests::kolmogorovSmirnov($variates, $this->testObject));
 	}
 
