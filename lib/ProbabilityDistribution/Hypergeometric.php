@@ -73,6 +73,18 @@ class Hypergeometric extends ProbabilityDistribution {
 	}
 	
 	/**
+	 * Probability Distribution function
+	 * 
+	 * Alias for pmf
+	 * 
+	 * @param float $x The test value
+	 * @return float The probability
+	 */
+	public function pdf($x) {
+		return self::pmf($x);
+	}
+	
+	/**
 	 * Returns the cumulative distribution function, the probability of getting the test value or something below it
 	 * 
 	 * @param float $x The test value
@@ -132,7 +144,7 @@ class Hypergeometric extends ProbabilityDistribution {
 	 * @static
 	 * @todo Untested
 	 */
-	static function getRvs($L = 1, $m = 1, $n = 1) {
+	public static function getRvs($L = 1, $m = 1, $n = 1) {
 		$successes = 0;
 		for ($i = 0; $i < $n; $i++) {
 			if (self::randFloat() <= $m/$L) {
@@ -154,7 +166,7 @@ class Hypergeometric extends ProbabilityDistribution {
 	 * @return float The probability
 	 * @static
 	 */
-	static function getPmf($x, $L = 1, $m = 1, $n = 1) {
+	public static function getPmf($x, $L = 1, $m = 1, $n = 1) {
 		$x = floor($x);
 		$L = floor($L);
 		$m = floor($m);
@@ -162,6 +174,22 @@ class Hypergeometric extends ProbabilityDistribution {
 		
 		if ($L >= 1 && $m >= 0 && $n >= 0) return (\PHPStats\Stats::combinations($m, $x)*\PHPStats\Stats::combinations($L - $m, $n - $x))/\PHPStats\Stats::combinations($L, $n);
 		else return 0.0;
+	}
+	
+	/**
+	 * Probability Distribution function
+	 * 
+	 * Alias for getPmf
+	 * 
+	 * @param float $x The test value
+	 * @param int $L The population size
+	 * @param int $m The number of interesting elements in the population
+	 * @param int $n The number of draws from the population
+	 * @return float The probability
+	 * @static
+	 */
+	public static function getPdf($x, $L = 1, $m = 1, $n = 1) {
+		return self::getPmf($x, $L, $m, $n);
 	}
 	
 	/**
@@ -174,7 +202,7 @@ class Hypergeometric extends ProbabilityDistribution {
 	 * @return float The probability
 	 * @static
 	 */
-	static function getCdf($x, $L = 1, $m = 1, $n = 1) {
+	public static function getCdf($x, $L = 1, $m = 1, $n = 1) {
 		$x = floor($x);
 		$L = floor($L);
 		$m = floor($m);
@@ -198,7 +226,7 @@ class Hypergeometric extends ProbabilityDistribution {
 	 * @return float The probability
 	 * @static
 	 */
-	static function getSf($x, $L = 1, $m = 1, $n = 1) {
+	public static function getSf($x, $L = 1, $m = 1, $n = 1) {
 		return 1.0 - self::getCdf($x, $L, $m, $n);
 	}
 	
@@ -212,7 +240,7 @@ class Hypergeometric extends ProbabilityDistribution {
 	 * @return float The value that gives a cdf of $x
 	 * @static
 	 */
-	static function getPpf($x, $L = 1, $m = 1, $n = 1) {
+	public static function getPpf($x, $L = 1, $m = 1, $n = 1) {
 		$i = 0;
 		$cdf = 0;
 		
@@ -234,7 +262,7 @@ class Hypergeometric extends ProbabilityDistribution {
 	 * @return float The value that gives an sf of $x
 	 * @static
 	 */
-	static function getIsf($x, $L = 1, $m = 1, $n = 1) {
+	public static function getIsf($x, $L = 1, $m = 1, $n = 1) {
 		return self::getPpf(1.0 - $x, $L, $m, $n);
 	}
 	
@@ -248,7 +276,7 @@ class Hypergeometric extends ProbabilityDistribution {
 	 * @return type array A dictionary containing the first four moments of the distribution
 	 * @static
 	 */
-	static function getStats($moments = 'mv', $L = 1, $m = 1, $n = 1) {
+	public static function getStats($moments = 'mv', $L = 1, $m = 1, $n = 1) {
 		$return = array();
 		
 		if (strpos($moments, 'm') !== FALSE) $return['mean'] = ($n*$m)/$L;

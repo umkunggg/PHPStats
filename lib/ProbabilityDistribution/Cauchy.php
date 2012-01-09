@@ -126,7 +126,7 @@ class Cauchy extends ProbabilityDistribution {
 	 * @static
 	 * @todo Untested
 	 */
-	static function getRvs($mu = 0.0, $gamma = 1.0) {
+	public static function getRvs($mu = 0.0, $gamma = 1.0) {
 		$u = \PHPStats\ProbabilityDistribution\Normal::getRvs(0, 1);
 		$v = \PHPStats\ProbabilityDistribution\Normal::getRvs(0, 1);
 		return $u/$v;
@@ -141,7 +141,7 @@ class Cauchy extends ProbabilityDistribution {
 	 * @return float The probability
 	 * @static
 	 */
-	static function getPdf($x, $mu = 0.0, $gamma = 1.0) {
+	public static function getPdf($x, $mu = 0.0, $gamma = 1.0) {
 		return 1/(M_PI * $gamma * (1 + pow(($x - $mu)/$gamma, 2)));
 	}
 	
@@ -154,7 +154,7 @@ class Cauchy extends ProbabilityDistribution {
 	 * @return float The probability
 	 * @static
 	 */
-	static function getCdf($x, $mu = 0.0, $gamma = 1.0) {
+	public static function getCdf($x, $mu = 0.0, $gamma = 1.0) {
 		return M_1_PI * atan(($x - $mu)/$gamma) + 0.5;
 	}
 	
@@ -167,7 +167,7 @@ class Cauchy extends ProbabilityDistribution {
 	 * @return float The probability
 	 * @static
 	 */
-	static function getSf($x, $mu = 0.0, $gamma = 1.0) {
+	public static function getSf($x, $mu = 0.0, $gamma = 1.0) {
 		return 1.0 - self::getCdf($x, $mu, $gamma);
 	}
 	
@@ -180,7 +180,7 @@ class Cauchy extends ProbabilityDistribution {
 	 * @return float The value that gives a cdf of $x
 	 * @static
 	 */
-	static function getPpf($x, $mu = 0.0, $gamma = 1.0) {
+	public static function getPpf($x, $mu = 0.0, $gamma = 1.0) {
 		return $gamma * tan(M_PI * ($x - 0.5)) + $mu;
 	}
 	
@@ -193,7 +193,7 @@ class Cauchy extends ProbabilityDistribution {
 	 * @return float The value that gives an sf of $x
 	 * @static
 	 */
-	static function getIsf($x, $mu = 0.0, $gamma = 1.0) {
+	public static function getIsf($x, $mu = 0.0, $gamma = 1.0) {
 		return self::getPpf(1.0 - $x, $mu, $gamma);
 	}
 	
@@ -206,7 +206,7 @@ class Cauchy extends ProbabilityDistribution {
 	 * @return type array A dictionary containing the first four moments of the distribution
 	 * @static
 	 */
-	static function getStats($moments = 'mv', $mu = 0.0, $gamma = 1.0) {
+	public static function getStats($moments = 'mv', $mu = 0.0, $gamma = 1.0) {
 		$return = array();
 		
 		if (strpos($moments, 'm') !== FALSE) $return['mean'] = NAN;

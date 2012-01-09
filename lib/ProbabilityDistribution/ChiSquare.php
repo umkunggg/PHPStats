@@ -125,7 +125,7 @@ class ChiSquare extends ProbabilityDistribution {
 	 * @static
 	 * @todo Untested
 	 */
-	static function getRvs($k = 1) {
+	public static function getRvs($k = 1) {
 		$k /= 2;
 		$floork = floor($k);
 		$fractionalk = $k - $floork;
@@ -166,7 +166,7 @@ class ChiSquare extends ProbabilityDistribution {
 	 * @return float The probability
 	 * @static
 	 */
-	static function getPdf($x, $k = 1) {
+	public static function getPdf($x, $k = 1) {
 		return pow($x, $k/2.0 - 1)*exp(-$x/2.0)/(\PHPStats\Stats::gamma($k/2.0)*pow(2, $k/2.0));
 	}
 	
@@ -178,7 +178,7 @@ class ChiSquare extends ProbabilityDistribution {
 	 * @return float The probability
 	 * @static
 	 */
-	static function getCdf($x, $k = 1) {
+	public static function getCdf($x, $k = 1) {
 		return \PHPStats\Stats::lowerGamma($k/2.0, $x/2)/\PHPStats\Stats::gamma($k/2.0);
 	}
 	
@@ -190,7 +190,7 @@ class ChiSquare extends ProbabilityDistribution {
 	 * @return float The probability
 	 * @static
 	 */
-	static function getSf($x, $k = 1) {
+	public static function getSf($x, $k = 1) {
 		return 1.0 - self::getCdf($x, $k);
 	}
 	
@@ -203,7 +203,7 @@ class ChiSquare extends ProbabilityDistribution {
 	 * @static
 	 * @todo Unimplemented dependencies
 	 */
-	static function getPpf($x, $k = 1) {
+	public static function getPpf($x, $k = 1) {
 		return 2 * \PHPStats\Stats::ilowerGamma($k / 2, $x * \PHPStats\Stats::gamma($k / 2));
 	}
 	
@@ -216,7 +216,7 @@ class ChiSquare extends ProbabilityDistribution {
 	 * @static
 	 * @todo Unimplemented dependencies
 	 */
-	static function getIsf($x, $k = 1) {
+	public static function getIsf($x, $k = 1) {
 		return self::getPpf(1.0 - $x, $k);
 	}
 	
@@ -228,7 +228,7 @@ class ChiSquare extends ProbabilityDistribution {
 	 * @return type array A dictionary containing the first four moments of the distribution
 	 * @static
 	 */
-	static function getStats($moments = 'mv', $k = 1) {
+	public static function getStats($moments = 'mv', $k = 1) {
 		$return = array();
 		
 		if (strpos($moments, 'm') !== FALSE) $return['mean'] = $k;
