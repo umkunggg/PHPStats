@@ -136,7 +136,7 @@ class Poisson extends ProbabilityDistribution {
 	 * @static
 	 * @todo Untested
 	 */
-	static function getRvs($lambda = 1) {
+	public static function getRvs($lambda = 1) {
 		//Knuth's algorithm.  TODO: Replace with more efficient algorithm
 		$l = exp(-$lamda);
 		$k = 0;
@@ -159,7 +159,7 @@ class Poisson extends ProbabilityDistribution {
 	 * @return float The probability
 	 * @static
 	 */
-	static function getPmf($x, $lambda = 1) {
+	public static function getPmf($x, $lambda = 1) {
 		return exp(-$lambda)*pow($lambda, $x)/\PHPStats\Stats::factorial($x);
 	}
 	
@@ -172,7 +172,7 @@ class Poisson extends ProbabilityDistribution {
 	 * @param float $lambda The rate of events
 	 * @return float The probability
 	 */
-	static function getPdf($x, $lambda = 1) {
+	public static function getPdf($x, $lambda = 1) {
 		return self::getPmf($x, $lambda);
 	}
 	
@@ -184,7 +184,7 @@ class Poisson extends ProbabilityDistribution {
 	 * @return float The probability
 	 * @static
 	 */
-	static function getCdf($x, $lambda = 1) {
+	public static function getCdf($x, $lambda = 1) {
 		$sum = 0.0;
 		for ($count = 0; $count <= $x; $count++) {
 			$sum += self::getPmf($count, $lambda);
@@ -200,7 +200,7 @@ class Poisson extends ProbabilityDistribution {
 	 * @return float The probability
 	 * @static
 	 */
-	static function getSf($x, $lambda = 1) {
+	public static function getSf($x, $lambda = 1) {
 		return 1.0 - self::getCdf($x, $lambda);
 	}
 	
@@ -212,7 +212,7 @@ class Poisson extends ProbabilityDistribution {
 	 * @return float The value that gives a cdf of $x
 	 * @static
 	 */
-	static function getPpf($x, $lambda = 1) {
+	public static function getPpf($x, $lambda = 1) {
 		if ($x >= 1) return INF; //Prevents infinite loops.
 	
 		$i = 0;
@@ -234,7 +234,7 @@ class Poisson extends ProbabilityDistribution {
 	 * @return float The value that gives an sf of $x
 	 * @static
 	 */
-	static function getIsf($x, $lambda = 1) {
+	public static function getIsf($x, $lambda = 1) {
 		return self::getPpf(1.0 - $x, $lambda);
 	}
 	
@@ -246,7 +246,7 @@ class Poisson extends ProbabilityDistribution {
 	 * @return type array A dictionary containing the first four moments of the distribution
 	 * @static
 	 */
-	static function getStats($moments = 'mv', $lambda = 1) {
+	public static function getStats($moments = 'mv', $lambda = 1) {
 		$return = array();
 		
 		if (strpos($moments, 'm') !== FALSE) $return['mean'] = $lambda;

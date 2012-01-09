@@ -144,7 +144,7 @@ class Hypergeometric extends ProbabilityDistribution {
 	 * @static
 	 * @todo Untested
 	 */
-	static function getRvs($L = 1, $m = 1, $n = 1) {
+	public static function getRvs($L = 1, $m = 1, $n = 1) {
 		$successes = 0;
 		for ($i = 0; $i < $n; $i++) {
 			if (self::randFloat() <= $m/$L) {
@@ -166,7 +166,7 @@ class Hypergeometric extends ProbabilityDistribution {
 	 * @return float The probability
 	 * @static
 	 */
-	static function getPmf($x, $L = 1, $m = 1, $n = 1) {
+	public static function getPmf($x, $L = 1, $m = 1, $n = 1) {
 		$x = floor($x);
 		$L = floor($L);
 		$m = floor($m);
@@ -188,7 +188,7 @@ class Hypergeometric extends ProbabilityDistribution {
 	 * @return float The probability
 	 * @static
 	 */
-	static function getPdf($x, $L = 1, $m = 1, $n = 1) {
+	public static function getPdf($x, $L = 1, $m = 1, $n = 1) {
 		return self::getPmf($x, $L, $m, $n);
 	}
 	
@@ -202,7 +202,7 @@ class Hypergeometric extends ProbabilityDistribution {
 	 * @return float The probability
 	 * @static
 	 */
-	static function getCdf($x, $L = 1, $m = 1, $n = 1) {
+	public static function getCdf($x, $L = 1, $m = 1, $n = 1) {
 		$x = floor($x);
 		$L = floor($L);
 		$m = floor($m);
@@ -226,7 +226,7 @@ class Hypergeometric extends ProbabilityDistribution {
 	 * @return float The probability
 	 * @static
 	 */
-	static function getSf($x, $L = 1, $m = 1, $n = 1) {
+	public static function getSf($x, $L = 1, $m = 1, $n = 1) {
 		return 1.0 - self::getCdf($x, $L, $m, $n);
 	}
 	
@@ -240,7 +240,7 @@ class Hypergeometric extends ProbabilityDistribution {
 	 * @return float The value that gives a cdf of $x
 	 * @static
 	 */
-	static function getPpf($x, $L = 1, $m = 1, $n = 1) {
+	public static function getPpf($x, $L = 1, $m = 1, $n = 1) {
 		$i = 0;
 		$cdf = 0;
 		
@@ -262,7 +262,7 @@ class Hypergeometric extends ProbabilityDistribution {
 	 * @return float The value that gives an sf of $x
 	 * @static
 	 */
-	static function getIsf($x, $L = 1, $m = 1, $n = 1) {
+	public static function getIsf($x, $L = 1, $m = 1, $n = 1) {
 		return self::getPpf(1.0 - $x, $L, $m, $n);
 	}
 	
@@ -276,7 +276,7 @@ class Hypergeometric extends ProbabilityDistribution {
 	 * @return type array A dictionary containing the first four moments of the distribution
 	 * @static
 	 */
-	static function getStats($moments = 'mv', $L = 1, $m = 1, $n = 1) {
+	public static function getStats($moments = 'mv', $L = 1, $m = 1, $n = 1) {
 		$return = array();
 		
 		if (strpos($moments, 'm') !== FALSE) $return['mean'] = ($n*$m)/$L;
