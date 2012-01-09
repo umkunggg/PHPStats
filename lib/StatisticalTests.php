@@ -128,12 +128,12 @@ class StatisticalTests {
 	 * @return float The probability of getting our test statistic or more, the p-value
 	 * @static
 	 */
-	public static function kolmogorovSmirnov(array $observations, ProbabilityDistribution $distribution) {
+	public static function kolmogorovSmirnov(array $observations, $distribution) {
 		$n = count($observations);
 		$d = 0; //Our test statistic
 		sort($observations);
 
-		for ($i = 1; $i <= $observations; $i++) {
+		for ($i = 1; $i <= $n; $i++) {
 			$d = max($d, abs(($i)/$n - $distribution->cdf($observations[$i - 1])), $distribution->cdf($observations[$i - 1]) - ($i - 1)/$n);
 		}
 
