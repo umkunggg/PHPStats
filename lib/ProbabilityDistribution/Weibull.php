@@ -132,7 +132,7 @@ class Weibull extends ProbabilityDistribution {
 	 */
 	public static function getRvs($lambda = 1, $k = 1) {
 		$e = \PHPStats\ProbabilityDistribution\Exponential::getRvs(1);
-		return ($e == 0)? 0 : $lambda * $pow($e, 1/$k);
+		return ($e == 0)? 0 : $lambda * pow($e, 1/$k);
 	}
 	
 	/**
