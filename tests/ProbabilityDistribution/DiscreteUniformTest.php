@@ -24,7 +24,7 @@ class DiscreteUniformTest extends PHPUnit_Framework_TestCase {
 			if ($variate < $max_tested)
 				$observed[$variate]++;
 			else
-				$observed[$max_tested]++
+				$observed[$max_tested]++;
 		}
 		
 		for ($i = 0; $i < $max_tested; $i++) {
