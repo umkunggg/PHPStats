@@ -56,7 +56,6 @@ class Hypergeometric extends ProbabilityDistribution {
 	 * Returns a random float between $minimum and $minimum plus $maximum
 	 * 
 	 * @return float The random variate.
-	 * @todo Untested
 	 */
 	public function rvs() {
 		return self::getRvs($this->L, $this->m, $this->n);
@@ -130,7 +129,6 @@ class Hypergeometric extends ProbabilityDistribution {
 	 * @param int $n The number of draws from the population
 	 * @return float The random variate
 	 * @static
-	 * @todo Untested
 	 */
 	static function getRvs($L = 1, $m = 1, $n = 1) {
 		$successes = 0;

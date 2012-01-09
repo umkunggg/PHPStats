@@ -50,7 +50,6 @@ class Poisson extends ProbabilityDistribution {
 	 * Returns a random float between $minimum and $minimum plus $maximum
 	 * 
 	 * @return float The random variate.
-	 * @todo Untested
 	 */
 	public function rvs() {
 		return self::getRvs($this->lambda);
@@ -122,7 +121,6 @@ class Poisson extends ProbabilityDistribution {
 	 * @param float $lambda The rate of events.
 	 * @return float The random variate.
 	 * @static
-	 * @todo Untested
 	 */
 	static function getRvs($lambda = 1) {
 		//Knuth's algorithm.  TODO: Replace with more efficient algorithm
