@@ -127,7 +127,7 @@ class Rayleigh extends ProbabilityDistribution {
 	 * @return float The random variate
 	 * @static
 	 */
-	static function getRvs($sigma = 1) {
+	public static function getRvs($sigma = 1) {
 		$u = self::randFloat();
 		if ($u == 0) return 0;
 		else return $sigma*sqrt(-2*log($u));
@@ -141,7 +141,7 @@ class Rayleigh extends ProbabilityDistribution {
 	 * @return float The probability
 	 * @static
 	 */
-	static function getPdf($x, $sigma = 1) {
+	public static function getPdf($x, $sigma = 1) {
 		return $x * exp( -pow($x, 2) / (2*pow($sigma, 2)) ) / pow($sigma, 2);
 	}
 	
@@ -153,7 +153,7 @@ class Rayleigh extends ProbabilityDistribution {
 	 * @return float The probability
 	 * @static
 	 */
-	static function getCdf($x, $sigma = 1) {
+	public static function getCdf($x, $sigma = 1) {
 		return 1 - exp( -pow($x, 2)/(2*pow($sigma, 2)) );
 	}
 	
@@ -165,7 +165,7 @@ class Rayleigh extends ProbabilityDistribution {
 	 * @return float The probability
 	 * @static
 	 */
-	static function getSf($x, $sigma = 1) {
+	public static function getSf($x, $sigma = 1) {
 		return 1.0 - self::getCdf($x, $sigma);
 	}
 	
@@ -177,7 +177,7 @@ class Rayleigh extends ProbabilityDistribution {
 	 * @return float The value that gives a cdf of $x
 	 * @static
 	 */
-	static function getPpf($x, $sigma = 1) {
+	public static function getPpf($x, $sigma = 1) {
 		$lambda = self::convertSigmaToLambda($sigma);
 		return \PHPStats\ProbabilityDistribution\Weibull::getPpf($x, $lambda, 2);
 	}
@@ -190,7 +190,7 @@ class Rayleigh extends ProbabilityDistribution {
 	 * @return float The value that gives an sf of $x
 	 * @static
 	 */
-	static function getIsf($x, $sigma = 1) {
+	public static function getIsf($x, $sigma = 1) {
 		return self::getPpf(1.0 - $x, $sigma);
 	}
 	
@@ -202,7 +202,7 @@ class Rayleigh extends ProbabilityDistribution {
 	 * @return type array A dictionary containing the first four moments of the distribution
 	 * @static
 	 */
-	static function getStats($moments = 'mv', $sigma = 1) {
+	public static function getStats($moments = 'mv', $sigma = 1) {
 		$lambda = self::convertSigmaToLambda($sigma);
 		return \PHPStats\ProbabilityDistribution\Weibull::getStats($moments, $lambda, 2);
 	}

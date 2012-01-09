@@ -126,7 +126,7 @@ class Beta extends ProbabilityDistribution {
 	 * @return float The random variate.
 	 * @static
 	 */
-	static function getRvs($alpha = 1, $beta = 1) {
+	public static function getRvs($alpha = 1, $beta = 1) {
 		$x = \PHPStats\ProbabilityDistribution\Gamma::getRvs($alpha, 1);
 		$y = \PHPStats\ProbabilityDistribution\Gamma::getRvs($beta, 1);
 		return $x/($x + $y);
@@ -141,7 +141,7 @@ class Beta extends ProbabilityDistribution {
 	 * @return float The probability
 	 * @static
 	 */
-	static function getPdf($x, $alpha = 1, $beta = 1) {
+	public static function getPdf($x, $alpha = 1, $beta = 1) {
 		if ($x >= 0 && $x <= 1) return pow($x, $alpha - 1)*pow(1 - $x, $beta - 1)/\PHPStats\Stats::beta($alpha, $beta);
 		else return 0.0;
 	}
@@ -155,7 +155,7 @@ class Beta extends ProbabilityDistribution {
 	 * @return float The probability
 	 * @static
 	 */
-	static function getCdf($x, $alpha = 1, $beta = 1) {
+	public static function getCdf($x, $alpha = 1, $beta = 1) {
 		return \PHPStats\Stats::regularizedIncompleteBeta($alpha, $beta, $x);
 	}
 	
@@ -168,7 +168,7 @@ class Beta extends ProbabilityDistribution {
 	 * @return float The probability
 	 * @static
 	 */
-	static function getSf($x, $alpha = 1, $beta = 1) {
+	public static function getSf($x, $alpha = 1, $beta = 1) {
 		return 1.0 - self::getCdf($x, $alpha, $beta);
 	}
 	
@@ -181,7 +181,7 @@ class Beta extends ProbabilityDistribution {
 	 * @return float The value that gives a cdf of $x
 	 * @static
 	 */
-	static function getPpf($x, $alpha = 1, $beta = 1) {
+	public static function getPpf($x, $alpha = 1, $beta = 1) {
 		return \PHPStats\Stats::iregularizedIncompleteBeta($alpha, $beta, $x);
 	}
 	
@@ -194,7 +194,7 @@ class Beta extends ProbabilityDistribution {
 	 * @return float The value that gives an sf of $x
 	 * @static
 	 */
-	static function getIsf($x, $alpha = 1, $beta = 1) {
+	public static function getIsf($x, $alpha = 1, $beta = 1) {
 		return self::getPpf(1.0 - $x, $alpha, $beta);
 	}
 	
@@ -207,7 +207,7 @@ class Beta extends ProbabilityDistribution {
 	 * @return type array A dictionary containing the first four moments of the distribution
 	 * @static
 	 */
-	static function getStats($moments = 'mv', $alpha = 1, $beta = 1) {
+	public static function getStats($moments = 'mv', $alpha = 1, $beta = 1) {
 		$return = array();
 		
 		if (strpos($moments, 'm') !== FALSE) $return['mean'] = $alpha/($beta + $alpha);

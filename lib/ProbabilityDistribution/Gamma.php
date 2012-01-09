@@ -129,7 +129,7 @@ class Gamma extends ProbabilityDistribution {
 	 * @return float The random variate.
 	 * @static
 	 */
-	static function getRvs($k = 1, $theta = 1) {
+	public static function getRvs($k = 1, $theta = 1) {
 		$floork = floor($k);
 		$fractionalk = $k - $floork;
 
@@ -170,7 +170,7 @@ class Gamma extends ProbabilityDistribution {
 	 * @return float The probability
 	 * @static
 	 */
-	static function getPdf($x, $k = 1, $theta = 1) {
+	public static function getPdf($x, $k = 1, $theta = 1) {
 		return pow($x, $k - 1)*exp(-$x/$theta)/(\PHPStats\Stats::gamma($k)*pow($theta, $k));
 	}
 	
@@ -183,7 +183,7 @@ class Gamma extends ProbabilityDistribution {
 	 * @return float The probability
 	 * @static
 	 */
-	static function getCdf($x, $k = 1, $theta = 1) {
+	public static function getCdf($x, $k = 1, $theta = 1) {
 		return \PHPStats\Stats::lowerGamma($k, $x/$theta)/\PHPStats\Stats::gamma($k);
 	}
 	
@@ -196,7 +196,7 @@ class Gamma extends ProbabilityDistribution {
 	 * @return float The probability
 	 * @static
 	 */
-	static function getSf($x, $k = 1, $theta = 1) {
+	public static function getSf($x, $k = 1, $theta = 1) {
 		return 1.0 - self::getCdf($x, $k, $theta);
 	}
 	
@@ -210,7 +210,7 @@ class Gamma extends ProbabilityDistribution {
 	 * @static
 	 * @todo Unimplemented dependencies
 	 */
-	static function getPpf($x, $k = 1, $theta = 1) {
+	public static function getPpf($x, $k = 1, $theta = 1) {
 		return $theta * \PHPStats\Stats::ilowerGamma($k, \PHPStats\Stats::gamma($k) * $x);
 	}
 	
@@ -224,7 +224,7 @@ class Gamma extends ProbabilityDistribution {
 	 * @static
 	 * @todo Unimplemented dependencies
 	 */
-	static function getIsf($x, $k = 1, $theta = 1) {
+	public static function getIsf($x, $k = 1, $theta = 1) {
 		return self::getPpf(1.0 - $x, $k, $theta);
 	}
 	
@@ -237,7 +237,7 @@ class Gamma extends ProbabilityDistribution {
 	 * @return type array A dictionary containing the first four moments of the distribution
 	 * @static
 	 */
-	static function getStats($moments = 'mv', $k = 1, $theta = 1) {
+	public static function getStats($moments = 'mv', $k = 1, $theta = 1) {
 		$return = array();
 		
 		if (strpos($moments, 'm') !== FALSE) $return['mean'] = $k*$theta;

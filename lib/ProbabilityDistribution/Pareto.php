@@ -126,7 +126,7 @@ class Pareto extends ProbabilityDistribution {
 	 * @return float The random variate.
 	 * @static
 	 */
-	static function getRvs($minimum = 1.0, $alpha = 1.0) {
+	public static function getRvs($minimum = 1.0, $alpha = 1.0) {
 		return $minimum/pow(self::randFloat(), 1/$alpha);
 	}
 	
@@ -139,7 +139,7 @@ class Pareto extends ProbabilityDistribution {
 	 * @return float The probability
 	 * @static
 	 */
-	static function getPdf($x, $minimum = 1.0, $alpha = 1.0) {
+	public static function getPdf($x, $minimum = 1.0, $alpha = 1.0) {
 		if ($x >= $minimum) return $alpha * pow($minimum, $alpha)/ pow($x, $alpha + 1);
 		else return 0.0;
 	}
@@ -153,7 +153,7 @@ class Pareto extends ProbabilityDistribution {
 	 * @return float The probability
 	 * @static
 	 */
-	static function getCdf($x, $minimum = 1.0, $alpha = 1.0) {
+	public static function getCdf($x, $minimum = 1.0, $alpha = 1.0) {
 		if ($x >= $minimum) return 1 - pow($minimum/$x, $alpha);
 		else return 0.0;
 	}
@@ -167,7 +167,7 @@ class Pareto extends ProbabilityDistribution {
 	 * @return float The probability
 	 * @static
 	 */
-	static function getSf($x, $minimum = 1.0, $alpha = 1.0) {
+	public static function getSf($x, $minimum = 1.0, $alpha = 1.0) {
 		return 1.0 - self::getCdf($x, $minimum, $alpha);
 	}
 	
@@ -180,7 +180,7 @@ class Pareto extends ProbabilityDistribution {
 	 * @return float The value that gives a cdf of $x
 	 * @static
 	 */
-	static function getPpf($x, $minimum = 1.0, $alpha = 1.0) {
+	public static function getPpf($x, $minimum = 1.0, $alpha = 1.0) {
 		return $minimum / pow(1 - $x, 1 / $alpha);
 	}
 	
@@ -193,7 +193,7 @@ class Pareto extends ProbabilityDistribution {
 	 * @return float The value that gives an sf of $x
 	 * @static
 	 */
-	static function getIsf($x, $minimum = 1.0, $alpha = 1.0) {
+	public static function getIsf($x, $minimum = 1.0, $alpha = 1.0) {
 		return self::getPpf(1.0 - $x, $minimum, $alpha);
 	}
 	
@@ -206,7 +206,7 @@ class Pareto extends ProbabilityDistribution {
 	 * @return type array A dictionary containing the first four moments of the distribution
 	 * @static
 	 */
-	static function getStats($moments = 'mv', $minimum = 1.0, $alpha = 1.0) {
+	public static function getStats($moments = 'mv', $minimum = 1.0, $alpha = 1.0) {
 		$return = array();
 		
 		if (strpos($moments, 'm') !== FALSE) {

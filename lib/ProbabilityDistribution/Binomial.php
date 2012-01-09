@@ -68,6 +68,18 @@ class Binomial extends ProbabilityDistribution {
 	}
 	
 	/**
+	 * Probability Distribution function
+	 * 
+	 * Alias for pmf
+	 * 
+	 * @param float $x The test value
+	 * @return float The probability
+	 */
+	public function pdf($x) {
+		return self::pmf($x);
+	}
+	
+	/**
 	 * Returns the cumulative distribution function, the probability of getting the test value or something below it
 	 * 
 	 * @param float $x The test value
@@ -146,6 +158,20 @@ class Binomial extends ProbabilityDistribution {
 	 */
 	public static function getPmf($x, $p = 0.5, $n = 1) {
 		return \PHPStats\Stats::combinations($n, $x)*pow($p, $x)*pow(1 - $p, $n - $x);
+	}
+	
+	/**
+	 * Probability Distribution function
+	 * 
+	 * Alias for getPmf
+	 * 
+	 * @param float $x The test value
+	 * @param float $lambda The rate of events
+	 * @return float The probability
+	 * @static
+	 */
+	public static function getPdf($x, $p = 0.5, $n = 1) {
+		return self::getPmf($x, $p, $n);
 	}
 	
 	/**
