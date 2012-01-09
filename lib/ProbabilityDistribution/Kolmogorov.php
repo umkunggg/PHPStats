@@ -49,7 +49,6 @@ class Kolmogorov extends ProbabilityDistribution {
 	 * Returns a random variate of $n trials
 	 * 
 	 * @return float The random variate.
-	 * @todo Untested
 	 */
 	public function rvs() {
 		return self::getRvs($this->n);
@@ -121,7 +120,6 @@ class Kolmogorov extends ProbabilityDistribution {
 	 * @param int $n The number of trials.
 	 * @return float The random variate.
 	 * @static
-	 * @todo Untested
 	 */
 	public static function getRvs($n = 1) {
 		$successes = 0;
