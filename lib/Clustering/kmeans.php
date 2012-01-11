@@ -63,7 +63,33 @@ class kmeans {
 		}
 	}
 	
-	//Need getter functions, still
+	/**
+	 * Get Observations function
+	 * 
+	 * Returns an array of arrays.  Each inner array is an associative array
+	 * of the 1 x n observation matrix and an integer representing the cluster
+	 * to which that observation has been assigned.
+	 * 
+	 * $inner_array['coordinates'] The observation matrix
+	 * $inner_array['centroid'] The assigned cluster
+	 * 
+	 * @return array An array of arrays that holds all observations.
+	 */
+	public function getObservations() {
+		return $this->observations;
+	}
+	
+	/**
+	 * Get Centroids function
+	 * 
+	 * Returns an array of 1 x n matrices representing the centroids of the
+	 * clustering.  The array index is the cluster number.
+	 * 
+	 * @return array The array of 1 x n matrices
+	 */
+	public function getCentroids() {
+		return $this->centroids;
+	}
 	
 	//Assigns observations to the nearest centroid
 	private function assign() {
