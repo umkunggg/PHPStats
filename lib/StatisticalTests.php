@@ -137,6 +137,28 @@ class StatisticalTests {
 			$d = max($d, abs(($i)/$n - $distribution->cdf($observations[$i - 1])), $distribution->cdf($observations[$i - 1]) - ($i - 1)/$n);
 		}
 
-		return \PHPStats\ProbabilityDistribution\Kolmogorov::getSf($d, $n);
+		return 1 - self::kolmogorov(sqrt($n) * $d);
+	}
+
+	//Kolmogorov CDF Error<.0000001
+	private static function kolmogorov($z) {
+		//Republished with permission from Prof. Tom Ferguson of UCLA, originally found at:
+		//http://www.math.ucla.edu/~tom/distributions/Kolmogorov.html
+		if ($z < 0.27) {
+			return 0;
+		}
+		else if ($z > 3.2) {
+			return 1;
+		}
+		else {
+			$ks = 0;
+			$y = -2 * $z * $z;
+			
+			for($i = 27; $i >= 1; $i -= 2) {
+				$ks = exp($i * $y) * (1 - $ks);
+			}
+			
+			return 1 - 2 * $ks;
+		}
 	}
 }
