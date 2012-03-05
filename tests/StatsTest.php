@@ -116,6 +116,7 @@ class StatsTest extends PHPUnit_Framework_TestCase {
 	}
 
 	public function test_ierf() {
+		$this->assertEquals(-1, round(Stats::ierf(-25)));
 		$this->assertEquals(0.4769296, round(Stats::ierf(0.5), 7));
 		$this->assertEquals(0.2724627, round(Stats::ierf(0.3), 7));
 		$this->assertEquals(0.7321501, round(Stats::ierf(0.7), 7));
