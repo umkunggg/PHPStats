@@ -13,10 +13,15 @@ class HypergeometricTest extends PHPUnit_Framework_TestCase {
 	}
 
 	public function test_rvs() {
-		$variates = 1000;
+		$variates = 10000;
 		$max_tested = 5;
 		$expected = array();
 		$observed = array();
+
+		for ($i = 0; $i <= $max_tested; $i++) {
+			$expected[] = 0;
+			$observed[] = 0;
+		}
 		
 		for ($i = 0; $i < $variates; $i++) {
 			$variate = $this->testObject->rvs();
@@ -32,7 +37,8 @@ class HypergeometricTest extends PHPUnit_Framework_TestCase {
 		}
 		$expected[$max_tested] = $variates * $this->testObject->sf($max_tested - 1);
 		
-		$this->assertLessThan(0.01, \PHPStats\statisticalTests::chiSquareTest($observed, $expected, $max_tested));
+		$this->assertGreaterThanOrEqual(0.01, \PHPStats\statisticalTests::chiSquareTest($observed, $expected, $max_tested - 1));
+		$this->assertLessThanOrEqual(0.99, \PHPStats\statisticalTests::chiSquareTest($observed, $expected, $max_tested - 1));
 	}
 
 	public function test_pmf() {

@@ -135,8 +135,7 @@ class Poisson extends ProbabilityDistribution {
 	 * @static
 	 */
 	public static function getRvs($lambda = 1) {
-		//Knuth's algorithm.  TODO: Replace with more efficient algorithm
-		$l = exp(-$lamda);
+		$l = exp(-$lambda);
 		$k = 0;
 		$p = 1;
 

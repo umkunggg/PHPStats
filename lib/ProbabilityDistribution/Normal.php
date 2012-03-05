@@ -128,7 +128,7 @@ class Normal extends ProbabilityDistribution {
 	public static function getRvs($mu = 0.0, $variance = 1.0) {
 		$u = self::randFloat();
 		$v = self::randFloat();
-		return sqrt(-2*log($u))*cos(2*M_PI*$v);
+		return $mu + sqrt($variance) * sqrt(-2 * log($u)) * cos(2 * M_PI * $v);
 	}
 	
 	/**

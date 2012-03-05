@@ -15,8 +15,9 @@ class ParetoTest extends PHPUnit_Framework_TestCase {
 
 	public function test_rvs() {
 		$variates = array();
-		for ($i = 0; $i < 1000; $i++) $variates[] = $this->testObject->rvs();
-		$this->assertLessThanOrEqual(0.01, \PHPStats\StatisticalTests::kolmogorovSmirnov($variates, $this->testObject));
+		for ($i = 0; $i < 10000; $i++) $variates[] = $this->testObject->rvs();
+		$this->assertGreaterThanOrEqual(0.01, \PHPStats\StatisticalTests::kolmogorovSmirnov($variates, $this->testObject));
+		$this->assertLessThanOrEqual(0.99, \PHPStats\StatisticalTests::kolmogorovSmirnov($variates, $this->testObject));
 	}
 
 	public function test_pdf() {

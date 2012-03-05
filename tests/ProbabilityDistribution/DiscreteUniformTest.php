@@ -13,12 +13,17 @@ class DiscreteUniformTest extends PHPUnit_Framework_TestCase {
 	}
 
 	public function test_rvs() {
-		$variates = 1000;
+		$variates = 10000;
 		$max_tested = 10;
 		$expected = array();
 		$observed = array();
+
+		for ($i = 0; $i <= $max_tested; $i++) {
+			$expected[] = 0;
+			$observed[] = 0;
+		}
 		
-		for ($i = 0; $i < $variates; $i++) {
+		for ($i = 1; $i < $variates; $i++) {
 			$variate = $this->testObject->rvs();
 			
 			if ($variate < $max_tested)
@@ -27,12 +32,13 @@ class DiscreteUniformTest extends PHPUnit_Framework_TestCase {
 				$observed[$max_tested]++;
 		}
 		
-		for ($i = 0; $i < $max_tested; $i++) {
+		for ($i = 1; $i < $max_tested; $i++) {
 			$expected[$i] = $variates * $this->testObject->pmf($i);
 		}
 		$expected[$max_tested] = $variates * $this->testObject->sf($max_tested - 1);
 		
-		$this->assertLessThan(0.01, \PHPStats\statisticalTests::chiSquareTest($observed, $expected, $max_tested));
+		$this->assertGreaterThanOrEqual(0.01, \PHPStats\statisticalTests::chiSquareTest($observed, $expected, $max_tested - 1));
+		$this->assertLessThanOrEqual(0.99, \PHPStats\statisticalTests::chiSquareTest($observed, $expected, $max_tested - 1));
 	}
 
 	public function test_pmf() {

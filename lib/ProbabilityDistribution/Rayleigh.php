@@ -121,16 +121,18 @@ class Rayleigh extends ProbabilityDistribution {
 	}
 	
 	/**
-	 * Returns a random float between $sigma and $sigma plus $k
+	 * Returns a Rayleigh-distributed random variable
 	 * 
 	 * @param float $sigma The scale parameter
 	 * @return float The random variate
 	 * @static
 	 */
 	public static function getRvs($sigma = 1) {
-		$u = self::randFloat();
-		if ($u == 0) return 0;
-		else return $sigma*sqrt(-2*log($u));
+		{
+			$u = self::randFloat();
+		} while ($u == 0)
+
+		return $sigma*sqrt(-2*log($u));
 	}
 	
 	/**

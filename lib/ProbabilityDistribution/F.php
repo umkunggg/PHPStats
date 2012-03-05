@@ -128,7 +128,7 @@ class F extends ProbabilityDistribution {
 	public static function getRvs($d1 = 1, $d2 = 1) {
 		$x = \PHPStats\ProbabilityDistribution\ChiSquare::getRvs($d1);
 		$y = \PHPStats\ProbabilityDistribution\ChiSquare::getRvs($d2);
-		return ($x / $df1) / ($y / $df2);
+		return ($x / $d1) / ($y / $d2);
 	}
 	
 	/**

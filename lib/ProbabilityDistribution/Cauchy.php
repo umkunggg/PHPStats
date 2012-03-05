@@ -127,7 +127,7 @@ class Cauchy extends ProbabilityDistribution {
 	public static function getRvs($mu = 0.0, $gamma = 1.0) {
 		$u = \PHPStats\ProbabilityDistribution\Normal::getRvs(0, 1);
 		$v = \PHPStats\ProbabilityDistribution\Normal::getRvs(0, 1);
-		return $u/$v;
+		return $gamma * ($u/$v) + $mu;
 	}
 	
 	/**
