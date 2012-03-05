@@ -128,9 +128,10 @@ class Rayleigh extends ProbabilityDistribution {
 	 * @static
 	 */
 	public static function getRvs($sigma = 1) {
-		{
+		$u = 0;
+		while ($u == 0) {
 			$u = self::randFloat();
-		} while ($u == 0)
+		}
 
 		return $sigma*sqrt(-2*log($u));
 	}
