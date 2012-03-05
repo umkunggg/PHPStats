@@ -284,6 +284,8 @@ class Stats {
 	 * @static
 	 */
 	public static function erf($x) {
+		if ($x < 0) return -self::erf(-$x);
+
 		$t = 1 / (1 + 0.3275911 * $x);
 		return 1 - (0.254829592*$t - 0.284496736*pow($t, 2) + 1.421413741*pow($t, 3) + -1.453152027*pow($t, 4) + 1.061405429*pow($t, 5))*exp(-pow($x, 2));
 	}
