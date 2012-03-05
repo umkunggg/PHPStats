@@ -110,8 +110,13 @@ class StatisticalTests {
 	 */
 	public static function chiSquareTest(array $observations, array $expected, $df) {
 		$sum = 0;
+
 		$pairsTested = min(count($observations), count($observations));
 		for ($i = 0; $i < $pairsTested; $i++) {
+			if ($expected[$i] == 0) {
+				continue;
+			}
+
 			$sum += pow($observations[$i] - $expected[$i], 2)/$expected[$i];
 		}
 		return \PHPStats\ProbabilityDistribution\ChiSquare::getSf($sum, $df);
@@ -137,22 +142,31 @@ class StatisticalTests {
 			$d = max($d, abs(($i)/$n - $distribution->cdf($observations[$i - 1])), $distribution->cdf($observations[$i - 1]) - ($i - 1)/$n);
 		}
 
-		return 1 - self::kolmogorov(sqrt($n) * $d);
+		return 1 - self::kolmogorovCDF(sqrt($n) * $d);
 	}
 
-	//Kolmogorov CDF Error<.0000001
-	private static function kolmogorov($z) {
+	/**
+	 * Kolmogorov CDF
+	 * 
+	 * Tests whether a collection of random variates conform to the given
+	 * distribution. Error<.0000001
+	 * 
+	 * @param float $x The K test statistic
+	 * @return float The probability of getting our test statistic or less
+	 * @static
+	 */
+	public static function kolmogorovCDF($x) {
 		//Republished with permission from Prof. Tom Ferguson of UCLA, originally found at:
 		//http://www.math.ucla.edu/~tom/distributions/Kolmogorov.html
-		if ($z < 0.27) {
+		if ($x < 0.27) {
 			return 0;
 		}
-		else if ($z > 3.2) {
+		else if ($x > 3.2) {
 			return 1;
 		}
 		else {
 			$ks = 0;
-			$y = -2 * $z * $z;
+			$y = -2 * $x * $x;
 			
 			for($i = 27; $i >= 1; $i -= 2) {
 				$ks = exp($i * $y) * (1 - $ks);
