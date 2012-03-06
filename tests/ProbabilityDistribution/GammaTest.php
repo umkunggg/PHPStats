@@ -35,7 +35,7 @@ class GammaTest extends PHPUnit_Framework_TestCase {
 		$this->assertEquals(0.1, round($this->testObject->sf(71.03), 5));
 	}
 
-	/*public function test_ppf() {
+	public function test_ppf() {
 		$this->assertEquals(48.3436, round($this->testObject->ppf(0.5), 4));
 		$this->assertEquals(71.03, round($this->testObject->ppf(0.9), 2));
 	}
@@ -43,7 +43,7 @@ class GammaTest extends PHPUnit_Framework_TestCase {
 	public function test_isf() {
 		$this->assertEquals(48.3436, round($this->testObject->isf(0.5), 5));
 		$this->assertEquals(71.03, round($this->testObject->isf(0.1), 5));
-	}*/
+	}
 
 	public function test_stats() {
 		$summaryStats = $this->testObject->stats('mvsk');

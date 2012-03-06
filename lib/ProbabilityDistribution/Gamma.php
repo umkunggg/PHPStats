@@ -213,7 +213,6 @@ class Gamma extends ProbabilityDistribution {
 	 * @param float $theta Scale parameter
 	 * @return float The value that gives a cdf of $x
 	 * @static
-	 * @todo Unimplemented dependencies
 	 */
 	public static function getPpf($x, $k = 1, $theta = 1) {
 		return $theta * \PHPStats\Stats::ilowerGamma($k, \PHPStats\Stats::gamma($k) * $x);
@@ -227,7 +226,6 @@ class Gamma extends ProbabilityDistribution {
 	 * @param float $theta Scale parameter
 	 * @return float The value that gives an sf of $x
 	 * @static
-	 * @todo Unimplemented dependencies
 	 */
 	public static function getIsf($x, $k = 1, $theta = 1) {
 		return self::getPpf(1.0 - $x, $k, $theta);
