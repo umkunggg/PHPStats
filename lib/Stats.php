@@ -477,16 +477,45 @@ class Stats {
 	 * @static
 	 */
 	public static function lowerGamma($s, $x) {
-		//Special thanks to http://www.reddit.com/user/harlows_monkeys for this algorithm.
-		if ($x == 0) return 0;
-		$t = exp($s*log($x)) / $s;
-		$v = $t;
-		for ($k = 1; $k < 150; ++$k) {
-			$t = -$t * $x * ($s + $k - 1) / (($s + $k) * $k);
-			$v += $t;
-			if (abs($t) < 0.00000000001) break;
+		//Adapted from jStat
+		$aln = self::gammaln($s);
+		$afn = self::gamma($s);
+		$ap = $s;
+		$sum = 1 / $s;
+		$del = $sum;
+
+		$afix = ($s >= 1 )?$s:1 / $s;
+		$ITMAX = floor(log($afix) * 8.5 + $s * 0.4 + 17);
+
+		if ($x < 0 || $s <= 0 ) {
+			return NaN;
 		}
-		return $v;
+		elseif ($x < $s + 1 ) {
+			for ($i = 1; $i <= $ITMAX; $i++) {
+				$sum += $del *= $x / ++$ap;
+			}
+
+			$endval = $sum * exp(-$x + $s * log($x) - ($aln));
+		}
+		else {
+			$b = $x + 1 - $s;
+			$c = 1 / 1.0e-30;
+			$d = 1 / $b;
+			$h = $d;
+
+			for ($i = 1; $i <= $ITMAX; $i++) {
+				$an = -$i * ($i - $s);
+				$b += 2;
+				$d = $an * $d + $b;
+				$c = $b + $an / $c;
+				$d = 1 / $d;
+				$h *= $d * $c;
+			}
+
+			$endval = 1 - $h * exp(-$x + $s * log($x) - ($aln));
+		}
+
+		return $endval * $afn;
 	}
 	
 	/**
