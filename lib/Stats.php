@@ -488,7 +488,7 @@ class Stats {
 		$ITMAX = floor(log($afix) * 8.5 + $s * 0.4 + 17);
 
 		if ($x < 0 || $s <= 0 ) {
-			return NaN;
+			return NAN;
 		}
 		elseif ($x < $s + 1 ) {
 			for ($i = 1; $i <= $ITMAX; $i++) {
@@ -530,7 +530,21 @@ class Stats {
 	 * @todo Implement this
 	 */
 	public static function ilowerGamma($s, $x) {
-		return 0;
+		$precision = 8;
+		$guess = array(0, 20);
+		$IT_MAX = 1000;
+		$i = 1;
+
+		while (round($guess[$i], $precision) != round($guess[$i - 1], $precision) && $i < $IT_MAX) {
+			$f = self::lowerGamma($s, $guess[$i]);
+			$f2 = self::lowerGamma($s, $guess[$i - 1]);
+			$fp = ($f - $f2) / ($guess[$i] - $guess[$i - 1]);
+
+			$guess[] = $guess[$i - 1] - $f / $fp;
+			$i++;
+		}
+
+		return $guess[$i - 1];
 	}
 	
 	/**

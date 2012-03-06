@@ -180,7 +180,7 @@ class StatsTest extends PHPUnit_Framework_TestCase {
 		$this->assertEquals(30454.34729, round(Stats::lowerGamma(10, 6), 5));
 	}
 	
-	/*public function test_ilowerGamma() {
+	public function test_ilowerGamma() {
 		$this->assertEquals(1, round(Stats::ilowerGamma(3, 0.16060), 5));
 		$this->assertEquals(2, round(Stats::ilowerGamma(3, 0.64665), 5));
 		$this->assertEquals(2.5, round(Stats::ilowerGamma(3, 0.91237), 5));
@@ -188,7 +188,7 @@ class StatsTest extends PHPUnit_Framework_TestCase {
 		$this->assertEquals(4, round(Stats::ilowerGamma(10, 2951.02827), 5));
 		$this->assertEquals(5, round(Stats::ilowerGamma(10, 11549.76544), 5));
 		$this->assertEquals(6, round(Stats::ilowerGamma(10, 30454.34729), 5));
-	}*/
+	}
 	
 	public function test_upperGamma() {
 		$this->assertEquals(1.83940, round(Stats::upperGamma(3, 1), 5));
