@@ -18,7 +18,16 @@ for the latest code or download the
 Installing PHPStats is easy.  Just copy the PHPStats.phar file into the
 folder where you keep your libraries and include the file in your scripts.
 At this point, you can just start using the classes directly; the classes
-will autoload when needed.
+will autoload when needed.  As an example:
+include('PHPStats.phar');
+
+To use a class, remember to properly call the namespace that it's in.  For
+example, to create a new instance of the Beta distribution, call it like this:
+$beta = new \PHPStats\ProbabilityDistribution\Beta(6,20);
+
+If performance is a concern, files can be pre-emptively loaded, rather than
+waiting for the autoload functionality.  To pre-load the Beta class file, call:
+include('phar://PHPStats/ProbabilityDistribution/Beta.php');
 
 **Dependencies**
 PHPStats is written to work with PHP 5.3 and greater, as it makes heavy use
