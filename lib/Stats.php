@@ -527,7 +527,6 @@ class Stats {
 	 * @param float $x Result of the lower gamma function.
 	 * @return float The argument to the lower gamma function that would return $x
 	 * @static
-	 * @todo Implement this
 	 */
 	public static function ilowerGamma($s, $x) {
 		$precision = 8;
