@@ -52,7 +52,6 @@ class Binomial extends ProbabilityDistribution {
 	 * Returns a random variate of $n trials at $p probability each
 	 * 
 	 * @return float The random variate.
-	 * @todo Untested
 	 */
 	public function rvs() {
 		return self::getRvs($this->p, $this->n);
@@ -137,7 +136,6 @@ class Binomial extends ProbabilityDistribution {
 	 * @param int $n The number of trials.
 	 * @return float The random variate.
 	 * @static
-	 * @todo Untested
 	 */
 	public static function getRvs($p = 0.5, $n = 1) {
 		$successes = 0;

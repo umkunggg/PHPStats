@@ -49,7 +49,6 @@ class Exponential extends ProbabilityDistribution {
 	 * Returns a random float
 	 * 
 	 * @return float The random variate.
-	 * @todo Untested
 	 */
 	public function rvs() {
 		return self::getRvs($this->lambda);
@@ -121,7 +120,6 @@ class Exponential extends ProbabilityDistribution {
 	 * @param float $lambda Scale parameter
 	 * @return float The random variate.
 	 * @static
-	 * @todo Untested
 	 */
 	public static function getRvs($lambda = 1) {
 		return -log(self::randFloat())/$lambda;

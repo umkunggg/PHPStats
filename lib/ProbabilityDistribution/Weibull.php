@@ -55,7 +55,6 @@ class Weibull extends ProbabilityDistribution {
 	 * Returns a random float between $lambda and $lambda plus $k
 	 * 
 	 * @return float The random variate.
-	 * @todo Untested
 	 */
 	public function rvs() {
 		return self::getRvs($this->lambda, $this->k);
@@ -128,7 +127,6 @@ class Weibull extends ProbabilityDistribution {
 	 * @param float $k The shape parameter. Default 1.0
 	 * @return float The random variate.
 	 * @static
-	 * @todo Untested
 	 */
 	public static function getRvs($lambda = 1, $k = 1) {
 		$e = \PHPStats\ProbabilityDistribution\Exponential::getRvs(1);

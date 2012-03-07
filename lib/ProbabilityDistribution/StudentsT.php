@@ -122,10 +122,11 @@ class StudentsT extends ProbabilityDistribution {
 	 * @param float $df The degrees of freedeom.  Default 1
 	 * @return float The random variate.
 	 * @static
-	 * @todo Unimplemented
 	 */
 	public static function getRvs($df = 1) {
-		return 0; //TODO: Student's T rvs
+		$Z = \PHPStats\ProbabilityDistribution\Normal::getRvs(0, 1);
+		$V = \PHPStats\ProbabilityDistribution\ChiSquare::getRvs($df);
+		return $Z / sqrt($V/$df);
 	}
 	
 	/**

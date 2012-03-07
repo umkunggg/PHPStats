@@ -53,7 +53,6 @@ class Beta extends ProbabilityDistribution {
 	 * Returns a random float between $alpha and $alpha plus $beta
 	 *
 	 * @return float The random variate.
-	 * @todo Untested
 	 */
 	public function rvs() {
 		return self::getRvs($this->alpha, $this->beta);
@@ -126,7 +125,6 @@ class Beta extends ProbabilityDistribution {
 	 * @param float $beta The maximum parameter. Default 1.0
 	 * @return float The random variate.
 	 * @static
-	 * @todo Untested
 	 */
 	public static function getRvs($alpha = 1, $beta = 1) {
 		$x = \PHPStats\ProbabilityDistribution\Gamma::getRvs($alpha, 1);

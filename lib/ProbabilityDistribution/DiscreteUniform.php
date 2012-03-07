@@ -52,7 +52,6 @@ class DiscreteUniform extends ProbabilityDistribution {
 	 * Returns a random float between $minimum and $minimum plus $maximum
 	 * 
 	 * @return float The random variate.
-	 * @todo Untested
 	 */
 	public function rvs() {
 		return self::getRvs($this->minimum, $this->maximum);
@@ -137,7 +136,6 @@ class DiscreteUniform extends ProbabilityDistribution {
 	 * @param float $maximum The maximum parameter.
 	 * @return float The random variate.
 	 * @static
-	 * @todo Untested
 	 */
 	public static function getRvs($minimum = 0, $maximum = 1) {
 		return mt_rand($minimum, $maximum);

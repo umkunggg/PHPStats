@@ -52,7 +52,6 @@ class Normal extends ProbabilityDistribution {
 	 * Returns a random float between $mu and $mu plus $variance
 	 * 
 	 * @return float The random variate.
-	 * @todo Untested
 	 */
 	public function rvs() {
 		return self::getRvs($this->mu, $this->variance);
@@ -125,12 +124,11 @@ class Normal extends ProbabilityDistribution {
 	 * @param float $variance The scale parameter. Default 1.0
 	 * @return float The random variate.
 	 * @static
-	 * @todo Untested
 	 */
 	public static function getRvs($mu = 0.0, $variance = 1.0) {
 		$u = self::randFloat();
 		$v = self::randFloat();
-		return sqrt(-2*log($u))*cos(2*M_PI*$v);
+		return $mu + sqrt($variance) * sqrt(-2 * log($u)) * cos(2 * M_PI * $v);
 	}
 	
 	/**

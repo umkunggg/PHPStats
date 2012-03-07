@@ -49,7 +49,6 @@ class ChiSquare extends ProbabilityDistribution {
 	 * Returns a random float
 	 * 
 	 * @return float The random variate.
-	 * @todo Untested
 	 */
 	public function rvs() {
 		return self::getRvs($this->k);
@@ -123,7 +122,6 @@ class ChiSquare extends ProbabilityDistribution {
 	 * @param float $k Shape parameter
 	 * @return float The random variate.
 	 * @static
-	 * @todo Untested
 	 */
 	public static function getRvs($k = 1) {
 		$k /= 2;
@@ -135,25 +133,30 @@ class ChiSquare extends ProbabilityDistribution {
 			$sumLogUniform += log(self::randFloat());
 		}
 
-		$m = 0;
-		$xi = 0;
-		$V = array(0);
-		do {
-			$m++;
+		if ($fractionalk > 0) {
+			$m = 0;
+			$xi = 0;
+			$V = array(0);
+			do {
+				$m++;
 
-			$V[] = self::randFloat();
-			$V[] = self::randFloat();
-			$V[] = self::randFloat();
+				$V[] = self::randFloat();
+				$V[] = self::randFloat();
+				$V[] = self::randFloat();
 
-			if ($V[3*$m - 2] <= M_E/(M_E + $fractionalk)) {
-				$xi = pow($V[3*$m - 1], 1/$fractionalk);
-				$eta = $V[3*$m]*pow($xi, $fractionalk - 1);
-			}
-			else {
-				$xi = 1 - log($V[3*$m - 1]);
-				$eta = $V[3*$m]*exp(-$xi);
-			}
-		} while($eta > pow($xi, $fractionalk - 1)*exp(-$xi));
+				if ($V[3*$m - 2] <= M_E/(M_E + $fractionalk)) {
+					$xi = pow($V[3*$m - 1], 1/$fractionalk);
+					$eta = $V[3*$m]*pow($xi, $fractionalk - 1);
+				}
+				else {
+					$xi = 1 - log($V[3*$m - 1]);
+					$eta = $V[3*$m]*exp(-$xi);
+				}
+			} while($eta > pow($xi, $fractionalk - 1)*exp(-$xi));
+		}
+		else {
+			$xi = 0;
+		}
 
 		return 2*($xi - $sumLogUniform);
 	}

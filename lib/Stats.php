@@ -284,6 +284,8 @@ class Stats {
 	 * @static
 	 */
 	public static function erf($x) {
+		if ($x < 0) return -self::erf(-$x);
+
 		$t = 1 / (1 + 0.3275911 * $x);
 		return 1 - (0.254829592*$t - 0.284496736*pow($t, 2) + 1.421413741*pow($t, 3) + -1.453152027*pow($t, 4) + 1.061405429*pow($t, 5))*exp(-pow($x, 2));
 	}
@@ -475,16 +477,45 @@ class Stats {
 	 * @static
 	 */
 	public static function lowerGamma($s, $x) {
-		//Special thanks to http://www.reddit.com/user/harlows_monkeys for this algorithm.
-		if ($x == 0) return 0;
-		$t = exp($s*log($x)) / $s;
-		$v = $t;
-		for ($k = 1; $k < 150; ++$k) {
-			$t = -$t * $x * ($s + $k - 1) / (($s + $k) * $k);
-			$v += $t;
-			if (abs($t) < 0.00000000001) break;
+		//Adapted from jStat
+		$aln = self::gammaln($s);
+		$afn = self::gamma($s);
+		$ap = $s;
+		$sum = 1 / $s;
+		$del = $sum;
+
+		$afix = ($s >= 1 )?$s:1 / $s;
+		$ITMAX = floor(log($afix) * 8.5 + $s * 0.4 + 17);
+
+		if ($x < 0 || $s <= 0 ) {
+			return NAN;
 		}
-		return $v;
+		elseif ($x < $s + 1 ) {
+			for ($i = 1; $i <= $ITMAX; $i++) {
+				$sum += $del *= $x / ++$ap;
+			}
+
+			$endval = $sum * exp(-$x + $s * log($x) - ($aln));
+		}
+		else {
+			$b = $x + 1 - $s;
+			$c = 1 / 1.0e-30;
+			$d = 1 / $b;
+			$h = $d;
+
+			for ($i = 1; $i <= $ITMAX; $i++) {
+				$an = -$i * ($i - $s);
+				$b += 2;
+				$d = $an * $d + $b;
+				$c = $b + $an / $c;
+				$d = 1 / $d;
+				$h *= $d * $c;
+			}
+
+			$endval = 1 - $h * exp(-$x + $s * log($x) - ($aln));
+		}
+
+		return $endval * $afn;
 	}
 	
 	/**
@@ -496,10 +527,23 @@ class Stats {
 	 * @param float $x Result of the lower gamma function.
 	 * @return float The argument to the lower gamma function that would return $x
 	 * @static
-	 * @todo Implement this
 	 */
 	public static function ilowerGamma($s, $x) {
-		return 0;
+		$precision = 8;
+		$guess = array(0, 20);
+		$IT_MAX = 1000;
+		$i = 1;
+
+		while (round($guess[$i], $precision) != round($guess[$i - 1], $precision) && $i < $IT_MAX) {
+			$f = self::lowerGamma($s, $guess[$i]);
+			$f2 = self::lowerGamma($s, $guess[$i - 1]);
+			$fp = ($f - $f2) / ($guess[$i] - $guess[$i - 1]);
+
+			$guess[] = $guess[$i - 1] - $f / $fp;
+			$i++;
+		}
+
+		return $guess[$i - 1];
 	}
 	
 	/**

@@ -53,7 +53,6 @@ class Pareto extends ProbabilityDistribution {
 	 * Returns a random float between $minimum and $minimum plus $alpha
 	 * 
 	 * @return float The random variate.
-	 * @todo Untested
 	 */
 	public function rvs() {
 		return self::getRvs($this->minimum, $this->alpha);
@@ -126,7 +125,6 @@ class Pareto extends ProbabilityDistribution {
 	 * @param float $alpha The shape parameter. Default 1.0
 	 * @return float The random variate.
 	 * @static
-	 * @todo Untested
 	 */
 	public static function getRvs($minimum = 1.0, $alpha = 1.0) {
 		return $minimum/pow(self::randFloat(), 1/$alpha);
