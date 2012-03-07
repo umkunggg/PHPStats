@@ -31,9 +31,11 @@ include('phar://PHPStats/ProbabilityDistribution/Beta.php');
 
 **Dependencies**
 PHPStats is written to work with PHP 5.3 and greater, as it makes heavy use
-of features introduced in PHP 5.3.  While this does exclude a number of
-older installations of PHP, the library is still under development and will
-not be properly complete until PHP 5.3 has been out for a while.
+of features introduced in PHP 5.3.  No other run-time dependencies exist.
+
+Build dependencies include both Phing and PHPUnit.  When attempting to build
+this library, beware that the tests for the random variate functions are
+probabalistic in nature and will fail on occasion.
 
 **License**
 PHPStats is released under the LGPL version 3 or later.  For more details,
