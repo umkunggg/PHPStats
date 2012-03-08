@@ -21,8 +21,8 @@ class LogNormalTest extends PHPUnit_Framework_TestCase {
 	}
 
 	public function test_pdf() {
-		$this->assertEquals(0.02635, round($this->testObject->pdf(2), 5));
-		$this->assertEquals(0.01354, round($this->testObject->pdf(7), 5));
+		$this->assertEquals(0.04076, round($this->testObject->pdf(2), 5));
+		$this->assertEquals(0.02968, round($this->testObject->pdf(7), 5));
 	}
 
 	public function test_cdf() {
