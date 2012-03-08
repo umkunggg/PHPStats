@@ -154,7 +154,7 @@ class LogNormal extends ProbabilityDistribution {
 	 * @static
 	 */
 	public static function getCdf($x, $mu = 0.0, $variance = 1.0) {
-		return (0.5 + \PHPStats\Stats::erf((log($x) - $mu)/sqrt(2*$variance)))/2;
+		return 0.5 + \PHPStats\Stats::erf((log($x) - $mu)/sqrt(2*$variance))/2;
 	}
 	
 	/**
