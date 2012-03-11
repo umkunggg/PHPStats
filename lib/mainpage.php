@@ -49,6 +49,7 @@
  * 
  * @section changelog Change Log
  * 
+ * 
  * v0.3
  * 
  * Added LogNormal distribution
@@ -61,15 +62,20 @@
  * 
  * Many bugfixes
  * 
+ * 
  * v0.2
  * 
  * Added a Matrix class for Linear Algebra
+ * 
  * Added the Rayleigh Distribution
+ * 
  * 
  * v0.1.1
  * 
  * Added the Cauchy Distribution
+ * 
  * Assorted bug fixes
+ * 
  * 
  * v0.1
  * 
