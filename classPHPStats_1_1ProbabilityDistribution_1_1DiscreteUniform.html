@@ -91,6 +91,7 @@ Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPHPStats_1_1ProbabilityDistribution_1_1DiscreteUniform.html#ab7db7346053917b0e48e04af03c4166a">__construct</a> ($minimum=0, $maximum=1)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPHPStats_1_1ProbabilityDistribution_1_1DiscreteUniform.html#a648d530688e610f637a986620603c764">rvs</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPHPStats_1_1ProbabilityDistribution_1_1DiscreteUniform.html#ad4d7f7e3da3d39a9ecbbcbc04ebb8431">pmf</a> ($x)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPHPStats_1_1ProbabilityDistribution_1_1DiscreteUniform.html#a75d57d9d71bb5b930741e22abcd57ae2">pdf</a> ($x)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPHPStats_1_1ProbabilityDistribution_1_1DiscreteUniform.html#a773b86bcc331b76d7d62c1799ffce0c5">cdf</a> ($x)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPHPStats_1_1ProbabilityDistribution_1_1DiscreteUniform.html#aae0189c8544bd94163dd81f23fab184f">sf</a> ($x)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPHPStats_1_1ProbabilityDistribution_1_1DiscreteUniform.html#afa3ba18db44b950ab304208f201d898c">ppf</a> ($x)</td></tr>
@@ -100,6 +101,7 @@ Public Member Functions</h2></td></tr>
 Static Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">static&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPHPStats_1_1ProbabilityDistribution_1_1DiscreteUniform.html#a110eccd2ff5812f355ca88165b789348">getRvs</a> ($minimum=0, $maximum=1)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">static&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPHPStats_1_1ProbabilityDistribution_1_1DiscreteUniform.html#a45da153cdd10791aec1f5b30a4f8cbd2">getPmf</a> ($x, $minimum=0, $maximum=1)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPHPStats_1_1ProbabilityDistribution_1_1DiscreteUniform.html#a250ac7a0566446901e94e1e25f554ec4">getPdf</a> ($x, $minimum=0, $maximum=1)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">static&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPHPStats_1_1ProbabilityDistribution_1_1DiscreteUniform.html#a47314a904891d2bbba3f2b6284014444">getCdf</a> ($x, $minimum=0, $maximum=1)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">static&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPHPStats_1_1ProbabilityDistribution_1_1DiscreteUniform.html#a179f7ac0aeb43a7764e61d6dd0d7f3dc">getSf</a> ($x, $minimum=0, $maximum=1)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">static&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPHPStats_1_1ProbabilityDistribution_1_1DiscreteUniform.html#a590bb4522549d51dc9714630cc8ee51d">getPpf</a> ($x, $minimum=0, $maximum=1)</td></tr>
@@ -258,6 +260,50 @@ Static Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a250ac7a0566446901e94e1e25f554ec4"></a><!-- doxytag: member="PHPStats::ProbabilityDistribution::DiscreteUniform::getPdf" ref="a250ac7a0566446901e94e1e25f554ec4" args="($x, $minimum=0, $maximum=1)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">static PHPStats::ProbabilityDistribution::DiscreteUniform::getPdf </td>
+          <td>(</td>
+          <td class="paramtype">$&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&#160;</td>
+          <td class="paramname"><em>minimum</em> = <code>0</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&#160;</td>
+          <td class="paramname"><em>maximum</em> = <code>1</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td><code> [static]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Probability Distribution function</p>
+<p>Alias for getPmf</p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramtype">float</td><td class="paramname">$x</td><td>The test value </td></tr>
+    <tr><td class="paramtype">float</td><td class="paramname">$minimum</td><td>The minimum parameter </td></tr>
+    <tr><td class="paramtype">float</td><td class="paramname">$maximum</td><td>The maximum parameter </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>float The probability </dd></dl>
+
+</div>
+</div>
 <a class="anchor" id="a45da153cdd10791aec1f5b30a4f8cbd2"></a><!-- doxytag: member="PHPStats::ProbabilityDistribution::DiscreteUniform::getPmf" ref="a45da153cdd10791aec1f5b30a4f8cbd2" args="($x, $minimum=0, $maximum=1)" -->
 <div class="memitem">
 <div class="memproto">
@@ -376,8 +422,7 @@ Static Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>float The random variate.</dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000017">Todo:</a></b></dt><dd>Untested </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>float The random variate. </dd></dl>
 
 </div>
 </div>
@@ -492,6 +537,32 @@ Static Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a75d57d9d71bb5b930741e22abcd57ae2"></a><!-- doxytag: member="PHPStats::ProbabilityDistribution::DiscreteUniform::pdf" ref="a75d57d9d71bb5b930741e22abcd57ae2" args="($x)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">PHPStats::ProbabilityDistribution::DiscreteUniform::pdf </td>
+          <td>(</td>
+          <td class="paramtype">$&#160;</td>
+          <td class="paramname"><em>x</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Probability Distribution function</p>
+<p>Alias for pmf</p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramtype">float</td><td class="paramname">$x</td><td>The test value </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>float The probability </dd></dl>
+
+</div>
+</div>
 <a class="anchor" id="ad4d7f7e3da3d39a9ecbbcbc04ebb8431"></a><!-- doxytag: member="PHPStats::ProbabilityDistribution::DiscreteUniform::pmf" ref="ad4d7f7e3da3d39a9ecbbcbc04ebb8431" args="($x)" -->
 <div class="memitem">
 <div class="memproto">
@@ -557,7 +628,6 @@ Static Public Member Functions</h2></td></tr>
 <div class="memdoc">
 <p>Returns a random float between $minimum and $minimum plus $maximum</p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>float The random variate. </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000016">Todo:</a></b></dt><dd>Untested </dd></dl>
 
 </div>
 </div>
@@ -629,7 +699,7 @@ Static Public Member Functions</h2></td></tr>
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Fri Dec 30 2011 13:18:09 for PHPStats by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Sat Mar 10 2012 20:00:59 for PHPStats by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </small></address>
 </body>

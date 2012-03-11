@@ -81,11 +81,13 @@ Static Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">static&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPHPStats_1_1StatisticalTests.html#a2bea5e48e7b0888ba48ce502a1e1d2a4">twoSampleTTest</a> (array $datax, array $datay)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">static&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPHPStats_1_1StatisticalTests.html#a983a3468ad16aa365515f7691de3f6ac">pairedTTest</a> (array $datax, array $datay, $populationAverage=0)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">static&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPHPStats_1_1StatisticalTests.html#af508aab545c7948ecf00f3df7aa7ad5f">chiSquareTest</a> (array $observations, array $expected, $df)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPHPStats_1_1StatisticalTests.html#ab2e68208241b9677ac6eeb1dab0aaf74">kolmogorovSmirnov</a> (array $observations, $distribution)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPHPStats_1_1StatisticalTests.html#a0e8c889b01d25d19cebd24eae68f72eb">kolmogorovCDF</a> ($x)</td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p><a class="el" href="classPHPStats_1_1StatisticalTests.html">StatisticalTests</a> class</p>
 <p>This class contains static functions representing the various statistical tests frequently performed in a frequentist context. Such tests normally are interpreted as a boolean pass or fail, but this obscures a lot of information. As a rule, these tests will instead report a probability measure, or p value, which the user then will interpret. Often, this will be checking whether the reported value is less than 0.05, greater than 0.95, or both.</p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000042">Todo:</a></b></dt><dd>The implementation of this class is still experimental and may change. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000011">Todo:</a></b></dt><dd>The implementation of this class is still experimental and may change. </dd></dl>
 </div><hr/><h2>Member Function Documentation</h2>
 <a class="anchor" id="af508aab545c7948ecf00f3df7aa7ad5f"></a><!-- doxytag: member="PHPStats::StatisticalTests::chiSquareTest" ref="af508aab545c7948ecf00f3df7aa7ad5f" args="(array $observations, array $expected, $df)" -->
 <div class="memitem">
@@ -127,7 +129,70 @@ Static Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>float The probability of getting the chi-squared statistic or less </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>float The probability of getting the chi-squared statistic or more, the p-value </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a0e8c889b01d25d19cebd24eae68f72eb"></a><!-- doxytag: member="PHPStats::StatisticalTests::kolmogorovCDF" ref="a0e8c889b01d25d19cebd24eae68f72eb" args="($x)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">static PHPStats::StatisticalTests::kolmogorovCDF </td>
+          <td>(</td>
+          <td class="paramtype">$&#160;</td>
+          <td class="paramname"><em>x</em></td><td>)</td>
+          <td><code> [static]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Kolmogorov CDF</p>
+<p>Tests whether a collection of random variates conform to the given distribution.</p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramtype">float</td><td class="paramname">$x</td><td>The K test statistic </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>float The probability of getting our test statistic or less </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ab2e68208241b9677ac6eeb1dab0aaf74"></a><!-- doxytag: member="PHPStats::StatisticalTests::kolmogorovSmirnov" ref="ab2e68208241b9677ac6eeb1dab0aaf74" args="(array $observations, $distribution)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">static PHPStats::StatisticalTests::kolmogorovSmirnov </td>
+          <td>(</td>
+          <td class="paramtype">array $&#160;</td>
+          <td class="paramname"><em>observations</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&#160;</td>
+          <td class="paramname"><em>distribution</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td><code> [static]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Kolmogorov-Smirnov Test</p>
+<p>Tests whether a collection of random variates conform to the given distribution.</p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramtype">array</td><td class="paramname">$observations</td><td>The collection of random variates </td></tr>
+    <tr><td class="paramtype">ProbabilityDistribution</td><td class="paramname">$distribution</td><td>An object representing a continuous distribution </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>float The probability of getting our test statistic or more, the p-value </dd></dl>
 
 </div>
 </div>
@@ -267,7 +332,7 @@ Static Public Member Functions</h2></td></tr>
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Fri Dec 30 2011 13:18:09 for PHPStats by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Sat Mar 10 2012 20:00:59 for PHPStats by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </small></address>
 </body>

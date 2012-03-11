@@ -61,21 +61,36 @@ Introduction to PHPStats</h2>
 <p><a class="el" href="namespacePHPStats.html">PHPStats</a> is a statistical library for PHP. Its goal is to implement statistical functions in PHP that are not covered in the PHP core. <a class="el" href="namespacePHPStats.html">PHPStats</a> is written entirely in native PHP for ease of installation and for use in shared hosting environments, where the installation of binary files is difficult, if not impossible.</p>
 <h2><a class="anchor" id="downloading"></a>
 Downloading PHPStats</h2>
-<p>To download <a class="el" href="namespacePHPStats.html">PHPStats</a> visit <a href="https://github.com/mcordingley/PHPStats">the GitHub page</a> for the latest code or download the <a href="https://github.com/mcordingley/PHPStats/zipball/v0.2">current stable version</a>.</p>
+<p>To download <a class="el" href="namespacePHPStats.html">PHPStats</a> visit <a href="https://github.com/mcordingley/PHPStats">the GitHub page</a> for the latest code or download the <a href="https://github.com/mcordingley/PHPStats/zipball/v0.3">current stable version</a>.</p>
 <h2><a class="anchor" id="installing"></a>
 Installation</h2>
-<p>Installing <a class="el" href="namespacePHPStats.html">PHPStats</a> is easy. Just copy the PHPStats.phar file into the folder where you keep your libraries and include the file in your scripts. At this point, you can just start using the classes directly; the classes will autoload when needed.</p>
+<p>Installing <a class="el" href="namespacePHPStats.html">PHPStats</a> is easy. Just copy the PHPStats.phar file into the folder where you keep your libraries and include the file in your scripts. At this point, you can just start using the classes directly; the classes will autoload when needed. As an example: include('PHPStats.phar');</p>
+<p>To use a class, remember to properly call the namespace that it's in. For example, to create a new instance of the Beta distribution, call it like this: $beta = new (6,20);</p>
+<p>If performance is a concern, files can be pre-emptively loaded, rather than waiting for the autoload functionality. To pre-load the Beta class file, call: include('phar://PHPStats/ProbabilityDistribution/Beta.php');</p>
 <h2><a class="anchor" id="dependencies"></a>
 Dependencies</h2>
+<p><a class="el" href="namespacePHPStats.html">PHPStats</a> is written to work with PHP 5.3 and greater, as it makes heavy use of features introduced in PHP 5.3. No other run-time dependencies exist.</p>
+<p>Build dependencies include both Phing and PHPUnit. When attempting to build this library, beware that the tests for the random variate functions are probabalistic in nature and will fail on occasion.</p>
 <p><a class="el" href="namespacePHPStats.html">PHPStats</a> is written to work with PHP 5.3 and greater, as it makes heavy use of features introduced in PHP 5.3. While this does exclude a number of older installations of PHP, the library is still under development and will not be properly complete until PHP 5.3 has been out for a while.</p>
 <h2><a class="anchor" id="license"></a>
 License</h2>
 <p><a class="el" href="namespacePHPStats.html">PHPStats</a> is released under the LGPL version 3 or later. For more details, please refer to the copy of LICENSE.txt that accompanies your download.</p>
 <h2><a class="anchor" id="changelog"></a>
 Change Log</h2>
-<p>v0.2 Added a Matrix class for Linear Algebra Added the Rayleigh Distribution</p>
-<p>v0.1.1 Added the Cauchy Distribution Assorted bug fixes</p>
-<p>v0.1 First release of <a class="el" href="namespacePHPStats.html">PHPStats</a> </p>
+<p>v0.3</p>
+<p>Added LogNormal distribution</p>
+<p>Tested and fixed all random number generators</p>
+<p>Added Kolmogorov-Smirnov test</p>
+<p>Completed implementing the gamma family of special functions</p>
+<p>Many bugfixes</p>
+<p>v0.2</p>
+<p>Added a Matrix class for Linear Algebra</p>
+<p>Added the Rayleigh Distribution</p>
+<p>v0.1.1</p>
+<p>Added the Cauchy Distribution</p>
+<p>Assorted bug fixes</p>
+<p>v0.1</p>
+<p>First release of <a class="el" href="namespacePHPStats.html">PHPStats</a> </p>
 </div></div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -91,7 +106,7 @@ Change Log</h2>
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Fri Dec 30 2011 13:18:09 for PHPStats by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Sat Mar 10 2012 20:00:59 for PHPStats by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </small></address>
 </body>

@@ -95,9 +95,9 @@ Static Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">static&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPHPStats_1_1Stats.html#a0212ba83022e554cd0b61721bab0cedd">ierf</a> ($x)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">static&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPHPStats_1_1Stats.html#a5b140c3dcdfc167206f663f295068a1f">gamma</a> ($x)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">static&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPHPStats_1_1Stats.html#a2cdea1b9649c13b5cf58c4d5bb56cc2f">gammaln</a> ($x)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPHPStats_1_1Stats.html#a909947739481703e69c1f44d1faf9920">igamma</a> ($x)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPHPStats_1_1Stats.html#a7aee2d6a18cad0aa9de4d1536de13c46">igamma</a> ($x, $principal=true)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">static&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPHPStats_1_1Stats.html#a81c5a78af5eb319a967bf890d0b6fe08">digamma</a> ($x)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPHPStats_1_1Stats.html#a61e601fae841d6f2c65a059966c97ffa">lambert</a> ($x)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPHPStats_1_1Stats.html#a77e58e7d36e374fe2fe7768d0e1f1fba">lambert</a> ($x, $principal=true)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">static&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPHPStats_1_1Stats.html#a0fca2e61eb3a0fd417e6ed7544faa812">lowerGamma</a> ($s, $x)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">static&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPHPStats_1_1Stats.html#a9a9242222e60c1bb2b876783031db6ba">ilowerGamma</a> ($s, $x)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">static&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPHPStats_1_1Stats.html#a5edb3dbfeb27d0f0468ca6f64362f302">upperGamma</a> ($s, $x)</td></tr>
@@ -109,7 +109,7 @@ Static Public Member Functions</h2></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p><a class="el" href="classPHPStats_1_1Stats.html">Stats</a> class</p>
-<p>Static class containing a variety of useful statistical functions. Fills in where PHP's math functions fall short. Many functions are Used extensively by the probability distributions. </p>
+<p>Static class containing a variety of useful statistical functions. Fills in where PHP's math functions fall short. Many functions are used extensively by the probability distributions. </p>
 </div><hr/><h2>Member Function Documentation</h2>
 <a class="anchor" id="a01dd7a54f329e866ce99aadae46ebff9"></a><!-- doxytag: member="PHPStats::Stats::average" ref="a01dd7a54f329e866ce99aadae46ebff9" args="(array $data)" -->
 <div class="memitem">
@@ -126,7 +126,7 @@ Static Public Member Functions</h2></td></tr>
 </div>
 <div class="memdoc">
 <p>Average Function</p>
-<p>Takes the arithmetic mean of tan array of numeric values. Non-numeric values are treated as zeroes.</p>
+<p>Takes the arithmetic mean of an array of numeric values. Non-numeric values are treated as zeroes.</p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
     <tr><td class="paramtype">array</td><td class="paramname">$data</td><td>An array of numeric values </td></tr>
@@ -307,8 +307,7 @@ Static Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>The result of the digamma function</dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000044">Todo:</a></b></dt><dd>Implement this </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>The result of the digamma function </dd></dl>
 
 </div>
 </div>
@@ -468,7 +467,7 @@ Static Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a909947739481703e69c1f44d1faf9920"></a><!-- doxytag: member="PHPStats::Stats::igamma" ref="a909947739481703e69c1f44d1faf9920" args="($x)" -->
+<a class="anchor" id="a7aee2d6a18cad0aa9de4d1536de13c46"></a><!-- doxytag: member="PHPStats::Stats::igamma" ref="a7aee2d6a18cad0aa9de4d1536de13c46" args="($x, $principal=true)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -476,22 +475,32 @@ Static Public Member Functions</h2></td></tr>
           <td class="memname">static PHPStats::Stats::igamma </td>
           <td>(</td>
           <td class="paramtype">$&#160;</td>
-          <td class="paramname"><em>x</em></td><td>)</td>
-          <td><code> [static]</code></td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&#160;</td>
+          <td class="paramname"><em>principal</em> = <code>true</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td><code> [static]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 <p>Inverse gamma function</p>
-<p>Returns the inverse of the gamma function</p>
+<p>Returns the inverse of the gamma function. The relative error of the principal branch peaks at 1.5 near the lower bound (i.e. igamma(0.885603)) and approaches zero the higher the argument to this function. The secondary branch is not fully covered by the approximation and so will have much higher error.</p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
     <tr><td class="paramtype">float</td><td class="paramname">$x</td><td>The result of the gamma function </td></tr>
+    <tr><td class="paramtype">bool</td><td class="paramname">$principal</td><td>True for the principal branch, false for the secondary (e.g. gamma(x) where x &lt; 1.461632) </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>float The argument to the gamma function</dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000043">Todo:</a></b></dt><dd>Implement this </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>float The argument to the gamma function </dd></dl>
 
 </div>
 </div>
@@ -528,8 +537,7 @@ Static Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>float The argument to the lower gamma function that would return $x</dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000046">Todo:</a></b></dt><dd>Implement this </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>float The argument to the lower gamma function that would return $x </dd></dl>
 
 </div>
 </div>
@@ -577,7 +585,7 @@ Static Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a61e601fae841d6f2c65a059966c97ffa"></a><!-- doxytag: member="PHPStats::Stats::lambert" ref="a61e601fae841d6f2c65a059966c97ffa" args="($x)" -->
+<a class="anchor" id="a77e58e7d36e374fe2fe7768d0e1f1fba"></a><!-- doxytag: member="PHPStats::Stats::lambert" ref="a77e58e7d36e374fe2fe7768d0e1f1fba" args="($x, $principal=true)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -585,8 +593,18 @@ Static Public Member Functions</h2></td></tr>
           <td class="memname">static PHPStats::Stats::lambert </td>
           <td>(</td>
           <td class="paramtype">$&#160;</td>
-          <td class="paramname"><em>x</em></td><td>)</td>
-          <td><code> [static]</code></td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&#160;</td>
+          <td class="paramname"><em>principal</em> = <code>true</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td><code> [static]</code></td>
         </tr>
       </table>
 </div>
@@ -596,11 +614,11 @@ Static Public Member Functions</h2></td></tr>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
     <tr><td class="paramtype">float</td><td class="paramname">$x</td><td>Argument to the lambert funcction </td></tr>
+    <tr><td class="paramtype">bool</td><td class="paramname">$principal</td><td>True to use the principal branch, false to use the secondary </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>float The result of the lambert function</dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000045">Todo:</a></b></dt><dd>Implement this </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>float The result of the lambert function </dd></dl>
 
 </div>
 </div>
@@ -1022,7 +1040,7 @@ Static Public Member Functions</h2></td></tr>
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Fri Dec 30 2011 13:18:09 for PHPStats by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Sat Mar 10 2012 20:00:59 for PHPStats by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </small></address>
 </body>

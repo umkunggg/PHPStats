@@ -91,6 +91,7 @@ Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPHPStats_1_1ProbabilityDistribution_1_1Binomial.html#a1062e78b5694183c654a970e54d8815b">__construct</a> ($p=0.5, $n=1)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPHPStats_1_1ProbabilityDistribution_1_1Binomial.html#a3f82b993304f3e13396360156582156e">rvs</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPHPStats_1_1ProbabilityDistribution_1_1Binomial.html#ab3c6db5bb097bf97e6933ebb33e03408">pmf</a> ($x)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPHPStats_1_1ProbabilityDistribution_1_1Binomial.html#ab2bcfea20a13fd0186e5be9682af448e">pdf</a> ($x)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPHPStats_1_1ProbabilityDistribution_1_1Binomial.html#af843e778e266cc5d144d0f40a600fc8f">cdf</a> ($x)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPHPStats_1_1ProbabilityDistribution_1_1Binomial.html#a4a85f9ba486ea0e052b9f62254c436c5">sf</a> ($x)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPHPStats_1_1ProbabilityDistribution_1_1Binomial.html#abfa119e5391fcf68e2dafc1e0994d247">ppf</a> ($x)</td></tr>
@@ -100,6 +101,7 @@ Public Member Functions</h2></td></tr>
 Static Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">static&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPHPStats_1_1ProbabilityDistribution_1_1Binomial.html#afd2c0e9698ae94c9ba03084c70b0db10">getRvs</a> ($p=0.5, $n=1)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">static&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPHPStats_1_1ProbabilityDistribution_1_1Binomial.html#a323f792b33000edb38a4087e5b1b4934">getPmf</a> ($x, $p=0.5, $n=1)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPHPStats_1_1ProbabilityDistribution_1_1Binomial.html#a94b48702b1a18d8afb7fcb3ed0ffe73e">getPdf</a> ($x, $p=0.5, $n=1)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">static&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPHPStats_1_1ProbabilityDistribution_1_1Binomial.html#a2e5c2dc9e3228735a6207676640a8fe3">getCdf</a> ($x, $p=0.5, $n=1)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">static&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPHPStats_1_1ProbabilityDistribution_1_1Binomial.html#a4e3a2375238931ce7ff7eb9acdadf029">getSf</a> ($x, $p=0.5, $n=1)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">static&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPHPStats_1_1ProbabilityDistribution_1_1Binomial.html#ab22bc66f48eb5122fa4967ad35eaf22c">getPpf</a> ($x, $p=0.5, $n=1)</td></tr>
@@ -258,6 +260,49 @@ Static Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a94b48702b1a18d8afb7fcb3ed0ffe73e"></a><!-- doxytag: member="PHPStats::ProbabilityDistribution::Binomial::getPdf" ref="a94b48702b1a18d8afb7fcb3ed0ffe73e" args="($x, $p=0.5, $n=1)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">static PHPStats::ProbabilityDistribution::Binomial::getPdf </td>
+          <td>(</td>
+          <td class="paramtype">$&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&#160;</td>
+          <td class="paramname"><em>p</em> = <code>0.5</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&#160;</td>
+          <td class="paramname"><em>n</em> = <code>1</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td><code> [static]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Probability Distribution function</p>
+<p>Alias for getPmf</p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramtype">float</td><td class="paramname">$x</td><td>The test value </td></tr>
+    <tr><td class="paramtype">float</td><td class="paramname">$lambda</td><td>The rate of events </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>float The probability </dd></dl>
+
+</div>
+</div>
 <a class="anchor" id="a323f792b33000edb38a4087e5b1b4934"></a><!-- doxytag: member="PHPStats::ProbabilityDistribution::Binomial::getPmf" ref="a323f792b33000edb38a4087e5b1b4934" args="($x, $p=0.5, $n=1)" -->
 <div class="memitem">
 <div class="memproto">
@@ -376,8 +421,7 @@ Static Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>float The random variate.</dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000005">Todo:</a></b></dt><dd>Untested </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>float The random variate. </dd></dl>
 
 </div>
 </div>
@@ -492,6 +536,32 @@ Static Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="ab2bcfea20a13fd0186e5be9682af448e"></a><!-- doxytag: member="PHPStats::ProbabilityDistribution::Binomial::pdf" ref="ab2bcfea20a13fd0186e5be9682af448e" args="($x)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">PHPStats::ProbabilityDistribution::Binomial::pdf </td>
+          <td>(</td>
+          <td class="paramtype">$&#160;</td>
+          <td class="paramname"><em>x</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Probability Distribution function</p>
+<p>Alias for pmf</p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramtype">float</td><td class="paramname">$x</td><td>The test value </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>float The probability </dd></dl>
+
+</div>
+</div>
 <a class="anchor" id="ab3c6db5bb097bf97e6933ebb33e03408"></a><!-- doxytag: member="PHPStats::ProbabilityDistribution::Binomial::pmf" ref="ab3c6db5bb097bf97e6933ebb33e03408" args="($x)" -->
 <div class="memitem">
 <div class="memproto">
@@ -557,7 +627,6 @@ Static Public Member Functions</h2></td></tr>
 <div class="memdoc">
 <p>Returns a random variate of $n trials at $p probability each</p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>float The random variate. </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000004">Todo:</a></b></dt><dd>Untested </dd></dl>
 
 </div>
 </div>
@@ -629,7 +698,7 @@ Static Public Member Functions</h2></td></tr>
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Fri Dec 30 2011 13:18:09 for PHPStats by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Sat Mar 10 2012 20:00:59 for PHPStats by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </small></address>
 </body>
