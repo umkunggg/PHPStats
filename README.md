@@ -49,6 +49,8 @@ Added LogNormal distribution
 
 Tested and fixed all random number generators
 
+Added Kolmogorov-Smirnov test
+
 Completed implementing the gamma family of special functions
 
 Many bugfixes
