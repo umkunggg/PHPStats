@@ -42,19 +42,19 @@ class LogNormalTest extends PHPUnit_Framework_TestCase {
 	}
 
 	public function test_ppf() {
-		$this->assertEquals(2.93783, round($this->testObject->ppf(0.1), 5));
-		$this->assertEquals(7.30286, round($this->testObject->ppf(0.25), 5));
-		$this->assertEquals(20.0855, round($this->testObject->ppf(0.5), 5));
-		$this->assertEquals(55.2426, round($this->testObject->ppf(0.75), 5));
-		$this->assertEquals(137.322, round($this->testObject->ppf(0.9), 5));
+		$this->assertEquals(2.97111, round($this->testObject->ppf(0.1), 5));
+		$this->assertEquals(7.30296, round($this->testObject->ppf(0.25), 5));
+		$this->assertEquals(20.08554, round($this->testObject->ppf(0.5), 5));
+		$this->assertEquals(55.24183, round($this->testObject->ppf(0.75), 5));
+		$this->assertEquals(135.78371, round($this->testObject->ppf(0.9), 5));
 	}
 
 	public function test_isf() {
-		$this->assertEquals(2.93783, round($this->testObject->isf(0.9), 5));
-		$this->assertEquals(7.30286, round($this->testObject->isf(0.75), 5));
-		$this->assertEquals(20.0855, round($this->testObject->isf(0.5), 5));
-		$this->assertEquals(55.2426, round($this->testObject->isf(0.25), 5));
-		$this->assertEquals(137.322, round($this->testObject->isf(0.1), 5));
+		$this->assertEquals(2.97111, round($this->testObject->isf(0.9), 5));
+		$this->assertEquals(7.30296, round($this->testObject->isf(0.75), 5));
+		$this->assertEquals(20.08554, round($this->testObject->isf(0.5), 5));
+		$this->assertEquals(55.24183, round($this->testObject->isf(0.25), 5));
+		$this->assertEquals(135.78371, round($this->testObject->isf(0.1), 5));
 	}
 
 	public function test_stats() {

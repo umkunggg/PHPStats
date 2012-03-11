@@ -178,6 +178,7 @@ class LogNormal extends ProbabilityDistribution {
 	 * @param float $variance The scale parameter. Default 1.0
 	 * @return float The value that gives a cdf of $x
 	 * @static
+	 * @todo Investigate cause of slight inaccuracies
 	 */
 	public static function getPpf($x, $mu = 0.0, $variance = 1.0) {
 		return exp(sqrt(2 * $variance) * \PHPStats\Stats::ierf(2 * $x - 1) + $mu);
@@ -191,6 +192,7 @@ class LogNormal extends ProbabilityDistribution {
 	 * @param float $variance The scale parameter. Default 1.0
 	 * @return float The value that gives an sf of $x
 	 * @static
+	 * @todo Investigate cause of slight inaccuracies
 	 */
 	public static function getIsf($x, $mu = 0.0, $variance = 1.0) {
 		return self::getPpf(1.0 - $x, $mu, $variance);
