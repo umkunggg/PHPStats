@@ -128,7 +128,11 @@ class Levy extends ProbabilityDistribution {
 	 * @todo Implement this
 	 */
 	public static function getRvs($mu = 0.0, $c = 1.0) {
-		return 0;
+		//Using the algorithm from: http://www.signallake.com/publications/StablePubs/SimulatingStableRandomVariables.pdf
+		$u = self::randFloat();
+		$v = self::randFloat();
+		
+		return $c * pow(sqrt(-2 * log($u)) * cos(2 * M_PI * $v), -2) + $mu;
 	}
 	
 	/**
