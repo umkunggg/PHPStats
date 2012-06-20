@@ -28,7 +28,9 @@ namespace PHPStats\ProbabilityDistribution;
 /**
  * Levy class
  * 
- * Represents the Levy distribution.
+ * Represents the Levy distribution, one of the stable distributions.  Note
+ * that as a stable distribution with a maxed skewness parameter, the support
+ * of the distribution (acceptable values for x) is [mu, INF).
  * 
  * For more information, see: http://en.wikipedia.org/wiki/L%C3%A9vy_distribution
  */
