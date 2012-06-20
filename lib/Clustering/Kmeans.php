@@ -32,7 +32,7 @@ namespace PHPStats\Clustering;
  * 
  * For more information, see: http://en.wikipedia.org/wiki/K-means_clustering
  */
-class kmeans {
+class Kmeans {
 	private $centroids = array();
 	private $observations = array();
 
