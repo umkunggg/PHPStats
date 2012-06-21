@@ -6,7 +6,7 @@ require_once('lib/Clustering/Kmeans.php');
 
 use \PHPStats\Clustering\Kmeans as Kmeans;
 
-class MatrixTest extends PHPUnit_Framework_TestCase {
+class KmeansTest extends PHPUnit_Framework_TestCase {
 	private $kmeans;
 
 	function __construct() {
