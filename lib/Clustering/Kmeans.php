@@ -100,7 +100,12 @@ class Kmeans {
 			$old_centroid = $observation['centroid'];
 			
 			foreach ($this->centroids as $index => $centroid) {
-				$distance[$index] = $observation->subtract($centroid)->magnitude(); //Magnitude of the difference of the vectors
+				$sumSquaredDistance = 0;
+				$distanceVector = $observation['coordinates']->subtract($centroid);
+
+				for ($j = 1; $j <= $distanceVector->getColumns(); $j++) $sumSquaredDistance += pow($distanceVector->getElement(1, $j), 2);
+
+				$distance[$index] = sqrt($sumSquaredDistance); //Magnitude of the difference of the vectors
 			}
 			
 			//Find the centroid with the least distance
@@ -119,14 +124,14 @@ class Kmeans {
 			$members = 0;
 			
 			foreach ($this->observations as $observation) {
-				if ($observation['centroid'] = $index) {
+				if ($observation['centroid'] == $index) {
 					$new_coordinates = $new_coordinates->add($observation['coordinates']);
 					$members++;
 				}
 			}
 			
 			//Assign new value
-			$centroid = $new_coordinates->scalar_multiply(1/$members);
+			$centroid = $new_coordinates->scalarMultiply(1/$members);
 		}
 	}
 }
