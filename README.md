@@ -10,7 +10,7 @@ of binary files is difficult, if not impossible.
 
 **Downloading PHPStats**
 To download PHPStats visit
-<a href="https://github.com/mcordingley/PHPStats">the GitHub page</a>.
+<a href="https://github.com/mcordingley/PHPStats">the GitHub page</a>
 for the latest code or download the
 <a href="https://github.com/mcordingley/PHPStats/zipball/v0.4">current stable version</a>.
 
@@ -26,8 +26,8 @@ example, to create a new instance of the Beta distribution, call it like this:
 $beta = new \PHPStats\ProbabilityDistribution\Beta(6,20);
 
 If performance is a concern, files can be pre-emptively loaded, rather than
-waiting for the autoload functionality.  To pre-load the Beta class file, call:
-include('phar://PHPStats/ProbabilityDistribution/Beta.php');
+waiting for the autoload functionality.  For example, to pre-load the Beta class
+file, call: include('phar://PHPStats.phar/lib/ProbabilityDistribution/Beta.php');
 
 **Dependencies**
 PHPStats is written to work with PHP 5.3 and greater, as it makes heavy use

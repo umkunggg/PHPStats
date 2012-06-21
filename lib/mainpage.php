@@ -27,8 +27,8 @@
  * $beta = new \PHPStats\ProbabilityDistribution\Beta(6,20);
  * 
  * If performance is a concern, files can be pre-emptively loaded, rather than
- * waiting for the autoload functionality.  To pre-load the Beta class file, call:
- * include('phar://PHPStats/ProbabilityDistribution/Beta.php');
+ * waiting for the autoload functionality.  For example, to pre-load the Beta class
+ * file, call: include('phar://PHPStats.phar/lib/ProbabilityDistribution/Beta.php');
  * 
  * @section dependencies Dependencies
  * PHPStats is written to work with PHP 5.3 and greater, as it makes heavy use
