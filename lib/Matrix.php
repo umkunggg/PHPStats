@@ -87,6 +87,31 @@ class Matrix {
 				$i++;
 			}
 		}
+		else if (is_array($literal)) {
+			$columns = 0;
+			foreach ($literal as $row) {
+				$columns = max($columns, count($row));
+			}
+
+			$i = 0;
+			foreach ($literal as $row) {
+				if(!is_array($row)) throw new MatrixException('Non-array row definition in array-based matrix construction.');
+
+				$this->matrix[$i] = array();
+				$j = 0;
+
+				foreach ($row as $element) {
+					$this->matrix[$i][$j] = $element;
+					$j++;
+				}
+
+				for (; $j < $columns; $j++) { //Zero fill incomplete rows
+					$this->matrix[$i][$j] = 0;
+				}
+
+				$i++;
+			}
+		}
 		else throw new MatrixException('Invalid matrix constructor options.');
 	}
 
