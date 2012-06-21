@@ -12,7 +12,7 @@ of binary files is difficult, if not impossible.
 To download PHPStats visit
 <a href="https://github.com/mcordingley/PHPStats">the GitHub page</a>.
 for the latest code or download the
-<a href="https://github.com/mcordingley/PHPStats/zipball/v0.3">current stable version</a>.
+<a href="https://github.com/mcordingley/PHPStats/zipball/v0.4">current stable version</a>.
 
 **Installation**
 Installing PHPStats is easy.  Just copy the PHPStats.phar file into the
