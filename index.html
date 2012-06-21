@@ -84,7 +84,7 @@ Downloading PHPStats</h2>
 Installation</h2>
 <p>Installing <a class="el" href="namespacePHPStats.html">PHPStats</a> is easy. Just copy the PHPStats.phar file into the folder where you keep your libraries and include the file in your scripts. At this point, you can just start using the classes directly; the classes will autoload when needed. As an example: include('PHPStats.phar');</p>
 <p>To use a class, remember to properly call the namespace that it's in. For example, to create a new instance of the Beta distribution, call it like this: $beta = new (6,20);</p>
-<p>If performance is a concern, files can be pre-emptively loaded, rather than waiting for the autoload functionality. To pre-load the Beta class file, call: include('phar://PHPStats/ProbabilityDistribution/Beta.php');</p>
+<p>If performance is a concern, files can be pre-emptively loaded, rather than waiting for the autoload functionality. For example, to pre-load the Beta class file, call: include('phar://PHPStats.phar/lib/ProbabilityDistribution/Beta.php');</p>
 <h2><a class="anchor" id="dependencies"></a>
 Dependencies</h2>
 <p><a class="el" href="namespacePHPStats.html">PHPStats</a> is written to work with PHP 5.3 and greater, as it makes heavy use of features introduced in PHP 5.3. No other run-time dependencies exist.</p>
@@ -130,7 +130,7 @@ Change Log</h2>
 
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Jun 21 2012 13:34:33 for PHPStats by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Jun 21 2012 14:03:11 for PHPStats by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.7.6.1
 </small></address>
