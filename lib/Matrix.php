@@ -57,11 +57,10 @@ class Matrix {
 	/**
 	 * Constructor function
 	 * 
-	 * Creates a new matrix object.  If given a pair of numbers, this will
-	 * return a zero-filled matrix with ones running down the diagonal, i.e.
-	 * an identity matrix if the matrix is square.  If given a string like
-	 * '[1, 2, 3; 4, 5, 6; 7, 8, 9]' as the first argument, then it will
-	 * attempt to construct a matrix using the supplied values.
+	 * Creates a new matrix object.  As an example, when given a string like
+	 * '[1, 2, 3; 4, 5, 6; 7, 8, 9]', then it will construct a new matrix
+	 * with 1, 2, and 3 as the values of the first row and 7, 8, and 9
+	 * as the values of the last row.
 	 * 
 	 * @param string $ A string representing a matrix literal
 	 * @return matrix A new matrix object.
