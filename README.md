@@ -12,7 +12,7 @@ of binary files is difficult, if not impossible.
 To download PHPStats visit
 <a href="https://github.com/mcordingley/PHPStats">the GitHub page</a>.
 for the latest code or download the
-<a href="https://github.com/mcordingley/PHPStats/zipball/v0.3">current stable version</a>.
+<a href="https://github.com/mcordingley/PHPStats/zipball/v0.4">current stable version</a>.
 
 **Installation**
 Installing PHPStats is easy.  Just copy the PHPStats.phar file into the
@@ -42,6 +42,14 @@ PHPStats is released under the LGPL version 3 or later.  For more details,
 please refer to the copy of LICENSE.txt that accompanies your download.
 
 **Change Log**
+
+*v0.4*
+
+Added Levy distribution
+
+Added Kmeans clustering
+
+Matrix constructor now optionally takes arrays
 
 *v0.3*
 
