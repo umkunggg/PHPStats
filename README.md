@@ -43,6 +43,14 @@ please refer to the copy of LICENSE.txt that accompanies your download.
 
 **Change Log**
 
+*v0.4*
+
+Added Levy distribution
+
+Added Kmeans clustering
+
+Matrix constructor now optionally takes arrays
+
 *v0.3*
 
 Added LogNormal distribution
