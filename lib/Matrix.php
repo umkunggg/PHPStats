@@ -61,8 +61,10 @@ class Matrix {
 	 * '[1, 2, 3; 4, 5, 6; 7, 8, 9]', then it will construct a new matrix
 	 * with 1, 2, and 3 as the values of the first row and 7, 8, and 9
 	 * as the values of the last row.
+	 * Also accepts arrays, so array(array(1, 2, 3), array(4, 5, 6) array(7, 8, 9)
+	 * is equivalent to the above example.
 	 * 
-	 * @param string $ A string representing a matrix literal
+	 * @param string $ A string representing a matrix literal or an array to convert into a matrix
 	 * @return matrix A new matrix object.
 	 */
 	public function __construct($literal) {
