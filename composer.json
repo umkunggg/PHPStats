@@ -1,5 +1,5 @@
 {
-    "name": "PHPStats",
+    "name": "PHPStats/PHPStats",
     "type": "library",
     "description": "Statistics library",
     "keywords": ["stats","statistics"],
