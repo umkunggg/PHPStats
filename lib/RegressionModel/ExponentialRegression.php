@@ -44,7 +44,7 @@ class ExponentialRegression extends RegressionModel {
 	 * @param array $datay The series of dependent variables
 	 * @return ExponentialRegression An object representing the regression model
 	 */
-	public function __construct(array $datax, array $datay) {
+	public function __construct($datax, $datay) {
 		$logy = array();
 		foreach ($datay as $y) $logy[] = log($y);
 

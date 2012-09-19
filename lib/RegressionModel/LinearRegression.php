@@ -44,7 +44,7 @@ class LinearRegression extends RegressionModel {
 	 * @param array $datay The series of dependent variables
 	 * @return LinearRegression An object representing the regression model
 	 */
-	public function __construct(array $datax, array $datay) {
+	public function __construct($datax, $datay) {
 		$this->beta = \PHPStats\Stats::covariance($datax, $datay)/\PHPStats\Stats::variance($datax);
 		$this->alpha = \PHPStats\Stats::average($datay) - $this->beta*\PHPStats\Stats::average($datax);
 
