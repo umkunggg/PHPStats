@@ -166,7 +166,8 @@ class Binomial extends ProbabilityDistribution {
 	 * Alias for getPmf
 	 * 
 	 * @param float $x The test value
-	 * @param float $lambda The rate of events
+	 * @param float $p The probability of success per trial
+	 * @param int $n The number of trials
 	 * @return float The probability
 	 * @static
 	 */
