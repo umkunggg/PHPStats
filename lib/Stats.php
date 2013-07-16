@@ -714,7 +714,12 @@ class Stats {
 	 * @static
 	 */
 	public static function permutations($n, $r) {
-		return self::factorial($n)/self::factorial($n - $r);
+		$total = 1;
+		
+		for ($i = $n - $r + 1; $i <= $n; $i++)
+			$total *= $i;
+		
+		return $total;
 	}
 
 	/**
