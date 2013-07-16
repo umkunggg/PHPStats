@@ -1,20 +1,21 @@
-PHPStats Statistical Library
-============================
+# PHPStats Statistical Library
 
-**Introduction to PHPStats**
+## Introduction to PHPStats
+
 PHPStats is a statistical library for PHP.  Its goal is to implement
 statistical functions in PHP that are not covered in the PHP core.
 PHPStats is written entirely in native PHP for ease of installation
 and for use in shared hosting environments, where the installation
 of binary files is difficult, if not impossible.
 
-**Downloading PHPStats**
+## Downloading PHPStats
+
 To download PHPStats visit
 <a href="https://github.com/mcordingley/PHPStats">the GitHub page</a>
 for the latest code or download the
 <a href="https://github.com/mcordingley/PHPStats/zipball/v0.4">current stable version</a>.
 
-**Installation**
+## Installation
 Installing PHPStats is easy.  Just copy the PHPStats.phar file into the
 folder where you keep your libraries and include the file in your scripts.
 At this point, you can just start using the classes directly; the classes
@@ -29,7 +30,7 @@ If performance is a concern, files can be pre-emptively loaded, rather than
 waiting for the autoload functionality.  For example, to pre-load the Beta class
 file, call: include('phar://PHPStats.phar/lib/ProbabilityDistribution/Beta.php');
 
-**Dependencies**
+## Dependencies
 PHPStats is written to work with PHP 5.3 and greater, as it makes heavy use
 of features introduced in PHP 5.3.  No other run-time dependencies exist.
 
@@ -37,44 +38,43 @@ Build dependencies include both Phing and PHPUnit.  When attempting to build
 this library, beware that the tests for the random variate functions are
 probabalistic in nature and will fail on occasion.
 
-**License**
-PHPStats is released under the LGPL version 3 or later.  For more details,
+## License
+PHPStats is released under the MIT license.  For more details,
 please refer to the copy of LICENSE.txt that accompanies your download.
 
-**Change Log**
+## Change Log
 
-*v0.4*
+### 1.0.0
 
-Added Levy distribution
+* Switched to MIT license
+* Removed phar archive for more transparent loading of files
+* Project name and namespacing updated to align with proper Composer naming
+* Proper composer autoload support
 
-Added Kmeans clustering
+### v0.4
 
-Matrix constructor now optionally takes arrays
+* Added Levy distribution
+* Added Kmeans clustering
+* Matrix constructor now optionally takes arrays
 
-*v0.3*
+### v0.3
 
-Added LogNormal distribution
+* Added LogNormal distribution
+* Tested and fixed all random number generators
+* Added Kolmogorov-Smirnov test
+* Completed implementing the gamma family of special functions
+* Many bugfixes
 
-Tested and fixed all random number generators
+### v0.2
 
-Added Kolmogorov-Smirnov test
+* Added a Matrix class for Linear Algebra
+* Added the Rayleigh Distribution
 
-Completed implementing the gamma family of special functions
+### v0.1.1
 
-Many bugfixes
+* Added the Cauchy Distribution
+* Assorted bug fixes
 
-*v0.2*
+### v0.1 
 
-Added a Matrix class for Linear Algebra
-
-Added the Rayleigh Distribution
-
-*v0.1.1*
-
-Added the Cauchy Distribution
-
-Assorted bug fixes
-
-*v0.1* 
-
-First release of PHPStats
+* First release of PHPStats
