@@ -1,16 +1,14 @@
 {
-    "name": "PHPStats/PHPStats",
+    "name": "mcordingley/PHPStats",
     "type": "library",
     "description": "Statistics library",
     "keywords": ["stats","statistics"],
     "homepage": "http://mcordingley.github.com/PHPStats",
-    "license": "LGPL",
+    "license": "MIT",
     "authors": [
         {
             "name": "Michael Cordingley",
-            "email": "Michael.Cordingley@gmail.com",
-            "homepage": "",
-            "role": "Developer"
+            "email": "Michael.Cordingley@gmail.com"
         }
     ],
     "require": {
