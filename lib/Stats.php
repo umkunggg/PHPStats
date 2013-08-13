@@ -530,7 +530,7 @@ class Stats {
 	 */
 	public static function ilowerGamma($s, $x) {
 		$precision = 8;
-		$guess = array(0, 20);
+		$guess = array(5, 20);
 		$IT_MAX = 1000;
 		$i = 1;
 
