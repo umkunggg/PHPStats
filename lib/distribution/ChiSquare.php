@@ -23,7 +23,7 @@
  * @package PHPStats
  */
 
-namespace PHPStats\ProbabilityDistribution;
+namespace mcordingley\phpstats\distribution;
 
 /**
  * ChiSquare class
@@ -170,7 +170,7 @@ class ChiSquare extends ProbabilityDistribution {
 	 * @static
 	 */
 	public static function getPdf($x, $k = 1) {
-		return pow($x, $k/2.0 - 1)*exp(-$x/2.0)/(\PHPStats\Stats::gamma($k/2.0)*pow(2, $k/2.0));
+		return pow($x, $k/2.0 - 1)*exp(-$x/2.0)/(\mcordingley\phpstats\Stats::gamma($k/2.0)*pow(2, $k/2.0));
 	}
 	
 	/**
@@ -182,7 +182,7 @@ class ChiSquare extends ProbabilityDistribution {
 	 * @static
 	 */
 	public static function getCdf($x, $k = 1) {
-		return \PHPStats\Stats::lowerGamma($k/2.0, $x/2)/\PHPStats\Stats::gamma($k/2.0);
+		return \mcordingley\phpstats\Stats::lowerGamma($k/2.0, $x/2)/\mcordingley\phpstats\Stats::gamma($k/2.0);
 	}
 	
 	/**
@@ -207,7 +207,7 @@ class ChiSquare extends ProbabilityDistribution {
 	 * @todo Unimplemented dependencies
 	 */
 	public static function getPpf($x, $k = 1) {
-		return 2 * \PHPStats\Stats::ilowerGamma($k / 2, $x * \PHPStats\Stats::gamma($k / 2));
+		return 2 * \mcordingley\phpstats\Stats::ilowerGamma($k / 2, $x * \mcordingley\phpstats\Stats::gamma($k / 2));
 	}
 	
 	/**

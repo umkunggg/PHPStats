@@ -23,7 +23,7 @@
  * @package PHPStats
  */
  
-namespace PHPStats\ProbabilityDistribution;
+namespace mcordingley\phpstats\distribution;
 
 /**
  * Hypergeometric class
@@ -170,7 +170,7 @@ class Hypergeometric extends ProbabilityDistribution {
 		$m = floor($m);
 		$n = floor($n);
 		
-		if ($L >= 1 && $m >= 0 && $n >= 0) return (\PHPStats\Stats::combinations($m, $x)*\PHPStats\Stats::combinations($L - $m, $n - $x))/\PHPStats\Stats::combinations($L, $n);
+		if ($L >= 1 && $m >= 0 && $n >= 0) return (\mcordingley\phpstats\Stats::combinations($m, $x)*\mcordingley\phpstats\Stats::combinations($L - $m, $n - $x))/\mcordingley\phpstats\Stats::combinations($L, $n);
 		else return 0.0;
 	}
 	
@@ -208,7 +208,7 @@ class Hypergeometric extends ProbabilityDistribution {
 		
 		if ($L >= 1 && $m >= 0 && $n >= 0) {
 			$sum = 0;
-			for($i = 0; $i <= $x; $i++) $sum += (\PHPStats\Stats::combinations($m, $i)*\PHPStats\Stats::combinations($L - $m, $n - $i))/\PHPStats\Stats::combinations($L, $n);
+			for($i = 0; $i <= $x; $i++) $sum += (\mcordingley\phpstats\Stats::combinations($m, $i)*\mcordingley\phpstats\Stats::combinations($L - $m, $n - $i))/\mcordingley\phpstats\Stats::combinations($L, $n);
 			return $sum;
 		}
 		else return 0.0;

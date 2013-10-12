@@ -23,7 +23,7 @@
  * @package PHPStats
  */
  
-namespace PHPStats\ProbabilityDistribution;
+namespace mcordingley\phpstats\distribution;
 
 /**
  * Rayleigh class
@@ -182,7 +182,7 @@ class Rayleigh extends ProbabilityDistribution {
 	 */
 	public static function getPpf($x, $sigma = 1) {
 		$lambda = self::convertSigmaToLambda($sigma);
-		return \PHPStats\ProbabilityDistribution\Weibull::getPpf($x, $lambda, 2);
+		return \mcordingley\phpstats\distribution\Weibull::getPpf($x, $lambda, 2);
 	}
 	
 	/**
@@ -207,6 +207,6 @@ class Rayleigh extends ProbabilityDistribution {
 	 */
 	public static function getStats($moments = 'mv', $sigma = 1) {
 		$lambda = self::convertSigmaToLambda($sigma);
-		return \PHPStats\ProbabilityDistribution\Weibull::getStats($moments, $lambda, 2);
+		return \mcordingley\phpstats\distribution\Weibull::getStats($moments, $lambda, 2);
 	}
 }

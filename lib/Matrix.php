@@ -23,7 +23,7 @@
  * @package PHPStats
  */
  
-namespace PHPStats;
+namespace mcordingley\phpstats;
 
 /**
  * Matrix class
@@ -202,7 +202,7 @@ class Matrix {
 				$column = array();
 				for ($k = 1; $k <= $rows; $k++) $column[] = $matrixB->getElement($k, $j);
 
-				$newMatrix->setElement($i, $j, \PHPStats\Stats::sumXY($row, $column));
+				$newMatrix->setElement($i, $j, \mcordingley\phpstats\Stats::sumXY($row, $column));
 			}
 		}
 

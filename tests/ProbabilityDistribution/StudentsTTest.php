@@ -1,10 +1,10 @@
 <?php
 require_once('lib/Stats.php');
-require_once('lib/ProbabilityDistribution/ProbabilityDistribution.php');
-require_once('lib/ProbabilityDistribution/StudentsT.php');
+require_once('lib/distribution/ProbabilityDistribution.php');
+require_once('lib/distribution/StudentsT.php');
 require_once('lib/StatisticalTests.php');
 
-use \PHPStats\ProbabilityDistribution\StudentsT as StudentsT;
+use \mcordingley\phpstats\distribution\StudentsT as StudentsT;
 
 class StudentsTTest extends PHPUnit_Framework_TestCase {
 	private $testObject;
@@ -16,8 +16,8 @@ class StudentsTTest extends PHPUnit_Framework_TestCase {
 	public function test_rvs() {
 		$variates = array();
 		for ($i = 0; $i < 10000; $i++) $variates[] = $this->testObject->rvs();
-		$this->assertGreaterThanOrEqual(0.01, \PHPStats\StatisticalTests::kolmogorovSmirnov($variates, $this->testObject));
-		$this->assertLessThanOrEqual(0.99, \PHPStats\StatisticalTests::kolmogorovSmirnov($variates, $this->testObject));
+		$this->assertGreaterThanOrEqual(0.01, \mcordingley\phpstats\StatisticalTests::kolmogorovSmirnov($variates, $this->testObject));
+		$this->assertLessThanOrEqual(0.99, \mcordingley\phpstats\StatisticalTests::kolmogorovSmirnov($variates, $this->testObject));
 	}
 
 	public function test_pdf() {

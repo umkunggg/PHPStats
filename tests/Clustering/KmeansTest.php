@@ -2,9 +2,9 @@
 
 require_once('lib/Stats.php');
 require_once('lib/Matrix.php');
-require_once('lib/Clustering/Kmeans.php');
+require_once('lib/clustering/Kmeans.php');
 
-use \PHPStats\Clustering\Kmeans as Kmeans;
+use \mcordingley\phpstats\clustering\Kmeans as Kmeans;
 
 class KmeansTest extends PHPUnit_Framework_TestCase {
 	private $kmeans;
@@ -14,11 +14,11 @@ class KmeansTest extends PHPUnit_Framework_TestCase {
 
 		for ($i = 0; $i < 200; $i++) { // First cluster, centered near (2.5, 2.5)
 			//1 x 2 for 2D data, e.g. array(array(x, y))  One row, so the outer array has only one element.
-			$observations[] = new \PHPStats\Matrix(array(array(mt_rand(0, 5), mt_rand(0, 5))));
+			$observations[] = new \mcordingley\phpstats\Matrix(array(array(mt_rand(0, 5), mt_rand(0, 5))));
 		}
 
 		for ($i = 0; $i < 200; $i++) { // Second cluster, centered near (12.5, 12.5)
-			$observations[] = new \PHPStats\Matrix(array(array(mt_rand(0, 5) + 10, mt_rand(0, 5) + 10)));
+			$observations[] = new \mcordingley\phpstats\Matrix(array(array(mt_rand(0, 5) + 10, mt_rand(0, 5) + 10)));
 		}
 
 		$this->kmeans = new KMeans($observations, 2); //Search for our two clusters

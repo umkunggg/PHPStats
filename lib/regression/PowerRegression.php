@@ -23,7 +23,7 @@
  * @package PHPStats
  */
  
-namespace PHPStats\RegressionModel;
+namespace mcordingley\phpstats\regression;
 
 /**
  * PowerRegression class
@@ -50,11 +50,11 @@ class PowerRegression extends RegressionModel {
 		$logy = array();
 		foreach ($datay as $y) $logy[] = log($y);
 
-		$this->r = \PHPStats\Stats::correlation($logx, $logy);
+		$this->r = \mcordingley\phpstats\Stats::correlation($logx, $logy);
 
-		$this->beta = \PHPStats\Stats::covariance($logx, $logy)/\PHPStats\Stats::variance($logx);
+		$this->beta = \mcordingley\phpstats\Stats::covariance($logx, $logy)/\mcordingley\phpstats\Stats::variance($logx);
 
-		$logalpha = \PHPStats\Stats::average($logy) - $this->beta*\PHPStats\Stats::average($logx);
+		$logalpha = \mcordingley\phpstats\Stats::average($logy) - $this->beta*\mcordingley\phpstats\Stats::average($logx);
 		$this->alpha = exp($logalpha);
 	}
 	

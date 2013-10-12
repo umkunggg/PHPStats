@@ -23,7 +23,7 @@
  * @package PHPStats
  */
  
-namespace PHPStats\ProbabilityDistribution;
+namespace mcordingley\phpstats\distribution;
 
 /**
  * Log-Normal class
@@ -154,7 +154,7 @@ class LogNormal extends ProbabilityDistribution {
 	 * @static
 	 */
 	public static function getCdf($x, $mu = 0.0, $variance = 1.0) {
-		return 0.5 + \PHPStats\Stats::erf((log($x) - $mu)/sqrt(2*$variance))/2;
+		return 0.5 + \mcordingley\phpstats\Stats::erf((log($x) - $mu)/sqrt(2*$variance))/2;
 	}
 	
 	/**
@@ -181,7 +181,7 @@ class LogNormal extends ProbabilityDistribution {
 	 * @todo Investigate cause of slight inaccuracies
 	 */
 	public static function getPpf($x, $mu = 0.0, $variance = 1.0) {
-		return exp(sqrt(2 * $variance) * \PHPStats\Stats::ierf(2 * $x - 1) + $mu);
+		return exp(sqrt(2 * $variance) * \mcordingley\phpstats\Stats::ierf(2 * $x - 1) + $mu);
 	}
 	
 	/**

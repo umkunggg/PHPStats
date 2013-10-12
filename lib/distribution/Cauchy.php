@@ -23,7 +23,7 @@
  * @package PHPStats
  */
  
-namespace PHPStats\ProbabilityDistribution;
+namespace mcordingley\phpstats\distribution;
 
 /**
  * Cauchy class
@@ -125,8 +125,8 @@ class Cauchy extends ProbabilityDistribution {
 	 * @static
 	 */
 	public static function getRvs($mu = 0.0, $gamma = 1.0) {
-		$u = \PHPStats\ProbabilityDistribution\Normal::getRvs(0, 1);
-		$v = \PHPStats\ProbabilityDistribution\Normal::getRvs(0, 1);
+		$u = \mcordingley\phpstats\distribution\Normal::getRvs(0, 1);
+		$v = \mcordingley\phpstats\distribution\Normal::getRvs(0, 1);
 		return $gamma * ($u/$v) + $mu;
 	}
 	

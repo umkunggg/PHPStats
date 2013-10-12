@@ -23,7 +23,7 @@
  * @package PHPStats
  */
  
-namespace PHPStats\Clustering;
+namespace mcordingley\phpstats\clustering;
 
 /**
  * kmeans class
@@ -120,7 +120,7 @@ class Kmeans {
 	//Centers centroids on current members
 	private function update() {
 		foreach ($this->centroids as $index => &$centroid) {
-			$new_coordinates = \PHPStats\Matrix::zero(1, $centroid->getColumns());
+			$new_coordinates = \mcordingley\phpstats\Matrix::zero(1, $centroid->getColumns());
 			$members = 0;
 			
 			foreach ($this->observations as $observation) {

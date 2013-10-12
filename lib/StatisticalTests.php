@@ -23,7 +23,7 @@
  * @package PHPStats
  */
  
-namespace PHPStats;
+namespace mcordingley\phpstats;
 
 /**
  * StatisticalTests class
@@ -52,7 +52,7 @@ class StatisticalTests {
 	 */
 	public static function oneSampleTTest(array $data, $populationAverage = 0) {
 		$sampleT = (Stats::average($data)-$populationAverage)/(Stats::sampleStddev($data)/sqrt(count($data)));
-		return \PHPStats\ProbabilityDistribution\StudentsT::getCdf($sampleT, count($data)-1);
+		return \mcordingley\phpstats\distribution\StudentsT::getCdf($sampleT, count($data)-1);
 	}
 
 	/**
@@ -70,7 +70,7 @@ class StatisticalTests {
 		$df = pow(pow(Stats::sampleStddev($datax), 2)/count($datax)+pow(Stats::sampleStddev($datay), 2)/count($datay), 2)/(pow(pow(Stats::sampleStddev($datax), 2)/count($datax), 2)/(count($datax)-1)+pow(pow(Stats::sampleStddev($datay), 2)/count($datay), 2)/(count($datay)-1));
 		$sampleT = (Stats::average($datax)-Stats::average($datay))/sqrt(pow(Stats::sampleStddev($datax), 2)/count($datax)+pow(Stats::sampleStddev($datay), 2)/count($datay));
 	
-		return \PHPStats\ProbabilityDistribution\StudentsT::getCdf($sampleT, $df);
+		return \mcordingley\phpstats\distribution\StudentsT::getCdf($sampleT, $df);
 	}
 
 	/**
@@ -119,7 +119,7 @@ class StatisticalTests {
 
 			$sum += pow($observations[$i] - $expected[$i], 2)/$expected[$i];
 		}
-		return \PHPStats\ProbabilityDistribution\ChiSquare::getSf($sum, $df);
+		return \mcordingley\phpstats\distribution\ChiSquare::getSf($sum, $df);
 	}
 
 	/**

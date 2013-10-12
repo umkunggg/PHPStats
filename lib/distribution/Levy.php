@@ -23,7 +23,7 @@
  * @package PHPStats
  */
  
-namespace PHPStats\ProbabilityDistribution;
+namespace mcordingley\phpstats\distribution;
 
 /**
  * Levy class
@@ -158,7 +158,7 @@ class Levy extends ProbabilityDistribution {
 	 * @static
 	 */
 	public static function getCdf($x, $mu = 0.0, $c = 1.0) {
-		return 1 - \PHPStats\Stats::erf(sqrt($c / (2 * ($x - $mu))));
+		return 1 - \mcordingley\phpstats\Stats::erf(sqrt($c / (2 * ($x - $mu))));
 	}
 	
 	/**
@@ -184,7 +184,7 @@ class Levy extends ProbabilityDistribution {
 	 * @static
 	 */
 	public static function getPpf($x, $mu = 0.0, $c = 1.0) {
-		return $c / (2 * pow(\PHPStats\Stats::ierf(1 - $x), 2)) + $mu;
+		return $c / (2 * pow(\mcordingley\phpstats\Stats::ierf(1 - $x), 2)) + $mu;
 	}
 	
 	/**

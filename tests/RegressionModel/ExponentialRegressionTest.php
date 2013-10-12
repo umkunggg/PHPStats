@@ -1,9 +1,9 @@
 <?php
 require_once('lib/Stats.php');
-require_once('lib/RegressionModel/RegressionModel.php');
-require_once('lib/RegressionModel/ExponentialRegression.php');
+require_once('lib/regression/RegressionModel.php');
+require_once('lib/regression/ExponentialRegression.php');
 
-use \PHPStats\RegressionModel\ExponentialRegression as ExponentialRegression;
+use \mcordingley\phpstats\regression\ExponentialRegression as ExponentialRegression;
 
 class ExponentialRegressionTest extends PHPUnit_Framework_TestCase {
 	private $regressionModel;

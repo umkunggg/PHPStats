@@ -1,9 +1,9 @@
 <?php
 require_once('lib/Stats.php');
-require_once('lib/ProbabilityDistribution/ProbabilityDistribution.php');
-require_once('lib/ProbabilityDistribution/Binomial.php');
+require_once('lib/distribution/ProbabilityDistribution.php');
+require_once('lib/distribution/Binomial.php');
 
-use \PHPStats\ProbabilityDistribution\Binomial as Binomial;
+use \mcordingley\phpstats\distribution\Binomial as Binomial;
 
 class BinomialTest extends PHPUnit_Framework_TestCase {
 	private $testObject;
@@ -37,8 +37,8 @@ class BinomialTest extends PHPUnit_Framework_TestCase {
 		}
 		$expected[$max_tested] = $variates * $this->testObject->sf($max_tested - 1);
 		
-		$this->assertGreaterThanOrEqual(0.01, \PHPStats\statisticalTests::chiSquareTest($observed, $expected, $max_tested - 1));
-		$this->assertLessThanOrEqual(0.99, \PHPStats\statisticalTests::chiSquareTest($observed, $expected, $max_tested - 1));
+		$this->assertGreaterThanOrEqual(0.01, \mcordingley\phpstats\StatisticalTests::chiSquareTest($observed, $expected, $max_tested - 1));
+		$this->assertLessThanOrEqual(0.99, \mcordingley\phpstats\StatisticalTests::chiSquareTest($observed, $expected, $max_tested - 1));
 	}
 
 	public function test_pmf() {
@@ -70,4 +70,3 @@ class BinomialTest extends PHPUnit_Framework_TestCase {
 		$this->assertEquals(-0.4, $summaryStats['kurtosis']);
 	}
 }
-?>

@@ -23,7 +23,7 @@
  * @package PHPStats
  */
  
-namespace PHPStats\ProbabilityDistribution;
+namespace mcordingley\phpstats\distribution;
 
 /**
  * Beta class
@@ -127,8 +127,8 @@ class Beta extends ProbabilityDistribution {
 	 * @static
 	 */
 	public static function getRvs($alpha = 1, $beta = 1) {
-		$x = \PHPStats\ProbabilityDistribution\Gamma::getRvs($alpha, 1);
-		$y = \PHPStats\ProbabilityDistribution\Gamma::getRvs($beta, 1);
+		$x = \mcordingley\phpstats\distribution\Gamma::getRvs($alpha, 1);
+		$y = \mcordingley\phpstats\distribution\Gamma::getRvs($beta, 1);
 		return $x/($x + $y);
 	}
 	
@@ -142,7 +142,7 @@ class Beta extends ProbabilityDistribution {
 	 * @static
 	 */
 	public static function getPdf($x, $alpha = 1, $beta = 1) {
-		if ($x >= 0 && $x <= 1) return pow($x, $alpha - 1)*pow(1 - $x, $beta - 1)/\PHPStats\Stats::beta($alpha, $beta);
+		if ($x >= 0 && $x <= 1) return pow($x, $alpha - 1)*pow(1 - $x, $beta - 1)/\mcordingley\phpstats\Stats::beta($alpha, $beta);
 		else return 0.0;
 	}
 	
@@ -156,7 +156,7 @@ class Beta extends ProbabilityDistribution {
 	 * @static
 	 */
 	public static function getCdf($x, $alpha = 1, $beta = 1) {
-		return \PHPStats\Stats::regularizedIncompleteBeta($alpha, $beta, $x);
+		return \mcordingley\phpstats\Stats::regularizedIncompleteBeta($alpha, $beta, $x);
 	}
 	
 	/**
@@ -182,7 +182,7 @@ class Beta extends ProbabilityDistribution {
 	 * @static
 	 */
 	public static function getPpf($x, $alpha = 1, $beta = 1) {
-		return \PHPStats\Stats::iregularizedIncompleteBeta($alpha, $beta, $x);
+		return \mcordingley\phpstats\Stats::iregularizedIncompleteBeta($alpha, $beta, $x);
 	}
 	
 	/**

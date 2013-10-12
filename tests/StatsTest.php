@@ -10,7 +10,7 @@
  * accurate to a higher degree would be most welcome.
  */
 require_once('lib/Stats.php');
-use \PHPStats\Stats as Stats;
+use \mcordingley\phpstats\Stats as Stats;
 
 class StatsTest extends PHPUnit_Framework_TestCase {
 	private $datax;

@@ -23,7 +23,7 @@
  * @package PHPStats
  */
  
-namespace PHPStats\ProbabilityDistribution;
+namespace mcordingley\phpstats\distribution;
 
 /**
  * Gamma class
@@ -176,7 +176,7 @@ class Gamma extends ProbabilityDistribution {
 	 * @static
 	 */
 	public static function getPdf($x, $k = 1, $theta = 1) {
-		return pow($x, $k - 1)*exp(-$x/$theta)/(\PHPStats\Stats::gamma($k)*pow($theta, $k));
+		return pow($x, $k - 1)*exp(-$x/$theta)/(\mcordingley\phpstats\Stats::gamma($k)*pow($theta, $k));
 	}
 	
 	/**
@@ -189,7 +189,7 @@ class Gamma extends ProbabilityDistribution {
 	 * @static
 	 */
 	public static function getCdf($x, $k = 1, $theta = 1) {
-		return \PHPStats\Stats::lowerGamma($k, $x/$theta)/\PHPStats\Stats::gamma($k);
+		return \mcordingley\phpstats\Stats::lowerGamma($k, $x/$theta)/\mcordingley\phpstats\Stats::gamma($k);
 	}
 	
 	/**
@@ -215,7 +215,7 @@ class Gamma extends ProbabilityDistribution {
 	 * @static
 	 */
 	public static function getPpf($x, $k = 1, $theta = 1) {
-		return $theta * \PHPStats\Stats::ilowerGamma($k, \PHPStats\Stats::gamma($k) * $x);
+		return $theta * \mcordingley\phpstats\Stats::ilowerGamma($k, \mcordingley\phpstats\Stats::gamma($k) * $x);
 	}
 	
 	/**

@@ -23,7 +23,7 @@
  * @package PHPStats
  */
  
-namespace PHPStats\ProbabilityDistribution;
+namespace mcordingley\phpstats\distribution;
 
 /**
  * StudentsT class
@@ -124,8 +124,8 @@ class StudentsT extends ProbabilityDistribution {
 	 * @static
 	 */
 	public static function getRvs($df = 1) {
-		$Z = \PHPStats\ProbabilityDistribution\Normal::getRvs(0, 1);
-		$V = \PHPStats\ProbabilityDistribution\ChiSquare::getRvs($df);
+		$Z = \mcordingley\phpstats\distribution\Normal::getRvs(0, 1);
+		$V = \mcordingley\phpstats\distribution\ChiSquare::getRvs($df);
 		return $Z / sqrt($V/$df);
 	}
 	
@@ -138,7 +138,7 @@ class StudentsT extends ProbabilityDistribution {
 	 * @static
 	 */
 	public static function getPdf($x, $df = 1) {
-		return \PHPStats\Stats::gamma(($df + 1)/ 2) * pow(1 + pow($x, 2)/$df, -($df + 1)/2)/ (sqrt($df * M_PI)*\PHPStats\Stats::gamma($df/2));
+		return \mcordingley\phpstats\Stats::gamma(($df + 1)/ 2) * pow(1 + pow($x, 2)/$df, -($df + 1)/2)/ (sqrt($df * M_PI)*\mcordingley\phpstats\Stats::gamma($df/2));
 	}
 	
 	/**
@@ -150,7 +150,7 @@ class StudentsT extends ProbabilityDistribution {
 	 * @static
 	 */
 	public static function getCdf($x, $df = 1) {
-		$return = 1 - .5*\PHPStats\Stats::regularizedIncompleteBeta($df/2, 0.5, $df/(pow($x, 2) + $df)); //Valid only for $x > 0
+		$return = 1 - .5*\mcordingley\phpstats\Stats::regularizedIncompleteBeta($df/2, 0.5, $df/(pow($x, 2) + $df)); //Valid only for $x > 0
 		
 		if ($x < 0) return 1 - $return; //...but we can infer < 0 by way of symmetry.
 		elseif ($x == 0) return .5; //Can't mirror it for zero, but the mean is here so the CDF is 0.5 at this point.
@@ -178,7 +178,7 @@ class StudentsT extends ProbabilityDistribution {
 	 * @static
 	 */
 	public static function getPpf($x, $df = 1) {
-		return pow($df/(\PHPStats\Stats::iregularizedIncompleteBeta($df/2, 0.5, 2* (1 - $x))) - $df, 0.5);
+		return pow($df/(\mcordingley\phpstats\Stats::iregularizedIncompleteBeta($df/2, 0.5, 2* (1 - $x))) - $df, 0.5);
 	}
 	
 	/**

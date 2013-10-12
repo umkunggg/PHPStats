@@ -23,7 +23,7 @@
  * @package PHPStats
  */
  
-namespace PHPStats\ProbabilityDistribution;
+namespace mcordingley\phpstats\distribution;
 
 /**
  * Weibull class
@@ -129,7 +129,7 @@ class Weibull extends ProbabilityDistribution {
 	 * @static
 	 */
 	public static function getRvs($lambda = 1, $k = 1) {
-		$e = \PHPStats\ProbabilityDistribution\Exponential::getRvs(1);
+		$e = \mcordingley\phpstats\distribution\Exponential::getRvs(1);
 		return ($e == 0)? 0 : $lambda * pow($e, 1/$k);
 	}
 	
@@ -211,10 +211,10 @@ class Weibull extends ProbabilityDistribution {
 	public static function getStats($moments = 'mv', $lambda = 1, $k = 1) {
 		$return = array();
 		
-		if (strpos($moments, 'm') !== FALSE) $return['mean'] = $lambda*\PHPStats\Stats::gamma(1 + 1/$k);
-		if (strpos($moments, 'v') !== FALSE) $return['variance'] = pow($lambda, 2) * \PHPStats\Stats::gamma(1 + 2/$k) - pow($return['mean'], 2);
-		if (strpos($moments, 's') !== FALSE) $return['skew'] = (\PHPStats\Stats::gamma(1 + 3/$k) * pow($lambda, 3) - 3*$return['mean']*$return['variance'] - pow($return['mean'], 3))/pow($return['variance'], 1.5);
-		if (strpos($moments, 'k') !== FALSE) $return['kurtosis'] = (-6 * pow(\PHPStats\Stats::gamma(1 + 1/$k), 4) + 12 * pow(\PHPStats\Stats::gamma(1 + 1/$k), 2) * \PHPStats\Stats::gamma(1 + 2/$k) - 3 * pow(\PHPStats\Stats::gamma(1 + 2/$k), 2) - 4 * \PHPStats\Stats::gamma(1 + 1/$k) * \PHPStats\Stats::gamma(1 + 3/$k) + \PHPStats\Stats::gamma(1 + 4/$k))/pow(\PHPStats\Stats::gamma(1 + 2/$k) - pow(\PHPStats\Stats::gamma(1 + 1/$k), 2), 2);
+		if (strpos($moments, 'm') !== FALSE) $return['mean'] = $lambda*\mcordingley\phpstats\Stats::gamma(1 + 1/$k);
+		if (strpos($moments, 'v') !== FALSE) $return['variance'] = pow($lambda, 2) * \mcordingley\phpstats\Stats::gamma(1 + 2/$k) - pow($return['mean'], 2);
+		if (strpos($moments, 's') !== FALSE) $return['skew'] = (\mcordingley\phpstats\Stats::gamma(1 + 3/$k) * pow($lambda, 3) - 3*$return['mean']*$return['variance'] - pow($return['mean'], 3))/pow($return['variance'], 1.5);
+		if (strpos($moments, 'k') !== FALSE) $return['kurtosis'] = (-6 * pow(\mcordingley\phpstats\Stats::gamma(1 + 1/$k), 4) + 12 * pow(\mcordingley\phpstats\Stats::gamma(1 + 1/$k), 2) * \mcordingley\phpstats\Stats::gamma(1 + 2/$k) - 3 * pow(\mcordingley\phpstats\Stats::gamma(1 + 2/$k), 2) - 4 * \mcordingley\phpstats\Stats::gamma(1 + 1/$k) * \mcordingley\phpstats\Stats::gamma(1 + 3/$k) + \mcordingley\phpstats\Stats::gamma(1 + 4/$k))/pow(\mcordingley\phpstats\Stats::gamma(1 + 2/$k) - pow(\mcordingley\phpstats\Stats::gamma(1 + 1/$k), 2), 2);
 		
 		return $return;
 	}

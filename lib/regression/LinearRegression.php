@@ -23,7 +23,7 @@
  * @package PHPStats
  */
  
-namespace PHPStats\RegressionModel;
+namespace mcordingley\phpstats\regression;
 
 /**
  * LinearRegression class
@@ -45,10 +45,10 @@ class LinearRegression extends RegressionModel {
 	 * @return LinearRegression An object representing the regression model
 	 */
 	public function __construct($datax, $datay) {
-		$this->beta = \PHPStats\Stats::covariance($datax, $datay)/\PHPStats\Stats::variance($datax);
-		$this->alpha = \PHPStats\Stats::average($datay) - $this->beta*\PHPStats\Stats::average($datax);
+		$this->beta = \mcordingley\phpstats\Stats::covariance($datax, $datay)/\mcordingley\phpstats\Stats::variance($datax);
+		$this->alpha = \mcordingley\phpstats\Stats::average($datay) - $this->beta*\mcordingley\phpstats\Stats::average($datax);
 
-		$this->r = \PHPStats\Stats::correlation($datax, $datay);
+		$this->r = \mcordingley\phpstats\Stats::correlation($datax, $datay);
 	}
 	
 	/**

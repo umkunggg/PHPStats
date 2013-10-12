@@ -1,12 +1,12 @@
 <?php
 
 require_once('lib/Stats.php');
-require_once('lib/ProbabilityDistribution/ProbabilityDistribution.php');
-require_once('lib/ProbabilityDistribution/StudentsT.php');
-require_once('lib/ProbabilityDistribution/ChiSquare.php');
+require_once('lib/distribution/ProbabilityDistribution.php');
+require_once('lib/distribution/StudentsT.php');
+require_once('lib/distribution/ChiSquare.php');
 require_once('lib/StatisticalTests.php');
 
-use \PHPStats\StatisticalTests as StatisticalTests;
+use \mcordingley\phpstats\StatisticalTests as StatisticalTests;
 
 class StatisticalTestsTest extends PHPUnit_Framework_TestCase {
 	private $datax;

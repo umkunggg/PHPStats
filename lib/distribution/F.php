@@ -23,7 +23,7 @@
  * @package PHPStats
  */
  
-namespace PHPStats\ProbabilityDistribution;
+namespace mcordingley\phpstats\distribution;
 
 /**
  * F class
@@ -126,8 +126,8 @@ class F extends ProbabilityDistribution {
 	 * @static
 	 */
 	public static function getRvs($d1 = 1, $d2 = 1) {
-		$x = \PHPStats\ProbabilityDistribution\ChiSquare::getRvs($d1);
-		$y = \PHPStats\ProbabilityDistribution\ChiSquare::getRvs($d2);
+		$x = \mcordingley\phpstats\distribution\ChiSquare::getRvs($d1);
+		$y = \mcordingley\phpstats\distribution\ChiSquare::getRvs($d2);
 		return ($x / $d1) / ($y / $d2);
 	}
 	
@@ -141,7 +141,7 @@ class F extends ProbabilityDistribution {
 	 * @static
 	 */
 	public static function getPdf($x, $d1 = 1, $d2 = 1) {
-		return pow((pow($d1 * $x, $d1) * pow($d2, $d2))/(pow($d1 * $x + $d2, $d1 + $d2)), 0.5)/($x * \PHPStats\Stats::beta($d1 / 2, $d2 / 2));
+		return pow((pow($d1 * $x, $d1) * pow($d2, $d2))/(pow($d1 * $x + $d2, $d1 + $d2)), 0.5)/($x * \mcordingley\phpstats\Stats::beta($d1 / 2, $d2 / 2));
 	}
 	
 	/**
@@ -154,7 +154,7 @@ class F extends ProbabilityDistribution {
 	 * @static
 	 */
 	public static function getCdf($x, $d1 = 1, $d2 = 1) {
-		return \PHPStats\Stats::regularizedIncompleteBeta($d1 / 2, $d2 / 2, ($d1 * $x)/($d1 * $x + $d2));
+		return \mcordingley\phpstats\Stats::regularizedIncompleteBeta($d1 / 2, $d2 / 2, ($d1 * $x)/($d1 * $x + $d2));
 	}
 	
 	/**
@@ -180,7 +180,7 @@ class F extends ProbabilityDistribution {
 	 * @static
 	 */
 	public static function getPpf($x, $d1 = 1, $d2 = 1) {
-		$iY = \PHPStats\Stats::iregularizedIncompleteBeta($d1/2, $d2/2, $x);
+		$iY = \mcordingley\phpstats\Stats::iregularizedIncompleteBeta($d1/2, $d2/2, $x);
 		return -($d2*$iY) / ($d1 * ($iY - 1));
 	}
 	

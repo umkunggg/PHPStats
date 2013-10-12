@@ -23,7 +23,7 @@
  * @package PHPStats
  */
  
-namespace PHPStats\ProbabilityDistribution;
+namespace mcordingley\phpstats\distribution;
 
 /**
  * Normal class
@@ -154,7 +154,7 @@ class Normal extends ProbabilityDistribution {
 	 * @static
 	 */
 	public static function getCdf($x, $mu = 0.0, $variance = 1.0) {
-		return (1 + \PHPStats\Stats::erf(($x - $mu)/sqrt(2*$variance)))/2;
+		return (1 + \mcordingley\phpstats\Stats::erf(($x - $mu)/sqrt(2*$variance)))/2;
 	}
 	
 	/**
@@ -180,7 +180,7 @@ class Normal extends ProbabilityDistribution {
 	 * @static
 	 */
 	public static function getPpf($x, $mu = 0.0, $variance = 1.0) {
-		return pow(2 * $variance, 0.5) * \PHPStats\Stats::ierf(2 * $x - 1) + $mu;
+		return pow(2 * $variance, 0.5) * \mcordingley\phpstats\Stats::ierf(2 * $x - 1) + $mu;
 	}
 	
 	/**

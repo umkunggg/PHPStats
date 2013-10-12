@@ -1,9 +1,9 @@
 <?php
 require_once('lib/Stats.php');
-require_once('lib/RegressionModel/RegressionModel.php');
-require_once('lib/RegressionModel/LogarithmicRegression.php');
+require_once('lib/regression/RegressionModel.php');
+require_once('lib/regression/LogarithmicRegression.php');
 
-use \PHPStats\RegressionModel\LogarithmicRegression as LogarithmicRegression;
+use \mcordingley\phpstats\regression\LogarithmicRegression as LogarithmicRegression;
 
 class LogarithmicRegressionTest extends PHPUnit_Framework_TestCase {
 	private $regressionModel;

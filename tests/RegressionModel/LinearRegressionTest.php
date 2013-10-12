@@ -1,9 +1,9 @@
 <?php
 require_once('lib/Stats.php');
-require_once('lib/RegressionModel/RegressionModel.php');
-require_once('lib/RegressionModel/LinearRegression.php');
+require_once('lib/regression/RegressionModel.php');
+require_once('lib/regression/LinearRegression.php');
 
-use \PHPStats\RegressionModel\LinearRegression as LinearRegression;
+use \mcordingley\phpstats\regression\LinearRegression as LinearRegression;
 
 class LinearRegressionTest extends PHPUnit_Framework_TestCase {
 	private $regressionModel;

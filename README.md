@@ -24,7 +24,7 @@ include('PHPStats.phar');
 
 To use a class, remember to properly call the namespace that it's in.  For
 example, to create a new instance of the Beta distribution, call it like this:
-$beta = new \PHPStats\ProbabilityDistribution\Beta(6,20);
+$beta = new \mcordingley\phpstats\distribution\Beta(6,20);
 
 If performance is a concern, files can be pre-emptively loaded, rather than
 waiting for the autoload functionality.  For example, to pre-load the Beta class

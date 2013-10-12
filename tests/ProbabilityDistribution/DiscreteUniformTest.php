@@ -1,9 +1,9 @@
 <?php
 require_once('lib/Stats.php');
-require_once('lib/ProbabilityDistribution/ProbabilityDistribution.php');
-require_once('lib/ProbabilityDistribution/DiscreteUniform.php');
+require_once('lib/distribution/ProbabilityDistribution.php');
+require_once('lib/distribution/DiscreteUniform.php');
 
-use \PHPStats\ProbabilityDistribution\DiscreteUniform as DiscreteUniform;
+use \mcordingley\phpstats\distribution\DiscreteUniform as DiscreteUniform;
 
 class DiscreteUniformTest extends PHPUnit_Framework_TestCase {
 	private $testObject;
@@ -37,8 +37,8 @@ class DiscreteUniformTest extends PHPUnit_Framework_TestCase {
 		}
 		$expected[$max_tested] = $variates * $this->testObject->sf($max_tested - 1);
 		
-		$this->assertGreaterThanOrEqual(0.01, \PHPStats\statisticalTests::chiSquareTest($observed, $expected, $max_tested - 1));
-		$this->assertLessThanOrEqual(0.99, \PHPStats\statisticalTests::chiSquareTest($observed, $expected, $max_tested - 1));
+		$this->assertGreaterThanOrEqual(0.01, \mcordingley\phpstats\statisticalTests::chiSquareTest($observed, $expected, $max_tested - 1));
+		$this->assertLessThanOrEqual(0.99, \mcordingley\phpstats\statisticalTests::chiSquareTest($observed, $expected, $max_tested - 1));
 	}
 
 	public function test_pmf() {

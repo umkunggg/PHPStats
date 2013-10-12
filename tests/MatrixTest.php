@@ -5,7 +5,7 @@
 require_once('lib/Stats.php');
 require_once('lib/Matrix.php');
 
-use \PHPStats\Matrix as Matrix;
+use \mcordingley\phpstats\Matrix as Matrix;
 
 class MatrixTest extends PHPUnit_Framework_TestCase {
 	private $matrixA;

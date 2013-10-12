@@ -1,9 +1,9 @@
 <?php
 require_once('lib/Stats.php');
-require_once('lib/RegressionModel/RegressionModel.php');
-require_once('lib/RegressionModel/PowerRegression.php');
+require_once('lib/regression/RegressionModel.php');
+require_once('lib/regression/PowerRegression.php');
 
-use \PHPStats\RegressionModel\PowerRegression as PowerRegression;
+use \mcordingley\phpstats\regression\PowerRegression as PowerRegression;
 
 class PowerRegressionTest extends PHPUnit_Framework_TestCase {
 	private $regressionModel;
