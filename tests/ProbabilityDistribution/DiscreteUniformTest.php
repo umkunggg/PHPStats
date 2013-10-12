@@ -70,4 +70,4 @@ class DiscreteUniformTest extends PHPUnit_Framework_TestCase {
 		$this->assertEquals(-1.22424, round($summaryStats['kurtosis'], 5));
 	}
 }
-?>
+

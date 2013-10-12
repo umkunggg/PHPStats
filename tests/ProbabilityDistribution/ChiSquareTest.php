@@ -54,4 +54,4 @@ class ChiSquareTest extends PHPUnit_Framework_TestCase {
 		$this->assertEquals(2.4, round($summaryStats['kurtosis'], 5));
 	}
 }
-?>
+

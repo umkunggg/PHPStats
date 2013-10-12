@@ -54,4 +54,4 @@ class FTest extends PHPUnit_Framework_TestCase {
 		$this->assertEquals(44.4, round($summaryStats['kurtosis'], 5));
 	}
 }
-?>
+

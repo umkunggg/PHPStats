@@ -31,4 +31,4 @@ class ExponentialRegressionTest extends PHPUnit_Framework_TestCase {
 		$this->assertEquals(-0.9848429205, round($this->regressionModel->getCorrelation(), 10));
 	}
 }
-?>
+

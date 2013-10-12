@@ -54,4 +54,4 @@ class ContinuousUniformTest extends PHPUnit_Framework_TestCase {
 		$this->assertEquals(-1.2, round($summaryStats['kurtosis'], 5));
 	}
 }
-?>
+

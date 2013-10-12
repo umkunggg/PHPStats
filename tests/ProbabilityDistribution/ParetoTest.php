@@ -54,4 +54,4 @@ class ParetoTest extends PHPUnit_Framework_TestCase {
 		$this->assertEquals(70.8, round($summaryStats['kurtosis'], 1));
 	}
 }
-?>
+

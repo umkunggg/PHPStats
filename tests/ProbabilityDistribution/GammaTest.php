@@ -54,4 +54,4 @@ class GammaTest extends PHPUnit_Framework_TestCase {
 		$this->assertEquals(0.6, round($summaryStats['kurtosis'], 5));
 	}
 }
-?>
+

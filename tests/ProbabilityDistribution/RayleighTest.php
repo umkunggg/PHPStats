@@ -54,4 +54,4 @@ class RayleighTest extends PHPUnit_Framework_TestCase {
 		$this->assertEquals(0.24509, round($summaryStats['kurtosis'], 5));
 	}
 }
-?>
+

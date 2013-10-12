@@ -31,4 +31,4 @@ class LogarithmicRegressionTest extends PHPUnit_Framework_TestCase {
 		$this->assertEquals(0.9931293099, round($this->regressionModel->getCorrelation(), 10));
 	}
 }
-?>
+

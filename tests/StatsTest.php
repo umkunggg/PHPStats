@@ -240,4 +240,4 @@ class StatsTest extends PHPUnit_Framework_TestCase {
 		$this->assertEquals(56, Stats::combinations(8, 5));
 	}
 }
-?>
+
