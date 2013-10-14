@@ -45,8 +45,8 @@ class LevyTest extends PHPUnit_Framework_TestCase {
 
 		$this->assertEquals(INF, $summaryStats['mean']);
 		$this->assertEquals(INF, $summaryStats['variance']);
-		$this->assertEquals(NAN, $summaryStats['skew']);
-		$this->assertEquals(NAN, $summaryStats['kurtosis']);
+		$this->assertTrue(is_nan($summaryStats['skew']));
+		$this->assertTrue(is_nan($summaryStats['kurtosis']));
 	}
 }
 
