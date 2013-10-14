@@ -835,11 +835,22 @@ class Stats {
 	 * of $n objects, where the order of selection does not matter.
 	 * 
 	 * @param int $n The size of the collection
-	 * @param int $r The size of the selection
-	 * @return int $n choose $r
+	 * @param int $k The size of the selection
+	 * @return int $n choose $k
 	 * @static
 	 */
-	public static function combinations($n, $r) {
-		return self::permutations($n, $r)/self::factorial($r);
+	public static function combinations($n, $k) {
+		// Naive implementations are simple and awful, so this is
+		// from http://blog.plover.com/math/choose.html
+		$r = 1;
+      
+		if ($k > $n) return 0;
+      
+		for ($d = 1; $d <= $k; $d++) {
+			$r *= $n--;
+			$r /= $d;
+		}
+      
+		return $r;
 	}
 }
