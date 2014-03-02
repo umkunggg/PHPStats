@@ -170,8 +170,16 @@ class Hypergeometric extends ProbabilityDistribution {
 		$m = floor($m);
 		$n = floor($n);
 		
-		if ($L >= 1 && $m >= 0 && $n >= 0) return (\PHPStats\Stats::combinations($m, $x)*\PHPStats\Stats::combinations($L - $m, $n - $x))/\PHPStats\Stats::combinations($L, $n);
-		else return 0.0;
+		if ($x > $L
+		   || $x > $m
+		   || $x > $n
+		   || $x < 0
+		   || $L < 1
+		   || $m < 0
+		   || $n < 0
+		   || ) return 0;
+		
+		return (\PHPStats\Stats::combinations($m, $x)*\PHPStats\Stats::combinations($L - $m, $n - $x))/\PHPStats\Stats::combinations($L, $n);
 	}
 	
 	/**
